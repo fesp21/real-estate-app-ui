@@ -1,0 +1,36 @@
+import React, { Component, PropTypes } from 'react';
+import {View,StyleSheet, Text } from 'react-native';
+import Colors from './../../../../common/Colors';
+
+export default class Header extends React.Component {
+
+  static propTypes = {
+    title:PropTypes.string.isRequired
+  };
+
+  render() {
+    const {title} = this.props;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>{title}</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    padding:10,
+    justifyContent:'center',
+    alignItems:'center',
+    // backgroundColor:'green'
+  },
+  text:{
+    color:Colors.darkGrey,
+    fontWeight:'600',
+    fontSize:20,
+    padding:30,
+    textAlign:'center'
+  },
+});
