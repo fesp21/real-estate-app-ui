@@ -1,3 +1,5 @@
+// let fetch =  require('whatwg-fetch');
+
 export function fetchAPI(url,method = 'GET',params = null) {
 
   let requestUrl;
