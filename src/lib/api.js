@@ -15,11 +15,7 @@ export function fetchAPI(url,method = 'GET',params = null) {
     });
   } else {
     requestUrl = fetch(url, {
-      method,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
+      method
     });
   }
 

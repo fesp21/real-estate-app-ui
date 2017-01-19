@@ -16,7 +16,8 @@ if(__DEV__) {
 } else {
   module.exports = {
     ...defaults,
-    API_URL: 'http://re.com',
+    API_URL: 'http://re.izal.me/api',
+    GOOGLE_MAPS_KEY:'AIzaSyCpQX4H0QPxVgKuNMZ0ELG_ymgT8RHcKh4'
   }
 }
 

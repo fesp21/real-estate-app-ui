@@ -36,6 +36,11 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* propertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* propertyTests.m */; };
 		2FCA1CCA956E426BAFC14F27 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D32D06AC68B4BEE8D4FA56B /* Entypo.ttf */; };
+		359A09D81E30E3F300BA4DB0 /* ImageCropPickerSDK in Resources */ = {isa = PBXBuildFile; fileRef = 359A09D71E30E3F300BA4DB0 /* ImageCropPickerSDK */; };
+		359A09DA1E30E43200BA4DB0 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359A09D91E30E43200BA4DB0 /* RSKImageCropper.framework */; };
+		359A09DB1E30E43200BA4DB0 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 359A09D91E30E43200BA4DB0 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		359A09DD1E30E43200BA4DB0 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359A09DC1E30E43200BA4DB0 /* QBImagePicker.framework */; };
+		359A09DE1E30E43200BA4DB0 /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 359A09DC1E30E43200BA4DB0 /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		391DD1612F8D43318CF253FC /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEECDDA0211246CBBE708CFE /* Foundation.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6387261EBF35459BAB9418B1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08494A74776A4C8C966AE107 /* Zocial.ttf */; };
@@ -264,6 +269,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		359A09DF1E30E43200BA4DB0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				359A09DB1E30E43200BA4DB0 /* RSKImageCropper.framework in Embed Frameworks */,
+				359A09DE1E30E43200BA4DB0 /* QBImagePicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -291,6 +311,9 @@
 		2D02E4901E0B4A5D006451C7 /* property-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "property-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B1948045374C78AA215DD6 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		3569EABB0F164904A1669995 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		359A09D71E30E3F300BA4DB0 /* ImageCropPickerSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ImageCropPickerSDK; sourceTree = "<group>"; };
+		359A09D91E30E43200BA4DB0 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		359A09DC1E30E43200BA4DB0 /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37267BC6B0A046A3864A64C6 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		41E0915E714545F9B590D609 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		439814A4A8BE486AA3252598 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -321,11 +344,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
+				359A09DA1E30E43200BA4DB0 /* RSKImageCropper.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
+				359A09DD1E30E43200BA4DB0 /* QBImagePicker.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
@@ -543,6 +568,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				359A09DC1E30E43200BA4DB0 /* QBImagePicker.framework */,
+				359A09D91E30E43200BA4DB0 /* RSKImageCropper.framework */,
+				359A09D71E30E3F300BA4DB0 /* ImageCropPickerSDK */,
 				13B07FAE1A68108700A75B9A /* property */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* propertyTests */,
@@ -610,6 +638,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				359A09DF1E30E43200BA4DB0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -975,6 +1004,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				359A09D81E30E3F300BA4DB0 /* ImageCropPickerSDK in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				2FCA1CCA956E426BAFC14F27 /* Entypo.ttf in Resources */,
 				7EB9C138719C4D31A0FB750E /* EvilIcons.ttf in Resources */,
@@ -1118,6 +1148,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/property.app/property";
@@ -1139,6 +1173,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/property.app/property";
@@ -1154,6 +1192,7 @@
 				DEVELOPMENT_TEAM = HPM3XD35FV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = property/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1174,6 +1213,7 @@
 				DEVELOPMENT_TEAM = HPM3XD35FV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = property/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
