@@ -137,13 +137,11 @@ export default class FilterScene extends Component {
 
         </ScrollView>
 
-        <View style={styles.footer}>
-          <TouchableHighlight underlayColor="transparent" onPress={onSearchPress}>
-            <Text style={styles.footerText}>
-              Apply Filter
-            </Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight underlayColor="transparent" onPress={onSearchPress} style={styles.footer}>
+          <Text style={styles.footerText}>
+            Apply Filter
+          </Text>
+        </TouchableHighlight>
 
       </View>
     );

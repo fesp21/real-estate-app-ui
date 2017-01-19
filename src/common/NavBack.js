@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {View, StyleSheet, StatusBar, Text,TouchableHighlight} from "react-native";
 import Colors from './../common/Colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
   withNavigation,

@@ -87,8 +87,6 @@ export default class List extends Component {
     const {collection,isFetching,fetchProperties} = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
     let dataSource = ds.cloneWithRows(collection);
-    // onEndReached={()=>fetchProperties()}
-
     return (
       <ListView
         style={styles.container}
@@ -101,6 +99,7 @@ export default class List extends Component {
         onEndReachedThreshold={100}
         initialListSize={10}
         renderFooter={()=> isFetching && <LoadingIndicator isFetching={isFetching} style={{ backgroundColor:'white' }} />}
+        onEndReached={()=>fetchProperties()}
 
       />
     );
