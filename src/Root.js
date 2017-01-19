@@ -4,6 +4,8 @@ import { NavigationContext, NavigationProvider, StackNavigation } from '@exponen
 import { NavigationStyles } from '@exponent/ex-navigation';
 import Router from './lib/router';
 import Store from './lib/store';
+import CodePush from 'react-native-code-push';
+import {ENABLE_CODEPUSH} from './env';
 
 const navigationContext = new NavigationContext({
   router: Router,
@@ -11,6 +13,13 @@ const navigationContext = new NavigationContext({
 });
 
 export default class Root extends Component {
+
+  constructor() {
+    super();
+    if(ENABLE_CODEPUSH) {
+      CodePush.sync();
+    }
+  }
 
   render() {
     const modalStyle = {

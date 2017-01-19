@@ -20,8 +20,7 @@ export default class Stage6 extends Component {
     const {title,description,price} = attributes;
 
     return (
-      <View style={{flex:1,backgroundColor:'green',paddingTop:64}}>
-
+      <View style={{flex:1,paddingTop:64}}>
 
         <ScrollView style={styles.container}
                     contentInset={{bottom:100}}
@@ -49,13 +48,14 @@ export default class Stage6 extends Component {
 
               <Text style={styles.label}>Describe your Property</Text>
               <TextInput
-                style={[styles.textInput,{height:  this.state.descriptionHeight }]}
+                style={[styles.textInput,{ paddingVertical:5,height:  this.state.descriptionHeight }]}
                 onChange={(event) => {
-                this.setState({
-                  text: event.nativeEvent.text,
-                  descriptionHeight: event.nativeEvent.contentSize.height,
-                });
-              }}
+                  this.setState({
+                    text: event.nativeEvent.text,
+                    descriptionHeight: event.nativeEvent.contentSize.height,
+                  });
+                }}
+                multiline={true}
                 onChangeText={(value) => onFieldChange('description',value)}
                 value={description}
                 maxLength={1000}
