@@ -17,6 +17,7 @@ class PropertyDetail extends Component {
     super();
     this.saveComment = this.saveComment.bind(this);
     this.onChangeCommentText = this.onChangeCommentText.bind(this);
+    this.handleFavoritePress = this.handleFavoritePress.bind(this);
   }
 
   state = {
@@ -31,6 +32,10 @@ class PropertyDetail extends Component {
     return this.setState({commentBody:value});
   }
 
+  handleFavoritePress(item:object) {
+    this.props.actions.favoriteProperty(item);
+  }
+
   render() {
     const { property,comments } = this.props;
     return (
@@ -38,6 +43,7 @@ class PropertyDetail extends Component {
                       saveComment={this.saveComment}
                       commentBody={this.state.commentBody}
                       onChangeCommentText={this.onChangeCommentText}
+                      handleFavoritePress={this.handleFavoritePress}
       />
     );
   }
@@ -50,7 +56,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state,props) {
   return {
-    comments:SELECTORS.fetchComments(state,props)
+    comments:SELECTORS.fetchComments(state,props),
+    property:SELECTORS.fetchProperty(state,props)
   }
 }
 

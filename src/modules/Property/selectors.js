@@ -10,6 +10,7 @@ const propertyCategories = state => state.propertyReducer.categories;
 const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
+const currentID = currentID => currentID;
 
 const filterResults = (Property,results) => {
   return results.map((id) => Property.withId(id).ref);
@@ -40,6 +41,18 @@ const fetchFavorites = createSelector(
     return Property.all().toRefArray().filter((property)=> property.isFavorited).map((property)=> {
       return property;
     });
+  })
+);
+
+const getPropertyID = (state,props) =>  {
+  return props.property._id;
+};
+
+const fetchProperty = createSelector(
+  orm,
+  getPropertyID,
+  ormSelector(schema,({Property},id) => {
+    return Property.withId(id).ref;
   })
 );
 
@@ -76,5 +89,6 @@ export const SELECTORS =  {
   getFilters,
   fetchComments,
   fetchFavorites,
-  fetchListings
+  fetchListings,
+  fetchProperty
 };

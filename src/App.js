@@ -27,12 +27,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(ACTIONS.boot());
+    // this.props.dispatch(ACTIONS.boot());
   }
 
   render() {
 
-    if(!this.props.app.bootstrapped) return null;
+    // if(!this.props.app.bootstrapped) return null;
 
     return (
       <TabNavigation
@@ -43,8 +43,7 @@ class App extends Component {
       >
         <TabNavigationItem
           id="first"
-          renderIcon={(isSelected) => <Ionicons name="ios-home-outline" size={24} color={'white'}
-                                                selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => <Ionicons name="ios-home-outline" size={24} color={isSelected ? 'gold':'white'}
 
           /> }>
           <StackNavigation
@@ -64,8 +63,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="second"
-          renderIcon={(isSelected) => <FontAwesome name="heart-o" size={20} color={'white'}
-                                                   selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => <FontAwesome name="heart-o" size={20} color={isSelected ? 'gold':'white'}
           /> }>
           <StackNavigation
             id="favoritesStack"
@@ -84,8 +82,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="third"
-          renderIcon={(isSelected) => <FontAwesome name="plus" size={20} color={'white'}
-                                                   selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => <FontAwesome name="plus" size={20} color={isSelected ? 'gold':'white'}
           /> }>
           <StackNavigation
             id="createStack"
@@ -105,8 +102,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="fourth"
-          renderIcon={(isSelected) => <Ionicons name="ios-settings-outline" size={24} color={'white'}
-                                                selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => <Ionicons name="ios-settings-outline" size={24} color={isSelected ? 'gold':'white'}
           /> }>
           <StackNavigation
             id="settingsStack"

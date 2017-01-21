@@ -7,6 +7,7 @@ import PropertyIcons from './PropertyIcons';
 import PropertyTags from './PropertyTags';
 import CommentList from './CommentList';
 import CommentAdd from './CommentAdd';
+import Heart from './Heart';
 
 export default class PropertySingle extends Component {
 
@@ -14,11 +15,12 @@ export default class PropertySingle extends Component {
     property:PropTypes.object.isRequired,
     saveComment:PropTypes.func.isRequired,
     commentBody:PropTypes.string.isRequired,
-    onChangeCommentText:PropTypes.func.isRequired
+    onChangeCommentText:PropTypes.func.isRequired,
+    handleFavoritePress:PropTypes.func.isRequired
   };
 
   render() {
-    const {property,saveComment,commentBody,onChangeCommentText} = this.props;
+    const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress} = this.props;
     return (
 
       <ScrollView style={styles.container}
@@ -32,19 +34,32 @@ export default class PropertySingle extends Component {
 
             <Text style={styles.title}>{property.title}</Text>
 
-            {
-              property.tags &&
-              <View style={styles.tags}>
-                <PropertyTags tags={property.tags} />
-              </View>
-            }
+            <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+              <View>
+                {
+                  property.tags &&
+                  <View style={{flexDirection:'row',padding:10}}>
+                    <PropertyTags tags={property.tags} />
+                  </View>
+                }
 
-            {
-              property.meta &&
-              <View style={styles.icons}>
-                <PropertyIcons services={property.meta} items={['bedrooms','bathrooms','parking']} />
+                {
+                  property.meta &&
+                  <View style={{flexDirection:'row',padding:10, paddingTop:0}}>
+                    <PropertyIcons services={property.meta} items={['bedrooms','bathrooms','parking']} />
+                  </View>
+                }
               </View>
-            }
+
+              <View style={{marginLeft:30}}>
+                <Text style={styles.price}>{property.meta.price}KD</Text>
+              </View>
+
+              <View style={{marginLeft:20}}>
+                <Heart handleFavoritePress={()=>handleFavoritePress(property)} isFavorited={property.isFavorited} />
+              </View>
+
+            </View>
 
             <View style={styles.separator}/>
 
