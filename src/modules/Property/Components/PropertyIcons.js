@@ -25,9 +25,9 @@ export default class PropertyIcons extends Component {
         {
           items.map((item, i)=> {
             switch (item) {
-              case 'bedrooms' :
+              case 'bedroom' :
                 return this.renderIcon(services[item], 'bed', i);
-              case 'bathrooms' :
+              case 'bathroom' :
                 return this.renderIcon(services[item], 'bath', i);
               case 'parking' :
                 return this.renderIcon(services[item], 'car', i);

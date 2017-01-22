@@ -9,6 +9,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class List extends Component {
 
   static propTypes = {
+    path:PropTypes.string.isRequired,
+    index:PropTypes.string.isRequired,
     updateListing: PropTypes.func.isRequired
   };
 
@@ -18,10 +20,10 @@ export default class List extends Component {
   }
 
   renderRow(item) {
-    const {updateListing,type} = this.props;
+    const {updateListing,path,index} = this.props;
     return (
       <View key={item} >
-        <TouchableHighlight onPress={()=>updateListing(type,item)} underlayColor="transparent">
+        <TouchableHighlight onPress={()=>updateListing(path,index,item)} underlayColor="transparent">
           <View style={styles.row}>
             <Text style={styles.title}>{item}</Text>
             <Ionicons name="ios-arrow-forward" color={Colors.smokeGreyLight} size={30} />

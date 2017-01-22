@@ -46,7 +46,7 @@ export default class PropertySingle extends Component {
                 {
                   property.meta &&
                   <View style={{flexDirection:'row',padding:10, paddingTop:0}}>
-                    <PropertyIcons services={property.meta} items={['bedrooms','bathrooms','parking']} />
+                    <PropertyIcons services={property.meta} items={['bedroom','bathroom','parking']} />
                   </View>
                 }
               </View>

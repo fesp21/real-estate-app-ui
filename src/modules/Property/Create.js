@@ -18,6 +18,8 @@ import NavBack from './Components/Create/NavBack';
 import map from 'lodash/map';
 import Header from './Components/Create/Header';
 import Footer from './Components/Create/Footer';
+import merge from 'lodash/merge';
+import get from "lodash/get";
 
 class PropertyCreate extends Component {
 
@@ -52,6 +54,8 @@ class PropertyCreate extends Component {
     this.pickImage = this.pickImage.bind(this);
     this.updateListing = this.updateListing.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
+    this.onIncrement = this.onIncrement.bind(this);
+    this.onDecrement = this.onDecrement.bind(this);
   }
 
   pickImage() {
@@ -77,15 +81,9 @@ class PropertyCreate extends Component {
     });
   }
 
-  updateListing(key,value) {
+  updateListing(path,index,value) {
     const {listings} = this.props;
-    let payload = {
-      ...listings,
-      attributes: {
-        ...listings.attributes,
-        [key]:value
-      },
-    };
+    const payload = {...listings, [path] : {...listings[path], [index]:value } };
     this.props.actions.changeListingValue(payload);
     this.goToNextStage();
   }
@@ -129,6 +127,78 @@ class PropertyCreate extends Component {
     });
   }
 
+  onIncrement(type) {
+    const {listings} = this.props;
+    const {filters} = listings;
+    const meta = get(listings,'attributes.meta');
+
+    let field;
+    switch (type) {
+      case 'bedroomsArr' :
+        field = 'bedroom';
+        break;
+      case 'bathroomsArr' :
+        field = 'bathroom';
+        break;
+      case 'parkingArr' :
+        field = 'parking';
+        break;
+      default :
+        break;
+    }
+
+    let arrayIndex = (filters[type].indexOf(meta[field]) + 1) % filters[type].length;
+    let selectedValue = filters[type][arrayIndex];
+
+    let payload = {
+      ...listings,
+      attributes: {
+        ...listings.attributes,
+        meta: {...listings.attributes.meta,
+          [field]: selectedValue
+        },
+      },
+    };
+    this.props.actions.changeListingValue(payload);
+  }
+
+  onDecrement(type) {
+    const {listings} = this.props;
+    const {filters} = listings;
+    const meta = get(listings,'attributes.meta');
+
+    let field;
+    switch (type) {
+      case 'bedroomsArr' :
+        field = 'bedroom';
+        break;
+      case 'bathroomsArr' :
+        field = 'bathroom';
+        break;
+      case 'parkingArr' :
+        field = 'parking';
+        break;
+      default :
+        break;
+    }
+
+    let arrayIndex = filters[type].indexOf(meta[field]);
+    arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
+    let selectedValue = filters[type][arrayIndex - 1];
+    this.props.actions.changeFormValue(field,selectedValue);
+
+    let payload = {
+      ...listings,
+      attributes: {
+        ...listings.attributes,
+        meta: {...listings.attributes.meta,
+          [field]: selectedValue
+        },
+      },
+    };
+    this.props.actions.changeListingValue(payload);
+  }
+
   render() {
     const { listings } = this.props;
     const { attributes } = listings;
@@ -140,7 +210,8 @@ class PropertyCreate extends Component {
         {
           stage == 1 &&
           <List
-            type='type'
+            path="attributes"
+            index="type"
             collection={['For Sale','For Rent']}
             header={<Header title="What type of Property you want to list ?" />}
             updateListing={this.updateListing}
@@ -150,7 +221,8 @@ class PropertyCreate extends Component {
         {
           stage == 2 &&
           <List
-            type='category'
+            path="attributes"
+            index="category"
             header={<Header title="Select Category Type" />}
             updateListing={this.updateListing}
             collection={['Apartment','Villa', 'Chalets']}
@@ -160,6 +232,8 @@ class PropertyCreate extends Component {
         {
           stage == 3 &&
           <Stage3
+            path="attributes"
+            index="address"
             stage={stage}
             header={<Header title="What city is your {category} located in ?" />}
             category='Apartment'
@@ -170,9 +244,12 @@ class PropertyCreate extends Component {
         {
           stage == 4 &&
           <Stage4
+            {...listings.attributes.meta}
             {...listings.filters}
             header={<Header title="Just a little bit more about your {category} " />}
-            footer={<Footer updateListing={this.updateListing}/>}
+            footer={<Footer updateListing={this.goToNextStage}/>}
+            onIncrement={this.onIncrement}
+            onDecrement={this.onDecrement}
           />
         }
 

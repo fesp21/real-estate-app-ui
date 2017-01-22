@@ -61,7 +61,7 @@ export default class List extends Component {
               {
                 item.meta &&
                 <View style={{flexDirection:'row',padding:10, paddingTop:0}}>
-                  <PropertyIcons services={item.meta} items={['bedrooms','bathrooms','parking']} />
+                  <PropertyIcons services={item.meta} items={['bedroom','bathroom','parking']} />
                 </View>
               }
             </View>

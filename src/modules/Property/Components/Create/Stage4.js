@@ -9,16 +9,12 @@ import Button from './../Filters/Button';
 export default class Stage4 extends Component {
 
   static propTypes = {
+    onIncrement:PropTypes.func.isRequired,
+    onDecrement:PropTypes.func.isRequired,
   };
 
-  onIncrement() {
-  }
-
-  onDecrement() {
-  }
-
   render() {
-    const {bedroomsArr,bathroomsArr,parkingArr,header, footer} = this.props;
+    const {bedroomsArr,bedroom,bathroom,parking,bathroomsArr,parkingArr,header, footer,onIncrement,onDecrement} = this.props;
 
     return (
       <View style={styles.container}>
@@ -32,11 +28,11 @@ export default class Stage4 extends Component {
                   icon ="bed"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {this.onIncrement}
-                  onDecrement = {this.onDecrement}
+                  onIncrement = {onIncrement}
+                  onDecrement = {onDecrement}
                   titleStyle={{}}
                   ranges={bedroomsArr}
-                  selected = {bedroomsArr[0]}
+                  selected = {bedroom}
                   style = {{
                     height:40,
                     backgroundColor:Colors.lightGrey
@@ -49,11 +45,11 @@ export default class Stage4 extends Component {
                   icon ="bath"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {this.onIncrement}
-                  onDecrement = {this.onDecrement}
+                  onIncrement = {onIncrement}
+                  onDecrement = {onDecrement}
                   titleStyle={{}}
                   ranges={bathroomsArr}
-                  selected = {bathroomsArr[0]}
+                  selected = {bathroom}
                   style = {{
                     height:40,
                     backgroundColor:Colors.lightGrey
@@ -66,11 +62,11 @@ export default class Stage4 extends Component {
                   icon ="car"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {this.onIncrement}
-                  onDecrement = {this.onDecrement}
+                  onIncrement = {onIncrement}
+                  onDecrement = {onDecrement}
                   titleStyle={{}}
                   ranges={parkingArr}
-                  selected = {parkingArr[0]}
+                  selected = {parking}
                   style = {{
                     height:40,
                     backgroundColor:Colors.lightGrey
