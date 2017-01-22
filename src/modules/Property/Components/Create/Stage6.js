@@ -8,7 +8,8 @@ import Colors from './../../../../common/Colors';
 export default class Stage6 extends Component {
 
   static propTypes = {
-    attributes:PropTypes.object.isRequired
+    attributes:PropTypes.object.isRequired,
+    path:PropTypes.string.isRequired
   };
 
   state = {
@@ -16,7 +17,7 @@ export default class Stage6 extends Component {
   };
 
   render() {
-    const {onFieldChange,attributes,header,footer} = this.props;
+    const {onFieldChange,path,attributes,header,footer} = this.props;
     const {title,description,price} = attributes;
 
     return (
@@ -37,7 +38,7 @@ export default class Stage6 extends Component {
               <Text style={styles.label}>Give a Title for your Property </Text>
               <TextInput
                 style={[styles.textInput]}
-                onChangeText={(value) => onFieldChange('title',value)}
+                onChangeText={(value) => onFieldChange(path,'title',value)}
                 value={title}
                 maxLength={50}
                 placeholderTextColor={Colors.lightGrey}
@@ -56,7 +57,7 @@ export default class Stage6 extends Component {
                   });
                 }}
                 multiline={true}
-                onChangeText={(value) => onFieldChange('description',value)}
+                onChangeText={(value) => onFieldChange(path,'description',value)}
                 value={description}
                 maxLength={1000}
                 placeholderTextColor={Colors.lightGrey}
@@ -70,7 +71,7 @@ export default class Stage6 extends Component {
               <Text style={styles.label}>Price</Text>
               <TextInput
                 style={[styles.textInput]}
-                onChangeText={(value) => onFieldChange('price',value)}
+                onChangeText={(value) => onFieldChange(path,'price',value)}
                 value={price}
                 maxLength={6}
                 placeholderTextColor={Colors.lightGrey}

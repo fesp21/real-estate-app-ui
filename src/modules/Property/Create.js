@@ -101,6 +101,10 @@ class PropertyCreate extends Component {
     this.goToNextStage();
   }
 
+  onFieldSelect(path,index,value) {
+    this.updateListing(path,index,value);
+  }
+
   goToPrevStage() {
     this.setState({
       stage:this.state.stage - 1
@@ -224,10 +228,11 @@ class PropertyCreate extends Component {
         {
           stage == 6 &&
           <Stage6
-            onFieldChange={this.onFieldChange}
+            onFieldChange={this.updateListing}
+            path="attributes"
             attributes={attributes}
             header={<Header title="You are almost there !!" />}
-            footer={<Footer updateListing={this.updateListing}/>}
+            footer={<Footer updateListing={this.goToNextStage}/>}
           />
         }
 
