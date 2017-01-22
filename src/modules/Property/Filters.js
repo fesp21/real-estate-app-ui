@@ -24,8 +24,7 @@ class PropertyFilters extends Component {
     super();
     this.onPriceFromSelect = this.onPriceFromSelect.bind(this);
     this.onPriceToSelect = this.onPriceToSelect.bind(this);
-    this.onIncrement = this.onIncrement.bind(this);
-    this.onDecrement = this.onDecrement.bind(this);
+    this.onIncrementDecrement = this.onIncrementDecrement.bind(this);
     this.search = this.search.bind(this);
     this.onCategorySelect = this.onCategorySelect.bind(this);
     this.onSortSelect = this.onSortSelect.bind(this);
@@ -107,28 +106,9 @@ class PropertyFilters extends Component {
     })
   }
 
-  onIncrement(type) {
-    const {filters} = this.props;
-    let field;
-    switch (type) {
-      case 'bedroomsArr' :
-        field = 'bedroom';
-        break;
-      case 'bathroomsArr' :
-        field = 'bathroom';
-        break;
-      case 'parkingArr' :
-        field = 'parking';
-        break;
-      default :
-        break;
-    }
-    let arrayIndex = (filters[type].indexOf(filters[field]) + 1) % filters[type].length;
-    let selectedValue = filters[type][arrayIndex];
-    this.props.actions.changeFormValue(field,selectedValue);
-  }
+  onIncrementDecrement(action, type) {
+    let arrayIndex,selectedValue;
 
-  onDecrement(type) {
     const {filters} = this.props;
     let field;
     switch (type) {
@@ -144,9 +124,19 @@ class PropertyFilters extends Component {
       default :
         break;
     }
-    let arrayIndex = filters[type].indexOf(filters[field]);
-    arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
-    let selectedValue = filters[type][arrayIndex - 1];
+
+    switch (action) {
+      case 'decrement':
+        arrayIndex = filters[type].indexOf(filters[field]);
+        arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
+        selectedValue = filters[type][arrayIndex - 1];
+        break;
+      case 'increment':
+        arrayIndex = (filters[type].indexOf(filters[field]) + 1) % filters[type].length;
+        selectedValue = filters[type][arrayIndex];
+        break;
+    }
+
     this.props.actions.changeFormValue(field,selectedValue);
   }
 
@@ -174,8 +164,7 @@ class PropertyFilters extends Component {
               onSearch={this.onSearch}
               onPriceFromSelect={this.onPriceFromSelect}
               onPriceToSelect={this.onPriceToSelect}
-              onIncrement={this.onIncrement}
-              onDecrement={this.onDecrement}
+              onIncrementDecrement={this.onIncrementDecrement}
               onSearchPress={this.search}
               onCategorySelect={this.onCategorySelect}
               onSortSelect={this.onSortSelect}

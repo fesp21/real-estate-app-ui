@@ -18,7 +18,6 @@ import NavBack from './Components/Create/NavBack';
 import map from 'lodash/map';
 import Header from './Components/Create/Header';
 import Footer from './Components/Create/Footer';
-import merge from 'lodash/merge';
 import get from "lodash/get";
 
 class PropertyCreate extends Component {
@@ -53,51 +52,9 @@ class PropertyCreate extends Component {
     this.goToPrevStage = this.goToPrevStage.bind(this);
     this.pickImage = this.pickImage.bind(this);
     this.updateListing = this.updateListing.bind(this);
-    this.onFieldChange = this.onFieldChange.bind(this);
-    this.onIncrement = this.onIncrement.bind(this);
-    this.onDecrement = this.onDecrement.bind(this);
-  }
-
-  pickImage() {
-    const {listings} = this.props;
-    let images= [];
-    ImagePicker.openPicker({
-      multiple: true
-    }).then(collection => {
-      map(collection, (image) => {
-        images.push(image.path)
-      });
-      if(images.length) {
-        let payload = {
-          ...listings,
-          attributes: {
-            ...listings.attributes,
-            images:images
-          },
-        };
-        this.props.actions.changeListingValue(payload);
-      }
-    }).catch((e)=>{
-    });
-  }
-
-  updateListing(path,index,value) {
-    const {listings} = this.props;
-    const payload = {...listings, [path] : {...listings[path], [index]:value } };
-    this.props.actions.changeListingValue(payload);
-    this.goToNextStage();
-  }
-
-  onFieldChange(key,value) {
-    const {listings} = this.props;
-    let payload = {
-      ...listings,
-      attributes: {
-        ...listings.attributes,
-        [key]: value
-      },
-    };
-    this.props.actions.changeListingValue(payload);
+    this.onIncrementDecrement = this.onIncrementDecrement.bind(this);
+    this.onValueSelect = this.onValueSelect.bind(this);
+    this.updateMap = this.updateMap.bind(this);
   }
 
   componentDidUpdate() {
@@ -115,6 +72,36 @@ class PropertyCreate extends Component {
     this._subscription.remove();
   }
 
+  pickImage() {
+    let images= [];
+    ImagePicker.openPicker({
+      multiple: true
+    }).then(collection => {
+      map(collection, (image) => {
+        images.push(image.path)
+      });
+      if(images.length) {
+        this.updateListing('attributes','images',images);
+        this.goToNextStage();
+      }
+    }).catch((e)=> {});
+  }
+
+  updateListing(path,index,value) {
+    const {listings} = this.props;
+    const payload = {...listings, [path] : {...listings[path], [index]:value } };
+    this.props.actions.changeListingValue(payload);
+  }
+
+  updateMap(path,index,value) {
+    this.goToNextStage();
+  }
+
+  onValueSelect(path,index,value) {
+    this.updateListing(path,index,value);
+    this.goToNextStage();
+  }
+
   goToPrevStage() {
     this.setState({
       stage:this.state.stage - 1
@@ -127,7 +114,9 @@ class PropertyCreate extends Component {
     });
   }
 
-  onIncrement(type) {
+  onIncrementDecrement(action,type) {
+
+    let arrayIndex,selectedValue;
     const {listings} = this.props;
     const {filters} = listings;
     const meta = get(listings,'attributes.meta');
@@ -147,45 +136,16 @@ class PropertyCreate extends Component {
         break;
     }
 
-    let arrayIndex = (filters[type].indexOf(meta[field]) + 1) % filters[type].length;
-    let selectedValue = filters[type][arrayIndex];
-
-    let payload = {
-      ...listings,
-      attributes: {
-        ...listings.attributes,
-        meta: {...listings.attributes.meta,
-          [field]: selectedValue
-        },
-      },
-    };
-    this.props.actions.changeListingValue(payload);
-  }
-
-  onDecrement(type) {
-    const {listings} = this.props;
-    const {filters} = listings;
-    const meta = get(listings,'attributes.meta');
-
-    let field;
-    switch (type) {
-      case 'bedroomsArr' :
-        field = 'bedroom';
+    switch (action) {
+      case 'increment':
+        arrayIndex = (filters[type].indexOf(meta[field]) + 1) % filters[type].length;
+        selectedValue = filters[type][arrayIndex];
         break;
-      case 'bathroomsArr' :
-        field = 'bathroom';
-        break;
-      case 'parkingArr' :
-        field = 'parking';
-        break;
-      default :
-        break;
+      case 'decrement':
+        arrayIndex = filters[type].indexOf(meta[field]);
+        arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
+        selectedValue = filters[type][arrayIndex - 1];
     }
-
-    let arrayIndex = filters[type].indexOf(meta[field]);
-    arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
-    let selectedValue = filters[type][arrayIndex - 1];
-    this.props.actions.changeFormValue(field,selectedValue);
 
     let payload = {
       ...listings,
@@ -214,7 +174,7 @@ class PropertyCreate extends Component {
             index="type"
             collection={['For Sale','For Rent']}
             header={<Header title="What type of Property you want to list ?" />}
-            updateListing={this.updateListing}
+            updateListing={this.onValueSelect}
           />
         }
 
@@ -224,8 +184,8 @@ class PropertyCreate extends Component {
             path="attributes"
             index="category"
             header={<Header title="Select Category Type" />}
-            updateListing={this.updateListing}
             collection={['Apartment','Villa', 'Chalets']}
+            updateListing={this.onValueSelect}
           />
         }
 
@@ -237,7 +197,7 @@ class PropertyCreate extends Component {
             stage={stage}
             header={<Header title="What city is your {category} located in ?" />}
             category='Apartment'
-            footer={<Footer updateListing={this.updateListing}/>}
+            footer={<Footer updateListing={this.updateMap}/>}
           />
         }
 
@@ -248,8 +208,7 @@ class PropertyCreate extends Component {
             {...listings.filters}
             header={<Header title="Just a little bit more about your {category} " />}
             footer={<Footer updateListing={this.goToNextStage}/>}
-            onIncrement={this.onIncrement}
-            onDecrement={this.onDecrement}
+            onIncrementDecrement={this.onIncrementDecrement}
           />
         }
 

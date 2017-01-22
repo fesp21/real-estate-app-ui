@@ -37,7 +37,7 @@ export default class FilterScene extends Component {
       bedroomsArr,bedroom,
       bathroomsArr,bathroom,
       parkingArr,parking,
-      onIncrement,onDecrement,
+      onIncrementDecrement,
       onSearchPress,
       categories,category,onCategorySelect,
       sortOptions,sortBy,onSortSelect,
@@ -99,8 +99,7 @@ export default class FilterScene extends Component {
                   icon ="bed"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {onIncrement}
-                  onDecrement = {onDecrement}
+                  onIncrementDecrement = {onIncrementDecrement}
                   titleStyle={{}}
                   ranges={bedroomsArr}
                   selected = {bedroom}
@@ -113,8 +112,7 @@ export default class FilterScene extends Component {
                   icon ="bath"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {onIncrement}
-                  onDecrement = {onDecrement}
+                  onIncrementDecrement = {onIncrementDecrement}
                   titleStyle={{}}
                   ranges={bathroomsArr}
                   selected = {bathroom}
@@ -127,8 +125,7 @@ export default class FilterScene extends Component {
                   icon ="car"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {onIncrement}
-                  onDecrement = {onDecrement}
+                  onIncrementDecrement = {onIncrementDecrement}
                   titleStyle={{}}
                   ranges={parkingArr}
                   selected = {parking}

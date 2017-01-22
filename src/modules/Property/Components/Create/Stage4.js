@@ -9,12 +9,11 @@ import Button from './../Filters/Button';
 export default class Stage4 extends Component {
 
   static propTypes = {
-    onIncrement:PropTypes.func.isRequired,
-    onDecrement:PropTypes.func.isRequired,
+    onIncrementDecrement:PropTypes.func.isRequired
   };
 
   render() {
-    const {bedroomsArr,bedroom,bathroom,parking,bathroomsArr,parkingArr,header, footer,onIncrement,onDecrement} = this.props;
+    const {bedroomsArr,bedroom,bathroom,parking,bathroomsArr,parkingArr,header, footer,onIncrementDecrement} = this.props;
 
     return (
       <View style={styles.container}>
@@ -28,8 +27,7 @@ export default class Stage4 extends Component {
                   icon ="bed"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {onIncrement}
-                  onDecrement = {onDecrement}
+                  onIncrementDecrement = {onIncrementDecrement}
                   titleStyle={{}}
                   ranges={bedroomsArr}
                   selected = {bedroom}
@@ -45,8 +43,7 @@ export default class Stage4 extends Component {
                   icon ="bath"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {onIncrement}
-                  onDecrement = {onDecrement}
+                  onIncrementDecrement = {onIncrementDecrement}
                   titleStyle={{}}
                   ranges={bathroomsArr}
                   selected = {bathroom}
@@ -62,8 +59,7 @@ export default class Stage4 extends Component {
                   icon ="car"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrement = {onIncrement}
-                  onDecrement = {onDecrement}
+                  onIncrementDecrement = {onIncrementDecrement}
                   titleStyle={{}}
                   ranges={parkingArr}
                   selected = {parking}
