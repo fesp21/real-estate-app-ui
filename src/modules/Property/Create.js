@@ -82,7 +82,6 @@ class PropertyCreate extends Component {
       });
       if(images.length) {
         this.updateListing('attributes','images',images);
-        this.goToNextStage();
       }
     }).catch((e)=> {});
   }
@@ -218,7 +217,7 @@ class PropertyCreate extends Component {
             pickImage={this.pickImage}
             images={attributes.images}
             header={<Header title="Choose images of your property" />}
-            footer={<Footer updateListing={this.updateListing}/>}
+            footer={<Footer updateListing={this.goToNextStage}/>}
           />
         }
 
