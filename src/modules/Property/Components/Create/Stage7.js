@@ -10,7 +10,8 @@ import Colors from './../../../../common/Colors';
 export default class Stage7 extends Component {
 
   state = {
-    descriptionHeight:40
+    descriptionHeight:40,
+    disabled:true
   };
 
   render() {
@@ -25,13 +26,25 @@ export default class Stage7 extends Component {
 
           <View style={styles.menuContainer}>
 
-            <View style={styles.row}>
-              <Text style={styles.title} >Essentials</Text>
-              <View style={styles.checkbox}>
-                <FontAwesome name="check" size={16} color={Colors.green}/>
+            <TouchableHighlight style={{flex:1}} onPress={()=>alert('wa')} underlayColor="#E7E7E7" activeOpacity={0.2}>
+              <View style={styles.row}>
+                <Text style={styles.title} >Central AC</Text>
+                <View style={styles.checkbox}>
+                  <FontAwesome name="check" size={16} color={Colors.green}/>
+                </View>
               </View>
-            </View>
+            </TouchableHighlight>
+
             <View style={styles.separator}/>
+
+            <TouchableHighlight style={{flex:1}} onPress={()=>alert('wa')} underlayColor="#E7E7E7" activeOpacity={0.2}>
+              <View style={styles.row}>
+                <Text style={styles.title} >Swimming Pool</Text>
+                <View style={styles.checkbox}>
+                </View>
+              </View>
+            </TouchableHighlight>
+
 
           </View>
 
@@ -50,9 +63,8 @@ const styles =  StyleSheet.create({
     backgroundColor:Colors.smokeGreyLight,
   },
   menuContainer:{
-    padding:10,
-    paddingTop:30,
-    paddingBottom:30,
+    paddingHorizontal:10,
+    paddingVertical:30,
     backgroundColor:'white',
   },
   row :{
@@ -69,16 +81,17 @@ const styles =  StyleSheet.create({
     flex:1,
     height:.5,
     backgroundColor:Colors.lightGrey,
-    marginTop:10,
-    marginBottom:10
+    marginVertical:10,
   },
   checkbox:{
-    width:22,
-    height:22,
-    borderColor:Colors.tomato,
+    width:24,
+    height:24,
+    borderRadius:12,
+    borderColor:Colors.smokeGreyDark,
     borderWidth:1,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    marginHorizontal:10,
   }
 
 });

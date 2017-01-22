@@ -19,6 +19,8 @@ import map from 'lodash/map';
 import Header from './Components/Create/Header';
 import Footer from './Components/Create/Footer';
 import get from "lodash/get";
+import merge from "lodash/merge";
+import union from "lodash/union";
 
 class PropertyCreate extends Component {
 
@@ -46,8 +48,8 @@ class PropertyCreate extends Component {
     stage:1
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.goToNextStage = this.goToNextStage.bind(this);
     this.goToPrevStage = this.goToPrevStage.bind(this);
     this.pickImage = this.pickImage.bind(this);
@@ -55,6 +57,7 @@ class PropertyCreate extends Component {
     this.onIncrementDecrement = this.onIncrementDecrement.bind(this);
     this.onValueSelect = this.onValueSelect.bind(this);
     this.updateMap = this.updateMap.bind(this);
+    // this.props.listings.attributes.images.push("/Users/ZaL/Library/Developer/CoreSimulator/Devices/EA84BF0A-FB05-4E60-97DD-B83C0C40B7B7/data/Containers/Data/Application/7AE43C64-A031-4CE1-BC63-782E7290808D/tmp/react-native-image-crop-picker/3DB3BD43-D277-45A3-A28E-03D6F0E28811.jpg")
   }
 
   componentDidUpdate() {
@@ -73,16 +76,29 @@ class PropertyCreate extends Component {
   }
 
   pickImage() {
-    let images= [];
+    const tempImages = this.props.listings.attributes.images;
+    const maxImages = 5;
+
     ImagePicker.openPicker({
       multiple: true
     }).then(collection => {
-      map(collection, (image) => {
-        images.push(image.path)
+      return map(collection, (image) => image.path);
+    }).then((images)=> {
+
+      if(tempImages.length >= maxImages ) return;
+
+      let i = 1;
+      let allowedImages = [];
+
+      images.forEach((image)=> {
+        if(i + tempImages.length <= maxImages) {
+          allowedImages.push(image);
+          i++;
+        }
       });
-      if(images.length) {
-        this.updateListing('attributes','images',images);
-      }
+      return allowedImages;
+    }).then((pendingImages)=>{
+      this.updateListing('attributes','images',tempImages.concat(pendingImages));
     }).catch((e)=> {});
   }
 
@@ -99,10 +115,6 @@ class PropertyCreate extends Component {
   onValueSelect(path,index,value) {
     this.updateListing(path,index,value);
     this.goToNextStage();
-  }
-
-  onFieldSelect(path,index,value) {
-    this.updateListing(path,index,value);
   }
 
   goToPrevStage() {
@@ -159,6 +171,7 @@ class PropertyCreate extends Component {
         },
       },
     };
+
     this.props.actions.changeListingValue(payload);
   }
 
@@ -171,7 +184,7 @@ class PropertyCreate extends Component {
       <View style={{flex:1}}>
 
         {
-          stage == 1 &&
+          stage == 5 &&
           <List
             path="attributes"
             index="type"
@@ -200,7 +213,7 @@ class PropertyCreate extends Component {
             stage={stage}
             header={<Header title="What city is your {category} located in ?" />}
             category='Apartment'
-            footer={<Footer updateListing={this.updateMap}/>}
+            footer={<Footer updateListing={this.goToNextStage}/>}
           />
         }
 
@@ -216,7 +229,7 @@ class PropertyCreate extends Component {
         }
 
         {
-          stage == 5 &&
+          stage == 1 &&
           <Stage5
             pickImage={this.pickImage}
             images={attributes.images}
