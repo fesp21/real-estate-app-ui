@@ -84,17 +84,14 @@ class PropertyCreate extends Component {
     }).then(collection => {
       return map(collection, (image) => image.path);
     }).then((images)=> {
-
       if(tempImages.length >= maxImages ) return;
-
       let i = 1;
       let allowedImages = [];
-
       images.forEach((image)=> {
         if(i + tempImages.length <= maxImages) {
           allowedImages.push(image);
-          i++;
         }
+        i++;
       });
       return allowedImages;
     }).then((pendingImages)=>{
@@ -180,11 +177,13 @@ class PropertyCreate extends Component {
     const { attributes } = listings;
     const { stage } = this.state;
 
+    console.log('listing attrib',attributes);
+
     return (
       <View style={{flex:1}}>
 
         {
-          stage == 5 &&
+          stage == 1 &&
           <List
             path="attributes"
             index="type"
@@ -229,7 +228,7 @@ class PropertyCreate extends Component {
         }
 
         {
-          stage == 1 &&
+          stage == 5 &&
           <Stage5
             pickImage={this.pickImage}
             images={attributes.images}
