@@ -22,9 +22,15 @@ function favoriteProperty(urlParams,body) {
   return fetchAPI(url,'POST',body);
 }
 
+function saveProperty(urlParams) {
+  let url = `${API_URL}/properties`;
+  return fetchAPI(url,'POST',urlParams);
+}
+
 export const API = {
   fetchProperties,
   fetchCategories,
   fetchFavorites,
-  favoriteProperty
+  favoriteProperty,
+  saveProperty
 };

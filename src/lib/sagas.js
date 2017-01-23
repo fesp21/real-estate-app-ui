@@ -3,7 +3,8 @@ import { bootstrapMonitor,changeCountryMonitor } from '../bootstrap';
 import { loginMonitor,registerMonitor } from '../modules/Auth/sagas';
 import {
   propertyMonitor,categoryMonitor,
-  favoriteMonitor,propertyFavoriteMonitor
+  favoriteMonitor,propertyFavoriteMonitor,
+  saveMonitor
 } from '../modules/Property/sagas';
 
 export default function* rootSaga() {
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     fork(categoryMonitor),
     fork(favoriteMonitor),
     fork(propertyFavoriteMonitor),
+    fork(saveMonitor),
   ]
 }

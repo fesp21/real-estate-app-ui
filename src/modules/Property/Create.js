@@ -57,7 +57,7 @@ class PropertyCreate extends Component {
     this.onIncrementDecrement = this.onIncrementDecrement.bind(this);
     this.onValueSelect = this.onValueSelect.bind(this);
     this.updateMap = this.updateMap.bind(this);
-    // this.props.listings.attributes.images.push("/Users/ZaL/Library/Developer/CoreSimulator/Devices/EA84BF0A-FB05-4E60-97DD-B83C0C40B7B7/data/Containers/Data/Application/7AE43C64-A031-4CE1-BC63-782E7290808D/tmp/react-native-image-crop-picker/3DB3BD43-D277-45A3-A28E-03D6F0E28811.jpg")
+    this.saveProperty = this.saveProperty.bind(this);
   }
 
   componentDidUpdate() {
@@ -172,12 +172,14 @@ class PropertyCreate extends Component {
     this.props.actions.changeListingValue(payload);
   }
 
+  saveProperty() {
+    this.props.actions.saveProperty();
+  }
+
   render() {
     const { listings } = this.props;
     const { attributes } = listings;
     const { stage } = this.state;
-
-    console.log('listing attrib',attributes);
 
     return (
       <View style={{flex:1}}>
@@ -252,7 +254,7 @@ class PropertyCreate extends Component {
           stage == 7 &&
           <Stage7
             header={<Header title="Select Amenities" />}
-            footer={<Footer updateListing={this.updateListing} title="Save"/>}
+            footer={<Footer updateListing={this.saveProperty} title="Save"/>}
           />
         }
 
@@ -268,7 +270,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    listings:SELECTORS.fetchListings(state)
+    listings:SELECTORS.getListing(state)
   }
 }
 

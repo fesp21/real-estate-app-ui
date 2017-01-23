@@ -16,7 +16,9 @@ export const ACTION_TYPES = {
   FAVORITE_REQUEST : 'FAVORITE_REQUEST',
   FAVORITE_FAILURE : 'FAVORITE_FAILURE',
   LISTING_CHANGE : 'LISTING_CHANGE',
-
+  SAVE_PROPERTY_REQUEST: 'SAVE_LISTING_REQUEST',
+  SAVE_PROPERTY_SUCCESS: 'SAVE_LISTING_SUCCESS',
+  SAVE_PROPERTY_FAILURE: 'SAVE_LISTING_FAILURE',
 };
 
 function fetchProperties(params) {
@@ -74,6 +76,12 @@ function changeListingValue(payload) {
   }
 }
 
+function saveProperty() {
+  return {
+    type:ACTION_TYPES.SAVE_PROPERTY_REQUEST
+  }
+}
+
 export const ACTIONS = {
   fetchProperties,
   fetchCategories,
@@ -81,5 +89,6 @@ export const ACTIONS = {
   searchRequested,
   favoriteProperty,
   fetchFavorites,
-  changeListingValue
+  changeListingValue,
+  saveProperty
 };

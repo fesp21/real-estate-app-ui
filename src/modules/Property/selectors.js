@@ -10,7 +10,6 @@ const propertyCategories = state => state.propertyReducer.categories;
 const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
-const currentID = currentID => currentID;
 
 const filterResults = (Property,results) => {
   return results.map((id) => Property.withId(id).ref);
@@ -72,7 +71,7 @@ const getFilters = createSelector(
   propertyFilters,
   (filters) => filters
 );
-const fetchListings = createSelector(
+const getListing = createSelector(
   propertyListings,
   (listings) => listings
 );
@@ -89,6 +88,6 @@ export const SELECTORS =  {
   getFilters,
   fetchComments,
   fetchFavorites,
-  fetchListings,
+  getListing,
   fetchProperty
 };

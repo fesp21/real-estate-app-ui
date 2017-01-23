@@ -27,23 +27,23 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // this.props.dispatch(ACTIONS.boot());
+    this.props.dispatch(ACTIONS.boot());
   }
 
   render() {
 
-    // if(!this.props.app.bootstrapped) return null;
+    if(!this.props.app.bootstrapped) return null;
 
     return (
       <TabNavigation
         id="homeTab"
         navigatorUID="homeTab"
-        initialTab="third"
+        initialTab="first"
         tabBarStyle={{ backgroundColor:Colors.primary }}
       >
         <TabNavigationItem
           id="first"
-          renderIcon={(isSelected) => <Ionicons name="ios-home-outline" size={24} color={isSelected ? 'gold':'white'}
+          renderIcon={(isSelected) => <Ionicons name="ios-home" size={24} color={isSelected ? 'tomato':'white'}
 
           /> }>
           <StackNavigation
@@ -63,7 +63,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="second"
-          renderIcon={(isSelected) => <FontAwesome name="heart-o" size={20} color={isSelected ? 'gold':'white'}
+          renderIcon={(isSelected) => <FontAwesome name="heart" size={20} color={isSelected ? 'tomato':'white'}
           /> }>
           <StackNavigation
             id="favoritesStack"
@@ -82,7 +82,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="third"
-          renderIcon={(isSelected) => <FontAwesome name="plus" size={20} color={isSelected ? 'gold':'white'}
+          renderIcon={(isSelected) => <FontAwesome name="plus" size={20} color={isSelected ? 'tomato':'white'}
           /> }>
           <StackNavigation
             id="createStack"
@@ -99,10 +99,9 @@ class App extends Component {
           />
         </TabNavigationItem>
 
-
         <TabNavigationItem
           id="fourth"
-          renderIcon={(isSelected) => <Ionicons name="ios-settings-outline" size={24} color={isSelected ? 'gold':'white'}
+          renderIcon={(isSelected) => <Ionicons name="ios-settings" size={24} color={isSelected ? 'tomato':'white'}
           /> }>
           <StackNavigation
             id="settingsStack"
