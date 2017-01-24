@@ -27,18 +27,18 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(ACTIONS.boot());
+    // this.props.dispatch(ACTIONS.boot());
   }
 
   render() {
 
-    if(!this.props.app.bootstrapped) return null;
+    // if(!this.props.app.bootstrapped) return null;
 
     return (
       <TabNavigation
         id="homeTab"
         navigatorUID="homeTab"
-        initialTab="first"
+        initialTab="third"
         tabBarStyle={{ backgroundColor:Colors.primary }}
       >
         <TabNavigationItem

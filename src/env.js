@@ -13,7 +13,10 @@ if(__DEV__) {
     // API_URL: 'http://re.izal.me/api',
     GOOGLE_MAPS_KEY:'AIzaSyCpQX4H0QPxVgKuNMZ0ELG_ymgT8RHcKh4',
     ENABLE_CODEPUSH:false
-  }
+  };
+
+  XMLHttpRequest = GLOBAL.originalXMLHttpRequest ? GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
+
 } else {
   module.exports = {
     ...defaults,

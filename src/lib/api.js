@@ -1,13 +1,11 @@
-// let fetch =  require('whatwg-fetch');
-
-export function fetchAPI(url,method = 'GET',params = null) {
+export function fetchAPI(url,method = 'GET',body = null) {
 
   let requestUrl;
 
   if(method === 'POST') {
     requestUrl = fetch(url, {
       method,
-      body: JSON.stringify(params),
+      body: JSON.stringify(body),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

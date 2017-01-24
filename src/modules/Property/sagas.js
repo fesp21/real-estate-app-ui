@@ -99,34 +99,6 @@ export function* propertyFavorite(action) {
 
 export function* saveProperty(action) {
 
-  // listings: {
-  //   filters: {
-  //     bedroomsArr:['Studio','1','2','3','4','5','6','7','7+'],
-  //       bathroomsArr:['1','2','3','4','5','6','7','7+'],
-  //       parkingArr:['No Parking','1','2','3','4','4+'],
-  //   },
-  //   done:false,
-  //     stage:1,
-  //     attributes:{
-  //     type:'',
-  //       category:'',
-  //       title:'',
-  //       description:'',
-  //       price:'',
-  //       address:{},
-  //     meta:{
-  //       bedroom:'Studio',
-  //         bathroom:'1',
-  //         kitchen:'1',
-  //         area:'',
-  //         parking:'No Parking',
-  //     },
-  //     images:[],
-  //       amenities:[],
-  //       tags:[],
-  //   },
-  // }
-
   try {
     const state = yield select();
     const country = state.appReducer.country;
@@ -134,8 +106,9 @@ export function* saveProperty(action) {
     const {attributes} = SELECTORS.getListing(state);
     const {type,category,title,description,price,address,meta,images,amenities,tags} = attributes;
 
-    let params = {
+    let body = {
       api_token:apiToken,
+      country,
       type,
       category,
       title,
@@ -146,14 +119,9 @@ export function* saveProperty(action) {
       images,
       amenities,
       tags
-    }
+    };
 
-    // let urlParams;
-
-    // set if there is no next page
-    // urlParams = isEmpty(action.params) || action.params === undefined ? `/?${params}` : `/?${action.params}&${params}`;
-
-    const response = yield call(API.saveProperty,params);
+    const response = yield call(API.saveProperty,body);
     yield put({type: ACTION_TYPES.SAVE_PROPERTY_SUCCESS, payload:response});
   } catch (error) {
     yield put({type: ACTION_TYPES.SAVE_PROPERTY_FAILURE, error})

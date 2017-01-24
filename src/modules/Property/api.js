@@ -1,6 +1,5 @@
 import { API_URL } from '../../env.js';
 import { fetchAPI } from '../../lib/api';
-import isEmpty from 'lodash/isEmpty';
 
 function fetchProperties(params) {
   let url = `${API_URL}/properties${params}`;;
@@ -22,9 +21,9 @@ function favoriteProperty(urlParams,body) {
   return fetchAPI(url,'POST',body);
 }
 
-function saveProperty(urlParams) {
+function saveProperty(body) {
   let url = `${API_URL}/properties`;
-  return fetchAPI(url,'POST',urlParams);
+  return fetchAPI(url,'POST',body);
 }
 
 export const API = {
