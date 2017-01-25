@@ -5,7 +5,7 @@ import { NavigationStyles } from '@exponent/ex-navigation';
 import Router from './lib/router';
 import Store from './lib/store';
 import CodePush from 'react-native-code-push';
-import {ENABLE_CODEPUSH} from './env';
+import {CODEPUSH_ENABLED} from './env';
 
 const navigationContext = new NavigationContext({
   router: Router,
@@ -16,7 +16,7 @@ export default class Root extends Component {
 
   constructor() {
     super();
-    if(ENABLE_CODEPUSH) {
+    if(CODEPUSH_ENABLED) {
       CodePush.sync();
     }
   }

@@ -97,10 +97,10 @@ export default class List extends Component {
         showsVerticalScrollIndicator={false}
         automaticallyAdjustContentInsets={false}
         onEndReachedThreshold={100}
-        initialListSize={10}
+        initialListSize={100}
         renderFooter={()=> isFetching && <LoadingIndicator isFetching={isFetching} style={{ backgroundColor:'white' }} />}
         onEndReached={()=>fetchProperties()}
-
+        renderHeader={()=> !isFetching && collection.length == 0 && <View style={{padding:10,backgroundColor:'white',alignItems:'center'}}><Text>No Results</Text></View> }
       />
     );
   }
@@ -110,6 +110,7 @@ const styles =  StyleSheet.create({
   container:{
     flex:1,
     backgroundColor:'white',
+    paddingTop:64
   },
 
   wrapper: {
