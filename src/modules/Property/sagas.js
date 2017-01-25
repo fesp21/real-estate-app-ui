@@ -79,14 +79,14 @@ export function* fetchFavorites(action) {
   }
 }
 
-export function* fetchCategories(action) {
-  try {
-    const response = yield call(API.fetchCategories,action.params);
-    yield put({type: ACTION_TYPES.CATEGORY_SUCCESS, payload:response.data});
-  } catch (error) {
-    yield put({type: ACTION_TYPES.CATEGORY_FAILURE, error})
-  }
-}
+// export function* fetchCategories(action) {
+//   try {
+//     const response = yield call(API.fetchCategories,action.params);
+//     yield put({type: ACTION_TYPES.CATEGORY_SUCCESS, payload:response.data});
+//   } catch (error) {
+//     yield put({type: ACTION_TYPES.CATEGORY_FAILURE, error})
+//   }
+// }
 
 export function* propertyFavorite(action) {
   try {
@@ -94,9 +94,9 @@ export function* propertyFavorite(action) {
     const api_token = state.authReducer.token;
     let urlParams = `?api_token=${api_token}`;
     const response = yield call(API.favoriteProperty,urlParams,action.params);
-    yield put({type: ACTION_TYPES.FAVORITE_PROPERTY_SUCCESS, payload:response});
+    yield put({type: ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS, payload:response});
   } catch (error) {
-    yield put({type: ACTION_TYPES.FAVORITE_PROPERTY_FAILURE, error})
+    yield put({type: ACTION_TYPES.PROPERTY_FAVORITE_FAILURE, error})
   }
 }
 
@@ -127,9 +127,9 @@ export function* saveProperty(action) {
 
     const response = yield call(API.saveProperty,params);
     const imageResponse = yield call(API.uploadImage,response.data._id,formData);
-    yield put({type: ACTION_TYPES.SAVE_PROPERTY_SUCCESS, payload:imageResponse});
+    yield put({type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS, payload:imageResponse});
   } catch (error) {
-    yield put({type: ACTION_TYPES.SAVE_PROPERTY_FAILURE, error})
+    yield put({type: ACTION_TYPES.PROPERTY_SAVE_FAILURE, error})
   }
 }
 
@@ -138,17 +138,17 @@ export function* propertyMonitor() {
 }
 
 export function* propertyFavoriteMonitor() {
-  yield takeLatest(ACTION_TYPES.FAVORITE_PROPERTY_REQUEST,propertyFavorite);
+  yield takeLatest(ACTION_TYPES.PROPERTY_FAVORITE_REQUEST,propertyFavorite);
 }
 
 export function* favoriteMonitor() {
   yield takeLatest(ACTION_TYPES.FAVORITE_REQUEST,fetchFavorites);
 }
 
-export function* categoryMonitor() {
-  yield takeLatest(ACTION_TYPES.CATEGORY_REQUEST,fetchCategories);
-}
+// export function* categoryMonitor() {
+//   yield takeLatest(ACTION_TYPES.CATEGORY_REQUEST,fetchCategories);
+// }
 
 export function* saveMonitor() {
-  yield takeLatest(ACTION_TYPES.SAVE_PROPERTY_REQUEST,saveProperty);
+  yield takeLatest(ACTION_TYPES.PROPERTY_SAVE_REQUEST,saveProperty);
 }

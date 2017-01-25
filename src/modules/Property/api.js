@@ -11,10 +11,10 @@ function fetchFavorites(params) {
   return fetchAPI(url);
 }
 
-function fetchCategories(params) {
-  let url = `${API_URL}/categories?${params}`;
-  return fetchAPI(url);
-}
+// function fetchCategories(params) {
+//   let url = `${API_URL}/categories?${params}`;
+//   return fetchAPI(url);
+// }
 
 function favoriteProperty(urlParams,body) {
   let url = `${API_URL}/favorites${urlParams}`;
@@ -33,7 +33,7 @@ function uploadImage(propertyID,body) {
 
 export const API = {
   fetchProperties,
-  fetchCategories,
+  // fetchCategories,
   fetchFavorites,
   favoriteProperty,
   saveProperty,

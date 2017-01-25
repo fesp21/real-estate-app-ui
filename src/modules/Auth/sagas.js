@@ -18,7 +18,7 @@ function* login(action) {
     yield call(setItem,AUTH_STORAGE_KEY,response.data.api_token);
 
     // fetch properties (to get user's favorites)
-    yield put({type: PROPERTY_ACTIONS.INVALIDTE_PROPERTY});
+    yield put({type: PROPERTY_ACTIONS.PROPERTY_RESET});
     yield put({type: PROPERTY_ACTIONS.PROPERTY_REQUEST});
 
     let navigatorUID = Store.getState().navigation.currentNavigatorUID ;

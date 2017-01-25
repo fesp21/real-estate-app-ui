@@ -80,7 +80,7 @@ export function propertyReducer(state = initialState, action = {}) {
       return {...state,isFetching:false,error:null,categories:action.payload};
     case ACTION_TYPES.CATEGORY_FAILURE :
       return {...state,isFetching:false,error:action.error};
-    case ACTION_TYPES.INVALIDTE_PROPERTY:
+    case ACTION_TYPES.PROPERTY_RESET:
       return {...state,results:[],nextPageUrl:undefined};
     case ACTION_TYPES.FILTER_CHANGE :
       return {
@@ -114,14 +114,14 @@ export function dbReducer(state , action) {
         }
       });
       break;
-    case ACTION_TYPES.FAVORITE_PROPERTY_REQUEST:
+    case ACTION_TYPES.PROPERTY_FAVORITE_REQUEST:
       const { itemID, newItemAttributes} = action.params;
       if(Property.hasId(itemID)) {
         const modelInstance = Property.withId(itemID);
         modelInstance.update(newItemAttributes);
       }
       break;
-    case ACTION_TYPES.FAVORITE_PROPERTY_SUCCESS:
+    case ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS:
       if(action.payload && action.payload.data) {
         const property = action.payload.data;
         if(Property.hasId(property._id)) {

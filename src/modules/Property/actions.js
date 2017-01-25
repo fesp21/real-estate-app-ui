@@ -4,21 +4,21 @@ export const ACTION_TYPES = {
   PROPERTY_REQUEST : 'PROPERTY_REQUEST',
   PROPERTY_SUCCESS : 'PROPERTY_SUCCESS',
   PROPERTY_FAILURE : 'PROPERTY_FAILURE',
-  CATEGORY_REQUEST : 'CATEGORY_REQUEST',
-  CATEGORY_SUCCESS : 'CATEGORY_SUCCESS',
-  CATEGORY_FAILURE : 'CATEGORY_FAILURE',
+  // CATEGORY_REQUEST : 'CATEGORY_REQUEST',
+  // CATEGORY_SUCCESS : 'CATEGORY_SUCCESS',
+  // CATEGORY_FAILURE : 'CATEGORY_FAILURE',
   FILTER_CHANGE : 'FILTER_CHANGE',
-  INVALIDTE_PROPERTY : 'INVALIDTE_PROPERTY',
-  FAVORITE_PROPERTY_REQUEST : 'FAVORITE_PROPERTY_REQUEST',
-  FAVORITE_PROPERTY_SUCCESS : 'FAVORITE_PROPERTY_SUCCESS',
-  FAVORITE_PROPERTY_FAILURE : 'FAVORITE_PROPERTY_FAILURE',
+  PROPERTY_RESET : 'PROPERTY_RESET',
+  PROPERTY_FAVORITE_REQUEST : 'PROPERTY_FAVORITE_REQUEST',
+  PROPERTY_FAVORITE_SUCCESS : 'PROPERTY_FAVORITE_SUCCESS',
+  PROPERTY_FAVORITE_FAILURE : 'PROPERTY_FAVORITE_FAILURE',
   FAVORITE_SUCCESS : 'FAVORITE_SUCCESS',
   FAVORITE_REQUEST : 'FAVORITE_REQUEST',
   FAVORITE_FAILURE : 'FAVORITE_FAILURE',
   LISTING_CHANGE : 'LISTING_CHANGE',
-  SAVE_PROPERTY_REQUEST: 'SAVE_PROPERTY_REQUEST',
-  SAVE_PROPERTY_SUCCESS: 'SAVE_PROPERTY_SUCCESS',
-  SAVE_PROPERTY_FAILURE: 'SAVE_PROPERTY_FAILURE',
+  PROPERTY_SAVE_REQUEST: 'PROPERTY_SAVE_REQUEST',
+  PROPERTY_SAVE_SUCCESS: 'PROPERTY_SAVE_SUCCESS',
+  PROPERTY_SAVE_FAILURE: 'PROPERTY_SAVE_FAILURE',
 };
 
 function fetchProperties(params) {
@@ -36,12 +36,12 @@ function fetchFavorites(params ='') {
 }
 
 
-function fetchCategories(params) {
-  return {
-    type: ACTION_TYPES.CATEGORY_REQUEST,
-    params
-  }
-}
+// function fetchCategories(params) {
+//   return {
+//     type: ACTION_TYPES.CATEGORY_REQUEST,
+//     params
+//   }
+// }
 
 function changeFormValue(field,value) {
   return {
@@ -53,13 +53,13 @@ function changeFormValue(field,value) {
 
 function invalidateProperty() {
   return {
-    type: ACTION_TYPES.INVALIDTE_PROPERTY,
+    type: ACTION_TYPES.PROPERTY_RESET,
   }
 }
 
 function favoriteProperty(property) {
   return {
-    type:ACTION_TYPES.FAVORITE_PROPERTY_REQUEST,
+    type:ACTION_TYPES.PROPERTY_FAVORITE_REQUEST,
     params:{
       itemID:property._id,
       newItemAttributes: {
@@ -78,13 +78,13 @@ function changeListingValue(payload) {
 
 function saveProperty() {
   return {
-    type:ACTION_TYPES.SAVE_PROPERTY_REQUEST
+    type:ACTION_TYPES.PROPERTY_SAVE_REQUEST
   }
 }
 
 export const ACTIONS = {
   fetchProperties,
-  fetchCategories,
+  // fetchCategories,
   changeFormValue,
   invalidateProperty,
   favoriteProperty,
