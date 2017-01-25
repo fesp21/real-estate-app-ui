@@ -38,7 +38,7 @@ class App extends Component {
       <TabNavigation
         id="homeTab"
         navigatorUID="homeTab"
-        initialTab="third"
+        initialTab="first"
         tabBarStyle={{ backgroundColor:Colors.primary }}
       >
         <TabNavigationItem

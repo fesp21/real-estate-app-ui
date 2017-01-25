@@ -142,7 +142,7 @@ class PropertyFilters extends Component {
 
   search() {
     this.setState({navigatedBack:true});
-    this.props.actions.searchRequested();
+    this.props.actions.invalidateProperty();
     this.props.actions.fetchProperties();
     return this.props.navigator.pop();
   }

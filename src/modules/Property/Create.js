@@ -19,8 +19,6 @@ import map from 'lodash/map';
 import Header from './Components/Create/Header';
 import Footer from './Components/Create/Footer';
 import get from "lodash/get";
-import merge from "lodash/merge";
-import union from "lodash/union";
 
 class PropertyCreate extends Component {
 
@@ -185,7 +183,7 @@ class PropertyCreate extends Component {
       <View style={{flex:1}}>
 
         {
-          stage == 5 &&
+          stage == 1 &&
           <List
             path="attributes"
             index="type"
@@ -212,7 +210,7 @@ class PropertyCreate extends Component {
             path="attributes"
             index="address"
             stage={stage}
-            header={<Header title="What city is your {category} located in ?" />}
+            header={<Header title="What city is your Apartment located in ?" />}
             category='Apartment'
             footer={<Footer updateListing={this.goToNextStage}/>}
           />
@@ -223,18 +221,18 @@ class PropertyCreate extends Component {
           <Stage4
             {...listings.attributes.meta}
             {...listings.filters}
-            header={<Header title="Just a little bit more about your {category} " />}
+            header={<Header title="Just a little bit more about your Apartment" />}
             footer={<Footer updateListing={this.goToNextStage}/>}
             onIncrementDecrement={this.onIncrementDecrement}
           />
         }
 
         {
-          stage == 1 &&
+          stage == 5 &&
           <Stage5
             pickImage={this.pickImage}
             images={attributes.images}
-            header={<Header title="Choose images of your property" />}
+            header={<Header title="Upload Property Images" />}
             footer={<Footer title="Save" updateListing={this.saveProperty}/>}
           />
         }

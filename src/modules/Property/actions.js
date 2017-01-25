@@ -8,7 +8,7 @@ export const ACTION_TYPES = {
   CATEGORY_SUCCESS : 'CATEGORY_SUCCESS',
   CATEGORY_FAILURE : 'CATEGORY_FAILURE',
   FILTER_CHANGE : 'FILTER_CHANGE',
-  SEARCH_REQUEST : 'SEARCH_REQUEST',
+  INVALIDTE_PROPERTY : 'INVALIDTE_PROPERTY',
   FAVORITE_PROPERTY_REQUEST : 'FAVORITE_PROPERTY_REQUEST',
   FAVORITE_PROPERTY_SUCCESS : 'FAVORITE_PROPERTY_SUCCESS',
   FAVORITE_PROPERTY_FAILURE : 'FAVORITE_PROPERTY_FAILURE',
@@ -51,9 +51,9 @@ function changeFormValue(field,value) {
   }
 }
 
-function searchRequested() {
+function invalidateProperty() {
   return {
-    type: ACTION_TYPES.SEARCH_REQUEST,
+    type: ACTION_TYPES.INVALIDTE_PROPERTY,
   }
 }
 
@@ -86,7 +86,7 @@ export const ACTIONS = {
   fetchProperties,
   fetchCategories,
   changeFormValue,
-  searchRequested,
+  invalidateProperty,
   favoriteProperty,
   fetchFavorites,
   changeListingValue,

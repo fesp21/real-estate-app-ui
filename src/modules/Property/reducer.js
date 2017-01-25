@@ -79,7 +79,7 @@ export function propertyReducer(state = initialState, action = {}) {
       return {...state,isFetching:false,error:null,categories:action.payload};
     case ACTION_TYPES.CATEGORY_FAILURE :
       return {...state,isFetching:false,error:action.error};
-    case ACTION_TYPES.SEARCH_REQUEST:
+    case ACTION_TYPES.INVALIDTE_PROPERTY:
       return {...state,results:[],nextPageUrl:undefined};
     case ACTION_TYPES.FILTER_CHANGE :
       return {

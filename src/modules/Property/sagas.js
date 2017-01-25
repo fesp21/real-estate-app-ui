@@ -5,7 +5,7 @@ import Qs from 'qs';
 import { SELECTORS } from './selectors';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
-import {getExtension,getFileName} from './../../lib/functions';
+import {getFileName} from './../../lib/functions';
 
 export function* fetchProperties(action) {
   try {
@@ -121,6 +121,7 @@ export function* saveProperty(action) {
       address,
       meta
     };
+
     let formData = new FormData();
     map(images,(img) => formData.append('images[]', {uri:img,name:getFileName(img),type:'image/jpg'}));
 
@@ -131,7 +132,6 @@ export function* saveProperty(action) {
     yield put({type: ACTION_TYPES.SAVE_PROPERTY_FAILURE, error})
   }
 }
-
 
 export function* propertyMonitor() {
   yield takeLatest(ACTION_TYPES.PROPERTY_REQUEST,fetchProperties);

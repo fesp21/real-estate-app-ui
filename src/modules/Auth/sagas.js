@@ -1,11 +1,11 @@
 import { put,call,select,takeLatest } from 'redux-saga/effects';
 import { ACTION_TYPES } from './actions';
+import { ACTION_TYPES as PROPERTY_ACTIONS } from './../Property/actions';
 import { API,AUTH_STORAGE_KEY } from './api';
 import { setItem } from '../../lib/storage';
 import { NavigationActions } from '@exponent/ex-navigation';
 import isNull from 'lodash/isNull';
 import Store from '../../lib/store';
-import Router from '../../lib/router';
 
 function* login(action) {
   try {
@@ -17,7 +17,12 @@ function* login(action) {
     yield put({type: ACTION_TYPES.LOGIN_SUCCESS, payload:response.data});
     yield call(setItem,AUTH_STORAGE_KEY,response.data.api_token);
 
+    // fetch properties (to get user's favorites)
+    yield put({type: PROPERTY_ACTIONS.INVALIDTE_PROPERTY});
+    yield put({type: PROPERTY_ACTIONS.PROPERTY_REQUEST, payload:response.data});
+
     let navigatorUID = Store.getState().navigation.currentNavigatorUID ;
+
 
     if(!isNull(action.redirectUrl) && navigatorUID ) {
       return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [action.redirectUrl], 0));
