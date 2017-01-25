@@ -16,6 +16,7 @@
 		"react": "~15.4.0-rc.4",
 		"react-native": "0.41.0-rc.0",
 		"react-native-code-push": "Microsoft/react-native-code-push",
+		"react-native-fetch-blob": "^0.10.2-beta.6",
 		"react-native-google-places-autocomplete": "^1.2.6",
 		"react-native-image-crop-picker": "^0.11.2",
 		"react-native-maps": "0.13.0",

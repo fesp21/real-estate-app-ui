@@ -106,25 +106,48 @@ export function* saveProperty(action) {
     const {attributes} = SELECTORS.getListing(state);
     const {type,category,title,description,price,address,meta,images,amenities,tags} = attributes;
 
-    let body = {
-      api_token:apiToken,
-      country,
-      type,
-      category,
-      title,
-      description,
-      price,
-      address,
-      meta,
-      images,
-      amenities,
-      tags
-    };
+    // console.log('images0',images[0]);
+    // let body = {
+    //   api_token:apiToken,
+    //   country,
+    //   type,
+    //   category,
+    //   title,
+    //   description,
+    //   price,
+    //   address,
+    //   meta,
+    //   // images,
+    //   amenities,
+    //   tags,
+    //   image:{uri:images[0],name:'image1',ext:'image/jpg','type':'multipart/form-data'}
+    // };
 
-    const response = yield call(API.saveProperty,body);
-    yield put({type: ACTION_TYPES.SAVE_PROPERTY_SUCCESS, payload:response});
+    let formdata = new FormData();
+
+    formdata.append("product", 'test');
+    formdata.append("avatar", {uri: images[0], name: 'image.jpg', type: 'image/jpg'});
+
+    fetch('http://re.dev/api/properties', {
+      method: 'post',
+      headers: {
+        // 'Content-Type': 'application/json',
+      },
+      body: formdata
+    })
+      .then(response => response.json())
+      .then(res => {
+        console.log('res',res);
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
+    // const response = yield call(API.saveProperty,body);
+    // yield put({type: ACTION_TYPES.SAVE_PROPERTY_SUCCESS, payload:response});
   } catch (error) {
-    yield put({type: ACTION_TYPES.SAVE_PROPERTY_FAILURE, error})
+    console.log('er',error);
+    // yield put({type: ACTION_TYPES.SAVE_PROPERTY_FAILURE, error})
   }
 }
 

@@ -35,11 +35,11 @@ let initialState = {
     done:false,
     stage:1,
     attributes:{
-      type:'',
-      category:'',
-      title:'',
-      description:'',
-      price:'',
+      type:'For Sale',
+      category:'Villa',
+      title:'asdasdsad',
+      description:'asdasdasd',
+      price:'asdasdasdasd',
       address:{},
       meta:{
         bedroom:'Studio',
