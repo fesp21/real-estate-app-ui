@@ -49,8 +49,8 @@ let initialState = {
         parking:'No Parking',
       },
       images:[],
-      amenities:[],
-      tags:[],
+      amenities:['Swimming Pool','Ocean View', 'Sauna'],
+      tags:['New','Duplex'],
     },
   }
 

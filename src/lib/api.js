@@ -1,11 +1,11 @@
-export function fetchAPI(url,method = 'GET',body = null) {
+export function fetchAPI(url,method = 'GET',body = null, isBlob = false) {
 
   let requestUrl;
 
   if(method === 'POST') {
     requestUrl = fetch(url, {
       method,
-      body: JSON.stringify(body),
+      body: isBlob ? body : JSON.stringify(body),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

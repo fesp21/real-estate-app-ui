@@ -26,10 +26,16 @@ function saveProperty(body) {
   return fetchAPI(url,'POST',body);
 }
 
+function uploadImage(propertyID,body) {
+  let url = `${API_URL}/properties/${propertyID}/images/upload`;
+  return fetchAPI(url,'POST',body,true);
+}
+
 export const API = {
   fetchProperties,
   fetchCategories,
   fetchFavorites,
   favoriteProperty,
-  saveProperty
+  saveProperty,
+  uploadImage
 };
