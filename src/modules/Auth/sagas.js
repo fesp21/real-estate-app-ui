@@ -19,10 +19,9 @@ function* login(action) {
 
     // fetch properties (to get user's favorites)
     yield put({type: PROPERTY_ACTIONS.INVALIDTE_PROPERTY});
-    yield put({type: PROPERTY_ACTIONS.PROPERTY_REQUEST, payload:response.data});
+    yield put({type: PROPERTY_ACTIONS.PROPERTY_REQUEST});
 
     let navigatorUID = Store.getState().navigation.currentNavigatorUID ;
-
 
     if(!isNull(action.redirectUrl) && navigatorUID ) {
       return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [action.redirectUrl], 0));

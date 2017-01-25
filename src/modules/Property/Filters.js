@@ -185,7 +185,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     properties:SELECTORS.fetchProperties(state),
-    categories:SELECTORS.fetchCategories(state),
+    categories:SELECTORS.getCategoriesWithAny(state),
     filters:SELECTORS.getFilters(state)
   }
 }

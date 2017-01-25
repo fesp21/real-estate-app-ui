@@ -5,7 +5,8 @@ import map from "lodash/map";
 
 let initialState = {
   isFetching: false,
-  categories:[],
+  categories:['Villa','Apartment','Chalet'],
+  types:['For Sale', 'For Rent'],
   error: null,
   nextPageUrl:undefined,
   nextPageFavoritesUrl:undefined,

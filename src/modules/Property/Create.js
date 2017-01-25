@@ -175,7 +175,7 @@ class PropertyCreate extends Component {
   }
 
   render() {
-    const { listings } = this.props;
+    const { listings,types,categories } = this.props;
     const { attributes } = listings;
     const { stage } = this.state;
 
@@ -187,7 +187,7 @@ class PropertyCreate extends Component {
           <List
             path="attributes"
             index="type"
-            collection={['For Sale','For Rent']}
+            collection={types}
             header={<Header title="What type of Property you want to list ?" />}
             updateListing={this.onValueSelect}
           />
@@ -199,7 +199,7 @@ class PropertyCreate extends Component {
             path="attributes"
             index="category"
             header={<Header title="Select Category Type" />}
-            collection={['Apartment','Villa', 'Chalets']}
+            collection={categories}
             updateListing={this.onValueSelect}
           />
         }
@@ -268,7 +268,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    listings:SELECTORS.getListing(state)
+    listings:SELECTORS.getListing(state),
+    categories:SELECTORS.getCategories(state),
+    types:SELECTORS.getTypes(state)
   }
 }
 

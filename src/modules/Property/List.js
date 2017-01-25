@@ -43,7 +43,7 @@ class PropertyList extends Component {
 
   componentDidMount() {
     this.props.actions.fetchProperties();
-    this.props.actions.fetchCategories();
+    // this.props.actions.fetchCategories();
   }
 
   loadEntity(item: object) {

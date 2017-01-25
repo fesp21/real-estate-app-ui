@@ -7,6 +7,7 @@ import schema from '../../lib/schema';
 const propertyResults = state => state.propertyReducer.results;
 const propertyIsFetching = state => state.propertyReducer.isFetching;
 const propertyCategories = state => state.propertyReducer.categories;
+const propertyTypes = state => state.propertyReducer.types;
 const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
@@ -55,10 +56,17 @@ const fetchProperty = createSelector(
   })
 );
 
-const fetchCategories = createSelector(
+const getCategoriesWithAny = createSelector(
   propertyCategories,
   ( categories ) => {
     return categories.concat('Any').reverse()
+  }
+);
+
+const getCategories = createSelector(
+  propertyCategories,
+  ( categories ) => {
+    return categories
   }
 );
 
@@ -71,6 +79,7 @@ const getFilters = createSelector(
   propertyFilters,
   (filters) => filters
 );
+
 const getListing = createSelector(
   propertyListings,
   (listings) => listings
@@ -81,13 +90,22 @@ const fetchComments = createSelector(
   (comments) => []
 );
 
+const getTypes = createSelector(
+  propertyTypes,
+  ( types ) => {
+    return types
+  }
+);
+
 export const SELECTORS =  {
-  fetchProperties,
-  fetchCategories,
   isFetching,
-  getFilters,
+  fetchProperties,
   fetchComments,
   fetchFavorites,
+  fetchProperty,
+  getCategories,
+  getFilters,
   getListing,
-  fetchProperty
+  getCategoriesWithAny,
+  getTypes
 };
