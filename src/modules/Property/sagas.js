@@ -122,7 +122,7 @@ export function* saveProperty(action) {
       meta
     };
     let formData = new FormData();
-    map(images,(img) => formData.append('images[]', {uri:img,name:getFileName(img),type:'image/jpeg'}));
+    map(images,(img) => formData.append('images[]', {uri:img,name:getFileName(img),type:'image/jpg'}));
 
     const response = yield call(API.saveProperty,params);
     const imageResponse = yield call(API.uploadImage,response.data._id,formData);
