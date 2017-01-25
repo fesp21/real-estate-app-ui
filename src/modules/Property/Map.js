@@ -7,17 +7,17 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { SELECTORS } from './selectors';
+import { NavigationStyles } from '@exponent/ex-navigation';
 import NavBack from './../../common/NavBack';
 import MapMarker from './Components/MapMarker';
-import { NavigationStyles } from '@exponent/ex-navigation';
 
 const { width, height } = Dimensions.get('window');
-
 const ASPECT_RATIO = width / height;
 const LATITUDE = 29.3667;
 const LONGITUDE = 47.9667;
 const LATITUDE_DELTA = 1.5;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
 
 const modalStyle = {
   ...NavigationStyles.SlideVertical,

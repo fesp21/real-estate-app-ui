@@ -4,7 +4,8 @@ import { loginMonitor,registerMonitor } from '../modules/Auth/sagas';
 import {
   propertyMonitor,
   // categoryMonitor,
-  favoriteMonitor,propertyFavoriteMonitor,
+  favoriteMonitor,
+  propertyFavoriteMonitor,
   saveMonitor
 } from '../modules/Property/sagas';
 

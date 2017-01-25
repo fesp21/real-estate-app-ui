@@ -8,12 +8,11 @@ import {StackNavigation} from "@exponent/ex-navigation";
 
 export default class PropertyCreateStack extends Component {
 
-
   static route={
     navigationBar:{
       visible:false
     }
-  }
+  };
 
   render() {
     return (

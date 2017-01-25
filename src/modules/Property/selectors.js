@@ -37,7 +37,6 @@ const fetchFavorites = createSelector(
   orm,
   propertyResults,
   ormSelector(schema,({Property},results) => {
-    // favorites.filter((company)=>!company.unFavorited)
     return Property.all().toRefArray().filter((property)=> property.isFavorited).map((property)=> {
       return property;
     });

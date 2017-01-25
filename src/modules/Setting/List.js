@@ -4,9 +4,9 @@
 import React, { PropTypes, Component, PureComponent } from 'react';
 import { ScrollView, StyleSheet, StatusBar, Text, Image,Dimensions } from 'react-native';
 import { connect } from "react-redux";
-import List from './Components/SettingList';
 import { SELECTORS as AUTH_SELECTORS } from './../../modules/Auth/selectors';
 import isEmpty from 'lodash/isEmpty';
+import List from './Components/SettingList';
 
 class SettingList extends Component {
 
