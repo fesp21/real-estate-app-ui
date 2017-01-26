@@ -1,13 +1,7 @@
-import includes from 'lodash/includes';
-
 export const ACTION_TYPES = {
   PROPERTY_REQUEST : 'PROPERTY_REQUEST',
   PROPERTY_SUCCESS : 'PROPERTY_SUCCESS',
   PROPERTY_FAILURE : 'PROPERTY_FAILURE',
-  // CATEGORY_REQUEST : 'CATEGORY_REQUEST',
-  // CATEGORY_SUCCESS : 'CATEGORY_SUCCESS',
-  // CATEGORY_FAILURE : 'CATEGORY_FAILURE',
-  FILTER_CHANGE : 'FILTER_CHANGE',
   PROPERTY_RESET : 'PROPERTY_RESET',
   PROPERTY_FAVORITE_REQUEST : 'PROPERTY_FAVORITE_REQUEST',
   PROPERTY_FAVORITE_SUCCESS : 'PROPERTY_FAVORITE_SUCCESS',
@@ -15,10 +9,11 @@ export const ACTION_TYPES = {
   FAVORITE_SUCCESS : 'FAVORITE_SUCCESS',
   FAVORITE_REQUEST : 'FAVORITE_REQUEST',
   FAVORITE_FAILURE : 'FAVORITE_FAILURE',
-  LISTING_CHANGE : 'LISTING_CHANGE',
   PROPERTY_SAVE_REQUEST: 'PROPERTY_SAVE_REQUEST',
   PROPERTY_SAVE_SUCCESS: 'PROPERTY_SAVE_SUCCESS',
   PROPERTY_SAVE_FAILURE: 'PROPERTY_SAVE_FAILURE',
+  FILTER_CHANGE : 'FILTER_CHANGE',
+  LISTING_CHANGE : 'LISTING_CHANGE',
 };
 
 function fetchProperties(params) {
@@ -34,14 +29,6 @@ function fetchFavorites(params ='') {
     params
   }
 }
-
-
-// function fetchCategories(params) {
-//   return {
-//     type: ACTION_TYPES.CATEGORY_REQUEST,
-//     params
-//   }
-// }
 
 function changeFormValue(field,value) {
   return {
@@ -84,7 +71,6 @@ function saveProperty() {
 
 export const ACTIONS = {
   fetchProperties,
-  // fetchCategories,
   changeFormValue,
   invalidateProperty,
   favoriteProperty,

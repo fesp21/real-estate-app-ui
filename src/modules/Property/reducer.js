@@ -74,12 +74,6 @@ export function propertyReducer(state = initialState, action = {}) {
       return {...state,isFetching:false,error:null,results:union(state.results,results),nextPageUrl:action.payload.next_page_url};
     case ACTION_TYPES.PROPERTY_FAILURE :
       return {...state,isFetching:false,error:action.error};
-    // case ACTION_TYPES.CATEGORY_REQUEST :
-    //   return {...state,isFetching:true,error:null};
-    // case ACTION_TYPES.CATEGORY_SUCCESS :
-    //   return {...state,isFetching:false,error:null,categories:action.payload};
-    // case ACTION_TYPES.CATEGORY_FAILURE :
-    //   return {...state,isFetching:false,error:action.error};
     case ACTION_TYPES.PROPERTY_RESET:
       return {...state,results:[],nextPageUrl:undefined};
     case ACTION_TYPES.FILTER_CHANGE :

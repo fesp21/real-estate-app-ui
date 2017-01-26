@@ -11,11 +11,6 @@ function fetchFavorites(params) {
   return fetchAPI(url);
 }
 
-// function fetchCategories(params) {
-//   let url = `${API_URL}/categories?${params}`;
-//   return fetchAPI(url);
-// }
-
 function favoriteProperty(urlParams,body) {
   let url = `${API_URL}/favorites${urlParams}`;
   return fetchAPI(url,'POST',body);
@@ -33,7 +28,6 @@ function uploadImage(propertyID,body) {
 
 export const API = {
   fetchProperties,
-  // fetchCategories,
   fetchFavorites,
   favoriteProperty,
   saveProperty,

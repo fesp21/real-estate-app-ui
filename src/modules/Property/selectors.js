@@ -1,7 +1,5 @@
 import { createSelector } from 'reselect';
 import { createSelector as ormSelector } from 'redux-orm';
-import orderBy from 'lodash/orderBy';
-
 import schema from '../../lib/schema';
 
 const propertyResults = state => state.propertyReducer.results;
@@ -35,8 +33,7 @@ const fetchProperties = createSelector(
 
 const fetchFavorites = createSelector(
   orm,
-  propertyResults,
-  ormSelector(schema,({Property},results) => {
+  ormSelector(schema,({Property}) => {
     return Property.all().toRefArray().filter((property)=> property.isFavorited).map((property)=> {
       return property;
     });
