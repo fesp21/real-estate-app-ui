@@ -76,6 +76,10 @@ class PropertyList extends Component {
     const { properties,isFetching } = this.props;
 
     return (
+      <View style={styles.container}>
+        {
+          !isFetching && properties.length == 0 && <View style={{padding:10,backgroundColor:'white',alignItems:'center'}}><Text>No Results</Text></View>
+        }
         <List
           collection = {properties}
           loadEntity = {this.loadEntity}
@@ -84,6 +88,7 @@ class PropertyList extends Component {
           isFetching={isFetching}
           fetchProperties={this.fetchProperties}
         />
+      </View>
     );
   }
 
