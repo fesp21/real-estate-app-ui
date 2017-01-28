@@ -233,7 +233,7 @@ class PropertyCreate extends Component {
             pickImage={this.pickImage}
             images={attributes.images}
             header={<Header title="Upload Property Images" />}
-            footer={<Footer title="Save" updateListing={this.saveProperty}/>}
+            footer={<Footer title="Save" updateListing={this.goToNextStage}/>}
           />
         }
 

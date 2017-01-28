@@ -49,9 +49,9 @@ export function* fetchFavorites(action) {
     let urlParams;
     // set if there is no next page
     if(nextPageFavoritesUrl === null) {
-      return yield put({type: ACTION_TYPES.FAVORITE_FAILURE, error:'No Results'});
+      return yield put({type: ACTION_TYPES.FAVORITES_FAILURE, error:'No Results'});
     }
-    
+
     let params = Qs.stringify({
       api_token,
       country
@@ -63,14 +63,14 @@ export function* fetchFavorites(action) {
       urlParams = nextPageFavoritesUrl
     }
     const response = yield call(API.fetchFavorites,urlParams);
-    yield put({type: ACTION_TYPES.FAVORITE_SUCCESS, payload:response.data});
+    yield put({type: ACTION_TYPES.FAVORITES_SUCCESS, payload:response.data});
     yield put({type: ACTION_TYPES.PROPERTY_SUCCESS, payload:response.data});
   } catch (error) {
-    yield put({type: ACTION_TYPES.FAVORITE_FAILURE, error})
+    yield put({type: ACTION_TYPES.FAVORITES_FAILURE, error})
   }
 }
 
-export function* propertyFavorite(action) {
+export function* favoriteProperty(action) {
   try {
     const state = yield select();
     const api_token = state.authReducer.token;
@@ -97,6 +97,9 @@ export function* saveProperty(action) {
     const imageResponse = yield call(API.uploadImage,response.data._id,formData);
 
     yield put({type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS, payload:imageResponse});
+    yield put({type: ACTION_TYPES.PROPERTY_RESET});
+    yield put({type: ACTION_TYPES.FILTER_RESET});
+    yield put({type: ACTION_TYPES.PROPERTY_REQUEST});
   } catch (error) {
     yield put({type: ACTION_TYPES.PROPERTY_SAVE_FAILURE, error})
   }
@@ -106,13 +109,14 @@ export function* propertyMonitor() {
   yield takeLatest(ACTION_TYPES.PROPERTY_REQUEST,fetchProperties);
 }
 
-export function* propertyFavoriteMonitor() {
-  yield takeLatest(ACTION_TYPES.PROPERTY_FAVORITE_REQUEST,propertyFavorite);
+export function* favoriteMonitor() {
+  yield takeLatest(ACTION_TYPES.FAVORITES_REQUEST,fetchFavorites);
 }
 
-export function* favoriteMonitor() {
-  yield takeLatest(ACTION_TYPES.FAVORITE_REQUEST,fetchFavorites);
+export function* propertyFavoriteMonitor() {
+  yield takeLatest(ACTION_TYPES.PROPERTY_FAVORITE_REQUEST,favoriteProperty);
 }
+
 export function* saveMonitor() {
   yield takeLatest(ACTION_TYPES.PROPERTY_SAVE_REQUEST,saveProperty);
 }

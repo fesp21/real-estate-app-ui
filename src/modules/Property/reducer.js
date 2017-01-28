@@ -81,9 +81,11 @@ export function propertyReducer(state = initialState, action = {}) {
         ...state,
         filters:{...state.filters,[action.field]:action.value}
       };
-    case ACTION_TYPES.FAVORITE_SUCCESS:
+    case ACTION_TYPES.FILTER_RESET:
+      return {...initialState};
+    case ACTION_TYPES.FAVORITES_SUCCESS:
       return {...state,nextPageFavoritesUrl:action.payload.next_page_url};
-    case ACTION_TYPES.FAVORITE_FAILURE:
+    case ACTION_TYPES.FAVORITES_FAILURE:
       return {...state,isFetching:false};
     case ACTION_TYPES.LISTING_CHANGE:
       return {...state,

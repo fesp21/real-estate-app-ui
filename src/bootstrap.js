@@ -50,7 +50,7 @@ export function appReducer(state = initialState, action = {}) {
     case ACTION_TYPES.COUNTRY_CHANGED :
       return {...state,country:action.country};
     default:
-      return state;
+      return initialState;
   }
 }
 

@@ -6,14 +6,15 @@ export const ACTION_TYPES = {
   PROPERTY_FAVORITE_REQUEST : 'PROPERTY_FAVORITE_REQUEST',
   PROPERTY_FAVORITE_SUCCESS : 'PROPERTY_FAVORITE_SUCCESS',
   PROPERTY_FAVORITE_FAILURE : 'PROPERTY_FAVORITE_FAILURE',
-  FAVORITE_SUCCESS : 'FAVORITE_SUCCESS',
-  FAVORITE_REQUEST : 'FAVORITE_REQUEST',
-  FAVORITE_FAILURE : 'FAVORITE_FAILURE',
+  FAVORITES_SUCCESS : 'FAVORITES_SUCCESS',
+  FAVORITES_REQUEST : 'FAVORITES_REQUEST',
+  FAVORITES_FAILURE : 'FAVORITES_FAILURE',
   PROPERTY_SAVE_REQUEST: 'PROPERTY_SAVE_REQUEST',
   PROPERTY_SAVE_SUCCESS: 'PROPERTY_SAVE_SUCCESS',
   PROPERTY_SAVE_FAILURE: 'PROPERTY_SAVE_FAILURE',
   FILTER_CHANGE : 'FILTER_CHANGE',
   LISTING_CHANGE : 'LISTING_CHANGE',
+  FILTER_RESET : 'FILTER_RESET'
 };
 
 function fetchProperties(params) {
@@ -25,7 +26,7 @@ function fetchProperties(params) {
 
 function fetchFavorites(params ='') {
   return {
-    type: ACTION_TYPES.FAVORITE_REQUEST,
+    type: ACTION_TYPES.FAVORITES_REQUEST,
     params
   }
 }
@@ -63,6 +64,13 @@ function changeListingValue(payload) {
   }
 }
 
+function resetFilter() {
+  return {
+    type:ACTION_TYPES.FILTER_RESET,
+    payload,
+  }
+}
+
 function saveProperty() {
   return {
     type:ACTION_TYPES.PROPERTY_SAVE_REQUEST
@@ -76,5 +84,6 @@ export const ACTIONS = {
   favoriteProperty,
   fetchFavorites,
   changeListingValue,
-  saveProperty
+  saveProperty,
+  resetFilter
 };

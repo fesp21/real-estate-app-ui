@@ -42,7 +42,12 @@ class PropertyList extends Component {
   };
 
   componentDidMount() {
-    this.props.actions.fetchProperties();
+    // try {
+      this.props.actions.fetchProperties();
+    // } catch (e) {
+    //
+    //   throw new Error(e);
+    // }
     // this.props.actions.fetchCategories();
   }
 
