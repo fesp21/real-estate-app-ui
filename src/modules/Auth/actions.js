@@ -5,6 +5,7 @@ export const ACTION_TYPES = {
   REGISTER_REQUEST : 'REGISTER_REQUEST',
   REGISTER_SUCCESS : 'REGISTER_SUCCESS',
   REGISTER_FAILURE : 'REGISTER_FAILURE',
+  LOGOUT : 'LOGOUT',
 };
 
 function login(credentials,redirectUrl) {
@@ -12,6 +13,12 @@ function login(credentials,redirectUrl) {
     type: ACTION_TYPES.LOGIN_REQUEST,
     credentials,
     redirectUrl
+  }
+}
+
+function logout() {
+  return {
+    type: ACTION_TYPES.LOGOUT
   }
 }
 
@@ -24,5 +31,6 @@ function register(params) {
 
 export const ACTIONS = {
   login,
-  register
+  register,
+  logout
 };

@@ -11,7 +11,6 @@ class Login extends Component {
     navigator:PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     auth:PropTypes.object.isRequired,
-    redirectRoute:PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -28,9 +27,8 @@ class Login extends Component {
   };
 
   handleLogin() {
-    const {redirectRoute}= this.props;
     const credentials = { email:this.state.email,password:this.state.password};
-    this.props.actions.login(credentials,this.props.navigator.router.getRoute(redirectRoute));
+    this.props.actions.login(credentials);
   }
 
   handleRegisterRoute() {

@@ -2,12 +2,13 @@
  * @flow
  */
 import React, { PropTypes, Component, PureComponent } from 'react';
-import { ScrollView, StyleSheet, StatusBar, Text, Image,Dimensions } from 'react-native';
+import { ScrollView, StyleSheet, StatusBar, Text, Image,Dimensions, Alert } from 'react-native';
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 import { SELECTORS as AUTH_SELECTORS } from './../../modules/Auth/selectors';
+import { ACTIONS as AUTH_ACTIONS } from './../../modules/Auth/actions';
 import isEmpty from 'lodash/isEmpty';
 import List from './Components/SettingList';
-
 class SettingList extends Component {
 
   constructor() {
@@ -29,11 +30,19 @@ class SettingList extends Component {
           tabs('homeTab').jumpToTab('third');
         });
       case 'login':
-        return navigator.push(navigator.router.getRoute(route,{
-          redirectRoute:'settingList'
-        }));
+        return navigator.push(navigator.router.getRoute(route));
       case 'logout': {
-        break;
+        return Alert.alert(
+          'Logout ?',
+          '',
+          [
+            {text: 'Cancel'},
+            {text: 'OK', onPress: () => {
+              this.props.actions.logout();
+              return navigator.popToTop(navigator.router.getRoute('settingList'));
+            }},
+          ]
+        );
       }
       default :
         if(!isEmpty(route)) {
@@ -94,10 +103,14 @@ const styles =  StyleSheet.create({
   }
 });
 
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(AUTH_ACTIONS, dispatch) }
+}
+
 function mapStateToProps(state) {
   return {
     isAuthenticated:AUTH_SELECTORS.isAuthenticated(state)
   }
 }
 
-export default connect(mapStateToProps)(SettingList);
+export default connect(mapStateToProps,mapDispatchToProps)(SettingList);

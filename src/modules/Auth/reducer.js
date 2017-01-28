@@ -47,6 +47,10 @@ export function authReducer(state = initialState, action = {}) {
         ...state,
         register:{...state.register,busy:false,error:action.error}
       };
+    case ACTION_TYPES.LOGOUT:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

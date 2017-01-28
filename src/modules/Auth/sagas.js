@@ -6,6 +6,7 @@ import { setItem } from '../../lib/storage';
 import { NavigationActions } from '@exponent/ex-navigation';
 import isNull from 'lodash/isNull';
 import Store from '../../lib/store';
+import Router from './../../lib/router';
 
 function* login(action) {
   try {
@@ -24,7 +25,7 @@ function* login(action) {
     let navigatorUID = Store.getState().navigation.currentNavigatorUID ;
 
     if(!isNull(action.redirectUrl) && navigatorUID ) {
-      return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [action.redirectUrl], 0));
+      return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [Router.getRoute('settingList')], 0));
     }
 
   } catch (error) {
