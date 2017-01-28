@@ -6,6 +6,9 @@ import { getFileName } from './../../lib/functions';
 import Qs from 'qs';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
+import Store from './../../lib/store';
+import Router from './../../lib/router';
+import { NavigationActions } from '@exponent/ex-navigation';
 
 export function* fetchProperties(action) {
   try {
@@ -74,6 +77,11 @@ export function* favoriteProperty(action) {
   try {
     const state = yield select();
     const api_token = state.authReducer.token;
+    if(isEmpty(api_token)) {
+      let navigatorUID = Store.getState().navigation.currentNavigatorUID ;
+      return Store.dispatch(NavigationActions.push(navigatorUID,Router.getRoute('login',{redirectRoute:'propertyList'})));
+    }
+    yield put({type:ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE,payload:action});
     let urlParams = `?api_token=${api_token}`;
     const response = yield call(API.favoriteProperty,urlParams,action.params);
     yield put({type: ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS, payload:response});

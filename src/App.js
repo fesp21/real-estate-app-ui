@@ -1,18 +1,12 @@
 import React,{ Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { ACTIONS } from './bootstrap';
 import { connect } from "react-redux";
-import { View, Text,Image } from 'react-native';
+import { StackNavigation, TabNavigation, TabNavigationItem } from '@exponent/ex-navigation';
 import Router from './lib/router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NavBar from './common/NavBar';
 import Colors from './common/Colors';
-import {
-  StackNavigation,
-  TabNavigation,
-  TabNavigationItem,
-} from '@exponent/ex-navigation';
 
 class App extends Component {
 
@@ -20,7 +14,7 @@ class App extends Component {
     app:PropTypes.object.isRequired
   };
 
-  static route={
+  static route = {
     navigationBar:{
       visible:false
     }
@@ -32,7 +26,9 @@ class App extends Component {
 
   render() {
 
+    const {app,authReducer} = this.props;
     // if(!this.props.app.bootstrapped) return null;
+
 
     return (
       <TabNavigation
@@ -68,7 +64,7 @@ class App extends Component {
           <StackNavigation
             id="favoritesStack"
             navigatorUID="favoritesStack"
-            initialRoute={Router.getRoute('propertyFavorites')}
+            initialRoute={authReducer.isAuthenticated ? Router.getRoute('propertyFavorites') : Router.getRoute('login',{redirectRoute:'propertyFavorites'}) }
             defaultRouteConfig={{
               navigationBar: {
                 backgroundColor: 'rgba(255,255,255,0.2)',
@@ -127,7 +123,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    app: state.appReducer
+    app: state.appReducer,
+    authReducer:state.authReducer
   }
 }
 
@@ -135,5 +132,6 @@ const styles = StyleSheet.create({
   selectedTab: {
     backgroundColor:'green'
   }
-})
+});
+
 export default connect(mapStateToProps)(App);

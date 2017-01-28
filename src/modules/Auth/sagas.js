@@ -25,7 +25,7 @@ function* login(action) {
     let navigatorUID = Store.getState().navigation.currentNavigatorUID ;
 
     if(!isNull(action.redirectUrl) && navigatorUID ) {
-      return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [Router.getRoute('settingList')], 0));
+      return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [action.redirectUrl], 0));
     }
 
   } catch (error) {

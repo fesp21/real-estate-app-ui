@@ -40,7 +40,7 @@ class Register extends Component {
 
   handleLoginRoute() {
     const { navigator } = this.props;
-    navigator.push(navigator.router.getRoute('login'));
+    navigator.push(navigator.router.getRoute('login',{redirectRoute:'settingList'}));
   }
 
   handleRegister() {

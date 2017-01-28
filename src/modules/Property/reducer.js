@@ -111,8 +111,8 @@ export function dbReducer(state , action) {
         }
       });
       break;
-    case ACTION_TYPES.PROPERTY_FAVORITE_REQUEST:
-      const { itemID, newItemAttributes} = action.params;
+    case ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE:
+      const { itemID, newItemAttributes} = action.payload.params;
       if(Property.hasId(itemID)) {
         const modelInstance = Property.withId(itemID);
         modelInstance.update(newItemAttributes);

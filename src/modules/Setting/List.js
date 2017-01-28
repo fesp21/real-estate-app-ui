@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { SELECTORS as AUTH_SELECTORS } from './../../modules/Auth/selectors';
 import { ACTIONS as AUTH_ACTIONS } from './../../modules/Auth/actions';
+import { ACTIONS as PROPERTY_ACTIONS } from './../../modules/Property/actions';
 import isEmpty from 'lodash/isEmpty';
 import List from './Components/SettingList';
 class SettingList extends Component {
@@ -30,7 +31,7 @@ class SettingList extends Component {
           tabs('homeTab').jumpToTab('third');
         });
       case 'login':
-        return navigator.push(navigator.router.getRoute(route));
+        return navigator.push(navigator.router.getRoute(route,{redirectRoute:'settingList'}));
       case 'logout': {
         return Alert.alert(
           'Logout ?',
@@ -39,6 +40,7 @@ class SettingList extends Component {
             {text: 'Cancel'},
             {text: 'OK', onPress: () => {
               this.props.actions.logout();
+              this.props.actions.invalidateProperty();
               return navigator.popToTop(navigator.router.getRoute('settingList'));
             }},
           ]
@@ -104,7 +106,7 @@ const styles =  StyleSheet.create({
 });
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(AUTH_ACTIONS, dispatch) }
+  return { actions: bindActionCreators({...AUTH_ACTIONS,...PROPERTY_ACTIONS}, dispatch) }
 }
 
 function mapStateToProps(state) {
