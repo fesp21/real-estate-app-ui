@@ -70,6 +70,17 @@ export default class PropertySingle extends Component {
 
             <View style={styles.separator}/>
 
+            <View style={{flex:1,alignItems:'center'}}>
+              <Text style={[styles.descTitle,{marginBottom:10}]} >Amenities</Text>
+              {
+                property.amenities.map((amenity) =>
+                  <Text key={amenity} style={styles.amenity}>{amenity}</Text>
+                )
+              }
+            </View>
+
+            <View style={styles.separator}/>
+
             <View>
               <Text style={styles.descTitle} >Comments</Text>
               <CommentList collection={property.comments} />
@@ -126,12 +137,17 @@ const styles =  StyleSheet.create({
     textAlign:'justify',
     color:'#384760',
     fontFamily:'Avenir-Light'
-
   },
   separator: {
     marginTop:10,
     height:.5,
     backgroundColor:'#cbced3'
+  },
+  amenity :{
+    fontSize:15,
+    textAlign:'justify',
+    color:'#384760',
+    fontFamily:'Avenir-Light'
   }
 
 });
