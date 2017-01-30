@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
+import List from './../../../modules/Property/Components/PropertyList';
 
 export default class UserSingle extends Component {
 
@@ -11,13 +12,22 @@ export default class UserSingle extends Component {
   };
 
   render() {
-    const {user} = this.props;
+    const {user,properties,loadEntity,onImagePress,handleFavoritePress,fetchProperties,isFetching} = this.props;
 
     return (
 
       <ScrollView style={styles.container}
                   showsVerticalScrollIndicator={false}
       >
+        <List
+          collection = {properties}
+          loadEntity = {loadEntity}
+          onImagePress = {onImagePress}
+          handleFavoritePress = {handleFavoritePress}
+          isFetching={isFetching}
+          fetchProperties={fetchProperties}
+          horizontal={true}
+        />
 
       </ScrollView>
 

@@ -100,7 +100,6 @@ export default class List extends Component {
         initialListSize={10}
         renderFooter={()=> isFetching && <LoadingIndicator isFetching={isFetching} style={{ backgroundColor:'white' }} />}
         onEndReached={()=>fetchProperties()}
-
       />
     );
   }

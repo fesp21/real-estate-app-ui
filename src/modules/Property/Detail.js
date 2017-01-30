@@ -18,6 +18,7 @@ class PropertyDetail extends Component {
     this.saveComment = this.saveComment.bind(this);
     this.onChangeCommentText = this.onChangeCommentText.bind(this);
     this.handleFavoritePress = this.handleFavoritePress.bind(this);
+    this.loadUser = this.loadUser.bind(this);
   }
 
   state = {
@@ -36,6 +37,14 @@ class PropertyDetail extends Component {
     this.props.actions.favoriteProperty(item);
   }
 
+  loadUser(user) {
+    const {navigator} = this.props;
+    return navigator.push(navigator.router.getRoute('userDetail',{
+      user
+    }));
+  }
+
+
   render() {
     const { property,comments } = this.props;
     return (
@@ -44,6 +53,7 @@ class PropertyDetail extends Component {
                       commentBody={this.state.commentBody}
                       onChangeCommentText={this.onChangeCommentText}
                       handleFavoritePress={this.handleFavoritePress}
+                      loadUser={this.loadUser}
       />
     );
   }

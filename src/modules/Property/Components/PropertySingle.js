@@ -8,6 +8,7 @@ import PropertyTags from './PropertyTags';
 import CommentList from './CommentList';
 import CommentAdd from './CommentAdd';
 import Heart from './Heart';
+import Colors from './../../../common/Colors';
 
 export default class PropertySingle extends Component {
 
@@ -16,11 +17,12 @@ export default class PropertySingle extends Component {
     saveComment:PropTypes.func.isRequired,
     commentBody:PropTypes.string.isRequired,
     onChangeCommentText:PropTypes.func.isRequired,
-    handleFavoritePress:PropTypes.func.isRequired
+    handleFavoritePress:PropTypes.func.isRequired,
+    loadUser:PropTypes.func.isRequired
   };
 
   render() {
-    const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress} = this.props;
+    const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress,loadUser} = this.props;
 
     return (
 
@@ -64,12 +66,11 @@ export default class PropertySingle extends Component {
 
             </View>
 
-            <View style={{flex:1,flexDirection:'row'}}>
+            <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
               <Text>By</Text>
-              <TouchableHighlight underlayColor="transparent" onPress={()=>{}} style={{flex:1,marginHorizontal:10}}>
-                <Text>{property.user.name} </Text>
+              <TouchableHighlight underlayColor="transparent" onPress={()=>loadUser(property.user)} style={{flex:1}}>
+                <Text style={styles.username}> {property.user.name} </Text>
               </TouchableHighlight>
-
             </View>
 
 
@@ -160,6 +161,9 @@ const styles =  StyleSheet.create({
     textAlign:'justify',
     color:'#384760',
     fontFamily:'Avenir-Light'
+  },
+  username: {
+    color:Colors.darkGrey
   }
 
 });
