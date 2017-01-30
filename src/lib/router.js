@@ -9,6 +9,7 @@ import PropertyDetail from '../modules/Property/Detail';
 import PropertyMap from '../modules/Property/Map';
 import PropertyCreate from '../modules/Property/Create';
 import SettingList from '../modules/Setting/List';
+import UserDetail from './../modules/User/Detail';
 
 const Router = createRouter(() => ({
   app:() => App,
@@ -21,6 +22,7 @@ const Router = createRouter(() => ({
   propertyMaps: () => PropertyMap,
   propertyCreate: () => PropertyCreate,
   settingList: () => SettingList,
+  userDetail: () => UserDetail
 }));
 
 export default Router;

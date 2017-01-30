@@ -12,12 +12,3 @@ export class Property extends Model {
     user: fk('User'),
   }
 }
-
-export class User extends Model {
-  static modelName = 'User';
-  static options() {
-    return {
-      idAttribute : "_id"
-    }
-  }
-}
