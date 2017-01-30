@@ -56,4 +56,4 @@ function mapStateToProps(state,props) {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(PropertyDetail);
+export default connect(mapStateToProps,mapDispatchToProps)(UserDetail);
