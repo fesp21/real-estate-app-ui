@@ -79,7 +79,7 @@ class PropertyList extends Component {
 
   render() {
     const { properties,isFetching } = this.props;
-
+    
     return (
       <View style={styles.container}>
         {
@@ -115,6 +115,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
+    orm:state.dbReducer,
     properties:SELECTORS.fetchProperties(state),
     isFetching:SELECTORS.isFetching(state)
   }

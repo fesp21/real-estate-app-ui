@@ -7,6 +7,10 @@ export class Property extends Model {
       idAttribute : "_id"
     }
   }
+
+  static fields = {
+    user: fk('User'),
+  }
 }
 
 export class User extends Model {

@@ -10,32 +10,26 @@ const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
 
-const filterResults = (Property,results) => {
-  return results.map((id) => Property.withId(id).ref);
-  // if(filters.sortBy === 'Cheap') {
-  //   return orderBy(properties,'meta.price','asc');
-  // } else if(filters.sortBy === 'Pricey') {
-  //   return orderBy(properties,'meta.price','desc');
-  // } else if(filters.sortBy === 'Old') {
-  //   return orderBy(properties,'created_at','asc');
-  // } else {
-  //   return orderBy(properties,'created_at','desc');
-  // }
+const filterResults = ({Property,User},results) => {
+  return results.map((id) => {
+    const property = Property.withId(id).ref;
+    return Object.assign({},property,{user:User.withId(property.user).ref});
+  });
 };
 
 const fetchProperties = createSelector(
   orm,
   propertyResults,
-  ormSelector(schema,({Property},results) => {
-    return filterResults(Property,results);
+  ormSelector(schema,(ormSelector,results) => {
+    return filterResults(ormSelector,results);
   })
 );
 
 const fetchFavorites = createSelector(
   orm,
-  ormSelector(schema,({Property}) => {
+  ormSelector(schema,({Property,User}) => {
     return Property.all().toRefArray().filter((property)=> property.isFavorited).map((property)=> {
-      return property;
+      return Object.assign({},property,{user:User.withId(property.user).ref});
     });
   })
 );

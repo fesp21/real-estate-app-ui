@@ -49,9 +49,11 @@ export default class PropertySingle extends Component {
                     <PropertyIcons services={property.meta} items={['bedroom','bathroom','parking']} />
                   </View>
                 }
+
+                <Text> By {property.user_id} </Text>
               </View>
 
-              <View style={{marginLeft:30}}>
+                <View style={{marginLeft:30}}>
                 <Text style={styles.price}>{property.meta.price}KD</Text>
               </View>
 

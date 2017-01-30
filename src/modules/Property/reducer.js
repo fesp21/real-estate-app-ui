@@ -99,16 +99,15 @@ export function propertyReducer(state = initialState, action = {}) {
 //@todo: move to separate file
 export function dbReducer(state , action) {
   const session = schema.session(state);
-  const { Property } = session;
+  const { Property,User } = session;
   switch (action.type) {
     case ACTION_TYPES.PROPERTY_SUCCESS:
       const propertyCollections = action.payload.data;
       map(propertyCollections,entity => {
-        if(Property.hasId(entity._id)) {
-          Property.withId(entity._id).update(entity);
-        } else {
-          Property.create(entity)
-        }
+        const user = entity.user;
+        if(!user) return;
+        if (!User.hasId(user._id)) { User.create(user); }
+        Property.hasId(entity._id) ? Property.withId(entity._id).update({...entity, user:user._id}) : Property.create({...entity, user:user._id });
       });
       break;
     case ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE:
