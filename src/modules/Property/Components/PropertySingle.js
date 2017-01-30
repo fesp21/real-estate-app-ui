@@ -21,6 +21,7 @@ export default class PropertySingle extends Component {
 
   render() {
     const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress} = this.props;
+
     return (
 
       <ScrollView style={styles.container}
@@ -50,10 +51,10 @@ export default class PropertySingle extends Component {
                   </View>
                 }
 
-                <Text> By {property.user_id} </Text>
               </View>
 
-                <View style={{marginLeft:30}}>
+
+              <View style={{marginLeft:30}}>
                 <Text style={styles.price}>{property.meta.price}KD</Text>
               </View>
 
@@ -62,6 +63,15 @@ export default class PropertySingle extends Component {
               </View>
 
             </View>
+
+            <View style={{flex:1,flexDirection:'row'}}>
+              <Text>By</Text>
+              <TouchableHighlight underlayColor="transparent" onPress={()=>{}} style={{flex:1,marginHorizontal:10}}>
+                <Text>{property.user.name} </Text>
+              </TouchableHighlight>
+
+            </View>
+
 
             <View style={styles.separator}/>
 

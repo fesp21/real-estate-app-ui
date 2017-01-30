@@ -26,7 +26,6 @@ class PropertyList extends Component {
     this.handleFavoritePress = this.handleFavoritePress.bind(this);
     this.fetchProperties = this.fetchProperties.bind(this);
     this.handleFavoritePress = this.handleFavoritePress.bind(this);
-    // PropertySearch.showFilterModal = PropertySearch.showFilterModal.bind(this);
   }
 
   static propTypes = {
@@ -42,13 +41,7 @@ class PropertyList extends Component {
   };
 
   componentDidMount() {
-    // try {
       this.props.actions.fetchProperties();
-    // } catch (e) {
-    //
-    //   throw new Error(e);
-    // }
-    // this.props.actions.fetchCategories();
   }
 
   loadEntity(item: object) {
@@ -79,7 +72,7 @@ class PropertyList extends Component {
 
   render() {
     const { properties,isFetching } = this.props;
-    
+
     return (
       <View style={styles.container}>
         {
