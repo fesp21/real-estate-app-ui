@@ -1,11 +1,15 @@
 import React, { PropTypes,Component } from 'react';
-import { View, Dimensions } from 'react-native';
+import { ScrollView,StyleSheet, View, Dimensions } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { ACTIONS as PROPERTY_ACTIONS } from './../../modules/Property/actions';
 import { SELECTORS } from './selectors';
-import UserSingle from './Components/UserSingle';
+import UserInfo from './Components/UserInfo';
+import PropertyListing from './../../modules/Property/Components/PropertyList';
+import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+
+const DOUBLE_PRESS_DELAY = 300;
 
 class UserDetail extends Component {
 
@@ -22,7 +26,13 @@ class UserDetail extends Component {
   };
 
   state = {
-    lastImagePress:''
+    lastImagePress:'',
+    index: 0,
+    routes: [
+      { key: '1', title: 'Basic Info' },
+      { key: '2', title: 'Listings' },
+      { key: '3', title: 'Contact' },
+    ],
   };
 
   constructor(){
@@ -32,6 +42,9 @@ class UserDetail extends Component {
     this.handleFavoritePress = this.handleFavoritePress.bind(this);
     this.fetchProperties = this.fetchProperties.bind(this);
     this.handleFavoritePress = this.handleFavoritePress.bind(this);
+    this.handleChangeTab = this.handleChangeTab.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
+    this.renderScene = this.renderScene.bind(this);
   }
 
 
@@ -61,19 +74,60 @@ class UserDetail extends Component {
     this.setState({lastImagePress: now});
   }
 
+  handleChangeTab(index){
+    this.setState({ index });
+  };
+
+  renderHeader(props){
+    return <TabBar {...props} />;
+  };
+
+  renderScene({ route }){
+    const {properties,isFetching} = this.props;
+    switch (route.key) {
+      case '1':
+        return <View style={[ styles.page, { backgroundColor: '#ff4081' } ]} />;
+      case '2':
+        return (
+          <PropertyListing
+            collection = {properties}
+            loadEntity = {this.loadEntity}
+            onImagePress = {this.onImagePress}
+            handleFavoritePress = {this.handleFavoritePress}
+            isFetching={isFetching}
+            fetchProperties={this.fetchProperties}
+            horizontal={true}
+          />
+        );
+      case '3':
+        return (
+          <View/>
+        )
+      default:
+        return null;
+    }
+  };
+
+
+
   render() {
     const { user,properties,isFetching } = this.props;
+
     return (
-      <UserSingle
-        {...this.state}
-        user={user}
-        properties={properties}
-        fetchProperties={this.fetchProperties}
-        onImagePress={this.onImagePress}
-        loadEntity={this.loadEntity}
-        handleFavoritePress={this.handleFavoritePress}
-        isFetching={isFetching}
-      />
+      <ScrollView style={{flex:1,paddingTop:64}}>
+        <UserInfo
+          user={user}
+        />
+        <PropertyListing
+          collection = {properties}
+          loadEntity = {this.loadEntity}
+          onImagePress = {this.onImagePress}
+          handleFavoritePress = {this.handleFavoritePress}
+          isFetching={isFetching}
+          fetchProperties={this.fetchProperties}
+          horizontal={true}
+        />
+      </ScrollView>
     );
   }
 
@@ -90,5 +144,16 @@ function mapStateToProps(state,props) {
     isFetching:state.propertyReducer.isFetching
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  page: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(UserDetail);

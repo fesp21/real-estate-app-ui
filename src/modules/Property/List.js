@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { SELECTORS } from './selectors';
-import List from './Components/PropertyList';
+import PropertyListing from './Components/PropertyList';
 import SearchBar from './Components/SearchBar';
 import MapView from './Components/MapView';
 
@@ -78,7 +78,7 @@ class PropertyList extends Component {
         {
           !isFetching && properties.length == 0 && <View style={{padding:10,backgroundColor:'white',alignItems:'center'}}><Text>No Results</Text></View>
         }
-        <List
+        <PropertyListing
           collection = {properties}
           loadEntity = {this.loadEntity}
           onImagePress = {this.onImagePress}

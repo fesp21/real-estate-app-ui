@@ -8,14 +8,16 @@ import PropertyTags from './PropertyTags';
 import Swiper from 'react-native-swiper';
 import Heart from './Heart';
 import LoadingIndicator from './../../../common/LoadingIndicator';
+import Colors from './../../../common/Colors';
 
-export default class List extends Component {
+export default class PropertyListing extends Component {
 
   static propTypes = {
     collection:PropTypes.array.isRequired,
     loadEntity:PropTypes.func.isRequired,
     onImagePress:PropTypes.func.isRequired,
-    handleFavoritePress:PropTypes.func.isRequired
+    handleFavoritePress:PropTypes.func.isRequired,
+    horizontal:PropTypes.bool,
   };
 
   constructor(props) {
@@ -23,83 +25,95 @@ export default class List extends Component {
     this.renderRow = this.renderRow.bind(this);
   }
 
+  imageSlider(item,image) {
+    const { onImagePress} = this.props;
+    return (
+      <TouchableWithoutFeedback key={image} onPress={() => onImagePress(item)} underlayColor="transparent" style={{flex:1}}>
+        <View  style={styles.slide}>
+          <Image style={styles.image} source={{uri: image}} />
+        </View>
+      </TouchableWithoutFeedback>
+    )
+  }
+
   renderRow(item) {
-    const { loadEntity,onImagePress,handleFavoritePress} = this.props;
+    const { loadEntity,onImagePress,handleFavoritePress,horizontal} = this.props;
 
     return (
-      <View style={styles.rowContainer}>
 
-        <View style={styles.row}>
+      <View style={styles.row}>
 
-          <TouchableHighlight onPress={() => loadEntity(item)} underlayColor="transparent">
-            <Text style={styles.title}>{item.title}</Text>
-          </TouchableHighlight>
+        <TouchableHighlight onPress={() => loadEntity(item)} underlayColor="transparent"
+                            style={{flex:1}}
+        >
+          <Text style={styles.title}>{item.title}</Text>
+        </TouchableHighlight>
 
-          <Swiper loadMinimal loadMinimalSize={1} style={styles.wrapper} height={180} loop={false}>
+        {
+          horizontal ?
+            this.imageSlider(item,item.images[0])
+            :
+            <Swiper loadMinimal loadMinimalSize={1} style={styles.wrapper} height={180} loop={false}>
+              {
+                item.images.map((image, i) => this.imageSlider(item,image,i))
+              }
+            </Swiper>
+
+        }
+
+        <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+          <View >
             {
-              item.images.map((image, i) => {
-                return (
-                  <TouchableWithoutFeedback key={i} onPress={() => onImagePress(item)} underlayColor="transparent" style={{flex:1}}>
-                    <View  style={styles.slide}>
-                      <Image style={styles.image} source={{uri: image}} />
-                    </View>
-                  </TouchableWithoutFeedback>
-                );
-              })
+              item.tags &&
+              <View style={{flexDirection:'row',padding:10}}>
+                <PropertyTags tags={item.tags} />
+              </View>
             }
-          </Swiper>
 
-          <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
-            <View >
-              {
-                item.tags &&
-                <View style={{flexDirection:'row',padding:10}}>
-                  <PropertyTags tags={item.tags} />
-                </View>
-              }
-
-              {
-                item.meta &&
-                <View style={{flexDirection:'row',padding:10, paddingTop:0}}>
-                  <PropertyIcons services={item.meta} items={['bedroom','bathroom','parking']} />
-                </View>
-              }
-            </View>
-
-            <View style={{marginLeft:30}}>
-              <Text style={styles.price}>{item.meta.price}KD</Text>
-            </View>
-
-            <View style={{marginLeft:20}}>
-              <Heart handleFavoritePress={()=>handleFavoritePress(item)} isFavorited={item.isFavorited} />
-            </View>
-
+            {
+              item.meta &&
+              <View style={{flexDirection:'row',padding:10, paddingTop:0}}>
+                <PropertyIcons services={item.meta} items={['bedroom','bathroom','parking']} />
+              </View>
+            }
           </View>
 
-          <View style={styles.separator}/>
+          <View style={{marginLeft:30}}>
+            <Text style={styles.price}>{item.meta.price}KD</Text>
+          </View>
+
+          <View style={{marginLeft:20}}>
+            <Heart handleFavoritePress={()=>handleFavoritePress(item)} isFavorited={item.isFavorited} />
+          </View>
 
         </View>
+
+        <View style={styles.separator}/>
+
       </View>
     )
   }
 
   render() {
-    const {collection,isFetching,fetchProperties} = this.props;
+    const {collection,isFetching,fetchProperties,horizontal} = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
     let dataSource = ds.cloneWithRows(collection);
     return (
       <ListView
         style={styles.container}
+        contentContainerStyle={{paddingVertical:20}}
         dataSource={dataSource}
         renderRow={this.renderRow}
         enableEmptySections={true}
         ref='listView'
         showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         automaticallyAdjustContentInsets={false}
         onEndReachedThreshold={100}
         initialListSize={10}
         renderFooter={()=> isFetching && <LoadingIndicator isFetching={isFetching} style={{ backgroundColor:'white' }} />}
         onEndReached={()=>fetchProperties()}
+        horizontal={horizontal && true}
       />
     );
   }
@@ -110,16 +124,12 @@ const styles =  StyleSheet.create({
     flex:1,
     backgroundColor:'white',
   },
-
   wrapper: {
     backgroundColor: '#000',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0
-  },
-  rowContainer:{
-    flex:1
   },
   row: {
     flex:1,
@@ -136,9 +146,9 @@ const styles =  StyleSheet.create({
     height:188
   },
   separator: {
-    flex:1,
+    marginHorizontal:10,
     height:.5,
-    backgroundColor:'#cbced3'
+    backgroundColor:Colors.lightGrey
   },
   slide: {
     flex: 1,

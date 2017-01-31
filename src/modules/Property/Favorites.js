@@ -74,7 +74,7 @@ class PropertyFavorites extends Component {
         {
           !isFetching && properties.length == 0 && <View style={{padding:10,backgroundColor:'white',alignItems:'center'}}><Text>No Results</Text></View>
         }
-        <List
+        <PropertyListing
           collection = {properties}
           loadEntity = {this.loadEntity}
           onImagePress = {this.onImagePress}
