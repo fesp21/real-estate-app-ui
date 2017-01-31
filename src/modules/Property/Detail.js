@@ -44,6 +44,14 @@ class PropertyDetail extends Component {
     }));
   }
 
+  showSlider = () => {
+    const {property} = this.props;
+    // navigator.push(navigator.router.getRoute('propertyFilters'));
+    let navigator = this.props.navigation.getNavigator('rootStack');
+    return navigator.push(navigator.router.getRoute('propertySlideShow',{
+      images:property.images
+    }));
+  };
 
   render() {
     const { property,comments } = this.props;
@@ -54,6 +62,7 @@ class PropertyDetail extends Component {
                       onChangeCommentText={this.onChangeCommentText}
                       handleFavoritePress={this.handleFavoritePress}
                       loadUser={this.loadUser}
+                      showSlider={this.showSlider}
       />
     );
   }

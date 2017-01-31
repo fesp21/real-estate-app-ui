@@ -9,6 +9,7 @@ import CommentList from './CommentList';
 import CommentAdd from './CommentAdd';
 import Heart from './Heart';
 import Colors from './../../../common/Colors';
+import { TabViewAnimated, TabViewPagerPan } from 'react-native-tab-view';
 
 export default class PropertySingle extends Component {
 
@@ -20,9 +21,16 @@ export default class PropertySingle extends Component {
     handleFavoritePress:PropTypes.func.isRequired,
     loadUser:PropTypes.func.isRequired
   };
+  //
+  // showSlider = () => {
+  //   const {images} = this.props.property;
+  // }
+  // componentWillMount() {
+  //
+  // }
 
   render() {
-    const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress,loadUser} = this.props;
+    const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress,loadUser,showSlider} = this.props;
 
     return (
 
@@ -31,7 +39,9 @@ export default class PropertySingle extends Component {
       >
         <KeyboardAvoidingView behavior='position' >
 
-          <Image source={{uri: property.images[0]}} style={styles.image} />
+          <TouchableHighlight onPress={()=>showSlider()} underlayColor="transparent">
+            <Image source={{uri: property.images[0]}} style={styles.image} />
+          </TouchableHighlight>
 
           <View style={styles.content}>
 

@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import {StatusBar} from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContext, NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
 import { NavigationStyles } from '@exponent/ex-navigation';
@@ -19,6 +20,13 @@ export default class Root extends Component {
     if(CODEPUSH_ENABLED) {
       CodePush.sync();
     }
+  }
+  componentWillMount() {
+    StatusBar.setHidden(true);
+  }
+
+  componentWillUnmount() {
+    StatusBar.setHidden(false);
   }
 
   render() {

@@ -8,6 +8,7 @@ import PropertyFavorites from '../modules/Property/Favorites';
 import PropertyDetail from '../modules/Property/Detail';
 import PropertyMap from '../modules/Property/Map';
 import PropertyCreate from '../modules/Property/Create';
+import PropertySlideShow from '../modules/Property/Components/SlideShow';
 import SettingList from '../modules/Setting/List';
 import UserDetail from './../modules/User/Detail';
 
@@ -22,7 +23,8 @@ const Router = createRouter(() => ({
   propertyMaps: () => PropertyMap,
   propertyCreate: () => PropertyCreate,
   settingList: () => SettingList,
-  userDetail: () => UserDetail
+  userDetail: () => UserDetail,
+  propertySlideShow:() =>  PropertySlideShow
 }));
 
 export default Router;

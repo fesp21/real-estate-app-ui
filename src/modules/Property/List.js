@@ -57,7 +57,7 @@ class PropertyList extends Component {
 
   onImagePress(item: object) {
     const now = new Date().getTime();
-    var delta = now - this.state.lastImagePress;
+    let delta = now - this.state.lastImagePress;
 
     if(delta < DOUBLE_PRESS_DELAY) {
       // favorite item
