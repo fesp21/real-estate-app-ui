@@ -41,7 +41,7 @@ export default class PropertyListing extends Component {
 
     return (
 
-      <View style={styles.row}>
+      <View style={[styles.row,]}>
 
         <TouchableHighlight onPress={() => loadEntity(item)} underlayColor="transparent"
                             style={{flex:1}}
@@ -58,7 +58,6 @@ export default class PropertyListing extends Component {
                 item.images.map((image, i) => this.imageSlider(item,image,i))
               }
             </Swiper>
-
         }
 
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
@@ -122,7 +121,6 @@ export default class PropertyListing extends Component {
 const styles =  StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'white',
   },
   wrapper: {
     backgroundColor: '#000',
@@ -153,7 +151,7 @@ const styles =  StyleSheet.create({
   slide: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   loadingView: {
     position: 'absolute',

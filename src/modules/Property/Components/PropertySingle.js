@@ -67,7 +67,7 @@ export default class PropertySingle extends Component {
             </View>
 
             <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
-              <Text>By</Text>
+              <Text style={styles.label}>By</Text>
               <TouchableHighlight underlayColor="transparent" onPress={()=>loadUser(property.user)} style={{flex:1}}>
                 <Text style={styles.username}> {property.user.name} </Text>
               </TouchableHighlight>
@@ -164,6 +164,10 @@ const styles =  StyleSheet.create({
   },
   username: {
     color:Colors.darkGrey
+  },
+  label:{
+    color:Colors.grey,
+    fontSize:12
   }
 
 });
