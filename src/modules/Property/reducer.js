@@ -56,7 +56,7 @@ const initialState = {
       },
       images: [],
       tags: ['New', 'Duplex'],
-      amenities: [],
+      amenities: ['Swimming Pool'],
     },
   },
 

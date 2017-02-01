@@ -6,6 +6,7 @@ const propertyResults = state => state.propertyReducer.results;
 const propertyIsFetching = state => state.propertyReducer.isFetching;
 const propertyCategories = state => state.propertyReducer.categories;
 const propertyTypes = state => state.propertyReducer.types;
+const propertyAmenities = state => state.propertyReducer.amenities;
 const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
@@ -72,6 +73,11 @@ const getTypes = createSelector(
   types => types,
 );
 
+const getAmenities = createSelector(
+  propertyAmenities,
+  amenities => amenities,
+);
+
 export const SELECTORS = {
   isFetching,
   fetchProperties,
@@ -83,4 +89,5 @@ export const SELECTORS = {
   getListing,
   getCategoriesWithAny,
   getTypes,
+  getAmenities,
 };

@@ -15,12 +15,20 @@ export function* fetchProperties(action) {
     const state = yield select();
 
     const country = state.appReducer.country;
-    const api_token = state.authReducer.token;
+    const apiToken = state.authReducer.token;
     const { bedroom, bathroom, parking, category, priceFrom, priceTo, sortBy, searchString } = SELECTORS.getFilters(state);
     const params = Qs.stringify({
-      api_token, country, bedroom, bathroom, parking, category, priceFrom, priceTo, sortBy, searchString,
+      api_token: apiToken,
+      country,
+      bedroom,
+      bathroom,
+      parking,
+      category,
+      priceFrom,
+      priceTo,
+      sortBy,
+      searchString,
     });
-
     const { nextPageUrl } = state.propertyReducer;
     let urlParams;
 
@@ -47,7 +55,7 @@ export function* fetchFavorites(action) {
   try {
     const state = yield select();
     const country = state.appReducer.country;
-    const api_token = state.authReducer.token;
+    const apiToken = state.authReducer.token;
     const { nextPageFavoritesUrl } = state.propertyReducer;
     let urlParams;
     // set if there is no next page
@@ -55,10 +63,7 @@ export function* fetchFavorites(action) {
       return yield put({ type: ACTION_TYPES.FAVORITES_FAILURE, error: 'No Results' });
     }
 
-    const params = Qs.stringify({
-      api_token,
-      country,
-    });
+    const params = Qs.stringify({ api_token: apiToken, country });
 
     if (nextPageFavoritesUrl === undefined) {
       urlParams = isEmpty(action.params) ? `/?${params}` : `/?${action.params}&${params}`;
@@ -76,13 +81,13 @@ export function* fetchFavorites(action) {
 export function* favoriteProperty(action) {
   try {
     const state = yield select();
-    const api_token = state.authReducer.token;
-    if (isEmpty(api_token)) {
+    const apiToken = state.authReducer.token;
+    if (isEmpty(apiToken)) {
       const navigatorUID = Store.getState().navigation.currentNavigatorUID;
       return Store.dispatch(NavigationActions.push(navigatorUID, Router.getRoute('login', { redirectRoute: 'propertyList' })));
     }
     yield put({ type: ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE, payload: action });
-    const urlParams = `?api_token=${api_token}`;
+    const urlParams = `?api_token=${apiToken}`;
     const response = yield call(API.favoriteProperty, urlParams, action.params);
     yield put({ type: ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS, payload: response });
   } catch (error) {
@@ -94,10 +99,10 @@ export function* saveProperty() {
   try {
     const state = yield select();
     const country = state.appReducer.country;
-    const api_token = state.authReducer.token;
+    const apiToken = state.authReducer.token;
     const { attributes } = SELECTORS.getListing(state);
     const { type, category, title, description, price, address, meta, images, amenities, tags } = attributes;
-    const params = { api_token, country, type, category, title, description, price, address, meta, images, amenities, tags };
+    const params = { api_token: apiToken, country, type, category, title, description, price, address, meta, images, amenities, tags };
     const response = yield call(API.saveProperty, params);
 
     const formData = new FormData();

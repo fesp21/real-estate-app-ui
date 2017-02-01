@@ -22,7 +22,6 @@ import get from "lodash/get";
 
 class PropertyCreate extends Component {
 
-
   static route = {
     navigationBar: {
       renderLeft: (route) => {
@@ -56,6 +55,7 @@ class PropertyCreate extends Component {
     this.onValueSelect = this.onValueSelect.bind(this);
     this.updateMap = this.updateMap.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
+    this.updateAmenities = this.updateAmenities.bind(this);
   }
 
   componentDidUpdate() {
@@ -110,6 +110,17 @@ class PropertyCreate extends Component {
   onValueSelect(path,index,value) {
     this.updateListing(path,index,value);
     this.goToNextStage();
+  }
+
+  updateAmenities(item){
+    const tempAmenities = this.props.listings.attributes.amenities;
+    let newArray;
+    if(tempAmenities.includes(item)) {
+      newArray = tempAmenities.filter(amenity => amenity != item);
+    } else {
+      newArray = tempAmenities.concat([item]);
+    }
+    this.updateListing('attributes','amenities',newArray );
   }
 
   goToPrevStage() {
@@ -175,7 +186,7 @@ class PropertyCreate extends Component {
   }
 
   render() {
-    const { listings,types,categories } = this.props;
+    const { listings,types,categories,amenities } = this.props;
     const { attributes } = listings;
     const { stage } = this.state;
 
@@ -251,6 +262,9 @@ class PropertyCreate extends Component {
         {
           stage == 7 &&
           <Stage7
+            collection={amenities}
+            selected={attributes.amenities}
+            updateListing={this.updateAmenities}
             header={<Header title="Select Amenities" />}
             footer={<Footer updateListing={this.saveProperty} title="Save"/>}
           />
@@ -270,7 +284,8 @@ function mapStateToProps(state) {
   return {
     listings:SELECTORS.getListing(state),
     categories:SELECTORS.getCategories(state),
-    types:SELECTORS.getTypes(state)
+    types:SELECTORS.getTypes(state),
+    amenities:SELECTORS.getAmenities(state)
   }
 }
 
