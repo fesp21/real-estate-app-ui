@@ -1,7 +1,7 @@
-import { ACTION_TYPES } from './actions';
 import schema from '../../lib/schema';
 import union from 'lodash/union';
 import map from 'lodash/map';
+import { ACTION_TYPES } from './actions';
 
 const initialState = {
   isFetching: false,

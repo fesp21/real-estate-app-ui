@@ -1,13 +1,13 @@
-import { put, call, select, takeLatest, fork } from 'redux-saga/effects';
-import { ACTION_TYPES } from './actions';
-import { API } from './api';
-import { SELECTORS } from './selectors';
-import { getFileName } from './../../lib/functions';
 import Qs from 'qs';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 import Store from './../../lib/store';
 import Router from './../../lib/router';
+import { put, call, select, takeLatest } from 'redux-saga/effects';
+import { ACTION_TYPES } from './actions';
+import { API } from './api';
+import { SELECTORS } from './selectors';
+import { getFileName } from './../../lib/functions';
 import { NavigationActions } from '@exponent/ex-navigation';
 
 export function* fetchProperties(action) {
@@ -90,7 +90,7 @@ export function* favoriteProperty(action) {
   }
 }
 
-export function* saveProperty(action) {
+export function* saveProperty() {
   try {
     const state = yield select();
     const country = state.appReducer.country;

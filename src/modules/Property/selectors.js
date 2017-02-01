@@ -1,6 +1,6 @@
+import schema from '../../lib/schema';
 import { createSelector } from 'reselect';
 import { createSelector as ormSelector } from 'redux-orm';
-import schema from '../../lib/schema';
 
 const propertyResults = state => state.propertyReducer.results;
 const propertyIsFetching = state => state.propertyReducer.isFetching;
@@ -18,7 +18,7 @@ const filterResults = ({ Property, User }, results) => results.map((id) => {
 const fetchProperties = createSelector(
   orm,
   propertyResults,
-  ormSelector(schema, (ormSelector, results) => filterResults(ormSelector, results)),
+  ormSelector(schema, (ormSession, results) => filterResults(ormSession, results)),
 );
 
 const fetchFavorites = createSelector(

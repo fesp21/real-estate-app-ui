@@ -1,4 +1,4 @@
-import { API_URL } from '../../env.js';
+import { API_URL } from '../../env';
 import { fetchAPI } from '../../lib/api';
 
 function fetchProperties(params) {
