@@ -8,7 +8,7 @@ const LoadingIndicator = ({ style }) => (
   );
 
 LoadingIndicator.propTypes = {
-  style: View.propTypes.style.isRequired,
+  style: View.propTypes.style,
 };
 
 export default LoadingIndicator;

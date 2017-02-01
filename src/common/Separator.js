@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const Separator = () => (
-  <View style={[styles.container, this.props.style]} />
+const Separator = ({style}) => (
+  <View style={[styles.container, style]} />
   );
 
 Separator.propTyes = {

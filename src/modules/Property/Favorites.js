@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { SELECTORS } from './selectors';
-import List from './Components/PropertyList';
+import PropertyListing from './Components/PropertyList';
 
 const DOUBLE_PRESS_DELAY = 300;
 
