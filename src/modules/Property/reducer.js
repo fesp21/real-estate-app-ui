@@ -6,6 +6,7 @@ import { ACTION_TYPES } from './actions';
 const initialState = {
   isFetching: false,
   categories: ['Villa', 'Apartment', 'Chalet'],
+  amenities: ['Swimming Pool', 'Ocean View', 'Sauna'],
   types: ['For Sale', 'For Rent'],
   error: null,
   nextPageUrl: undefined,
@@ -54,8 +55,8 @@ const initialState = {
         parking: '1',
       },
       images: [],
-      amenities: ['Swimming Pool', 'Ocean View', 'Sauna'],
       tags: ['New', 'Duplex'],
+      amenities: [],
     },
   },
 

@@ -32,7 +32,7 @@ NavBack.propTypes = {
   text: React.PropTypes.string,
   icon: React.PropTypes.string,
   // style: React.PropTypes.object,
-  stage: React.PropTypes.number.isRequired,
+  stage: React.PropTypes.number,
   emitter: React.PropTypes.object.isRequired,
 };
 
