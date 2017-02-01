@@ -13,48 +13,7 @@ export default class Stage7 extends React.Component {
     descriptionHeight:40,
     disabled:true
   };
-  // render() {
-  //   const {header,footer,amenities} = this.props;
-  //
-  //   console.log('amenities',amenities);
-  //   return (
-  //     <View style={{flex:1,paddingTop:64}}>
-  //
-  //       <ScrollView style={styles.container} contentInset={{bottom:100}}>
-  //
-  //         {header}
-  //
-  //         <View style={styles.menuContainer}>
-  //
-  //           <TouchableHighlight style={{flex:1}} onPress={()=>alert('wa')} underlayColor="#E7E7E7" activeOpacity={0.2}>
-  //             <View style={styles.row}>
-  //               <Text style={styles.title} >Central AC</Text>
-  //               <View style={styles.checkbox}>
-  //                 <FontAwesome name="check" size={16} color={Colors.green}/>
-  //               </View>
-  //             </View>
-  //           </TouchableHighlight>
-  //
-  //           <View style={styles.separator}/>
-  //
-  //           <TouchableHighlight style={{flex:1}} onPress={()=>alert('wa')} underlayColor="#E7E7E7" activeOpacity={0.2}>
-  //             <View style={styles.row}>
-  //               <Text style={styles.title} >Swimming Pool</Text>
-  //               <View style={styles.checkbox}>
-  //               </View>
-  //             </View>
-  //           </TouchableHighlight>
-  //
-  //
-  //         </View>
-  //
-  //       </ScrollView>
-  //
-  //       {footer}
-  //
-  //     </View>
-  //   )
-  // }
+
   renderRow = (item) => {
     const {updateListing,selected} = this.props;
     return (

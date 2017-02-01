@@ -13,7 +13,7 @@ export default class Stage6 extends Component {
   };
 
   state = {
-    descriptionHeight:40
+    descriptionHeight:0
   };
 
   render() {
@@ -30,7 +30,6 @@ export default class Stage6 extends Component {
           <KeyboardAvoidingView
             behavior='position'
           >
-
             {header}
 
             <View style={styles.menuContainer}>
@@ -49,11 +48,11 @@ export default class Stage6 extends Component {
 
               <Text style={styles.label}>Describe your Property</Text>
               <TextInput
-                style={[styles.textInput,{ paddingVertical:5,height:  this.state.descriptionHeight }]}
+                style={[styles.textInput,{ paddingVertical:5, height: Math.max(40, this.state.descriptionHeight) }]}
                 onChange={(event) => {
                   this.setState({
                     text: event.nativeEvent.text,
-                    descriptionHeight: event.nativeEvent.contentSize.height,
+                    descriptionHeight: event.nativeEvent.contentSize.height + 10,
                   });
                 }}
                 multiline={true}
