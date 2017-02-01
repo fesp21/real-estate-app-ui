@@ -24,8 +24,9 @@ export default class PropertySlideShow extends Component {
 
   static route = {
     navigationBar: {
-      renderBackground: (props) => <View style={{backgroundColor:'transparent'}}/>,
-      renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" style={{ fontSize:13 }} />,
+      backgroundColor: 'rgba(0,0,0,.9)',
+      tintColor:'white',
+      renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" style={{ color:'white' }} />,
     },
   };
 

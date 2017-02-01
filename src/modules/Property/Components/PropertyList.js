@@ -37,10 +37,9 @@ export default class PropertyListing extends Component {
   }
 
   renderRow(item) {
-    const { loadEntity,onImagePress,handleFavoritePress,horizontal} = this.props;
+    const { loadEntity,handleFavoritePress,horizontal} = this.props;
 
     return (
-
       <View style={[styles.row,]}>
 
         <TouchableHighlight onPress={() => loadEntity(item)} underlayColor="transparent"
@@ -100,7 +99,6 @@ export default class PropertyListing extends Component {
     return (
       <ListView
         style={styles.container}
-        contentContainerStyle={{paddingVertical:20}}
         dataSource={dataSource}
         renderRow={this.renderRow}
         enableEmptySections={true}
@@ -109,7 +107,7 @@ export default class PropertyListing extends Component {
         showsHorizontalScrollIndicator={false}
         automaticallyAdjustContentInsets={false}
         onEndReachedThreshold={100}
-        initialListSize={10}
+        initialListSize={100}
         renderFooter={()=> isFetching && <LoadingIndicator isFetching={isFetching} style={{ backgroundColor:'white' }} />}
         onEndReached={()=>fetchProperties()}
         horizontal={horizontal && true}

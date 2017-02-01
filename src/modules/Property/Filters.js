@@ -41,7 +41,7 @@ class PropertyFilters extends Component {
         fontSize:15
       },
       tintColor: Colors.darkGrey,
-      renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" style={{ fontSize:13 }} />,
+      renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" />,
       renderRight: (route) => {
         const { config: { eventEmitter }  } = route;
         return (

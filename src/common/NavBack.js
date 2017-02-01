@@ -11,8 +11,8 @@ import {
 export default class NavBack extends React.Component {
 
   static propTypes = {
-    style:View.propTypes.style,
-    text:Text.propTypes.string,
+    // style:View.propTypes.style,
+    text:React.PropTypes.string,
     navigator:React.PropTypes.object.isRequired,
     icon:React.PropTypes.string
   };
@@ -26,7 +26,7 @@ export default class NavBack extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={()=>{this.goBack()}} underlayColor="transparent">
-            {icon ? <Ionicons name={icon} size={30} color="#2c2d30" style={[styles.icon]}/> : <Text style={[styles.title,style]}>{text}</Text> }
+            {icon ? <Ionicons name={icon} size={30} color="#2c2d30" style={[styles.icon,style]}/> : <Text style={[styles.title,style]}>{text}</Text> }
         </TouchableHighlight>
       </View>
     );
