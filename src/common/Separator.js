@@ -1,15 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
+const Separator = () => (
+  <View style={[styles.container, this.props.style]} />
+  );
 
-export default class Separator extends Component {
-
-  render() {
-    return (
-      <View style={[styles.container, this.props.style]} />
-    );
-  }
-}
+Separator.propTyes = {
+  style: View.propTypes.style,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -18,3 +16,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#E7E7E7',
   },
 });
+
+export default Separator;

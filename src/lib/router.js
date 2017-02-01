@@ -1,5 +1,5 @@
 import { createRouter } from '@exponent/ex-navigation';
-import App from '../App';
+import App from './../App';
 import Login from '../modules/Auth/Login';
 import Register from '../modules/Auth/Register';
 import PropertyList from '../modules/Property/List';
@@ -12,19 +12,19 @@ import PropertySlideShow from '../modules/Property/Components/SlideShow';
 import SettingList from '../modules/Setting/List';
 import UserDetail from './../modules/User/Detail';
 
-const Router = createRouter(() => ({
-  app: () => App,
-  login: () => Login,
-  register: () => Register,
-  propertyList: () => PropertyList,
-  propertyFilters: () => PropertyFilters,
-  propertyFavorites: () => PropertyFavorites,
-  propertyDetail: () => PropertyDetail,
-  propertyMaps: () => PropertyMap,
-  propertyCreate: () => PropertyCreate,
-  settingList: () => SettingList,
-  userDetail: () => UserDetail,
-  propertySlideShow: () => PropertySlideShow,
+const Router = createRouter(({
+  app: App,
+  login: Login,
+  register: Register,
+  propertyList: PropertyList,
+  propertyFilters: PropertyFilters,
+  propertyFavorites: PropertyFavorites,
+  propertyDetail: PropertyDetail,
+  propertyMaps: PropertyMap,
+  propertyCreate: PropertyCreate,
+  settingList: SettingList,
+  userDetail: UserDetail,
+  propertySlideShow: PropertySlideShow,
 }));
 
 export default Router;

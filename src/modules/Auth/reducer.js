@@ -1,6 +1,5 @@
 import { ACTION_TYPES } from './actions';
 
-
 const initialState = {
   isAuthenticated: false,
   token: null,

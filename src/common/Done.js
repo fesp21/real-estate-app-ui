@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, StatusBar, Text, TouchableOpacity } from 'react-native';
 import Colors from './../common/Colors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default class Done extends Component {
+
+  static propTypes = {
+    emitter: PropTypes.object.isRequired
+  };
 
   handlePress() {
     this.props.emitter.emit('reset');

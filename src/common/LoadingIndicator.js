@@ -1,13 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import { ActivityIndicator, View, Dimensions } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
-export default class LoadingIndicator extends Component {
-  render() {
-    // @todo:fix
-    return (
-      <View style={[{ alignItems: 'center', padding: 10 }, this.props.style]}>
-        <ActivityIndicator size="small" animating color="purple" />
-      </View>
-    );
-  }
-}
+const LoadingIndicator = ({ style }) => (
+  <View style={[{ alignItems: 'center', padding: 10 }, style]}>
+    <ActivityIndicator size="small" animating color="purple" />
+  </View>
+  );
+
+LoadingIndicator.propTypes = {
+  style: View.propTypes.style.isRequired,
+};
+
+export default LoadingIndicator;

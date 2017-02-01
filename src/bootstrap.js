@@ -1,9 +1,9 @@
+import isNull from 'lodash/isNull';
 import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { getItem as getStoredItem, setItem } from './lib/storage';
 import { API as AUTH_API, AUTH_STORAGE_KEY } from './modules/Auth/api';
 import { ACTION_TYPES as AUTH_ACTION_TYPES } from './modules/Auth/actions';
 import { fetchProperties } from './modules/Property/sagas';
-import isNull from 'lodash/isNull';
 
 export const ACTION_TYPES = {
   BOOT_REQUEST: 'BOOT_REQUEST',

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from "react";
+import React from "react";
 import {View, StyleSheet, StatusBar, Text,TouchableHighlight} from "react-native";
 import Colors from './../common/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -8,13 +8,13 @@ import {
 } from '@exponent/ex-navigation';
 
 @withNavigation
-export default class NavBack extends Component {
+export default class NavBack extends React.Component {
 
   static propTypes = {
-    // style:PropTypes.node,
-    text:PropTypes.string,
-    navigator:PropTypes.object.isRequired,
-    icon:PropTypes.string
+    style:View.propTypes.style,
+    text:Text.propTypes.string,
+    navigator:React.PropTypes.object.isRequired,
+    icon:React.PropTypes.string
   };
 
   goBack() {
