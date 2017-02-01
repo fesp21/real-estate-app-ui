@@ -5,7 +5,6 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { createNavigationEnabledStore } from '@exponent/ex-navigation';
 
-const nextRootReducer = require('./reducers').default;
 
 const createStoreWithNavigation = createNavigationEnabledStore({
   navigationStateKey: 'navigation',
@@ -29,6 +28,7 @@ if (__DEV__) {
 
   if (module.hot) {
     module.hot.accept(() => {
+      const nextRootReducer = require('./reducers').default;
       Store.replaceReducer(nextRootReducer);
     });
   }
