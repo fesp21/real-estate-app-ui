@@ -10,85 +10,69 @@ const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
 
-const filterResults = ({Property,User},results) => {
-  return results.map((id) => {
-    const property = Property.withId(id).ref;
-    return Object.assign({},property,{user:User.withId(property.user).ref});
-  });
-};
+const filterResults = ({ Property, User }, results) => results.map((id) => {
+  const property = Property.withId(id).ref;
+  return Object.assign({}, property, { user: User.withId(property.user).ref });
+});
 
 const fetchProperties = createSelector(
   orm,
   propertyResults,
-  ormSelector(schema,(ormSelector,results) => {
-    return filterResults(ormSelector,results);
-  })
+  ormSelector(schema, (ormSelector, results) => filterResults(ormSelector, results)),
 );
 
 const fetchFavorites = createSelector(
   orm,
-  ormSelector(schema,({Property,User}) => {
-    return Property.all().toRefArray().filter((property)=> property.isFavorited).map((property)=> {
-      return Object.assign({},property,{user:User.withId(property.user).ref});
-    });
-  })
+  ormSelector(schema, ({ Property, User }) => Property.all().toRefArray().filter(property => property.isFavorited).map(property => Object.assign({}, property, { user: User.withId(property.user).ref }))),
 );
 
-const getPropertyID = (state,props) =>  {
-  return props.property._id;
-};
+const getPropertyID = (state, props) => props.property._id;
 
 const fetchProperty = createSelector(
   orm,
   getPropertyID,
-  ormSelector(schema,({Property,User},id) => {
+  ormSelector(schema, ({ Property, User }, id) => {
     const property = Property.withId(id).ref;
-    return Object.assign({},property,{user:User.withId(property.user).ref});
-  })
+    return Object.assign({}, property, { user: User.withId(property.user).ref });
+  }),
 );
 
 const getCategoriesWithAny = createSelector(
   propertyCategories,
-  ( categories ) => {
-    return categories.concat('Any').reverse()
-  }
+  categories => categories.concat('Any').reverse(),
 );
 
 const getCategories = createSelector(
   propertyCategories,
-  ( categories ) => {
-    return categories
-  }
+  categories => categories,
 );
 
 const isFetching = createSelector(
   propertyIsFetching,
-  (isFetching) => isFetching
+  isFetching => isFetching,
 );
 
 const getFilters = createSelector(
   propertyFilters,
-  (filters) => filters
+  filters => filters,
 );
 
 const getListing = createSelector(
   propertyListings,
-  (listings) => listings
+  listings => listings,
 );
 
 const fetchComments = createSelector(
   [],
-  (comments) => []
+  comments => [],
 );
 
 const getTypes = createSelector(
   propertyTypes,
-  ( types ) => {
-    return types
-  }
+  types => types,
 );
 
-export const SELECTORS =  {
+export const SELECTORS = {
   isFetching,
   fetchProperties,
   fetchComments,
@@ -98,5 +82,5 @@ export const SELECTORS =  {
   getFilters,
   getListing,
   getCategoriesWithAny,
-  getTypes
+  getTypes,
 };

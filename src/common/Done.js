@@ -1,47 +1,47 @@
-import React, {Component, PropTypes} from "react";
-import {View, StyleSheet, StatusBar, Text,TouchableOpacity} from "react-native";
+import React, { Component, PropTypes } from 'react';
+import { View, StyleSheet, StatusBar, Text, TouchableOpacity } from 'react-native';
 import Colors from './../common/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 export default class Done extends Component {
 
-  handlePress(){
+  handlePress() {
     this.props.emitter.emit('reset');
-  };
+  }
 
   render() {
-    const {visible} = this.props;
-    if(!visible) return null;
+    const { visible } = this.props;
+    if (!visible) return null;
 
     return (
       <View style={styles.container}>
-          <TouchableOpacity onPress={()=>this.handlePress()}>
-              <Text style={styles.title}>Done</Text>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.handlePress()}>
+          <Text style={styles.title}>Done</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-const styles =  StyleSheet.create({
-  container : {
-    flex:1,
-    justifyContent:'center',
-    flexDirection:'row',
-    alignItems:'center',
-    paddingLeft:15,
-    paddingRight:10
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 15,
+    paddingRight: 10,
   },
-  title:{
-    color:Colors.tomato,
-    fontSize:15,
+  title: {
+    color: Colors.tomato,
+    fontSize: 15,
   },
   icon: {
-    width:30,
-    height:30,
-    alignSelf:'center',
-    color:Colors.tomato,
+    width: 30,
+    height: 30,
+    alignSelf: 'center',
+    color: Colors.tomato,
   },
   badgeContainer: {
     flex: 1,

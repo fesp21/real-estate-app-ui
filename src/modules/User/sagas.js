@@ -1,4 +1,4 @@
-import { put,call,select,takeLatest,fork } from 'redux-saga/effects';
+import { put, call, select, takeLatest, fork } from 'redux-saga/effects';
 import { ACTION_TYPES } from './actions';
 import { API } from './api';
 import { SELECTORS } from './selectors';
@@ -9,13 +9,13 @@ export function* fetchUser(action) {
   try {
     const state = yield select();
 
-    const api_token = state.authReducer.token ;
-    yield put({type: ACTION_TYPES.USER_SUCCESS, payload:response.data});
+    const api_token = state.authReducer.token;
+    yield put({ type: ACTION_TYPES.USER_SUCCESS, payload: response.data });
   } catch (error) {
-    yield put({type: ACTION_TYPES.USER_FAILURE, error})
+    yield put({ type: ACTION_TYPES.USER_FAILURE, error });
   }
 }
 
 export function* userMonitor() {
-  yield takeLatest(ACTION_TYPES.USER_REQUEST,fetchUser);
+  yield takeLatest(ACTION_TYPES.USER_REQUEST, fetchUser);
 }

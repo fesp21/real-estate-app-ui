@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   appReducer,
   authReducer,
   propertyReducer,
-  dbReducer
+  dbReducer,
 });
 
 export default rootReducer;

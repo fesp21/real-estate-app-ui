@@ -13,7 +13,7 @@ import SettingList from '../modules/Setting/List';
 import UserDetail from './../modules/User/Detail';
 
 const Router = createRouter(() => ({
-  app:() => App,
+  app: () => App,
   login: () => Login,
   register: () => Register,
   propertyList: () => PropertyList,
@@ -24,7 +24,7 @@ const Router = createRouter(() => ({
   propertyCreate: () => PropertyCreate,
   settingList: () => SettingList,
   userDetail: () => UserDetail,
-  propertySlideShow:() =>  PropertySlideShow
+  propertySlideShow: () => PropertySlideShow,
 }));
 
 export default Router;

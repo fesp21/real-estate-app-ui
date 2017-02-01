@@ -19,7 +19,7 @@ export default {
   separator: 'rgba(0, 0, 0, .08)',
   underlay: 'rgba(0, 0, 0, .12)',
   placeholder: 'rgba(0, 0, 0, .16)',
-  tomato:'#d60c3f',
-  gold:'gold',
-  green:'#388704'
+  tomato: '#d60c3f',
+  gold: 'gold',
+  green: '#388704',
 };

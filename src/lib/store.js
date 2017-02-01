@@ -15,28 +15,27 @@ const sagaMiddleware = createSagaMiddleware();
 
 let Store;
 
-if(__DEV__) {
-
+if (__DEV__) {
   const logger = createLogger({
-    collapsed:true,
-    duration:true
+    collapsed: true,
+    duration: true,
   });
 
   Store = createStoreWithNavigation(
     rootReducer,
-    applyMiddleware(logger,sagaMiddleware)
+    applyMiddleware(logger, sagaMiddleware),
   );
 
   if (module.hot) {
     module.hot.accept(() => {
       const nextRootReducer = require('./reducers').default;
-      Store.replaceReducer(nextRootReducer)
-    })
+      Store.replaceReducer(nextRootReducer);
+    });
   }
 } else {
   Store = createStoreWithNavigation(
     rootReducer,
-    applyMiddleware(sagaMiddleware)
+    applyMiddleware(sagaMiddleware),
   );
 }
 

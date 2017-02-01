@@ -4,11 +4,9 @@ const authReducer = state => state.authReducer;
 
 const isAuthenticated = createSelector(
   authReducer,
-  ( reducer ) => {
-    return reducer.isAuthenticated
-  }
+  reducer => reducer.isAuthenticated,
 );
 
-export const SELECTORS =  {
+export const SELECTORS = {
   isAuthenticated,
 };

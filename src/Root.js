@@ -1,12 +1,12 @@
-import React,{ Component } from 'react';
-import {StatusBar} from 'react-native';
+import React, { Component } from 'react';
+import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContext, NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import Router from './lib/router';
 import Store from './lib/store';
 import CodePush from 'react-native-code-push';
-import {CODEPUSH_ENABLED} from './env';
+import { CODEPUSH_ENABLED } from './env';
 
 const navigationContext = new NavigationContext({
   router: Router,
@@ -17,7 +17,7 @@ export default class Root extends Component {
 
   constructor() {
     super();
-    if(CODEPUSH_ENABLED) {
+    if (CODEPUSH_ENABLED) {
       CodePush.sync();
     }
   }
@@ -50,14 +50,14 @@ export default class Root extends Component {
         return {
           opacity,
           transform: [
-            {translateX: 0},
-            {translateY: 0},
-            {scale: 1},
+            { translateX: 0 },
+            { translateY: 0 },
+            { scale: 1 },
           ],
           backgroundColor: 'transparent',
-          shadowOpacity: 0
+          shadowOpacity: 0,
         };
-      }
+      },
     };
 
     return (
@@ -68,7 +68,7 @@ export default class Root extends Component {
             navigatorUID="rootStack"
             initialRoute="app"
             defaultRouteConfig={{
-              styles: {...modalStyle}
+              styles: { ...modalStyle },
             }}
           />
         </NavigationProvider>
