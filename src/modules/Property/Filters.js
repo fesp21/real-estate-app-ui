@@ -148,7 +148,7 @@ class PropertyFilters extends Component {
   }
 
   render() {
-    const { categories,filters } = this.props;
+    const { categories,filters,country } = this.props;
     const { searchMode } = this.state;
     return (
       <View style={{flex:1}}>
@@ -157,6 +157,7 @@ class PropertyFilters extends Component {
             <SearchScene
               searchString={this.props.filters.searchString}
               onSearch={this.onSearch}
+              country="KW"
             />
             :
             <FiltersScene
@@ -186,7 +187,8 @@ function mapStateToProps(state) {
   return {
     properties:SELECTORS.fetchProperties(state),
     categories:SELECTORS.getCategoriesWithAny(state),
-    filters:SELECTORS.getFilters(state)
+    filters:SELECTORS.getFilters(state),
+    country:state.appReducer.country
   }
 }
 

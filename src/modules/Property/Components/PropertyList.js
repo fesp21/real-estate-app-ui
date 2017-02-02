@@ -59,29 +59,31 @@ export default class PropertyListing extends Component {
             </Swiper>
         }
 
-        <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
-          <View >
+        <View style={{flex:1,flexDirection:'row',alignItems:'center',padding:10}}>
+
+          <View style={{flex:1}}>
             {
               item.tags &&
-              <View style={{flexDirection:'row',padding:10}}>
+              <View style={{flexDirection:'row',alignItems:'center'}}>
                 <PropertyTags tags={item.tags} />
               </View>
             }
 
             {
               item.meta &&
-              <View style={{flexDirection:'row',padding:10, paddingTop:0}}>
+              <View style={{flexDirection:'row',alignItems:'center'}}>
                 <PropertyIcons services={item.meta} items={['bedroom','bathroom','parking']} />
               </View>
             }
           </View>
 
-          <View style={{marginLeft:30}}>
-            <Text style={styles.price}>{item.meta.price}KD</Text>
-          </View>
-
-          <View style={{marginLeft:20}}>
-            <Heart handleFavoritePress={()=>handleFavoritePress(item)} isFavorited={item.isFavorited} />
+          <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+            <View style={{marginLeft:30}}>
+              <Text style={styles.price}>{item.price}KD</Text>
+            </View>
+            <View style={{marginLeft:20}}>
+              <Heart handleFavoritePress={()=>handleFavoritePress(item)} isFavorited={item.isFavorited} />
+            </View>
           </View>
 
         </View>
