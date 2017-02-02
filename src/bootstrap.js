@@ -4,37 +4,12 @@ import { getItem as getStoredItem, setItem } from './lib/storage';
 import { API as AUTH_API, AUTH_STORAGE_KEY } from './modules/Auth/api';
 import { ACTION_TYPES as AUTH_ACTION_TYPES } from './modules/Auth/actions';
 import { fetchProperties } from './modules/Property/sagas';
-
-export const ACTION_TYPES = {
-  BOOT_REQUEST: 'BOOT_REQUEST',
-  BOOT_SUCCESS: 'BOOT_SUCCESS',
-  CHANGE_COUNTRY: 'CHANGE_COUNTRY',
-  COUNTRY_CHANGED: 'COUNTRY_CHANGED',
-};
+import { ACTION_TYPES } from './bootstrapActions';
 
 const COUNTRY_KEY = 'COUNTRY';
 const DEFAULT_COUNTRY = 'Kuwait';
 //
-export const ACTIONS = {
-  boot,
-  changeCountry,
-};
 
-// action creator
-function boot() {
-  return {
-    type: ACTION_TYPES.BOOT_REQUEST,
-  };
-}
-
-
-function changeCountry(country) {
-  return {
-    type: ACTION_TYPES.CHANGE_COUNTRY,
-    country,
-  };
-}
-//
 // // reducer
 const initialState = {
   bootstrapped: false,
@@ -50,7 +25,7 @@ export function appReducer(state = initialState, action = {}) {
     case ACTION_TYPES.COUNTRY_CHANGED :
       return { ...state, country: action.country };
     default:
-      return initialState;
+      return state;
   }
 }
 
