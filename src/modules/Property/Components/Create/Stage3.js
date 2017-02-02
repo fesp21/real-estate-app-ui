@@ -83,7 +83,7 @@ export default class Stage3 extends Component {
 
   onSearch = (locationDetails) => {
     this.setState({
-      locationSearchingString:location,
+      // locationSearchingString:location,
       region : {
         ...this.state.region,
         latitude:locationDetails.geometry.location.lat,
@@ -98,10 +98,7 @@ export default class Stage3 extends Component {
     const { locationSearchingString}  = this.state;
     return (
       <View style={styles.container}>
-
         {header}
-
-
         <View style={styles.menuContainer}>
           <View style={styles.mapContainer}>
 
@@ -116,7 +113,7 @@ export default class Stage3 extends Component {
                 longitudeDelta: LONGITUDE_DELTA,
               }}
             >
-              <View style={{flex:1,marginTop:10,flexDirection:'row',width:300,alignSelf:'center'}}>
+              <View style={{marginTop:10,flexDirection:'row',alignSelf:'center',width:300,backgroundColor:'white',zindex:1000}}>
                 <GooglePlacesAutocomplete
                   placeholder='Search'
                   minLength={3}
@@ -174,6 +171,7 @@ export default class Stage3 extends Component {
                 </TouchableHighlight>
 
               </View>
+
 
 
               <MapView.Marker
