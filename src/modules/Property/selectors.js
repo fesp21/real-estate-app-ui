@@ -34,7 +34,7 @@ const fetchProperty = createSelector(
   getPropertyID,
   ormSelector(schema, ({ Property, User }, id) => {
     const property = Property.withId(id).ref;
-    return Object.assign({}, property, { user: User.withId(property.user._id).ref });
+    return Object.assign({}, property, { user: User.withId(property.user).ref });
   }),
 );
 

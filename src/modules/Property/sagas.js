@@ -104,7 +104,7 @@ export function* saveProperty() {
     const { type, category, title, description, price, address, meta, images, amenities, tags } = attributes;
     const params = { country, type, category, title, description, price, address, meta, images, amenities, tags };
     const urlParams = `api_token=${apiToken}`;
-    const response = yield call(API.saveProperty, params,urlParams);
+    const response = yield call(API.saveProperty, params, urlParams);
 
     const formData = new FormData();
     map(images, img => formData.append('images[]', { uri: img, name: getFileName(img), type: 'image/jpg' }));

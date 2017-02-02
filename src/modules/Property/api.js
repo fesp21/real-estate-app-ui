@@ -16,7 +16,7 @@ function favoriteProperty(urlParams, body) {
   return fetchAPI(url, 'POST', body);
 }
 
-function saveProperty(body,urlParams) {
+function saveProperty(body, urlParams) {
   const url = `${API_URL}/properties?${urlParams}`;
   return fetchAPI(url, 'POST', body);
 }

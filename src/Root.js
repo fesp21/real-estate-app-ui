@@ -31,7 +31,6 @@ export default class Root extends Component {
   }
 
 
-
   render() {
     const modalStyle = {
       ...NavigationStyles.SlideVertical,
@@ -74,8 +73,8 @@ export default class Root extends Component {
               styles: { ...modalStyle },
               navigationBar: {
                 backgroundColor: Colors.lightGrey,
-                tintColor:'white'
-              }
+                tintColor: 'white',
+              },
             }}
           />
         </NavigationProvider>
