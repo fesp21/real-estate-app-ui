@@ -42,7 +42,8 @@ class PropertyCreate extends Component {
   };
 
   state = {
-    stage:1
+    stage:1,
+    locationSearchString:''
   };
 
   constructor(props) {
@@ -185,6 +186,7 @@ class PropertyCreate extends Component {
     this.props.actions.saveProperty();
   }
 
+
   render() {
     const { listings,types,categories,amenities } = this.props;
     const { attributes } = listings;
@@ -194,7 +196,7 @@ class PropertyCreate extends Component {
       <View style={{flex:1}}>
 
         {
-          stage == 1 &&
+          stage == 3 &&
           <List
             path="attributes"
             index="type"
@@ -216,10 +218,12 @@ class PropertyCreate extends Component {
         }
 
         {
-          stage == 3 &&
+          stage == 1 &&
           <Stage3
             path="attributes"
             index="address"
+            locationSearchString={this.state.locationSearchString}
+            onSearch={this.onLocationSearch}
             stage={stage}
             header={<Header title="What city is your Apartment located in ?" />}
             category='Apartment'
