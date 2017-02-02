@@ -22,14 +22,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // this.props.dispatch(ACTIONS.boot());
+    this.props.dispatch(ACTIONS.boot());
   }
 
   render() {
 
     const {app,authReducer} = this.props;
 
-    // if(!app.bootstrapped) return null;
+    if(!app.bootstrapped) return null;
 
     return (
       <TabNavigation
