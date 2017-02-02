@@ -17,7 +17,7 @@ function* login(action) {
     yield put({ type: ACTION_TYPES.LOGIN_SUCCESS, payload: response.data });
     yield call(setItem, AUTH_STORAGE_KEY, response.data.api_token);
 
-    // fetch properties (to get user's favorites)
+    // fetch properties (to get user's favorites)d
     yield put({ type: PROPERTY_ACTIONS.PROPERTY_RESET });
     yield put({ type: PROPERTY_ACTIONS.PROPERTY_REQUEST });
 

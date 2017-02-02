@@ -21,13 +21,6 @@ export default class PropertySingle extends Component {
     handleFavoritePress:PropTypes.func.isRequired,
     loadUser:PropTypes.func.isRequired
   };
-  //
-  // showSlider = () => {
-  //   const {images} = this.props.property;
-  // }
-  // componentWillMount() {
-  //
-  // }
 
   render() {
     const {property,saveComment,commentBody,onChangeCommentText,handleFavoritePress,loadUser,showSlider} = this.props;

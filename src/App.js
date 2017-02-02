@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NavBar from './common/NavBar';
 import Colors from './common/Colors';
+import { ACTIONS } from './bootstrap';
 
 class App extends Component {
 
@@ -27,14 +28,14 @@ class App extends Component {
   render() {
 
     const {app,authReducer} = this.props;
-    // if(!this.props.app.bootstrapped) return null;
 
+    // if(!app.bootstrapped) return null;
 
     return (
       <TabNavigation
         id="homeTab"
         navigatorUID="homeTab"
-        initialTab="third"
+        initialTab="first"
         tabBarStyle={{ backgroundColor:Colors.primary }}
       >
         <TabNavigationItem
@@ -127,11 +128,5 @@ function mapStateToProps(state) {
     authReducer:state.authReducer
   }
 }
-
-const styles = StyleSheet.create({
-  selectedTab: {
-    backgroundColor:'green'
-  }
-});
 
 export default connect(mapStateToProps)(App);

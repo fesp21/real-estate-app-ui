@@ -12,9 +12,8 @@ export class Footer extends React.Component {
   render() {
     const {title,updateListing} = this.props;
     return (
-      <TouchableHighlight underlayColor="transparent" onPress={()=>updateListing('map',{x:20,y:12})}
-                          style={styles.container}
-      >
+      <TouchableHighlight underlayColor="transparent" onPress={()=>updateListing()}
+                          style={styles.container} >
         <Text style={styles.text}>
           {title ? title : 'Next'}
         </Text>

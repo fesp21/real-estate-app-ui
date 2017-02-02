@@ -17,7 +17,7 @@ if (__DEV__) {
     CODEPUSH_ENABLED: false,
   };
 
-  XMLHttpRequest = GLOBAL.originalXMLHttpRequest ? GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
+  // XMLHttpRequest = GLOBAL.originalXMLHttpRequest ? GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
 } else {
   module.exports = {
     ...defaults,

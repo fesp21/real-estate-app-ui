@@ -13,7 +13,7 @@ export const ACTION_TYPES = {
 };
 
 const COUNTRY_KEY = 'COUNTRY';
-const DEFAULT_COUNTRY = 'KW';
+const DEFAULT_COUNTRY = 'Kuwait';
 
 export const ACTIONS = {
   boot,

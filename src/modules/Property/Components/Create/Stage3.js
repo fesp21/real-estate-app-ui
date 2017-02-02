@@ -26,6 +26,7 @@ const LATITUDE_DELTA = .8;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Colors from "./../../../../common/Colors";
+import Footer from './Footer';
 
 function log(eventName, e) {
   console.log(eventName, e.nativeEvent);
@@ -34,21 +35,21 @@ function log(eventName, e) {
 export default class Stage3 extends Component {
 
   static propTypes = {
+    country:PropTypes.string.isRequired
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      locationSearchingString:'',
+      location:'',
       region: {
         latitude: LATITUDE,
         longitude: LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
+        city:'',
+        state:''
       },
     };
-
   }
 
   jumpToRegion = () => {
@@ -59,28 +60,30 @@ export default class Stage3 extends Component {
     const { region } = this.state;
     return {
       ...this.state.region,
-      latitude: region.latitude + ((Math.random() - 0.5) * (region.latitudeDelta / 2)),
-      longitude: region.longitude + ((Math.random() - 0.5) * (region.longitudeDelta / 2)),
+      latitude: region.latitude + ((Math.random() - 0.5) * (LATITUDE_DELTA / 2)),
+      longitude: region.longitude + ((Math.random() - 0.5) * (LONGITUDE_DELTA / 2)),
     };
   }
 
-  onSearch = (locationDetails) => {
+  handleSearch = (locationData,locationDetails) => {
     this.setState({
       // locationSearchingString:location,
       region : {
         ...this.state.region,
         latitude:locationDetails.geometry.location.lat,
         longitude:locationDetails.geometry.location.lng,
+        city:locationData.terms[0].value,
+        state:locationData.terms[1].value,
+        country:locationData.terms[2].value
       }
     });
     this.jumpToRegion();
   };
 
   render() {
-    const { header,footer} = this.props;
-    const { locationSearchingString}  = this.state;
-
-    console.log('this.state.region',this.state.region);
+    const { header,country,saveAddress} = this.props;
+    const { region,location }  = this.state;
+    console.log('address',region);
 
     return (
       <View style={styles.container}>
@@ -105,9 +108,9 @@ export default class Stage3 extends Component {
                   minLength={3}
                   fetchDetails={true}
                   renderDescription={(row) => row.terms[0].value}
-                  onPress={(data, details = null) => { console.log('data',data); this.onSearch(details) }}
-                  getDefaultValue={() => { return locationSearchingString }}
-                  query={{ key: GOOGLE_MAPS_KEY, language: 'en', types: '(cities)',components:'country:KW'}}
+                  onPress={(data, details = null) => { this.handleSearch(data,details) }}
+                  getDefaultValue={() => { return location }}
+                  query={{ key: GOOGLE_MAPS_KEY, language: 'en', types: '(cities)',components:`country:${country}`}}
                   styles={autoCompleteStyle}
                   enablePoweredByContainer={false}
                   placeholderTextColor={Colors.lightGrey}
@@ -131,7 +134,7 @@ export default class Stage3 extends Component {
           </View>
         </View>
 
-        {footer}
+        <Footer updateListing={()=>saveAddress(region)} />
 
       </View>
     )

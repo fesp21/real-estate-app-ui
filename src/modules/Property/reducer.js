@@ -43,9 +43,11 @@ const initialState = {
       description: 'Beautiful new apartment from rent in Jabriya near McDonalds',
       price: '200',
       address: {
-        street: 'Shuwaikh',
         city: 'Kuwait City',
+        state: 'Kuwait City',
         country: 'Kuwait',
+        latitude: 27.2,
+        longitude: 30.2,
       },
       meta: {
         bedroom: 'Studio',

@@ -42,8 +42,7 @@ class PropertyCreate extends Component {
   };
 
   state = {
-    stage:1,
-    locationSearchString:''
+    stage:1
   };
 
   constructor(props) {
@@ -54,9 +53,9 @@ class PropertyCreate extends Component {
     this.updateListing = this.updateListing.bind(this);
     this.onIncrementDecrement = this.onIncrementDecrement.bind(this);
     this.onValueSelect = this.onValueSelect.bind(this);
-    this.updateMap = this.updateMap.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
     this.updateAmenities = this.updateAmenities.bind(this);
+    this.updateMap = this.updateMap.bind(this);
   }
 
   componentDidUpdate() {
@@ -104,7 +103,16 @@ class PropertyCreate extends Component {
     this.props.actions.changeListingValue(payload);
   }
 
-  updateMap(path,index,value) {
+  updateMap(data) {
+    const {state,country,city,latitude,longitude} = data;
+    const payload = {
+      state,
+      country,
+      city,
+      latitude,
+      longitude
+    };
+    this.updateListing('attributes','address',payload );
     this.goToNextStage();
   }
 
@@ -188,7 +196,7 @@ class PropertyCreate extends Component {
 
 
   render() {
-    const { listings,types,categories,amenities } = this.props;
+    const { listings,types,categories,amenities,country } = this.props;
     const { attributes } = listings;
     const { stage } = this.state;
 
@@ -196,7 +204,7 @@ class PropertyCreate extends Component {
       <View style={{flex:1}}>
 
         {
-          stage == 3 &&
+          stage == 1 &&
           <List
             path="attributes"
             index="type"
@@ -218,16 +226,15 @@ class PropertyCreate extends Component {
         }
 
         {
-          stage == 1 &&
+          stage == 3 &&
           <Stage3
             path="attributes"
             index="address"
-            locationSearchString={this.state.locationSearchString}
-            onSearch={this.onLocationSearch}
+            country="KW"
             stage={stage}
             header={<Header title="What city is your Apartment located in ?" />}
             category='Apartment'
-            footer={<Footer updateListing={this.goToNextStage}/>}
+            saveAddress={this.updateMap}
           />
         }
 
@@ -289,7 +296,8 @@ function mapStateToProps(state) {
     listings:SELECTORS.getListing(state),
     categories:SELECTORS.getCategories(state),
     types:SELECTORS.getTypes(state),
-    amenities:SELECTORS.getAmenities(state)
+    amenities:SELECTORS.getAmenities(state),
+    country:state.appReducer.country
   }
 }
 
