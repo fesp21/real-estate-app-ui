@@ -204,7 +204,7 @@ class PropertyCreate extends Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 1 &&
+        {stage == 5 &&
         <List
           path="attributes"
           index="type"
@@ -244,12 +244,12 @@ class PropertyCreate extends Component {
           onIncrementDecrement={this.onIncrementDecrement}
         />}
 
-        {stage == 5 &&
+        {stage == 1 &&
         <Stage5
           pickImage={this.pickImage}
           images={attributes.images}
           header={<Header title="Upload Property Images" />}
-          footer={<Footer title="Save" updateListing={this.goToNextStage} />}
+          footer={<Footer title="Save" updateListing={this.saveProperty} />}
         />}
 
         {stage == 6 &&

@@ -60,7 +60,7 @@ export default class PropertySingle extends Component {
 
 
               <View style={{marginLeft:30}}>
-                <Text style={styles.price}>{property.meta.price}KD</Text>
+                <Text style={styles.price}>{property.price}KD</Text>
               </View>
 
               <View style={{marginLeft:20}}>
@@ -139,7 +139,8 @@ const styles =  StyleSheet.create({
   },
   title:{
     color:'#2c2d30',
-    fontWeight:'600'
+    fontWeight:'600',
+    marginBottom:10,
   },
   descTitle:{
     textAlign:'center',
@@ -171,6 +172,11 @@ const styles =  StyleSheet.create({
   label:{
     color:Colors.grey,
     fontSize:12
-  }
-
+  },
+  price:{
+    fontSize:17,
+    color:'#2c2d30',
+    margin:10,
+    fontWeight:'600'
+  },
 });
