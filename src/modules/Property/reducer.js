@@ -125,7 +125,7 @@ export function dbReducer(state, action) {
         const property = action.payload.data;
         if (Property.hasId(property._id)) {
           const modelInstance = Property.withId(property._id);
-          modelInstance.update(property);
+          modelInstance.update({ ...modelInstance, user: modelInstance.user._id });
         }
       }
       break;

@@ -89,6 +89,7 @@ class PropertyDetail extends Component {
 
   render() {
     const { property,comments } = this.props;
+    console.log('pro',property);
     return (
       <PropertySingle property={property} comments={comments}
                       saveComment={this.saveComment}
