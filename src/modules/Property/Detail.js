@@ -1,5 +1,5 @@
 import React, { PropTypes,Component } from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, ActionSheetIOS, Linking } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
@@ -53,6 +53,40 @@ class PropertyDetail extends Component {
     }));
   };
 
+  followLocation = () => {
+
+    const {property} = this.props;
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        title: `${property.title}`,
+        options: ['Open in Apple Maps', 'Open in Google Maps', 'Cancel'],
+        destructiveButtonIndex: -1,
+        cancelButtonIndex: 2,
+      },
+      (buttonIndex) => {
+        this.openMaps(property,buttonIndex);
+      }
+    );
+
+  };
+
+  openMaps(property,buttonIndex) {
+    var address = encodeURIComponent(`${property.address.city},${property.address.state},${property.address.country}`);
+    switch (buttonIndex) {
+      case 0:
+        Linking.openURL(`http://maps.apple.com/?dll=${property.address.latitude},${property.address.longitude}`);
+        break;
+      case 1:
+        const nativeGoogleUrl = `comgooglemaps://?daddr=${property.address.latitude},${property.address.longitude}&center=${property.address.latitude},${property.address.longitude}&zoom=14&views=traffic&directionsmode=driving`;
+        Linking.canOpenURL(nativeGoogleUrl).then((supported) => {
+          const url = supported ? nativeGoogleUrl : `http://maps.google.com/?q=loc:${property.address.latitude}+${property.address.longitude}`;
+          Linking.openURL(url);
+        });
+        break;
+    }
+  }
+
+
   render() {
     const { property,comments } = this.props;
     return (
@@ -63,6 +97,7 @@ class PropertyDetail extends Component {
                       handleFavoritePress={this.handleFavoritePress}
                       loadUser={this.loadUser}
                       showSlider={this.showSlider}
+                      followLocation={this.followLocation}
       />
     );
   }

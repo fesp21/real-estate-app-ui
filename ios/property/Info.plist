@@ -24,6 +24,15 @@
     <string>1</string>
     <key>CodePushDeploymentKey</key>
     <string>NlarHFBeyd63KG0ULkKNV2cJU4CUV11xDbpZe</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>comgooglemaps-x-callback</string>
+      <string>snapchat</string>
+      <string>fb</string>
+      <string>twitter</string>
+      <string>instagram</string>
+      <string>comgooglemaps</string>
+    </array>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>
