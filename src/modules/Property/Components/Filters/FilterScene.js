@@ -55,7 +55,7 @@ export default class FilterScene extends Component {
           <View style={{flex:1,flexDirection:'row',padding:5,alignItems:'center'}}>
             <Ionicons name="ios-search" size={18}  color={Colors.darkGrey} style={{ height:18,width:20 }}/>
             <TouchableWithoutFeedback onPress={()=>showSearch()}>
-              <View style={{ flex:1,padding:3,backgroundColor:'#E3E3E3',borderRadius:30}}>
+              <View style={{ flex:1,padding:8,backgroundColor:'#E3E3E3',borderRadius:30}}>
                 {isEmpty(searchString) ?
                   <Text style={{ padding:3,paddingLeft:10,fontWeight:'400',color:Colors.white }}>
                     Search by Location

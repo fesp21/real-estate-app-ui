@@ -12,7 +12,7 @@ import LoadingIndicator from './../../../common/LoadingIndicator';
 export default class CommentList extends Component {
 
   static propTypes = {
-    collection:PropTypes.array.isRequired,
+    collection:PropTypes.array,
   };
 
   constructor(props) {

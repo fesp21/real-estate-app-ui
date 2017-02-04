@@ -71,7 +71,7 @@ export default class PropertyListing extends Component {
 
             {
               item.meta &&
-              <View style={{flexDirection:'row',alignItems:'center'}}>
+              <View style={{flexDirection:'row',alignItems:'center',paddingTop:5}}>
                 <PropertyIcons services={item.meta} items={['bedroom','bathroom','parking']} />
               </View>
             }

@@ -22,6 +22,7 @@ export default class Root extends Component {
       CodePush.sync();
     }
   }
+
   componentWillMount() {
     StatusBar.setHidden(true);
   }
