@@ -1,12 +1,14 @@
+// __tests__/Intro-test.js
 import 'react-native';
 import React from 'react';
-import Index from '../index.android.js';
+import Root from '../../src/Root';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
+test('renders Root Component', () => {
   const tree = renderer.create(
-    <Index />
-  );
+    <Root />
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });

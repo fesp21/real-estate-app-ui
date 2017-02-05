@@ -1,0 +1,30 @@
+exports[`test renders PropertyList Component 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingTop": 64,
+    }
+  }>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "padding": 10,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail">
+      No Results
+    </Text>
+  </View>
+  <View>
+    <RCTScrollView>
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
