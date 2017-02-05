@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { ACTIONS as PROPERTY_ACTIONS } from './../../modules/Property/actions';
 import { SELECTORS } from './selectors';
+import { SELECTORS as PROPERTY_SELECTORS } from './../../modules/Property/selectors';
 import UserProfile from './Components/UserProfile';
 
 const DOUBLE_PRESS_DELAY = 300;
@@ -73,7 +74,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state,props) {
   return {
     user:SELECTORS.getUser(state,props),
-    properties:SELECTORS.fetchProperties(state),
+    properties:PROPERTY_SELECTORS.fetchProperties(state),
     isFetching:state.propertyReducer.isFetching
   }
 }

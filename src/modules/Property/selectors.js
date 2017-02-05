@@ -10,6 +10,7 @@ const propertyAmenities = state => state.propertyReducer.amenities;
 const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
 const orm = state => state.dbReducer;
+const getPropertyID = (state, props) => props.property._id;
 
 const filterResults = ({ Property, User }, results) => results.map((id) => {
   const property = Property.withId(id).ref;
@@ -26,8 +27,6 @@ const fetchFavorites = createSelector(
   orm,
   ormSelector(schema, ({ Property, User }) => Property.all().toRefArray().filter(property => property.isFavorited).map(property => Object.assign({}, property, { user: User.withId(property.user).ref }))),
 );
-
-const getPropertyID = (state, props) => props.property._id;
 
 const fetchProperty = createSelector(
   orm,

@@ -11,6 +11,12 @@ export default class UserProfile extends Component {
 
   static propTypes = {
     user:PropTypes.object.isRequired,
+    properties : PropTypes.array.isRequired,
+    isFetching : PropTypes.bool.isRequired,
+    loadEntity : PropTypes.func.isRequired,
+    onImagePress : PropTypes.func.isRequired,
+    handleFavoritePress: PropTypes.func.isRequired,
+    fetchProperties : PropTypes.func.isRequired
   };
 
   state = {
