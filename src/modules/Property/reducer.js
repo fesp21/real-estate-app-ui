@@ -122,10 +122,10 @@ export function dbReducer(state, action) {
       break;
     case ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS:
       if (action.payload && action.payload.data) {
-        const property = action.payload.data;
-        if (Property.hasId(property._id)) {
-          const modelInstance = Property.withId(property._id);
-          modelInstance.update({ ...modelInstance, user: modelInstance.user._id });
+        const response = action.payload.data;
+        if (Property.hasId(response._id)) {
+          const property = Property.withId(response._id);
+          property.update({ ...response, user: response.user._id });
         }
       }
       break;
