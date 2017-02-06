@@ -40,6 +40,7 @@ class PropertyFilters extends Component {
       titleStyle: {
         fontSize:15
       },
+      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
       tintColor: Colors.darkGrey,
       renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" />,
       renderRight: (route) => {

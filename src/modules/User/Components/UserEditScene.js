@@ -2,7 +2,7 @@
  @flow
  */
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
+import { View, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, Dimensions, Image } from 'react-native';
 import Colors from '../../../Components/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -35,11 +35,36 @@ export default class UserEditScene extends Component {
               style={styles.editIcon}
             />
           </TouchableHighlight>
+
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.username}>{user.name}</Text>
-          <Text style={styles.date}>Member Since May 2015</Text>
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.textInput}
+            defaultValue={user.name}
+            onChange={(text)=>{}}
+          />
+
+          <View style={styles.separator}/>
+
+          <Text style={styles.label}>Description</Text>
+          <TextInput
+            style={styles.textInput}
+            defaultValue={user.name}
+            onChange={(text)=>{}}
+            multiline={true}
+          />
+          <View style={styles.separator}/>
+
+          <Text style={styles.label}>Address</Text>
+          <TextInput
+            style={styles.textInput}
+            defaultValue={user.name}
+            onChange={(text)=>{}}
+          />
+          <View style={styles.separator}/>
+
         </View>
 
       </View>
@@ -54,14 +79,14 @@ const styles =  StyleSheet.create({
   },
   content:{
     padding:20,
+    paddingTop:50,
   },
   username:{
     fontSize:20,
     fontWeight:'700',
     color:Colors.darkGrey,
   },
-  date: {
-    paddingVertical:10,
+  label: {
     fontSize:15,
     fontWeight:'100',
     color:Colors.smokeGreyDark
@@ -84,5 +109,17 @@ const styles =  StyleSheet.create({
     shadowColor:Colors.smokeGreyDark,
     shadowOpacity:0.6,
     shadowOffset:{width:1,height:1}
+  },
+  textInput:{
+    height:30,
+    backgroundColor:'yellow',
+    fontSize:16,
+    marginVertical:5
+  },
+  separator:{
+    marginVertical:10,
+    height:.5,
+    backgroundColor:Colors.smokeGreyLight
   }
+
 });

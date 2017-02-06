@@ -16,7 +16,7 @@ class UserEdit extends Component {
   static route = {
     navigationBar : {
       // visible:false,
-      renderBackground: (props) => <View style={styles.navBar}/>,
+      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
       renderLeft: (props) => <NavBack icon="ios-close" />
     }
   };
@@ -63,14 +63,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  navBar: {
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 64,
-    backgroundColor:'white',
-    opacity:0.8
-  }
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(UserEdit);

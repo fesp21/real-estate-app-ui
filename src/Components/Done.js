@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 15,
     paddingRight: 10,
+    backgroundColor:'transparent',
   },
   title: {
     color: Colors.tomato,
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   badge: {
     backgroundColor: '#fff',
     height: 28,
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     margin: 8,
     justifyContent: 'center',
   },
-
   badgeText: {
     backgroundColor: 'transparent',
     marginTop: -1,
