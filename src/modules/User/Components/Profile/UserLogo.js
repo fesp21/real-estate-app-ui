@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import Colors from '../../../Components/Colors';
+import Colors from '../../../../Components/Colors';
 
 export default class UserLogo extends Component {
 

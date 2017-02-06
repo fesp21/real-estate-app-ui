@@ -6,7 +6,7 @@ import { ACTIONS } from './actions';
 import { ACTIONS as PROPERTY_ACTIONS } from './../../modules/Property/actions';
 import { SELECTORS } from './selectors';
 import { SELECTORS as PROPERTY_SELECTORS } from './../../modules/Property/selectors';
-import UserProfile from './Components/UserProfile';
+import UserProfile from './Components/Profile/UserProfile';
 
 const DOUBLE_PRESS_DELAY = 300;
 

@@ -12,5 +12,5 @@ const getUser = createSelector(
 );
 
 export const SELECTORS = {
-  getUser,
+  getUser
 };

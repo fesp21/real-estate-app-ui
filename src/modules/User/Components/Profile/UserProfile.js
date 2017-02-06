@@ -3,9 +3,9 @@ import { ScrollView,StyleSheet, View, Text } from 'react-native';
 import UserInfo from './UserInfo';
 import UserLogo from './UserLogo';
 import Contact from './Contact';
-import PropertyListing from './../../../modules/Property/Components/PropertyList';
+import PropertyListing from '../../../Property/Components/PropertyList';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import Colors from '../../../Components/Colors';
+import Colors from '../../../../Components/Colors';
 
 export default class UserProfile extends Component {
 

@@ -11,7 +11,8 @@ import PropertyCreate from '../modules/Property/PropertyCreate';
 import PropertySlideShow from '../modules/Property/Components/SlideShow';
 import SettingList from '../modules/Setting/List';
 import Profile from './../modules/User/Profile';
-// import UserDetail from './../modules/User/Detail';
+import UserDetail from './../modules/User/UserDetail';
+import UserEdit from './../modules/User/UserEdit';
 
 const Router = createRouter(() => ({
   app: () => App,
@@ -26,7 +27,8 @@ const Router = createRouter(() => ({
   settingList: () => SettingList,
   profile: () => Profile,
   propertySlideShow: () => PropertySlideShow,
-  user: () => UserDetail
+  userDetail: () => UserDetail,
+  userEdit: () => UserEdit
 }));
 
 export default Router;

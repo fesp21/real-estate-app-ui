@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import Colors from '../../../Components/Colors';
+import Colors from '../../../../Components/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class UserInfo extends Component {
@@ -18,7 +18,6 @@ export default class UserInfo extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.rowContainer}>
-
 
           <Text style={styles.description}>
             Kuwait Real Estate Company (AQARAT) is one of Kuwaits leading real estate companies, with several firsts to its credit. It was the first real estate company to be incorporated into the Kuwait Stock Exchange, the first to develop mixed-use retail, office and car park in Kuwait, and the first to introduce the Build-Operate-Transfer concept before a formal regulation was adopted.

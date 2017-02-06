@@ -6,7 +6,7 @@ import { ACTIONS } from './actions';
 import { SELECTORS } from './selectors';
 import UserSingle from './Components/UserSingle';
 
-class UserDetail extends Component {
+class UserEdit extends Component {
 
   static propTypes = {
     user:PropTypes.object.isRequired
@@ -17,7 +17,6 @@ class UserDetail extends Component {
 
   editUser = () => {
     const {user,navigation,navigator} = this.props;
-
     return navigation.getNavigator('rootStack').push(navigator.router.getRoute('userEdit',{
       user
     }));
@@ -27,11 +26,7 @@ class UserDetail extends Component {
   render() {
     const {user} = this.props;
     return (
-      <View style={{flex:1,paddingTop:64}}>
-        <UserSingle
-          user={user}
-          loadScene={this.editUser}
-        />
+      <View style={{flex:1,paddingTop:64,backgroundColor:'green'}}>
       </View>
     );
   }
@@ -57,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(UserDetail);
+export default connect(mapStateToProps,mapDispatchToProps)(UserEdit);
