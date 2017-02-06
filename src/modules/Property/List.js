@@ -72,7 +72,6 @@ class PropertyList extends Component {
 
   render() {
     const { properties,isFetching } = this.props;
-    console.log('p',properties);
 
     return (
       <View style={styles.container}>
