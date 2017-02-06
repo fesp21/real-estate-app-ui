@@ -7,11 +7,11 @@ import PropertyFilters from '../modules/Property/Filters';
 import PropertyFavorites from '../modules/Property/Favorites';
 import PropertyDetail from '../modules/Property/Detail';
 import PropertyMap from '../modules/Property/Map';
-import PropertyCreate from '../modules/Property/Create';
+import PropertyCreate from '../modules/Property/PropertyCreate';
 import PropertySlideShow from '../modules/Property/Components/SlideShow';
 import SettingList from '../modules/Setting/List';
 import Profile from './../modules/User/Profile';
-import UserDetail from './../modules/User/Detail';
+// import UserDetail from './../modules/User/Detail';
 
 const Router = createRouter(() => ({
   app: () => App,
