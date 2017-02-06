@@ -35,7 +35,7 @@ class Login extends Component {
 
   handleRegisterRoute = () => {
     const { navigator } = this.props;
-    navigator.popToTop(navigator.router.getRoute('register'));
+    navigator.push(navigator.router.getRoute('register'));
   };
 
   handleForgotPasswordRoute() {
