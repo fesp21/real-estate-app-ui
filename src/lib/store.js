@@ -5,7 +5,6 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { createNavigationEnabledStore } from '@exponent/ex-navigation';
 
-
 const createStoreWithNavigation = createNavigationEnabledStore({
   navigationStateKey: 'navigation',
   createStore,

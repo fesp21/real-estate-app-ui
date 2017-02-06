@@ -1,4 +1,4 @@
-import schema from '../../lib/schema';
+import orm from '../../lib/orm';
 import { createSelector } from 'reselect';
 import { createSelector as ormSelector } from 'redux-orm';
 
@@ -9,7 +9,7 @@ const propertyTypes = state => state.propertyReducer.types;
 const propertyAmenities = state => state.propertyReducer.amenities;
 const propertyFilters = state => state.propertyReducer.filters;
 const propertyListings = state => state.propertyReducer.listings;
-const orm = state => state.dbReducer;
+const ormReducer = state => state.ormReducer;
 const getPropertyID = (state, props) => props.property._id;
 
 const filterResults = ({ Property, User }, results) => results.map((id) => {
@@ -18,20 +18,20 @@ const filterResults = ({ Property, User }, results) => results.map((id) => {
 });
 
 const fetchProperties = createSelector(
-  orm,
+  ormReducer,
   propertyResults,
-  ormSelector(schema, (ormSession, results) => filterResults(ormSession, results)),
+  ormSelector(orm, (ormSession, results) => filterResults(ormSession, results)),
 );
 
 const fetchFavorites = createSelector(
-  orm,
-  ormSelector(schema, ({ Property, User }) => Property.all().toRefArray().filter(property => property.isFavorited).map(property => Object.assign({}, property, { user: User.withId(property.user).ref }))),
+  ormReducer,
+  ormSelector(orm, ({ Property, User }) => Property.all().toRefArray().filter(property => property.isFavorited).map(property => Object.assign({}, property, { user: User.withId(property.user).ref }))),
 );
 
 const fetchProperty = createSelector(
-  orm,
+  ormReducer,
   getPropertyID,
-  ormSelector(schema, ({ Property, User }, id) => {
+  ormSelector(orm, ({ Property, User }, id) => {
     const property = Property.withId(id).ref;
     return Object.assign({}, property, { user: User.withId(property.user).ref });
   }),

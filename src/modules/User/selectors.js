@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect';
 import { createSelector as ormSelector } from 'redux-orm';
-import schema from '../../lib/schema';
+import orm from '../../lib/orm';
 
-const orm = state => state.dbReducer;
+const ormReducer = state => state.dbReducer;
 const getUserID = (state, props) => props.user._id;
 
 const getUser = createSelector(
-  orm,
+  ormReducer,
   getUserID,
-  ormSelector(schema, ({ User }, id) => User.withId(id).ref),
+  ormSelector(orm, ({ User }, id) => User.withId(id).ref),
 );
 
 export const SELECTORS = {

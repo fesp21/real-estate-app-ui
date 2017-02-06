@@ -1,4 +1,4 @@
-import schema from '../../lib/schema';
+import orm from '../../lib/orm';
 import union from 'lodash/union';
 import map from 'lodash/map';
 import { ACTION_TYPES } from './actions';
@@ -100,37 +100,37 @@ export function propertyReducer(state = initialState, action = {}) {
 }
 
 // @todo: move to separate file
-export function dbReducer(state, action) {
-  const session = schema.session(state);
-  const { Property, User } = session;
-  switch (action.type) {
-    case ACTION_TYPES.PROPERTY_SUCCESS:
-      const propertyCollections = action.payload.data;
-      map(propertyCollections, (entity) => {
-        const user = entity.user;
-        if (!user) return;
-        if (!User.hasId(user._id)) { User.create(user); }
-        Property.hasId(entity._id) ? Property.withId(entity._id).update({ ...entity, user: user._id }) : Property.create({ ...entity, user: user._id });
-      });
-      break;
-    case ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE:
-      const { itemID, newItemAttributes } = action.payload.params;
-      if (Property.hasId(itemID)) {
-        const modelInstance = Property.withId(itemID);
-        modelInstance.update(newItemAttributes);
-      }
-      break;
-    case ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS:
-      if (action.payload && action.payload.data) {
-        const response = action.payload.data;
-        if (Property.hasId(response._id)) {
-          const property = Property.withId(response._id);
-          property.update({ ...response, user: response.user._id });
-        }
-      }
-      break;
-    default:
-      break;
-  }
-  return session.state;
-}
+// export function dbReducer(state, action) {
+//   const session = orm.session(state);
+//   const { Property, User } = session;
+//   switch (action.type) {
+//     case ACTION_TYPES.PROPERTY_SUCCESS:
+//       const propertyCollections = action.payload.data;
+//       map(propertyCollections, (entity) => {
+//         const user = entity.user;
+//         if (!user) return;
+//         if (!User.hasId(user._id)) { User.create(user); }
+//         Property.hasId(entity._id) ? Property.withId(entity._id).update({ ...entity, user: user._id }) : Property.create({ ...entity, user: user._id });
+//       });
+//       break;
+//     case ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE:
+//       const { itemID, newItemAttributes } = action.payload.params;
+//       if (Property.hasId(itemID)) {
+//         const modelInstance = Property.withId(itemID);
+//         modelInstance.update(newItemAttributes);
+//       }
+//       break;
+//     case ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS:
+//       if (action.payload && action.payload.data) {
+//         const response = action.payload.data;
+//         if (Property.hasId(response._id)) {
+//           const property = Property.withId(response._id);
+//           property.update({ ...response, user: response.user._id });
+//         }
+//       }
+//       break;
+//     default:
+//       break;
+//   }
+//   return session.state;
+// }

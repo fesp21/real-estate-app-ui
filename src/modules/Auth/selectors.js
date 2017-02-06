@@ -1,8 +1,8 @@
-import schema from './../../lib/schema';
+import orm from './../../lib/orm';
 import { createSelector } from 'reselect';
 import { createSelector as ormSelector } from 'redux-orm';
 
-const orm = state => state.dbReducer;
+const ormReducer = state => state.dbReducer;
 
 const authReducer = state => state.authReducer;
 
@@ -21,9 +21,9 @@ const isAuthenticated = createSelector(
 // );
 
 const getCurrentUser = createSelector(
-  orm,
+  ormReducer,
   authReducer,
-  ormSelector(schema, ({ User }, authReducer) => {
+  ormSelector(orm, ({ User }, authReducer) => {
     return null;
     // return authReducer.isAuthenticated ? User.withId(authReducer.userID).ref : null;
   }),
