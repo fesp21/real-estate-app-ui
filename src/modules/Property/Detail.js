@@ -18,7 +18,7 @@ class PropertyDetail extends Component {
     this.saveComment = this.saveComment.bind(this);
     this.onChangeCommentText = this.onChangeCommentText.bind(this);
     this.handleFavoritePress = this.handleFavoritePress.bind(this);
-    this.loadUser = this.loadUser.bind(this);
+    this.loadProfile = this.loadProfile.bind(this);
   }
 
   state = {
@@ -37,9 +37,9 @@ class PropertyDetail extends Component {
     this.props.actions.favoriteProperty(item);
   }
 
-  loadUser(user) {
+  loadProfile(user) {
     const {navigator} = this.props;
-    return navigator.push(navigator.router.getRoute('userDetail',{
+    return navigator.push(navigator.router.getRoute('profile',{
       user
     }));
   }
@@ -97,7 +97,7 @@ class PropertyDetail extends Component {
         commentBody={this.state.commentBody}
         onChangeCommentText={this.onChangeCommentText}
         handleFavoritePress={this.handleFavoritePress}
-        loadUser={this.loadUser}
+        loadProfile={this.loadProfile}
         showSlider={this.showSlider}
         followLocation={this.followLocation}
       />

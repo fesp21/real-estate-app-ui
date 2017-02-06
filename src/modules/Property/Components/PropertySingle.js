@@ -27,7 +27,7 @@ export default class PropertySingle extends Component {
     commentBody: PropTypes.string.isRequired,
     onChangeCommentText: PropTypes.func.isRequired,
     handleFavoritePress: PropTypes.func.isRequired,
-    loadUser: PropTypes.func.isRequired,
+    loadProfile: PropTypes.func.isRequired,
     followLocation:PropTypes.func.isRequired
   };
 
@@ -38,7 +38,7 @@ export default class PropertySingle extends Component {
       commentBody,
       onChangeCommentText,
       handleFavoritePress,
-      loadUser,
+      loadProfile,
       showSlider,
       followLocation
     } = this.props;
@@ -98,7 +98,7 @@ export default class PropertySingle extends Component {
               <Text style={styles.label}>By</Text>
               <TouchableHighlight
                 underlayColor="transparent"
-                onPress={() => loadUser(property.user)}
+                onPress={() => loadProfile(property.user)}
                 style={{ flex: 1 }}
               >
                 <Text style={styles.username}> {property.user.name} </Text>

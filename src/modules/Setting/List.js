@@ -11,6 +11,7 @@ import { ACTIONS as PROPERTY_ACTIONS } from './../../modules/Property/actions';
 import isEmpty from 'lodash/isEmpty';
 import List from './Components/SettingList';
 import EditProfile from './Components/EditProfile';
+import Router from './../../lib/router';
 
 class SettingList extends Component {
 
@@ -24,7 +25,7 @@ class SettingList extends Component {
     const { navigator,navigation,user } = this.props;
     switch (route) {
       case 'user':
-        return navigation.getNavigator('root').push(Router.getRoute('user',{
+        return navigation.getNavigator('rootStack').push(Router.getRoute('user',{
           user
         }));
       case 'propertyCreate':

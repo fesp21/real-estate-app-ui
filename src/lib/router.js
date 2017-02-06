@@ -10,6 +10,7 @@ import PropertyMap from '../modules/Property/Map';
 import PropertyCreate from '../modules/Property/Create';
 import PropertySlideShow from '../modules/Property/Components/SlideShow';
 import SettingList from '../modules/Setting/List';
+import Profile from './../modules/User/Profile';
 import UserDetail from './../modules/User/Detail';
 
 const Router = createRouter(() => ({
@@ -23,8 +24,9 @@ const Router = createRouter(() => ({
   propertyMaps: () => PropertyMap,
   propertyCreate: () => PropertyCreate,
   settingList: () => SettingList,
-  userDetail: () => UserDetail,
+  profile: () => Profile,
   propertySlideShow: () => PropertySlideShow,
+  user: () => UserDetail
 }));
 
 export default Router;
