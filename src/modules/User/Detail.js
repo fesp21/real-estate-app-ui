@@ -55,7 +55,8 @@ class UserDetail extends Component {
   render() {
     return (
       <ScrollView style={{flex:1,paddingTop:64}}>
-        <UserProfile {...this.props}
+        <UserProfile
+          {...this.props}
           loadEntity={this.loadEntity}
           onImagePress ={this.onImagePress}
           fetchProperties ={this.fetchProperties}

@@ -1,11 +1,17 @@
 import orm from './orm';
 import map from 'lodash/map';
 import { ACTION_TYPES as PROPERTY_ACTIONS } from './../modules/Property/actions';
+import { ACTION_TYPES as AUTH_ACTIONS } from './../modules/Auth/actions';
 
 export function ormReducer(state, action) {
   const session = orm.session(state);
   const { Property, User } = session;
   switch (action.type) {
+    case AUTH_ACTIONS.LOGIN_SUCCESS:
+      const user = action.payload;
+      if (!User.hasId(user._id)) { User.create(user); }
+      break;
+
     case PROPERTY_ACTIONS.PROPERTY_SUCCESS:
       const propertyCollections = action.payload.data;
       map(propertyCollections, (entity) => {

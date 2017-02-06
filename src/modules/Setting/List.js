@@ -57,15 +57,15 @@ class SettingList extends Component {
 
   render() {
 
-    const {isAuthenticated} = this.props;
+    const {isAuthenticated,user} = this.props;
     return (
       <ScrollView style={styles.container}>
-
 
         {
           isAuthenticated &&
           <EditProfile
             loadScene = {this.loadScene}
+            user={user}
           />
         }
 

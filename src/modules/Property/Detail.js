@@ -90,14 +90,16 @@ class PropertyDetail extends Component {
   render() {
     const { property,comments } = this.props;
     return (
-      <PropertySingle property={property} comments={comments}
-                      saveComment={this.saveComment}
-                      commentBody={this.state.commentBody}
-                      onChangeCommentText={this.onChangeCommentText}
-                      handleFavoritePress={this.handleFavoritePress}
-                      loadUser={this.loadUser}
-                      showSlider={this.showSlider}
-                      followLocation={this.followLocation}
+      <PropertySingle
+        property={property}
+        comments={comments}
+        saveComment={this.saveComment}
+        commentBody={this.state.commentBody}
+        onChangeCommentText={this.onChangeCommentText}
+        handleFavoritePress={this.handleFavoritePress}
+        loadUser={this.loadUser}
+        showSlider={this.showSlider}
+        followLocation={this.followLocation}
       />
     );
   }
