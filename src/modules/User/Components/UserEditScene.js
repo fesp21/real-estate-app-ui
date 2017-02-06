@@ -15,13 +15,24 @@ export default class UserEditScene extends Component {
   render() {
     const {user,loadScene} = this.props;
 
-    return (
-      <View style={styles.container}>
+    const userLogo = require('./../../../../assets/login-bg.png');
 
-        <Image
-          source={{uri:user.image}}
-          style={styles.logo}
-        />
+    return (
+      <ScrollView style={styles.container}>
+
+        {
+          !user.image ?
+            <Image
+              source={{uri:user.image}}
+              style={styles.logo}
+            />
+            :
+            <Image
+              source={userLogo}
+              style={styles.logo}
+            />
+        }
+
 
         <View style={styles.editIconWrapper}>
           <TouchableHighlight
@@ -44,36 +55,37 @@ export default class UserEditScene extends Component {
             style={styles.textInput}
             defaultValue={user.name}
             onChange={(text)=>{}}
+            placeholder="Name"
+            placeholderTextColor={Colors.lightGrey}
           />
 
           <View style={styles.separator}/>
 
-          {
-            user.isCompany &&
-            <View style={{flex:1}}>
-              <Text style={styles.label}>Description</Text>
-              <TextInput
-                style={styles.textInput}
-                defaultValue={user.description}
-                onChange={(text)=>{}}
-                multiline={true}
-              />
-              <View style={styles.separator}/>
-            </View>
-          }
+          <Text style={styles.label}>Description</Text>
+          <TextInput
+            style={styles.textInput}
+            defaultValue={user.description}
+            onChange={(text)=>{}}
+            multiline={true}
+            placeholder="Description"
+            placeholderTextColor={Colors.lightGrey}
+          />
+          <View style={styles.separator}/>
 
           <Text style={styles.label}>Address</Text>
           <TextInput
             style={styles.textInput}
             defaultValue={user.address}
             onChange={(text)=>{}}
+            placeholder="Address"
+            placeholderTextColor={Colors.lightGrey}
           />
 
           <View style={styles.separator}/>
 
         </View>
 
-      </View>
+      </ScrollView>
 
     );
   }
@@ -98,12 +110,12 @@ const styles =  StyleSheet.create({
     color:Colors.smokeGreyDark
   },
   logo:{
-    height:150,
+    height:200,
     width:Dimensions.get('window').width,
   },
   editIconWrapper:{
     position:'absolute',
-    top:150,
+    top:200,
     right:15,
     marginTop:-20,
     height:40,
@@ -122,7 +134,7 @@ const styles =  StyleSheet.create({
     marginVertical:5,
   },
   separator:{
-    marginVertical:10,
+    marginVertical:20,
     height:.5,
     backgroundColor:Colors.smokeGreyLight
   }
