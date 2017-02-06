@@ -32,7 +32,11 @@ class SettingList extends Component {
           tabs('homeTab').jumpToTab('third');
         });
       case 'login':
-        return navigator.push(navigator.router.getRoute(route,{redirectRoute:'settingList'}));
+        navigation.getNavigator('rootStack').push(navigator.router.getRoute('login',{
+          redirectRoute:'settingList'
+        }));
+        break;
+        // return navigator.push(navigator.router.getRoute(route,{redirectRoute:'settingList'}));
       case 'logout': {
         return Alert.alert(
           'Logout ?',

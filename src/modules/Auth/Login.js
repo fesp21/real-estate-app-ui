@@ -3,7 +3,8 @@ import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS  } from './actions';
-import LoginForm from './Components/LoginForm';
+import LoginScene from './Components/LoginScene';
+import Colors from './../../Components/Colors';
 
 class Login extends Component {
 
@@ -14,41 +15,40 @@ class Login extends Component {
     redirectRoute:PropTypes.string.isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: 'admin@test.com',
-      password: 'password'
-    };
-
-    this.onFieldChange = this.onFieldChange.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleRegisterRoute = this.handleRegisterRoute.bind(this);
+  static route = {
+    navigationBar : {
+      tintColor:Colors.primary,
+      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
+    }
   };
 
-  handleLogin() {
+  state = {
+    email: 'admin@test.com',
+    password: 'password'
+  };
+
+  handleLogin = () => {
     const {redirectRoute}= this.props;
     const credentials = { email:this.state.email,password:this.state.password};
     this.props.actions.login(credentials,this.props.navigator.router.getRoute(redirectRoute));
-  }
+  };
 
-  handleRegisterRoute() {
+  handleRegisterRoute = () => {
     const { navigator } = this.props;
-    navigator.push(navigator.router.getRoute('register'));
-  }
+    navigator.popToTop(navigator.router.getRoute('register'));
+  };
 
   handleForgotPasswordRoute() {
   }
 
-  onFieldChange(field,value) {
+  onFieldChange = (field,value) => {
     this.setState({[field]:value});
-  }
+  };
 
   render() {
     const { auth } = this.props;
     return (
-      <LoginForm
+      <LoginScene
         {...this.state}
         handleLogin={this.handleLogin}
         handleRegisterRoute={this.handleRegisterRoute}

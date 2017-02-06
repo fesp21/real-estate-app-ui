@@ -1,30 +1,52 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image,TouchableHighlight, TextInput } from 'react-native';
+import Colors from './../../../Components/Colors';
 
-export default class LoginForm extends Component {
+export default class RegisterScene extends Component {
 
   static propTypes = {
-    handleForgotPasswordRoute:PropTypes.func.isRequired,
-    handleRegisterRoute:PropTypes.func.isRequired,
-    handleLogin:PropTypes.func.isRequired,
+    handleRegister:PropTypes.func.isRequired,
+    handleLoginRoute:PropTypes.func.isRequired,
     onFieldChange:PropTypes.func.isRequired,
+    name:PropTypes.string.isRequired,
     email:PropTypes.string.isRequired,
+    mobile: PropTypes.string.isRequired,
     password:PropTypes.string.isRequired,
     busy:PropTypes.bool.isRequired
   };
 
   render() {
     const backgroundImage = require('./../../../../assets/login-bg.png');
-    const { email, password, onFieldChange, handleLogin, handleRegisterRoute, handleForgotPasswordRoute, busy } = this.props;
+    const { name, email, mobile, password, password_confirmation, onFieldChange, handleLoginRoute, handleRegister, busy } = this.props;
 
     return (
-      <Image source={backgroundImage} style={styles.container}>
+      <View source={backgroundImage} style={styles.container}>
+
+        <Text style={styles.label}>NAME</Text>
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('name',value)}
+          value={name}
+          maxLength={40}
+          placeholderTextColor="gray"
+        />
+        <View style={styles.separator}/>
 
         <Text style={styles.label}>EMAIL</Text>
         <TextInput
           style={[styles.textInput]}
           onChangeText={(value) => onFieldChange('email',value)}
           value={email}
+          maxLength={40}
+          placeholderTextColor="gray"
+        />
+        <View style={styles.separator}/>
+
+        <Text style={styles.label}>MOBILE</Text>
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('mobile',value)}
+          value={mobile}
           maxLength={40}
           placeholderTextColor="gray"
         />
@@ -41,26 +63,33 @@ export default class LoginForm extends Component {
         />
         <View style={styles.separator}/>
 
-        <TouchableHighlight onPress={()=>handleLogin()} title="Login" style={[styles.button,{marginTop:50}]} underlayColor='transparent' >
-          <Text style={styles.buttonText}>{busy ? 'logging in': 'Login'}</Text>
+        <Text style={styles.label}>CONFIRM PASSWORD</Text>
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('password_confirmation',value)}
+          value={password_confirmation}
+          maxLength={40}
+          placeholderTextColor="gray"
+          secureTextEntry={true}
+        />
+        <View style={styles.separator}/>
+
+
+        <TouchableHighlight onPress={()=>handleRegister()} title="Login" style={[styles.button,{marginTop:50}]} underlayColor='transparent' >
+          <Text style={styles.buttonText}>{busy ? 'signing up': 'Register'}</Text>
         </TouchableHighlight>
 
         <Text style={[styles.textCenter,{paddingTop:30,paddingBottom:30,color:'white'}]}>
           or
         </Text>
 
-        <TouchableHighlight onPress={()=>handleRegisterRoute()} underlayColor='transparent'
+        <TouchableHighlight onPress={()=>handleLoginRoute()} underlayColor='transparent'
                             style={[styles.button,styles.center,{opacity:.5}]}
         >
-          <Text style={[styles.buttonText,styles.textCenter,{color:'black'}]}>CREATE AN ACCOUNT</Text>
+          <Text style={[styles.buttonText,styles.textCenter,{color:'black'}]}>Login</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={()=>handleForgotPasswordRoute()} style={[styles.textCenter,{paddingTop:100}]}
-                            underlayColor='transparent' >
-          <Text style={[styles.link,styles.textUnderline]}>Forgot your password ?</Text>
-        </TouchableHighlight>
-
-      </Image>
+      </View>
     );
   }
 }
@@ -70,16 +99,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    paddingTop: 100,
     backgroundColor:'transparent',
     padding:20
   },
   label: {
     fontSize: 12,
-    color: 'black',
+    color: Colors.smokeGreyDark,
     marginTop:15,
     marginBottom:2,
-    opacity:.8
+    fontWeight:'100'
   },
   textCenter: {
     alignSelf: 'center'
@@ -104,7 +132,7 @@ const styles = StyleSheet.create({
   },
   separator:{
     height:0.5,
-    backgroundColor:'#CCCCCC',
+    backgroundColor:Colors.smokeGreyLight,
   },
   link :{
     marginTop:20,

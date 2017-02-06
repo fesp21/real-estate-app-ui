@@ -6,7 +6,8 @@ import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { ACTIONS } from './actions';
-import RegisterForm from './Components/RegisterForm';
+import RegisterScene from './Components/RegisterScene';
+import Colors from './../../Components/Colors';
 
 type State = {
   name: string,
@@ -23,6 +24,13 @@ class Register extends Component {
     navigator:PropTypes.object.isRequired
   };
 
+  static route = {
+    navigationBar : {
+      tintColor:Colors.primary,
+      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
+    }
+  };
+
   state: State = {
     name: 'ZaL',
     email: 'z4ls@live.com',
@@ -31,32 +39,25 @@ class Register extends Component {
     password_confirmation:'password',
   };
 
-  constructor(props) {
-    super(props);
-    this.onFieldChange = this.onFieldChange.bind(this);
-    this.handleLoginRoute = this.handleLoginRoute.bind(this);
-    this.handleRegister = this.handleRegister.bind(this);
-  };
-
-  handleLoginRoute() {
+  handleLoginRoute = () => {
     const { navigator } = this.props;
     navigator.push(navigator.router.getRoute('login',{redirectRoute:'settingList'}));
-  }
+  };
 
-  handleRegister() {
+  handleRegister = () => {
     let credentials = {...this.state};
     this.props.actions.register(credentials);
-  }
+  };
 
-  onFieldChange(field,value) {
+  onFieldChange = (field,value) => {
     this.setState({[field]:value});
-  }
+  };
 
 
   render() {
     const {auth} = this.props;
     return (
-      <RegisterForm
+      <RegisterScene
         {...this.state}
         handleLoginRoute={this.handleLoginRoute}
         handleRegister={this.handleRegister}

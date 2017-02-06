@@ -4,7 +4,7 @@ import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { ACTION_TYPES } from './actions';
 import { ACTION_TYPES as PROPERTY_ACTIONS } from './../Property/actions';
 import { API, AUTH_STORAGE_KEY } from './api';
-import { setItem } from '../../lib/storage';
+import { setItem,forgetItem } from '../../lib/storage';
 import { NavigationActions } from '@exponent/ex-navigation';
 
 function* login(action) {
@@ -40,9 +40,18 @@ function* register(action) {
   }
 }
 
+function* logout() {
+  yield call(forgetItem, AUTH_STORAGE_KEY);
+}
+
 export function* loginMonitor() {
   yield takeLatest(ACTION_TYPES.LOGIN_REQUEST, login);
 }
+
+export function* logoutMonitor() {
+  yield takeLatest(ACTION_TYPES.LOGOUT, logout);
+}
+
 
 export function* registerMonitor() {
   yield takeLatest(ACTION_TYPES.REGISTER_REQUEST, register);
