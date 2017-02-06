@@ -48,6 +48,7 @@ class PropertyFilters extends Component {
         return (
           <Done emitter={eventEmitter}
                 visible={route.params.visible}
+                title="Done"
           />
         );
       },

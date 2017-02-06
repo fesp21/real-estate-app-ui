@@ -19,7 +19,7 @@ export default class UserSingle extends Component {
       <View style={styles.container}>
 
         <Image
-          source={{uri:"http://www.propertyhaat.in/images/propertyicon.png"}}
+          source={{uri:user.image}}
           style={styles.logo}
         />
 

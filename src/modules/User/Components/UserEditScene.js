@@ -19,7 +19,7 @@ export default class UserEditScene extends Component {
       <View style={styles.container}>
 
         <Image
-          source={{uri:"http://www.propertyhaat.in/images/propertyicon.png"}}
+          source={{uri:user.image}}
           style={styles.logo}
         />
 
@@ -29,7 +29,7 @@ export default class UserEditScene extends Component {
             underlayColor="transparent"
           >
             <FontAwesome
-              name="pencil"
+              name="camera"
               color={Colors.darkGrey}
               size={18}
               style={styles.editIcon}
@@ -48,21 +48,27 @@ export default class UserEditScene extends Component {
 
           <View style={styles.separator}/>
 
-          <Text style={styles.label}>Description</Text>
-          <TextInput
-            style={styles.textInput}
-            defaultValue={user.name}
-            onChange={(text)=>{}}
-            multiline={true}
-          />
-          <View style={styles.separator}/>
+          {
+            user.isCompany &&
+            <View style={{flex:1}}>
+              <Text style={styles.label}>Description</Text>
+              <TextInput
+                style={styles.textInput}
+                defaultValue={user.description}
+                onChange={(text)=>{}}
+                multiline={true}
+              />
+              <View style={styles.separator}/>
+            </View>
+          }
 
           <Text style={styles.label}>Address</Text>
           <TextInput
             style={styles.textInput}
-            defaultValue={user.name}
+            defaultValue={user.address}
             onChange={(text)=>{}}
           />
+
           <View style={styles.separator}/>
 
         </View>
@@ -112,9 +118,8 @@ const styles =  StyleSheet.create({
   },
   textInput:{
     height:30,
-    backgroundColor:'yellow',
     fontSize:16,
-    marginVertical:5
+    marginVertical:5,
   },
   separator:{
     marginVertical:10,

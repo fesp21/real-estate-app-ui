@@ -5,7 +5,8 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 export default class Done extends Component {
 
   static propTypes = {
-    emitter: PropTypes.object.isRequired
+    emitter: PropTypes.object.isRequired,
+    title:PropTypes.string.isRequired
   };
 
   handlePress() {
@@ -13,13 +14,13 @@ export default class Done extends Component {
   }
 
   render() {
-    const { visible } = this.props;
+    const { visible,title } = this.props;
     if (!visible) return null;
 
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.handlePress()}>
-          <Text style={styles.title}>Done</Text>
+          <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>
       </View>
     );
