@@ -4,12 +4,21 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { SELECTORS } from './selectors';
-import UserSingle from './Components/UserSingle';
+import UserEditScene from './Components/UserEditScene';
+import NavBack from './../../Components/NavBack';
 
 class UserEdit extends Component {
 
   static propTypes = {
     user:PropTypes.object.isRequired
+  };
+
+  static route = {
+    navigationBar : {
+      // visible:false,
+      renderBackground: (props) => <View style={styles.navBar}/>,
+      renderLeft: (props) => <NavBack icon="ios-close" />
+    }
   };
 
   state = {
@@ -26,8 +35,11 @@ class UserEdit extends Component {
   render() {
     const {user} = this.props;
     return (
-      <View style={{flex:1,paddingTop:64,backgroundColor:'green'}}>
-      </View>
+
+      <UserEditScene
+        user={user}
+      />
+
     );
   }
 
@@ -44,12 +56,21 @@ function mapStateToProps(state) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop:64,
   },
   page: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  navBar: {
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 64,
+    backgroundColor:'white',
+    opacity:0.8
+  }
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(UserEdit);
