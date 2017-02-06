@@ -15,8 +15,8 @@ import {
   RefreshControl
 } from "react-native";
 
-import Separator from './../../../common/Separator';
-import Colors from './../../../common/Colors';
+import Separator from '../../../Components/Separator';
+import Colors from '../../../Components/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class List extends Component {
@@ -24,19 +24,15 @@ export default class List extends Component {
   static propTypes = {
     title:PropTypes.string.isRequired,
     route:PropTypes.string.isRequired,
-    loadEntity:PropTypes.func.isRequired,
+    loadScene:PropTypes.func.isRequired,
     icon:PropTypes.string.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const {title,icon,route,loadEntity} = this.props;
+    const {title,icon,route,loadScene} = this.props;
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={()=>loadEntity(route)} underlayColor="transparent">
+        <TouchableHighlight onPress={()=>loadScene(route)} underlayColor="transparent">
           <View style={styles.rowContainer}>
             <View style={{flex:9}}>
               <Text style={styles.title}>{title}</Text>
@@ -60,8 +56,6 @@ export default class List extends Component {
 const styles =  StyleSheet.create({
   container:{
     flex:1,
-    paddingLeft:10,
-    paddingRight:10
   },
   rowContainer:{
     flexDirection:'row',

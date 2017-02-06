@@ -2,6 +2,7 @@ import { ACTION_TYPES } from './actions';
 
 const initialState = {
   isAuthenticated: false,
+  userID:null,
   token: null,
   skipped: false,
   login: {
@@ -20,6 +21,7 @@ export function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         isAuthenticated: false,
+        userID: null,
         login: { ...state.login, busy: true, error: null },
       };
     case ACTION_TYPES.LOGIN_SUCCESS :
@@ -29,6 +31,7 @@ export function authReducer(state = initialState, action = {}) {
         isAuthenticated: true,
         busy: false,
         token: action.payload.api_token,
+        userID: action.payload._id,
         login: { ...state.login, busy: false, error: null },
       };
     case ACTION_TYPES.LOGIN_FAILURE :

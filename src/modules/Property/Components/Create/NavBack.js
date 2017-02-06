@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
-import Colors from './../../../../common/Colors';
+import Colors from '../../../../Components/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import isNull from 'lodash/isNull';
 

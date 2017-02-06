@@ -5,8 +5,8 @@ import { StackNavigation, TabNavigation, TabNavigationItem } from '@exponent/ex-
 import Router from './lib/router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import NavBar from './common/NavBar';
-import Colors from './common/Colors';
+import NavBar from './Components/NavBar';
+import Colors from './Components/Colors';
 import { ACTIONS } from './bootstrapActions';
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
       <TabNavigation
         id="homeTab"
         navigatorUID="homeTab"
-        initialTab="first"
+        initialTab="fourth"
         tabBarStyle={{ backgroundColor:Colors.primary }}
       >
         <TabNavigationItem

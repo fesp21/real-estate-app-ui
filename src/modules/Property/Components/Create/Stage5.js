@@ -4,7 +4,7 @@
 import React, { PropTypes, Component } from 'react';
 import { View, StyleSheet, Text, Image,ListView,TouchableHighlight } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Colors from './../../../../common/Colors';
+import Colors from '../../../../Components/Colors';
 
 export default class Stage5 extends Component {
 

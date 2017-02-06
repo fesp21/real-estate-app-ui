@@ -17,7 +17,7 @@ import PropertyTags from "./PropertyTags";
 import CommentList from "./CommentList";
 import CommentAdd from "./CommentAdd";
 import Heart from "./Heart";
-import Colors from "./../../../common/Colors";
+import Colors from "../../../Components/Colors";
 import PropertyMap from './PropertyMap';
 
 export default class PropertySingle extends Component {

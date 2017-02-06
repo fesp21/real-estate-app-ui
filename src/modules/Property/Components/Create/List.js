@@ -3,7 +3,7 @@
  */
 import React, {PropTypes, Component} from "react";
 import {ScrollView,View, StyleSheet, Text, Image, ListView, TouchableHighlight} from "react-native";
-import Colors from "./../../../../common/Colors";
+import Colors from "../../../../Components/Colors";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class List extends Component {

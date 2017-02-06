@@ -7,7 +7,7 @@ import PropertyIcons from './PropertyIcons';
 import PropertyTags from './PropertyTags';
 import Swiper from 'react-native-swiper';
 import Heart from './Heart';
-import LoadingIndicator from './../../../common/LoadingIndicator';
+import LoadingIndicator from '../../../Components/LoadingIndicator';
 
 export default class CommentList extends Component {
 

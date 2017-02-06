@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from "react";
 import {ScrollView, View, StyleSheet, StatusBar, Text, TouchableWithoutFeedback, TextInput} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Colors from "./../../../common/Colors";
-import Separator from './../../../common/Separator';
+import Colors from "../../../Components/Colors";
+import Separator from '../../../Components/Separator';
 import { GOOGLE_MAPS_KEY } from './../../../env.js';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 

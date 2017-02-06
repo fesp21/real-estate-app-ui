@@ -10,12 +10,9 @@ import { ACTIONS as AUTH_ACTIONS } from './../../modules/Auth/actions';
 import { ACTIONS as PROPERTY_ACTIONS } from './../../modules/Property/actions';
 import isEmpty from 'lodash/isEmpty';
 import List from './Components/SettingList';
-class SettingList extends Component {
+import EditProfile from './Components/EditProfile';
 
-  constructor() {
-    super();
-    this.loadEntity = this.loadEntity.bind(this);
-  }
+class SettingList extends Component {
 
   static route = {
     navigationBar: {
@@ -23,9 +20,13 @@ class SettingList extends Component {
     },
   };
 
-  loadEntity(route = null) {
-    const { navigator,navigation } = this.props;
+  loadScene = (route = null) => {
+    const { navigator,navigation,user } = this.props;
     switch (route) {
+      case 'user':
+        return navigation.getNavigator('root').push(Router.getRoute('user',{
+          user
+        }));
       case 'propertyCreate':
         return  navigation.performAction(({ tabs, stacks }) => {
           tabs('homeTab').jumpToTab('third');
@@ -59,16 +60,25 @@ class SettingList extends Component {
     const {isAuthenticated} = this.props;
     return (
       <ScrollView style={styles.container}>
+
+
+        {
+          isAuthenticated &&
+          <EditProfile
+            loadScene = {this.loadScene}
+          />
+        }
+
         <List
           title = "Upload Property"
           route="propertyCreate"
-          loadEntity = {this.loadEntity}
+          loadScene = {this.loadScene}
           icon="plus-square-o"
         />
         <List
           title = "Invite friends"
           route="inviteFriends"
-          loadEntity = {this.loadEntity}
+          loadScene = {this.loadScene}
           icon="user-plus"
         />
 
@@ -77,7 +87,7 @@ class SettingList extends Component {
             <List
               title = "Logout"
               route="logout"
-              loadEntity = {this.loadEntity}
+              loadScene = {this.loadScene}
               icon="key"
             />
 
@@ -85,7 +95,7 @@ class SettingList extends Component {
             <List
               title = "Login"
               route="login"
-              loadEntity = {this.loadEntity}
+              loadScene = {this.loadScene}
               icon="key"
             />
         }
@@ -100,8 +110,7 @@ const styles =  StyleSheet.create({
     flex: 1,
     paddingTop: 64,
     backgroundColor:'white',
-    margin:10,
-    marginTop:20
+    margin:20,
   }
 });
 
@@ -111,7 +120,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    isAuthenticated:AUTH_SELECTORS.isAuthenticated(state)
+    isAuthenticated:AUTH_SELECTORS.isAuthenticated(state),
+    user:AUTH_SELECTORS.getCurrentUser(state)
   }
 }
 

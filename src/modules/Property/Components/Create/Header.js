@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {View,StyleSheet, Text } from 'react-native';
-import Colors from './../../../../common/Colors';
+import Colors from '../../../../Components/Colors';
 
 export default class Header extends React.Component {
 

@@ -5,7 +5,7 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, Text, Image,ListView,TouchableHighlight,TextInput } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from './../../../../common/Colors';
+import Colors from '../../../../Components/Colors';
 
 export default class Stage7 extends React.Component {
 

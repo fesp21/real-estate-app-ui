@@ -3,7 +3,7 @@
  */
 import React, { PropTypes, Component } from 'react';
 import { View, StyleSheet, Text, Image,ListView,TouchableHighlight,Dimensions } from 'react-native';
-import Colors from './../../../../common/Colors';
+import Colors from '../../../../Components/Colors';
 
 export default class List extends Component {
 

@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import Colors from './../../../common/Colors';
+import Colors from '../../../Components/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class UserInfo extends Component {

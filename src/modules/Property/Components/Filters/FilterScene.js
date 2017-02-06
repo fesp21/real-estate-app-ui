@@ -3,10 +3,10 @@
  */
 import React, { PropTypes, Component } from 'react';
 import { ScrollView,View, StyleSheet, Text, TouchableHighlight,TouchableWithoutFeedback } from 'react-native';
-import Colors from './../../../../common/Colors';
+import Colors from '../../../../Components/Colors';
 import List from './List';
 import Button from './Button';
-import Separator from './../../../../common/Separator';
+import Separator from '../../../../Components/Separator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import isEmpty from 'lodash/isEmpty';
 

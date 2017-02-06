@@ -6,7 +6,7 @@ import { NavigationStyles } from '@exponent/ex-navigation';
 import Router from './lib/router';
 import Store from './lib/store';
 import CodePush from 'react-native-code-push';
-import Colors from './common/Colors';
+import Colors from './Components/Colors';
 import { CODEPUSH_ENABLED } from './env';
 
 const navigationContext = new NavigationContext({

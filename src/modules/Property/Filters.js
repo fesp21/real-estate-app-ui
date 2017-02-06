@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import { SELECTORS } from './selectors';
-import NavBack from './../../common/NavBack';
-import Done from './../../common/Done';
+import NavBack from '../../Components/NavBack';
+import Done from '../../Components/Done';
 import FiltersScene from './Components/Filters/FilterScene';
 import SearchScene from './Components/SearchScene';
-import Colors from './../../common/Colors';
+import Colors from '../../Components/Colors';
 
 class PropertyFilters extends Component {
 

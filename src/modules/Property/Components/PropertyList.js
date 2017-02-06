@@ -7,8 +7,8 @@ import PropertyIcons from './PropertyIcons';
 import PropertyTags from './PropertyTags';
 import Swiper from 'react-native-swiper';
 import Heart from './Heart';
-import LoadingIndicator from './../../../common/LoadingIndicator';
-import Colors from './../../../common/Colors';
+import LoadingIndicator from '../../../Components/LoadingIndicator';
+import Colors from '../../../Components/Colors';
 
 export default class PropertyListing extends Component {
 

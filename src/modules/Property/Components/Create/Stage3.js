@@ -14,7 +14,7 @@ import {
   TextInput
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Colors from "./../../../../common/Colors";
+import Colors from "../../../../Components/Colors";
 import Footer from "./Footer";
 import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
 import {

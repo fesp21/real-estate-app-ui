@@ -5,7 +5,7 @@ import UserLogo from './UserLogo';
 import Contact from './Contact';
 import PropertyListing from './../../../modules/Property/Components/PropertyList';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import Colors from './../../../common/Colors';
+import Colors from '../../../Components/Colors';
 
 export default class UserProfile extends Component {
 
