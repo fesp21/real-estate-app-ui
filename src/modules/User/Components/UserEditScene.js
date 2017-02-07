@@ -33,7 +33,7 @@ export default class UserEditScene extends Component {
               style={styles.logo}
             />
             :
-            !isNull(user.image) ?
+            user.image ?
               <Image
                 source={{uri:user.image}}
                 style={styles.logo}

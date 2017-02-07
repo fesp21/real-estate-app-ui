@@ -16,10 +16,21 @@ export default class UserLogo extends Component {
 
     return (
       <View style={styles.container}>
-        <Image
-          source={{uri:"http://www.propertyhaat.in/images/propertyicon.png"}}
-          style={styles.logo}
-          />
+        {
+          user.image ?
+            <Image
+              source={{uri:user.image}}
+              style={styles.logo}
+              resizeMode="cover"
+            />
+            :
+            <FontAwesome
+              name="picture-o"
+              color="white"
+              size={200}
+              style={styles.emptyImageIcon}
+            />
+        }
         <Text style={styles.username}>{user.name}</Text>
       </View>
 
@@ -38,10 +49,11 @@ const styles =  StyleSheet.create({
     fontSize:20,
     fontWeight:'700',
     color:Colors.darkGrey,
-
+    paddingTop:20,
   },
   logo:{
-    height:100,
-    width:100,
+    height:80,
+    width:80,
+    borderRadius:40
   }
 });

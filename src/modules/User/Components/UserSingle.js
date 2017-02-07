@@ -17,11 +17,21 @@ export default class UserSingle extends Component {
 
     return (
       <View style={styles.container}>
-
-        <Image
-          source={{uri:user.image}}
-          style={styles.logo}
-        />
+        {
+          user.image ?
+            <Image
+              source={{uri:user.image}}
+              style={styles.logo}
+              resizeMode="cover"
+            />
+            :
+            <FontAwesome
+              name="picture-o"
+              color="white"
+              size={200}
+              style={styles.emptyImageIcon}
+            />
+        }
 
         <View style={styles.editIconWrapper}>
           <TouchableHighlight
@@ -67,12 +77,17 @@ const styles =  StyleSheet.create({
     color:Colors.smokeGreyDark
   },
   logo:{
-    height:150,
+    height:200,
     width:Dimensions.get('window').width,
+  },
+  emptyImageIcon:{
+    height:200,
+    backgroundColor:Colors.smokeGreyLight,
+    textAlign:'center',
   },
   editIconWrapper:{
     position:'absolute',
-    top:150,
+    top:200,
     right:15,
     marginTop:-20,
     height:40,

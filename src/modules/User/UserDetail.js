@@ -17,11 +17,9 @@ class UserDetail extends Component {
 
   editUser = () => {
     const {user,navigation,navigator} = this.props;
-
     return navigation.getNavigator('rootStack').push(navigator.router.getRoute('userEdit',{
       user
     }));
-
   };
 
   render() {
@@ -42,8 +40,10 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators({ ...ACTIONS }, dispatch) }
 }
 
-function mapStateToProps(state) {
-  return {}
+function mapStateToProps(state,props) {
+  return {
+    user:SELECTORS.getUser(state,props)
+  }
 }
 
 const styles = StyleSheet.create({

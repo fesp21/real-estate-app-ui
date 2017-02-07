@@ -37,12 +37,24 @@ export default class EditProfile extends Component {
             <Text style={styles.username}>{user.name}</Text>
             <Text style={styles.hint}>View and edit profile</Text>
           </View>
+
+
           <View style={styles.rightCol}>
-            <FontAwesome
-              name="user-circle-o"
-              color={Colors.smokeGreyDark}
-              size={80}
-            />
+            {
+              user.image ?
+                <Image
+                  source={{uri:user.image}}
+                  style={styles.logo}
+                  resizeMode="cover"
+                />
+                :
+                <FontAwesome
+                  name="user-circle-o"
+                  color={Colors.smokeGreyDark}
+                  size={80}
+                />
+            }
+
           </View>
         </View>
       </TouchableHighlight>
@@ -79,5 +91,10 @@ const styles =  StyleSheet.create({
   },
   icon:{
     fontWeight:'100',
+  },
+  logo:{
+    height:80,
+    width:80,
+    borderRadius:40
   }
 });

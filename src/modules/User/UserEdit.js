@@ -7,6 +7,7 @@ import UserEditScene from './Components/UserEditScene';
 import NavBack from './../../Components/NavBack';
 import Done from './../../Components/Done';
 import ImagePicker from "react-native-image-crop-picker";
+import { SELECTORS } from './selectors';
 
 class UserEdit extends Component {
 
@@ -121,8 +122,10 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators({ ...ACTIONS }, dispatch) }
 }
 
-function mapStateToProps(state) {
-  return {}
+function mapStateToProps(state,props) {
+  return {
+    user:SELECTORS.getUser(state,props)
+  }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(UserEdit);
