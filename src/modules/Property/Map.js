@@ -21,11 +21,6 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const modalStyle = {
   ...NavigationStyles.SlideVertical,
-  sceneAnimations: (props) => {
-    return {
-      backgroundColor: 'white',
-    };
-  }
 };
 
 class PropertyMap extends Component {
@@ -38,7 +33,8 @@ class PropertyMap extends Component {
       },
       style:{...modalStyle},
       tintColor: "#2c2d30",
-      renderLeft: (route, props) => <NavBack text="Cancel" style={{ fontSize:13 }} />
+      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
+      renderLeft: (route, props) => <NavBack icon="ios-close"  />
     },
   };
 
@@ -53,10 +49,10 @@ class PropertyMap extends Component {
 
   onRegionChange = (region) => {
     // console.log('region',region);
-  }
+  };
 
   followLocation = (location) => {
-  }
+  };
 
   render() {
     const { properties } = this.props;
