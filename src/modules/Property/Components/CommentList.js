@@ -10,12 +10,7 @@ export default class CommentList extends Component {
     collection:PropTypes.array,
   };
 
-  constructor(props) {
-    super(props);
-    this.renderRow = this.renderRow.bind(this);
-  }
-
-  renderRow(item) {
+  renderRow = (item) => {
     return (
       <View key={item._id} style={styles.rowContainer}>
         <View style={styles.row}>
@@ -23,7 +18,7 @@ export default class CommentList extends Component {
         </View>
       </View>
     )
-  }
+  };
 
   render() {
     const {collection = []} = this.props;

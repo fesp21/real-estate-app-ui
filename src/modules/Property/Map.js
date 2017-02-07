@@ -30,12 +30,6 @@ const modalStyle = {
 
 class PropertyMap extends Component {
 
-  constructor() {
-    super();
-    this.onRegionChange = this.onRegionChange.bind(this);
-    this.followLocation = this.followLocation.bind(this);
-  }
-
   static route = {
     navigationBar: {
       title: 'Properties',
@@ -57,17 +51,11 @@ class PropertyMap extends Component {
     }
   };
 
-
-  componentDidMount() {
-    this.props.actions.fetchProperties();
-  }
-
-
-  onRegionChange(region) {
+  onRegionChange = (region) => {
     // console.log('region',region);
   }
 
-  followLocation(location) {
+  followLocation = (location) => {
   }
 
   render() {
