@@ -11,7 +11,13 @@ function updateUser(body, urlParams) {
   return fetchAPI(url, 'POST', body);
 }
 
+function uploadImage(body, urlParams) {
+  const url = `${API_URL}/users/image/upload?${urlParams}`;
+  return fetchAPI(url, 'POST', body, true);
+}
+
 export const API = {
   fetchUser,
-  updateUser
+  updateUser,
+  uploadImage
 };

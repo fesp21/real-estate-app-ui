@@ -17,17 +17,23 @@ export default class UserEditScene extends Component {
     image:PropTypes.string,
     description:PropTypes.string,
     address:PropTypes.string,
+    uploaded:PropTypes.bool.isRequired
   };
 
   render() {
-    const {user,pickImage,name,image,onFieldChange,description,address} = this.props;
+    const {user,uploaded,pickImage,onFieldChange,name,image,description,address} = this.props;
 
     return (
       <ScrollView style={styles.container}>
 
         {
-          isNull(image) ?
-            user.image ?
+          uploaded ?
+            <Image
+              source={{uri:image}}
+              style={styles.logo}
+            />
+            :
+            !isNull(user.image) ?
               <Image
                 source={{uri:user.image}}
                 style={styles.logo}
@@ -39,11 +45,6 @@ export default class UserEditScene extends Component {
                 size={200}
                 style={styles.emptyImageIcon}
               />
-            :
-            <Image
-              source={{uri:image}}
-              style={styles.logo}
-            />
         }
 
         <View style={styles.editIconWrapper}>

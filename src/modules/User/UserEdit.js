@@ -15,6 +15,7 @@ class UserEdit extends Component {
   };
 
   state = {
+    uploaded:false,
     image: null,
     name:null,
     company: {
@@ -89,7 +90,8 @@ class UserEdit extends Component {
       })
       .then(image => {
         this.setState({
-          image:image.path
+          image:image.path,
+          uploaded:true
         });
       })
       .catch(e => {});
@@ -97,6 +99,7 @@ class UserEdit extends Component {
 
   onSave = () => {
     this.props.actions.updateUser(this.state);
+    this.props.navigator.pop();
   };
 
   render() {
@@ -121,17 +124,5 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {}
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop:64,
-  },
-  page: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default connect(mapStateToProps,mapDispatchToProps)(UserEdit);

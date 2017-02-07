@@ -3,6 +3,7 @@ import { appReducer } from '../bootstrap';
 import { propertyReducer } from '../modules/Property/reducer';
 import { ormReducer } from './ormReducer';
 import { authReducer } from '../modules/Auth/reducer';
+import { userReducer } from '../modules/User/reducer';
 import { NavigationReducer } from '@exponent/ex-navigation';
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   authReducer,
   propertyReducer,
   ormReducer,
+  userReducer
 });
 
 export default rootReducer;

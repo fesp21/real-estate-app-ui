@@ -1,5 +1,4 @@
 import { ACTION_TYPES } from './actions';
-import schema from '../../lib/schema';
 
 const initialState = {
   isFetching: false,
@@ -19,15 +18,4 @@ export function userReducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-// @todo: move to separate file
-export function userORM(state, action) {
-  const session = schema.session(state);
-  const { User } = session;
-  switch (action.type) {
-    default:
-      break;
-  }
-  return session.state;
 }
