@@ -5,38 +5,50 @@ import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, Dimensions, Image } from 'react-native';
 import Colors from '../../../Components/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import isNull from 'lodash/isNull';
 
 export default class UserEditScene extends Component {
 
   static propTypes = {
     user:PropTypes.object.isRequired,
+    pickImage:PropTypes.func.isRequired,
+    onFieldChange:PropTypes.func.isRequired,
+    name:PropTypes.string,
+    image:PropTypes.string,
+    description:PropTypes.string,
+    address:PropTypes.string,
   };
 
   render() {
-    const {user,loadScene} = this.props;
-
-    const userLogo = require('./../../../../assets/login-bg.png');
+    const {user,pickImage,name,image,onFieldChange,description,address} = this.props;
 
     return (
       <ScrollView style={styles.container}>
 
         {
-          !user.image ?
-            <Image
-              source={{uri:user.image}}
-              style={styles.logo}
-            />
+          isNull(image) ?
+            user.image ?
+              <Image
+                source={{uri:user.image}}
+                style={styles.logo}
+              />
+              :
+              <FontAwesome
+                name="picture-o"
+                color='white'
+                size={200}
+                style={styles.emptyImageIcon}
+              />
             :
             <Image
-              source={userLogo}
+              source={{uri:image}}
               style={styles.logo}
             />
         }
 
-
         <View style={styles.editIconWrapper}>
           <TouchableHighlight
-            onPress={loadScene}
+            onPress={pickImage}
             underlayColor="transparent"
           >
             <FontAwesome
@@ -50,38 +62,44 @@ export default class UserEditScene extends Component {
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.label}>Name</Text>
+          <Text style={styles.label}>{user.isCompany ? 'Company Name' : 'Name'}</Text>
           <TextInput
             style={styles.textInput}
             defaultValue={user.name}
-            onChange={(text)=>{}}
+            onChangeText={(text)=>onFieldChange('name',text)}
             placeholder="Name"
             placeholderTextColor={Colors.lightGrey}
           />
-
           <View style={styles.separator}/>
 
-          <Text style={styles.label}>Description</Text>
-          <TextInput
-            style={styles.textInput}
-            defaultValue={user.description}
-            onChange={(text)=>{}}
-            multiline={true}
-            placeholder="Description"
-            placeholderTextColor={Colors.lightGrey}
-          />
-          <View style={styles.separator}/>
+          {user.isCompany &&
 
-          <Text style={styles.label}>Address</Text>
-          <TextInput
-            style={styles.textInput}
-            defaultValue={user.address}
-            onChange={(text)=>{}}
-            placeholder="Address"
-            placeholderTextColor={Colors.lightGrey}
-          />
+          <View style={{flex:1}}>
 
-          <View style={styles.separator}/>
+            <Text style={styles.label}>Company Description</Text>
+            <TextInput
+              style={styles.textInput}
+              defaultValue={user.company.description}
+              onChangeText={(text)=>onFieldChange('description',text)}
+              multiline={true}
+              placeholder="Description"
+              placeholderTextColor={Colors.lightGrey}
+            />
+            <View style={styles.separator}/>
+
+            <Text style={styles.label}>Company Address</Text>
+            <TextInput
+              style={styles.textInput}
+              defaultValue={user.company.address}
+              onChangeText={(text)=>onFieldChange('address',text)}
+              placeholder="Address"
+              placeholderTextColor={Colors.lightGrey}
+              multiline={true}
+            />
+
+            <View style={styles.separator}/>
+          </View>
+          }
 
         </View>
 
@@ -112,6 +130,11 @@ const styles =  StyleSheet.create({
   logo:{
     height:200,
     width:Dimensions.get('window').width,
+  },
+  emptyImageIcon:{
+    height:200,
+    backgroundColor:Colors.smokeGreyLight,
+    textAlign:'center',
   },
   editIconWrapper:{
     position:'absolute',

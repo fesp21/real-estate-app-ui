@@ -131,6 +131,6 @@ export function* propertyFavoriteMonitor() {
   yield takeLatest(ACTION_TYPES.PROPERTY_FAVORITE_REQUEST, favoriteProperty);
 }
 
-export function* saveMonitor() {
+export function* propertySaveMonitor() {
   yield takeLatest(ACTION_TYPES.PROPERTY_SAVE_REQUEST, saveProperty);
 }

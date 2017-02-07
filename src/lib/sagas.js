@@ -1,11 +1,12 @@
 import { fork } from 'redux-saga/effects';
 import { bootstrapMonitor, changeCountryMonitor } from '../bootstrap';
 import { loginMonitor, logoutMonitor, registerMonitor } from '../modules/Auth/sagas';
+import { userUpdateMonitor } from '../modules/User/sagas';
 import {
   propertyMonitor,
   favoriteMonitor,
   propertyFavoriteMonitor,
-  saveMonitor,
+  propertySaveMonitor,
 } from '../modules/Property/sagas';
 
 export default function* rootSaga() {
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     fork(propertyMonitor),
     fork(favoriteMonitor),
     fork(propertyFavoriteMonitor),
-    fork(saveMonitor),
+    fork(propertySaveMonitor),
+    fork(userUpdateMonitor),
   ];
 }

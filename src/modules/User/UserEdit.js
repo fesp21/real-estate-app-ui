@@ -3,15 +3,24 @@ import { ScrollView,StyleSheet, View, Dimensions,Image,Text } from 'react-native
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
-import { SELECTORS } from './selectors';
 import UserEditScene from './Components/UserEditScene';
 import NavBack from './../../Components/NavBack';
 import Done from './../../Components/Done';
+import ImagePicker from "react-native-image-crop-picker";
 
 class UserEdit extends Component {
 
   static propTypes = {
     user:PropTypes.object.isRequired
+  };
+
+  state = {
+    image: null,
+    name:null,
+    company: {
+      address:null,
+      description:null,
+    },
   };
 
   static route = {
@@ -30,42 +39,76 @@ class UserEdit extends Component {
     }
   };
 
+  componentDidMount() {
+    const {user} = this.props;
+    this.setState({
+      image:user.image,
+      name:user.name,
+    });
+    if(user.isCompany){
+      this.setState({
+        company:{
+          address:user.company.address,
+          description:user.company.description,
+        }
+      });
+    }
+  }
+
   componentWillMount() {
-    this._subscription = this.props.route.getEventEmitter().addListener('reset', this.handleReset);
+    this._subscription = this.props.route.getEventEmitter().addListener('reset', this.onSave);
   }
 
   componentWillUnmount() {
     this._subscription.remove();
   }
 
-  state = {
-  };
-
-  handleReset = () => {
-    console.log('done');
-  };
-
-  editUser = () => {
-    const {user,navigation,navigator} = this.props;
-    return navigation.getNavigator('rootStack').push(navigator.router.getRoute('userEdit',{
-      user
-    }));
-
+  onFieldChange = (key,value) => {
+    switch (key) {
+      case 'address':
+      case 'description':
+        this.setState({
+          company : {
+            ...this.state.company,
+            [key]:value
+          }
+        });
+        break;
+      default :
+        this.setState({
+          [key]: value
+        });
+    }
   };
 
   pickImage = () => {
 
+    ImagePicker
+      .openPicker({
+        multiple: false
+      })
+      .then(image => {
+        this.setState({
+          image:image.path
+        });
+      })
+      .catch(e => {});
+  };
+
+  onSave = () => {
+    this.props.actions.updateUser(this.state);
   };
 
   render() {
     const {user} = this.props;
     return (
-
       <UserEditScene
         user={user}
-        loadScene={this.pickImage}
+        pickImage={this.pickImage}
+        onFieldChange={this.onFieldChange}
+        {...this.state}
+        onSave={this.onSave}
       />
-
     );
   }
 

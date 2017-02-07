@@ -6,6 +6,12 @@ function fetchUser(id, params) {
   return fetchAPI(url);
 }
 
+function updateUser(body, urlParams) {
+  const url = `${API_URL}/users/edit?${urlParams}`;
+  return fetchAPI(url, 'POST', body);
+}
+
 export const API = {
   fetchUser,
+  updateUser
 };
