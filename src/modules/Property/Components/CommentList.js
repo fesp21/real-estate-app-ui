@@ -2,12 +2,7 @@
  @flow
  */
 import React, { Component, PropTypes } from 'react';
-import { View, ListView, StyleSheet, StatusBar, Text, TouchableHighlight, TouchableWithoutFeedback, Dimensions, Image, RefreshControl } from 'react-native';
-import PropertyIcons from './PropertyIcons';
-import PropertyTags from './PropertyTags';
-import Swiper from 'react-native-swiper';
-import Heart from './Heart';
-import LoadingIndicator from '../../../Components/LoadingIndicator';
+import { View, ListView, StyleSheet, StatusBar, Text, TouchableHighlight, Image } from 'react-native';
 
 export default class CommentList extends Component {
 
