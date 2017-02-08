@@ -1,5 +1,5 @@
 import { fork } from 'redux-saga/effects';
-import { bootstrapMonitor, changeCountryMonitor } from '../bootstrap';
+import { bootstrapMonitor, changeCountryMonitor } from '../modules/App/sagas';
 import { loginMonitor, logoutMonitor, registerMonitor } from '../modules/Auth/sagas';
 import { userUpdateMonitor } from '../modules/User/sagas';
 import {

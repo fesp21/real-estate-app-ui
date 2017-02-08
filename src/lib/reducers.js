@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { appReducer } from '../bootstrap';
+import { appReducer } from '../modules/App/reducer';
 import { propertyReducer } from '../modules/Property/reducer';
 import { ormReducer } from './ormReducer';
 import { authReducer } from '../modules/Auth/reducer';

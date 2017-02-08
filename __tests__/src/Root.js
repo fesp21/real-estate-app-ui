@@ -1,10 +1,16 @@
 // __tests__/Intro-test.js
 import 'react-native';
 import React from 'react';
+import renderer from 'react-test-renderer';
 import Root from '../../src/Root';
+import MockStorage from '../helpers/MockStorage';
+
+const storageCache = {};
+const AsyncStorage = new MockStorage(storageCache);
+
+jest.setMock('AsyncStorage', AsyncStorage);
 
 // Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 test('renders Root Component', () => {
   const tree = renderer.create(

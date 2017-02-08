@@ -38,7 +38,7 @@ exports[`test renders Root Component 1`] = `
           pointerEvents="auto"
           style={
             Object {
-              "backgroundColor": "transparent",
+              "backgroundColor": "white",
               "bottom": 0,
               "left": 0,
               "opacity": 1,
@@ -49,7 +49,7 @@ exports[`test renders Root Component 1`] = `
                 "height": 0,
                 "width": 0,
               },
-              "shadowOpacity": 0,
+              "shadowOpacity": 0.4,
               "shadowRadius": 10,
               "top": 0,
               "transform": Array [
@@ -58,9 +58,6 @@ exports[`test renders Root Component 1`] = `
                 },
                 Object {
                   "translateY": 0,
-                },
-                Object {
-                  "scale": 1,
                 },
               ],
             }

@@ -34,18 +34,20 @@ export function* fetchProperties(action) {
 
     // set if there is no next page
     if (nextPageUrl === null) {
-      return yield put({ type: ACTION_TYPES.PROPERTY_FAILURE, error: 'No Results' });
-    }
-
-    // initial query
-    if (nextPageUrl === undefined) {
-      urlParams = isEmpty(action.params) || action.params === undefined ? `/?${params}` : `/?${action.params}&${params}`;
+      yield put({ type: ACTION_TYPES.PROPERTY_FAILURE, error: 'No Results' });
     } else {
-      urlParams = nextPageUrl;
+      // initial query
+      if (nextPageUrl === undefined) {
+        urlParams = isEmpty(action.params) || action.params === undefined ? `/?${params}` : `/?${action.params}&${params}`;
+      } else {
+        urlParams = nextPageUrl;
+      }
+
+      const response = yield call(API.fetchProperties, urlParams);
+      yield put({ type: ACTION_TYPES.PROPERTY_SUCCESS, payload: response.data });
     }
 
-    const response = yield call(API.fetchProperties, urlParams);
-    yield put({ type: ACTION_TYPES.PROPERTY_SUCCESS, payload: response.data });
+
   } catch (error) {
     yield put({ type: ACTION_TYPES.PROPERTY_FAILURE, error });
   }

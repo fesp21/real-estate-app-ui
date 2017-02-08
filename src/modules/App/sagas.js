@@ -1,35 +1,12 @@
 import isNull from 'lodash/isNull';
 import { put, call, select, takeLatest } from 'redux-saga/effects';
-import { getItem as getStoredItem, setItem } from './lib/storage';
-import { API as AUTH_API, AUTH_STORAGE_KEY } from './modules/Auth/api';
-import { ACTION_TYPES as AUTH_ACTION_TYPES } from './modules/Auth/actions';
-import { fetchProperties } from './modules/Property/sagas';
-import { ACTION_TYPES } from './bootstrapActions';
+import { getItem as getStoredItem, setItem } from '../../lib/storage';
+import { API as AUTH_API, AUTH_STORAGE_KEY } from '../Auth/api';
+import { ACTION_TYPES as AUTH_ACTION_TYPES } from '../Auth/actions';
+import { fetchProperties } from '../Property/sagas';
+import { ACTION_TYPES } from './actions';
+import { COUNTRY_KEY } from './reducer';
 
-const COUNTRY_KEY = 'COUNTRY';
-const DEFAULT_COUNTRY = 'Kuwait';
-//
-
-// // reducer
-const initialState = {
-  bootstrapped: false,
-  country: DEFAULT_COUNTRY,
-};
-
-export function appReducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case ACTION_TYPES.BOOT_REQUEST :
-      return { ...state, bootstrapped: false };
-    case ACTION_TYPES.BOOT_SUCCESS :
-      return { ...state, bootstrapped: true };
-    case ACTION_TYPES.COUNTRY_CHANGED :
-      return { ...state, country: action.country };
-    default:
-      return state;
-  }
-}
-
-// saga
 function* bootApp() {
   const token = yield call(getStoredItem, AUTH_STORAGE_KEY);
   let currentCountry = yield call(getStoredItem, COUNTRY_KEY);

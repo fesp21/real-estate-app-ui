@@ -2,12 +2,12 @@ import React,{ Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from "react-redux";
 import { StackNavigation, TabNavigation, TabNavigationItem } from '@exponent/ex-navigation';
-import Router from './lib/router';
+import Router from '../../lib/router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import NavBar from './Components/NavBar';
-import Colors from './Components/Colors';
-import { ACTIONS } from './bootstrapActions';
+import NavBar from '../../Components/NavBar';
+import Colors from '../../Components/Colors';
+import { ACTIONS } from './actions';
 
 class App extends Component {
 
@@ -127,11 +127,5 @@ function mapStateToProps(state) {
     authReducer:state.authReducer
   }
 }
-
-const styles = StyleSheet.create({
-  selectedTab: {
-    backgroundColor:'green'
-  }
-});
 
 export default connect(mapStateToProps)(App);

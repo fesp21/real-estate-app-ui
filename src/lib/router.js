@@ -1,5 +1,5 @@
 import { createRouter } from '@exponent/ex-navigation';
-import App from '../App';
+import App from '../modules/App/App';
 import Login from '../modules/Auth/Login';
 import Register from '../modules/Auth/Register';
 import PropertyList from '../modules/Property/List';

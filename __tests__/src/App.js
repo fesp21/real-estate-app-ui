@@ -1,19 +1,35 @@
-// __tests__/Intro-test.js
-import 'react-native';
-import React from 'react';
-import App from '../../src/App';
-import { Provider } from 'react-redux';
-import Store from './../../src/lib/store';
+import "react-native";
+import React from "react";
+import renderer from "react-test-renderer";
+import { ACTION_TYPES, ACTIONS } from './../../src/modules/App/actions';
+import { appReducer } from './../../src/modules/App/reducer';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+describe('App Component Actions', () => {
 
-test('renders App Component', () => {
-  const tree = renderer.create(
+  test('returns expected action', () => {
 
-    <Provider store={Store} >
-      <App />
-    </Provider>
-  ).toJSON();
-  expect(tree).toMatchSnapshot();
+    const expected = {
+      type: ACTION_TYPES.BOOT_REQUEST
+    };
+
+    const actual = ACTIONS.boot();
+    expect(actual).toEqual(expected);
+  });
+
+});
+
+
+describe('App Component Store', () => {
+
+  const initialState = {
+      bootstrapped : false,
+      country: 'Kuwait'
+  };
+
+  test('should return the initial state', () => {
+    expect(
+      appReducer(initialState, {type:'UNDEFINED'})
+    ).toEqual(initialState)
+  })
+
 });

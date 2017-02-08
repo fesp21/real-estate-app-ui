@@ -2093,6 +2093,10 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
+flow-bin@^0.38.0:
+  version "0.38.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.38.0.tgz#3ae096d401c969cc8b5798253fb82381e2d0237a"
+
 for-in@^0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.6.tgz#c9f96e89bfad18a545af5ec3ed352a1d9e5b4dc8"
@@ -3808,12 +3812,6 @@ react-native-google-places-autocomplete@FaridSafi/react-native-google-places-aut
   dependencies:
     qs "^5.2.0"
 
-react-native-google-places-autocomplete@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/react-native-google-places-autocomplete/-/react-native-google-places-autocomplete-1.2.6.tgz#beec0ec527b26bceb611f2675e757f7b0d3c4b0f"
-  dependencies:
-    qs "^5.2.0"
-
 react-native-image-crop-picker@^0.11.2:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.11.2.tgz#bf68d48b970b4490561760b2671db611f32fe3ed"
@@ -4059,6 +4057,10 @@ redux-logger@^2.7.4:
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-2.7.4.tgz#891e5d29e7f111d08b5781a237b9965b5858c7f8"
   dependencies:
     deep-diff "0.3.4"
+
+redux-mock-store@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.2.2.tgz#38007dc38f12ca8d965c7521afee5ccacc234d03"
 
 redux-orm@^0.9.0-rc.3:
   version "0.9.0-rc.3"
