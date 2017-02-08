@@ -19,6 +19,7 @@ import Header from "./components/create/Header";
 import Footer from "./components/create/Footer";
 import get from "lodash/get";
 import map from "lodash/map";
+import { resolveCountryName } from './../common/functions';
 
 class PropertyCreate extends Component {
   static route = {
@@ -226,7 +227,7 @@ class PropertyCreate extends Component {
         <Stage3
           path="attributes"
           index="address"
-          country="KW"
+          country={country}
           stage={stage}
           header={<Header title="What city is your Apartment located in ?" />}
           category="Apartment"
@@ -285,7 +286,7 @@ function mapStateToProps(state) {
     categories: SELECTORS.getCategories(state),
     types: SELECTORS.getTypes(state),
     amenities: SELECTORS.getAmenities(state),
-    country: state.appReducer.country
+    country: resolveCountryName(state.appReducer.country)
   };
 }
 

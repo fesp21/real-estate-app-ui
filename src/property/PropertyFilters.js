@@ -3,15 +3,16 @@
  */
 import React, { PropTypes, Component } from 'react';
 import { View } from 'react-native';
-import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { ACTIONS } from './common/actions';
-import { SELECTORS } from './common/selectors';
 import NavBack from '../components/NavBack';
 import Done from '../components/Done';
 import FiltersScene from './components/filters/FilterScene';
 import SearchScene from './components/SearchScene';
 import colors from './../common/colors';
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { ACTIONS } from './common/actions';
+import { SELECTORS } from './common/selectors';
+import { resolveCountryName } from './../common/functions';
 
 class PropertyFilters extends Component {
 
@@ -19,20 +20,6 @@ class PropertyFilters extends Component {
     searchMode:false,
     navigatedBack:false // @hack to fix navbar issue
   };
-
-  constructor() {
-    super();
-    this.onPriceFromSelect = this.onPriceFromSelect.bind(this);
-    this.onPriceToSelect = this.onPriceToSelect.bind(this);
-    this.onIncrementDecrement = this.onIncrementDecrement.bind(this);
-    this.search = this.search.bind(this);
-    this.onCategorySelect = this.onCategorySelect.bind(this);
-    this.onSortSelect = this.onSortSelect.bind(this);
-    this.onSearch = this.onSearch.bind(this);
-    this.showSearch = this.showSearch.bind(this);
-    this.setSearchMode = this.setSearchMode.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
 
   static route = {
     navigationBar: {
@@ -71,44 +58,45 @@ class PropertyFilters extends Component {
     this._subscription.remove();
   }
 
-  handleReset() {
+  handleReset = () => {
     this.setState({
       searchMode:false
     });
   };
 
-  onCategorySelect(value) {
+  onCategorySelect = (value) => {
     this.props.actions.changeFormValue('category',value);
-  }
+  };
 
-  onPriceFromSelect(value) {
+  onPriceFromSelect = (value) => {
     this.props.actions.changeFormValue('priceFrom',value);
-  }
-  onPriceToSelect(value) {
+  };
+
+  onPriceToSelect = (value) => {
     this.props.actions.changeFormValue('priceTo',value);
-  }
+  };
 
-  onSortSelect(value) {
+  onSortSelect = (value) => {
     this.props.actions.changeFormValue('sortBy',value);
-  }
+  };
 
-  onSearch(value) {
+  onSearch = (value) => {
     this.props.actions.changeFormValue('searchString',value);
-  }
+  };
 
-  showSearch() {
+  showSearch = () => {
     return this.setState({
       searchMode:true
-    })
-  }
+    });
+  };
 
-  setSearchMode(bool:boolean) {
+  setSearchMode = (value :boolean) => {
     return this.setState({
-      searchMode:bool
-    })
-  }
+      searchMode:value
+    });
+  };
 
-  onIncrementDecrement(action, type) {
+  onIncrementDecrement = (action, type) => {
     let arrayIndex,selectedValue;
 
     const {filters} = this.props;
@@ -140,14 +128,14 @@ class PropertyFilters extends Component {
     }
 
     this.props.actions.changeFormValue(field,selectedValue);
-  }
+  };
 
-  search() {
+  search = () => {
     this.setState({navigatedBack:true});
     this.props.actions.invalidateProperty();
     this.props.actions.fetchProperties();
     return this.props.navigator.pop();
-  }
+  };
 
   render() {
     const { categories,filters,country } = this.props;
@@ -159,7 +147,7 @@ class PropertyFilters extends Component {
             <SearchScene
               searchString={this.props.filters.searchString}
               onSearch={this.onSearch}
-              country="KW"
+              country={country}
             />
             :
             <FiltersScene
@@ -190,7 +178,7 @@ function mapStateToProps(state) {
     properties:SELECTORS.fetchProperties(state),
     categories:SELECTORS.getCategoriesWithAny(state),
     filters:SELECTORS.getFilters(state),
-    country:state.appReducer.country
+    country:resolveCountryName(state.appReducer.country)
   }
 }
 
