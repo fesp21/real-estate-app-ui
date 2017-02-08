@@ -17,10 +17,16 @@ const payload =
     ]
   };
 
-describe('propertyReducer', () => {
+describe('Property Component Store', () => {
+
+  // test('');
+
   test('adds property ids to results array after fetching property', ()=> {
     expect(propertyReducer(initialState, {type: 'PROPERTY_SUCCESS',payload:payload})).toEqual({
       ...initialState,results:['589721ccf7415600dc786661'],"nextPageUrl": null
     });
   });
+
+
+
 });

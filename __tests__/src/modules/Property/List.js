@@ -10,7 +10,6 @@ import renderer from 'react-test-renderer';
 
 test('renders PropertyList Component', () => {
   const tree = renderer.create(
-
     <Provider store={Store} >
       <PropertyList />
     </Provider>

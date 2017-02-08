@@ -68,7 +68,6 @@ function changeListingValue(payload) {
 function resetFilter() {
   return {
     type: ACTION_TYPES.FILTER_RESET,
-    payload,
   };
 }
 

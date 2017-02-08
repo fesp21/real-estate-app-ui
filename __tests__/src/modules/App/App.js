@@ -1,8 +1,8 @@
 import "react-native";
 import React from "react";
 import renderer from "react-test-renderer";
-import { ACTION_TYPES, ACTIONS } from './../../src/modules/App/actions';
-import { appReducer } from './../../src/modules/App/reducer';
+import { ACTION_TYPES, ACTIONS } from '../../../../src/modules/App/actions';
+import { appReducer } from '../../../../src/modules/App/reducer';
 
 describe('App Component Actions', () => {
 
@@ -30,6 +30,24 @@ describe('App Component Store', () => {
     expect(
       appReducer(initialState, {type:'UNDEFINED'})
     ).toEqual(initialState)
-  })
+  });
+
+  test('app bootstraps', () => {
+    expect(
+      appReducer(initialState,{type:ACTION_TYPES.BOOT_SUCCESS})
+    ).toEqual({
+      bootstrapped:true,
+      country: 'Kuwait'
+    })
+  });
+
+  test('should change country', () => {
+    expect(
+      appReducer(initialState,{type:ACTION_TYPES.COUNTRY_CHANGED,country:'UAE'})
+    ).toEqual({
+      bootstrapped:false,
+      country: 'UAE'
+    })
+  });
 
 });

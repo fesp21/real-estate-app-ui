@@ -1,3 +1,5 @@
+/**@flow*/
+
 import React, { PropTypes,Component } from 'react';
 import { View, Dimensions, ActionSheetIOS, Linking } from 'react-native';
 import { connect } from "react-redux";
@@ -13,14 +15,6 @@ class PropertyDetail extends Component {
     actions:PropTypes.object.isRequired
   };
 
-  constructor(){
-    super();
-    this.saveComment = this.saveComment.bind(this);
-    this.onChangeCommentText = this.onChangeCommentText.bind(this);
-    this.handleFavoritePress = this.handleFavoritePress.bind(this);
-    this.loadProfile = this.loadProfile.bind(this);
-  }
-
   state = {
     commentBody:''
   };
@@ -29,20 +23,20 @@ class PropertyDetail extends Component {
     console.log('saving comment',this.state.commentBody);
   }
 
-  onChangeCommentText(value) {
+  onChangeCommentText = (value) => {
     return this.setState({commentBody:value});
-  }
+  };
 
-  handleFavoritePress(item:object) {
+  handleFavoritePress = (item:object) => {
     this.props.actions.favoriteProperty(item);
   }
 
-  loadProfile(user) {
+  loadProfile = (user:object) => {
     const {navigator} = this.props;
     return navigator.push(navigator.router.getRoute('profile',{
       user
     }));
-  }
+  };
 
   showSlider = () => {
     const {property} = this.props;

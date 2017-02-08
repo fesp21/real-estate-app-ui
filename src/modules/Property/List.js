@@ -11,22 +11,12 @@ import PropertyListing from './Components/PropertyList';
 import SearchBar from './Components/SearchBar';
 import MapView from './Components/MapView';
 
-const DOUBLE_PRESS_DELAY = 300;
 
 class PropertyList extends Component {
 
   state = {
     lastImagePress:0
   };
-
-  constructor() {
-    super();
-    this.loadEntity = this.loadEntity.bind(this);
-    this.onImagePress = this.onImagePress.bind(this);
-    this.handleFavoritePress = this.handleFavoritePress.bind(this);
-    this.fetchProperties = this.fetchProperties.bind(this);
-    this.handleFavoritePress = this.handleFavoritePress.bind(this);
-  }
 
   static propTypes = {
     properties:PropTypes.array.isRequired,
@@ -44,19 +34,21 @@ class PropertyList extends Component {
       this.props.actions.fetchProperties();
   }
 
-  loadEntity(item: object) {
+  loadEntity = (item: object) => {
     const { navigator } = this.props;
     navigator.push(navigator.router.getRoute('propertyDetail',{
       property:item
     }));
-  }
+  };
 
-  fetchProperties() {
+  fetchProperties = () => {
     this.props.actions.fetchProperties();
-  }
+  };
 
-  onImagePress(item: object) {
+  onImagePress = (item: object) => {
     const now = new Date().getTime();
+    const DOUBLE_PRESS_DELAY = 300;
+
     let delta = now - this.state.lastImagePress;
 
     if(delta < DOUBLE_PRESS_DELAY) {
@@ -64,11 +56,11 @@ class PropertyList extends Component {
       this.handleFavoritePress(item);
     }
     this.setState({lastImagePress: now});
-  }
+  };
 
-  handleFavoritePress(item:object) {
+  handleFavoritePress = (item:object) => {
     this.props.actions.favoriteProperty(item);
-  }
+  };
 
   render() {
     const { properties,isFetching } = this.props;
@@ -90,7 +82,6 @@ class PropertyList extends Component {
     );
   }
 
-
 }
 
 const styles =  StyleSheet.create({
@@ -106,7 +97,6 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    orm:state.dbReducer,
     properties:SELECTORS.fetchProperties(state),
     isFetching:SELECTORS.isFetching(state)
   }
