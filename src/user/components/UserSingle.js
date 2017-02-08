@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import Colors from '../../../Components/Colors';
+import colors from '../../common/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class UserSingle extends Component {
@@ -40,7 +40,7 @@ export default class UserSingle extends Component {
           >
             <FontAwesome
               name="pencil"
-              color={Colors.darkGrey}
+              color={colors.darkGrey}
               size={18}
               style={styles.editIcon}
             />
@@ -68,13 +68,13 @@ const styles =  StyleSheet.create({
   username:{
     fontSize:20,
     fontWeight:'700',
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
   },
   date: {
     paddingVertical:10,
     fontSize:15,
     fontWeight:'100',
-    color:Colors.smokeGreyDark
+    color:colors.smokeGreyDark
   },
   logo:{
     height:200,
@@ -82,7 +82,7 @@ const styles =  StyleSheet.create({
   },
   emptyImageIcon:{
     height:200,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
     textAlign:'center',
   },
   editIconWrapper:{
@@ -96,7 +96,7 @@ const styles =  StyleSheet.create({
     zIndex:1000,
     alignItems:'center',
     justifyContent:'center',
-    shadowColor:Colors.smokeGreyDark,
+    shadowColor:colors.smokeGreyDark,
     shadowOpacity:0.6,
     shadowOffset:{width:1,height:1}
   }

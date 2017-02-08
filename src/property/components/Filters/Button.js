@@ -4,7 +4,7 @@
 import React, { PropTypes, Component } from 'react';
 import { View, StyleSheet, Text, Image,ListView,TouchableHighlight } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class Button extends Component {
 
@@ -72,7 +72,7 @@ const styles =  StyleSheet.create({
     marginLeft:10,
   },
   selectedText:{
-    color:Colors.tomato,
+    color:colors.tomato,
     fontWeight:'500',
     // color:'#4c5159'
   },

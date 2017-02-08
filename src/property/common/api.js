@@ -1,5 +1,5 @@
 import { API_URL } from '../../env';
-import { fetchAPI } from '../../lib/api';
+import { fetchAPI } from '../../common/api';
 
 function fetchProperties(params) {
   const url = `${API_URL}/properties${params}`;

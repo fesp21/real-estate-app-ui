@@ -3,7 +3,7 @@
  */
 import React, { PropTypes, Component } from 'react';
 import { View, StyleSheet, Text, Image,ListView,TouchableHighlight,Dimensions } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class List extends Component {
 
@@ -25,7 +25,7 @@ export default class List extends Component {
     return (
       <View style={styles.row}>
         <TouchableHighlight onPress={() => {onSelect(item)}} underlayColor="transparent">
-          <Text style={[styles.price, selected == item && {color:Colors.tomato,fontWeight:'500'}]}>{item}{item !='Any' && hint} </Text>
+          <Text style={[styles.price, selected == item && {color:colors.tomato,fontWeight:'500'}]}>{item}{item !='Any' && hint} </Text>
         </TouchableHighlight>
       </View>
     )

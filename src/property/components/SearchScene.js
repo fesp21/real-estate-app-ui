@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from "react";
 import {ScrollView, View, StyleSheet, StatusBar, Text, TouchableWithoutFeedback, TextInput} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Colors from "../../../Components/Colors";
-import Separator from '../../../Components/Separator';
-import { GOOGLE_MAPS_KEY } from './../../../env.js';
+import colors from "../../common/colors";
+import Separator from '../../common/components/Separator';
+import { GOOGLE_MAPS_KEY } from './../../env.js';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 
 export default class SearchScene extends Component {
@@ -20,7 +20,7 @@ export default class SearchScene extends Component {
       <ScrollView style={styles.container}>
         <View style={{flex:1}}>
           <View style={styles.wrapper}>
-            <Ionicons name="ios-search" size={18}  color={Colors.darkGrey} style={styles.icon}/>
+            <Ionicons name="ios-search" size={18}  color={colors.darkGrey} style={styles.icon}/>
             <GooglePlacesAutocomplete
               placeholder='Search'
               minLength={3}
@@ -32,7 +32,7 @@ export default class SearchScene extends Component {
               query={{ key: GOOGLE_MAPS_KEY, language: 'en', types: '(cities)',components:`country:${country}`}}
               styles={autoCompleteStyle}
               enablePoweredByContainer={false}
-              placeholderTextColor={Colors.lightGrey}
+              placeholderTextColor={colors.lightGrey}
             />
           </View>
           <Separator style={{ marginTop:10,marginBottom:10 }}/>
@@ -52,7 +52,7 @@ const autoCompleteStyle = {
     height:40
   },
   textInput: {
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontSize:16,
     fontWeight:'400',
   },
@@ -86,7 +86,7 @@ const styles =  StyleSheet.create({
   text:{
     flex:1,
     marginLeft:10,
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontSize:17,
     fontWeight:'500',
     height:40

@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import Colors from '../../../Components/Colors';
+import colors from '../../common/colors';
 
 export default class CommentAdd extends Component {
 
@@ -47,11 +47,11 @@ const styles =  StyleSheet.create({
     flex:1,
     height:40,
     padding:5,
-    borderColor:Colors.smokeGreyLight,
+    borderColor:colors.smokeGreyLight,
     borderRadius:2,
     borderWidth:1,
     fontSize:14,
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontWeight:'100'
   },
 });

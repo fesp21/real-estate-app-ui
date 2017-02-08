@@ -3,10 +3,10 @@
  */
 import React, { PropTypes, Component } from 'react';
 import { ScrollView,View, StyleSheet, Text, TouchableHighlight,TouchableWithoutFeedback } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 import List from './List';
 import Button from './Button';
-import Separator from '../../../../Components/Separator';
+import Separator from '../../../common/components/Separator'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import isEmpty from 'lodash/isEmpty';
 
@@ -53,20 +53,20 @@ export default class FilterScene extends Component {
                     contentInset={{bottom:60}}
         >
           <View style={{flex:1,flexDirection:'row',padding:5,alignItems:'center'}}>
-            <Ionicons name="ios-search" size={18}  color={Colors.darkGrey} style={{ height:18,width:20 }}/>
+            <Ionicons name="ios-search" size={18}  color={colors.darkGrey} style={{ height:18,width:20 }}/>
             <TouchableWithoutFeedback onPress={()=>showSearch()}>
               <View style={{ flex:1,padding:8,backgroundColor:'#E3E3E3',borderRadius:30}}>
                 {isEmpty(searchString) ?
-                  <Text style={{ padding:3,paddingLeft:10,fontWeight:'400',color:Colors.white }}>
+                  <Text style={{ padding:3,paddingLeft:10,fontWeight:'400',color:colors.white }}>
                     Search by Location
                   </Text>
                   :
                   <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
-                    <Text style={{ flex:1,padding:3,paddingLeft:10,fontWeight:'500',color:Colors.darkGrey }}>
+                    <Text style={{ flex:1,padding:3,paddingLeft:10,fontWeight:'500',color:colors.darkGrey }}>
                       {searchString}
                     </Text>
                     <TouchableHighlight onPress={()=>onSearch('')} style={styles.closeButtonContainer} >
-                      <Ionicons name="ios-close-circle-outline" size={16} color={Colors.tomato} />
+                      <Ionicons name="ios-close-circle-outline" size={16} color={colors.tomato} />
                     </TouchableHighlight>
                   </View>
                 }
@@ -88,7 +88,7 @@ export default class FilterScene extends Component {
           />
           <List title="to"
                 ranges={priceToArr} selected={priceTo} onSelect={onPriceToSelect}
-                titleStyle={{fontSize:12,color:Colors.tomato,fontWeight:'400'}}
+                titleStyle={{fontSize:12,color:colors.tomato,fontWeight:'400'}}
                 hint="kd"
           />
 
@@ -154,7 +154,7 @@ const styles =  StyleSheet.create({
     opacity:.97
   },
   footer:{
-    backgroundColor:Colors.tomato,
+    backgroundColor:colors.tomato,
     position: 'absolute',
     left: 0,
     right: 0,

@@ -5,7 +5,7 @@ import UserLogo from './UserLogo';
 import Contact from './Contact';
 import PropertyListing from '../../../property/components/PropertyList';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class UserProfile extends Component {
 
@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabStyle: {
-    backgroundColor:Colors.primary,
+    backgroundColor:colors.primary,
   },
   username:{
     fontSize:20,
     fontWeight:'700',
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     textAlign:'center',
     paddingVertical:20
   },

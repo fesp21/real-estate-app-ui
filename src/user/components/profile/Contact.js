@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class Contact extends Component {
@@ -50,7 +50,7 @@ const styles =  StyleSheet.create({
   },
   description:{
     fontWeight:'100',
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontSize:15
   },
   content:{
@@ -61,11 +61,11 @@ const styles =  StyleSheet.create({
   name:{
     fontSize:16,
     fontWeight:'100',
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
   },
   label:{
     paddingBottom:5,
-    color:Colors.smokeGreyLight
+    color:colors.smokeGreyLight
   },
   icon:{
     width:20,
@@ -74,6 +74,6 @@ const styles =  StyleSheet.create({
   separator:{
     marginVertical:20,
     height:.5,
-    backgroundColor:Colors.smokeGreyLight
+    backgroundColor:colors.smokeGreyLight
   }
 });

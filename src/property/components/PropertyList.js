@@ -7,8 +7,8 @@ import PropertyIcons from './PropertyIcons';
 import PropertyTags from './PropertyTags';
 import Swiper from 'react-native-swiper';
 import Heart from './Heart';
-import LoadingIndicator from '../../../Components/LoadingIndicator';
-import Colors from '../../../Components/Colors';
+import LoadingIndicator from '../../common/components/LoadingIndicator';
+import colors from '../../common/colors';
 
 export default class PropertyListing extends Component {
 
@@ -146,7 +146,7 @@ const styles =  StyleSheet.create({
   separator: {
     marginHorizontal:10,
     height:.5,
-    backgroundColor:Colors.lightGrey
+    backgroundColor:colors.lightGrey
   },
   slide: {
     flex: 1,

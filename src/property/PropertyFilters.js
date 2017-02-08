@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
-import NavBack from '../../Components/NavBack';
-import Done from '../../Components/Done';
+import NavBack from '../common/components/NavBack';
+import Done from '../common/components/Done';
 import FiltersScene from './components/Filters/FilterScene';
 import SearchScene from './components/SearchScene';
-import Colors from '../../Components/Colors';
+import colors from './../common/colors';
 
 class PropertyFilters extends Component {
 
@@ -41,7 +41,7 @@ class PropertyFilters extends Component {
         fontSize:15
       },
       renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
-      tintColor: Colors.darkGrey,
+      tintColor: colors.darkGrey,
       renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" />,
       renderRight: (route) => {
         const { config: { eventEmitter }  } = route;

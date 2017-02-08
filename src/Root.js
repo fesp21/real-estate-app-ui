@@ -6,7 +6,7 @@ import { NavigationStyles } from '@exponent/ex-navigation';
 import Router from './common/router';
 import Store from './common/store';
 import CodePush from 'react-native-code-push';
-import Colors from './common/Colors';
+import colors from './common/colors';
 import { CODEPUSH_ENABLED } from './env';
 
 const navigationContext = new NavigationContext({
@@ -72,7 +72,7 @@ export default class Root extends Component {
             defaultRouteConfig={{
               styles: { ...modalStyle },
               navigationBar: {
-                backgroundColor: Colors.lightGrey,
+                backgroundColor: colors.lightGrey,
                 tintColor: 'white',
               },
             }}

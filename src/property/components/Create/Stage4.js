@@ -3,7 +3,7 @@
  */
 import React, {PropTypes, Component} from "react";
 import {ScrollView,View, StyleSheet, Text, Image, ListView, TouchableHighlight,Dimensions} from "react-native";
-import Colors from "../../../../Components/Colors";
+import colors from "../../../common/colors";
 import Button from '../Filters/Button';
 
 export default class Stage4 extends Component {
@@ -33,7 +33,7 @@ export default class Stage4 extends Component {
                   selected = {bedroom}
                   style = {{
                     height:40,
-                    backgroundColor:Colors.lightGrey
+                    backgroundColor:colors.lightGrey
                   }}
           />
 
@@ -49,7 +49,7 @@ export default class Stage4 extends Component {
                   selected = {bathroom}
                   style = {{
                     height:40,
-                    backgroundColor:Colors.lightGrey
+                    backgroundColor:colors.lightGrey
                   }}
           />
 
@@ -65,7 +65,7 @@ export default class Stage4 extends Component {
                   selected = {parking}
                   style = {{
                     height:40,
-                    backgroundColor:Colors.lightGrey
+                    backgroundColor:colors.lightGrey
                   }}
           />
 
@@ -83,7 +83,7 @@ const styles =  StyleSheet.create({
   container : {
     flex:1,
     paddingTop:64,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
     paddingBottom:56
   },
   menuContainer:{
@@ -92,7 +92,7 @@ const styles =  StyleSheet.create({
     backgroundColor:'white'
   },
   separator:{
-    backgroundColor:Colors.lightGrey,
+    backgroundColor:colors.lightGrey,
     height:.5
   },
 });

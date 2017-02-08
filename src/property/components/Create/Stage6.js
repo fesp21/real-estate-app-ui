@@ -3,7 +3,7 @@
  */
 import React, { PropTypes, Component } from 'react';
 import { ScrollView, View, StyleSheet, Text, Image,ListView,TouchableHighlight,TextInput,KeyboardAvoidingView } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class Stage6 extends Component {
 
@@ -40,7 +40,7 @@ export default class Stage6 extends Component {
                 onChangeText={(value) => onFieldChange(path,'title',value)}
                 value={title}
                 maxLength={50}
-                placeholderTextColor={Colors.lightGrey}
+                placeholderTextColor={colors.lightGrey}
                 placeholder="Ex: Beautiful 2 bedrooms Apartment in Salwa"
               />
 
@@ -59,7 +59,7 @@ export default class Stage6 extends Component {
                 onChangeText={(value) => onFieldChange(path,'description',value)}
                 value={description}
                 maxLength={1000}
-                placeholderTextColor={Colors.lightGrey}
+                placeholderTextColor={colors.lightGrey}
                 placeholder="Description"
                 enablesReturnKeyAutomatically={true}
                 returnKeyType="done"
@@ -73,7 +73,7 @@ export default class Stage6 extends Component {
                 onChangeText={(value) => onFieldChange(path,'price',value)}
                 value={price}
                 maxLength={6}
-                placeholderTextColor={Colors.lightGrey}
+                placeholderTextColor={colors.lightGrey}
                 placeholder="Ex: 200 "
                 keyboardType='numeric'
               />
@@ -91,7 +91,7 @@ export default class Stage6 extends Component {
 const styles =  StyleSheet.create({
   container : {
     flex:1,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
   },
   menuContainer:{
     padding:10,
@@ -104,7 +104,7 @@ const styles =  StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: Colors.darkGrey,
+    color: colors.darkGrey,
     marginBottom:5,
     fontWeight:'100'
   },
@@ -112,17 +112,17 @@ const styles =  StyleSheet.create({
     flex:1,
     height:40,
     paddingHorizontal:5,
-    borderColor:Colors.smokeGreyLight,
+    borderColor:colors.smokeGreyLight,
     borderRadius:2,
     borderWidth:1,
     fontSize:16,
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontWeight:'100'
   },
   separator:{
     flex:1,
     height:.5,
-    backgroundColor:Colors.lightGrey,
+    backgroundColor:colors.lightGrey,
     marginVertical:15
   },
 

@@ -4,7 +4,7 @@
 import React, { PropTypes, Component } from 'react';
 import { View, StyleSheet, Text, Image,ListView,TouchableHighlight } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class Stage5 extends Component {
 
@@ -42,7 +42,7 @@ export default class Stage5 extends Component {
           <FontAwesome
             name="camera"
             size={100}
-            color={Colors.white}
+            color={colors.white}
           />
         </TouchableHighlight>
 
@@ -74,7 +74,7 @@ const styles =  StyleSheet.create({
   container : {
     flex:1,
     paddingTop:64,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
   },
   contentContainer:{
     justifyContent: 'center',

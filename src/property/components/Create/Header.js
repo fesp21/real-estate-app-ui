@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {View,StyleSheet, Text } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class Header extends React.Component {
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     // backgroundColor:'green'
   },
   text:{
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontWeight:'600',
     fontSize:20,
     padding:30,

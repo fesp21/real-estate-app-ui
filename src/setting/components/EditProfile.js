@@ -15,7 +15,7 @@ import {
   RefreshControl
 } from "react-native";
 
-import Colors from '../../../Components/Colors';
+import colors from '../../common/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class EditProfile extends Component {
@@ -50,7 +50,7 @@ export default class EditProfile extends Component {
                 :
                 <FontAwesome
                   name="user-circle-o"
-                  color={Colors.smokeGreyDark}
+                  color={colors.smokeGreyDark}
                   size={80}
                 />
             }
@@ -80,12 +80,12 @@ const styles =  StyleSheet.create({
   },
   username:{
     fontSize:20,
-    color:Colors.smokeGreyDark,
+    color:colors.smokeGreyDark,
     fontWeight:'700',
     paddingVertical:5,
   },
   hint:{
-    color:Colors.grey,
+    color:colors.grey,
     fontWeight:'100',
     paddingBottom:5
   },

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { ACTIONS } from './actions';
 import RegisterScene from './Components/RegisterScene';
-import Colors from './../../Components/Colors';
+import colors from './../common/colors';
 
 type State = {
   name: string,
@@ -26,7 +26,7 @@ class Register extends Component {
 
   static route = {
     navigationBar : {
-      tintColor:Colors.primary,
+      tintColor:colors.primary,
       renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
     }
   };

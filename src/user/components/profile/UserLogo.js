@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class UserLogo extends Component {
 
@@ -48,7 +48,7 @@ const styles =  StyleSheet.create({
   username:{
     fontSize:20,
     fontWeight:'700',
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     paddingTop:20,
   },
   logo:{

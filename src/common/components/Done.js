@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import Colors from './/Colors';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import colors from './../colors';
 
 export default class Done extends Component {
 
@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
     backgroundColor:'transparent',
   },
   title: {
-    color: Colors.tomato,
+    color: colors.tomato,
     fontSize: 15,
   },
   icon: {
     width: 30,
     height: 30,
     alignSelf: 'center',
-    color: Colors.tomato,
+    color: colors.tomato,
   },
   badgeContainer: {
     flex: 1,

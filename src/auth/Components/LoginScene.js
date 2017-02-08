@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image,TouchableHighlight, TextInput } from 'react-native';
-import Colors from './../../../Components/Colors';
+import colors from './../../common/colors';
 
 export default class LoginScene extends Component {
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: Colors.smokeGreyDark,
+    color: colors.smokeGreyDark,
     marginTop:15,
     marginBottom:2,
     fontWeight:'100'
@@ -105,11 +105,11 @@ const styles = StyleSheet.create({
   },
   separator:{
     height:0.5,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
   },
   link :{
     marginTop:20,
-    color:Colors.smokeGreyDark,
+    color:colors.smokeGreyDark,
     fontSize:13
   },
   button : {

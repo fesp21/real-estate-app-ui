@@ -2,8 +2,7 @@ import { put, call, select, takeLatest, fork } from 'redux-saga/effects';
 import { ACTION_TYPES } from './actions';
 import { API } from './api';
 import isEmpty from 'lodash/isEmpty';
-import { getFileName } from './../../lib/functions';
-
+import { getFileName } from './../common/functions';
 
 export function* fetchUser(action) {
   try {

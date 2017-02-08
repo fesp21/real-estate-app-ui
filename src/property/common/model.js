@@ -1,5 +1,4 @@
-import { Model, many, fk } from "redux-orm";
-import User from '../../user/model';
+import { Model, fk } from "redux-orm";
 
 export class Property extends Model {
   static modelName = 'Property';

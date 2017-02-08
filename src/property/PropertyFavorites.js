@@ -9,7 +9,6 @@ import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
 import PropertyListing from './components/PropertyList';
 
-const DOUBLE_PRESS_DELAY = 300;
 
 class PropertyFavorites extends Component {
 
@@ -55,7 +54,8 @@ class PropertyFavorites extends Component {
 
   onImagePress(item: object) {
     const now = new Date().getTime();
-    var delta = now - this.state.lastImagePress;
+    const DOUBLE_PRESS_DELAY = 300;
+    const delta = now - this.state.lastImagePress;
 
     if(delta < DOUBLE_PRESS_DELAY) {
       // favorite item

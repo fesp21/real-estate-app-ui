@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS  } from './actions';
 import LoginScene from './Components/LoginScene';
-import Colors from './../../Components/Colors';
+import colors from './../common/colors';
 
 class Login extends Component {
 
@@ -17,7 +17,7 @@ class Login extends Component {
 
   static route = {
     navigationBar : {
-      tintColor:Colors.primary,
+      tintColor:colors.primary,
       renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
     }
   };

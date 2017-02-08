@@ -17,7 +17,7 @@ import PropertyTags from "./PropertyTags";
 import CommentList from "./CommentList";
 import CommentAdd from "./CommentAdd";
 import Heart from "./Heart";
-import Colors from "../../../Components/Colors";
+import colors from "../../common/colors";
 import PropertyMap from './PropertyMap';
 
 export default class PropertySingle extends Component {
@@ -201,10 +201,10 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir-Light"
   },
   username: {
-    color: Colors.darkGrey
+    color: colors.darkGrey
   },
   label: {
-    color: Colors.grey,
+    color: colors.grey,
     fontSize: 12
   },
   price: {

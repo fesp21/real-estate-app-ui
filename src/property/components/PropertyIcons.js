@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../../Components/Colors';
+import colors from '../../common/colors';
 
 export default class PropertyIcons extends Component {
 
@@ -13,8 +13,8 @@ export default class PropertyIcons extends Component {
   renderIcon(value,icon,index) {
     return (
       <View key={index} style={styles.row}>
-        <FontAwesome  name={icon} size={15} color={Colors.smokeGreyDark} />
-        <Text style={{fontSize:13, marginHorizontal:2,color:Colors.black}}>{value}</Text>
+        <FontAwesome  name={icon} size={15} color={colors.smokeGreyDark} />
+        <Text style={{fontSize:13, marginHorizontal:2,color:colors.black}}>{value}</Text>
       </View>
     );
   }

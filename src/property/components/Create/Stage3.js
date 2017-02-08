@@ -14,13 +14,13 @@ import {
   TextInput
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Colors from "../../../../Components/Colors";
+import colors from "../../../common/colors";
 import Footer from "./Footer";
 import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
 import {
   GooglePlacesAutocomplete
 } from "react-native-google-places-autocomplete";
-import { GOOGLE_MAPS_KEY } from "./../../../../env.js";
+import { GOOGLE_MAPS_KEY } from "./../../../env.js";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -130,7 +130,7 @@ export default class Stage3 extends Component {
                   }}
                   styles={autoCompleteStyle}
                   enablePoweredByContainer={false}
-                  placeholderTextColor={Colors.lightGrey}
+                  placeholderTextColor={colors.lightGrey}
                 />
                 <TouchableHighlight
                   underlayColor="transparent"
@@ -141,7 +141,7 @@ export default class Stage3 extends Component {
                   >
                     <Ionicons
                       name="ios-paper-plane"
-                      color={Colors.smokeGreyDark}
+                      color={colors.smokeGreyDark}
                       size={20}
                       style={{ width: 20, height: 20 }}
                     />
@@ -177,7 +177,7 @@ const autoCompleteStyle = {
     height: 40
   },
   textInput: {
-    color: Colors.darkGrey,
+    color: colors.darkGrey,
     fontSize: 16,
     fontWeight: "400"
   },
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 64,
-    backgroundColor: Colors.smokeGreyLight
+    backgroundColor: colors.smokeGreyLight
   },
   menuContainer: {
     flex: 5,

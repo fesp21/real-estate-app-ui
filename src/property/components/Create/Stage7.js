@@ -4,8 +4,7 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Text, Image,ListView,TouchableHighlight,TextInput } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export default class Stage7 extends React.Component {
 
@@ -22,7 +21,7 @@ export default class Stage7 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.title} >{item}</Text>
             <View style={styles.checkbox}>
-              { selected.includes(item) && <FontAwesome name="check" size={16} color={Colors.green}/> }
+              { selected.includes(item) && <FontAwesome name="check" size={16} color={colors.green}/> }
             </View>
           </View>
         </TouchableHighlight>
@@ -73,7 +72,7 @@ const styles =  StyleSheet.create({
   },
   menuContainer:{
     flex:1,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
     paddingHorizontal:10,
     paddingVertical:30,
   },
@@ -89,19 +88,19 @@ const styles =  StyleSheet.create({
   title:{
     flex:1,
     fontWeight:'100',
-    color:Colors.darkGrey
+    color:colors.darkGrey
   },
   separator:{
     flex:1,
     height:.5,
-    backgroundColor:Colors.lightGrey,
+    backgroundColor:colors.lightGrey,
     marginVertical:10,
   },
   checkbox:{
     width:24,
     height:24,
     borderRadius:12,
-    borderColor:Colors.smokeGreyDark,
+    borderColor:colors.smokeGreyDark,
     borderWidth:1,
     justifyContent:'center',
     alignItems:'center',

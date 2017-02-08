@@ -1,12 +1,12 @@
 import React,{ Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { connect } from "react-redux";
-import { StackNavigation, TabNavigation, TabNavigationItem } from '@exponent/ex-navigation';
-import Router from '../../lib/router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import NavBar from '../../Components/NavBar';
-import Colors from '../../Components/Colors';
+import Router from '../common/router';
+import NavBar from '../common/components/NavBar';
+import colors from '../common/colors';
+import { connect } from "react-redux";
+import { StackNavigation, TabNavigation, TabNavigationItem } from '@exponent/ex-navigation';
 import { ACTIONS } from './actions';
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
         id="homeTab"
         navigatorUID="homeTab"
         initialTab="fourth"
-        tabBarStyle={{ backgroundColor:Colors.primary }}
+        tabBarStyle={{ backgroundColor:colors.primary }}
       >
         <TabNavigationItem
           id="first"

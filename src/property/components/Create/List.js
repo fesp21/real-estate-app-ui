@@ -3,7 +3,7 @@
  */
 import React, {PropTypes, Component} from "react";
 import {ScrollView,View, StyleSheet, Text, Image, ListView, TouchableHighlight} from "react-native";
-import Colors from "../../../../Components/Colors";
+import colors from "../../../common/colors";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class List extends Component {
@@ -26,7 +26,7 @@ export default class List extends Component {
         <TouchableHighlight onPress={()=>updateListing(path,index,item)} underlayColor="transparent">
           <View style={styles.row}>
             <Text style={styles.title}>{item}</Text>
-            <Ionicons name="ios-arrow-forward" color={Colors.smokeGreyLight} size={30} />
+            <Ionicons name="ios-arrow-forward" color={colors.smokeGreyLight} size={30} />
           </View>
         </TouchableHighlight>
         <View style={styles.separator}/>
@@ -64,7 +64,7 @@ const styles =  StyleSheet.create({
   container : {
     flex:1,
     paddingTop:64,
-    backgroundColor:Colors.smokeGreyLight
+    backgroundColor:colors.smokeGreyLight
   },
   menuContainer:{
     justifyContent:'flex-end'
@@ -76,7 +76,7 @@ const styles =  StyleSheet.create({
     alignItems:'center',
   },
   description:{
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontWeight:'600',
     fontSize:20,
     padding:30,
@@ -100,10 +100,10 @@ const styles =  StyleSheet.create({
     fontSize:16
   },
   stage :{
-    color:Colors.darkGrey
+    color:colors.darkGrey
   },
   separator:{
-    backgroundColor:Colors.lightGrey,
+    backgroundColor:colors.lightGrey,
     height:.5
   }
 });

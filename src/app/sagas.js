@@ -1,6 +1,6 @@
 import isNull from 'lodash/isNull';
 import { put, call, select, takeLatest } from 'redux-saga/effects';
-import { getItem as getStoredItem, setItem } from '../../lib/storage';
+import { getItem as getStoredItem, setItem } from '../common/storage';
 import { API as AUTH_API, AUTH_STORAGE_KEY } from '../auth/api';
 import { ACTION_TYPES as AUTH_ACTION_TYPES } from '../auth/actions';
 import { fetchProperties } from '../property/common/sagas';

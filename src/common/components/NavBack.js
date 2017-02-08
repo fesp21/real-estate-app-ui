@@ -1,6 +1,6 @@
 import React from "react";
 import {View, StyleSheet, StatusBar, Text,TouchableHighlight} from "react-native";
-import Colors from './/Colors';
+import colors from './../colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
@@ -44,13 +44,13 @@ const styles =  StyleSheet.create({
     paddingRight:10
   },
   title:{
-    color:Colors.tomato,
+    color:colors.tomato,
     fontSize:15,
   },
   icon: {
     width:30,
     height:30,
     alignSelf:'center',
-    color:Colors.tomato,
+    color:colors.tomato,
   }
 });

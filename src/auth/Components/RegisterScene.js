@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, Image,TouchableHighlight, TextInput } from 'react-native';
-import Colors from './../../../Components/Colors';
+import colors from './../../common/colors';
 
 export default class RegisterScene extends Component {
 
@@ -16,7 +16,7 @@ export default class RegisterScene extends Component {
   };
 
   render() {
-    const backgroundImage = require('./../../../../assets/login-bg.png');
+    const backgroundImage = require('./../../../assets/login-bg.png');
     const { name, email, mobile, password, password_confirmation, onFieldChange, handleLoginRoute, handleRegister, busy } = this.props;
 
     return (
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: Colors.smokeGreyDark,
+    color: colors.smokeGreyDark,
     marginTop:15,
     marginBottom:2,
     fontWeight:'100'
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   separator:{
     height:0.5,
-    backgroundColor:Colors.smokeGreyLight,
+    backgroundColor:colors.smokeGreyLight,
   },
   link :{
     marginTop:20,

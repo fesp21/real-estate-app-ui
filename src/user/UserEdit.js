@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './actions';
 import UserEditScene from './components/UserEditScene';
-import NavBack from './../../Components/NavBack';
-import Done from './../../Components/Done';
+import NavBack from '../common/components/NavBack';
+import Done from '../common/components/Done';
 import ImagePicker from "react-native-image-crop-picker";
 import { SELECTORS } from './selectors';
 

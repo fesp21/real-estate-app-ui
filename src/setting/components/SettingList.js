@@ -15,8 +15,8 @@ import {
   RefreshControl
 } from "react-native";
 
-import Separator from '../../../Components/Separator';
-import Colors from '../../../Components/Colors';
+import Separator from '../../common/components/Separator';
+import colors from '../../common/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class List extends Component {
@@ -41,7 +41,7 @@ export default class List extends Component {
               <FontAwesome
                 style={styles.icon}
                 name={icon}
-                color={Colors.darkGrey}
+                color={colors.darkGrey}
                 size={20}
               />
             </View>
@@ -63,7 +63,7 @@ const styles =  StyleSheet.create({
     alignItems:'center'
   },
   title:{
-    color:Colors.darkGrey,
+    color:colors.darkGrey,
     fontWeight:'200'
   },
   icon:{

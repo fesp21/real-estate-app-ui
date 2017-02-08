@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
 import { NavigationStyles } from '@exponent/ex-navigation';
-import NavBack from '../../Components/NavBack';
+import NavBack from '../common/components/NavBack';
 import MapMarker from './components/MapMarker';
 
 const { width, height } = Dimensions.get('window');

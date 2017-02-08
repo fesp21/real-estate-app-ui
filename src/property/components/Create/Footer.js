@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {View,StyleSheet, Text, TouchableHighlight } from 'react-native';
-import Colors from '../../../../Components/Colors';
+import colors from '../../../common/colors';
 
 export class Footer extends React.Component {
 
@@ -24,7 +24,7 @@ export class Footer extends React.Component {
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:Colors.tomato,
+    backgroundColor:colors.tomato,
     position: 'absolute',
     left: 0,
     right: 0,

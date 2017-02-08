@@ -1,14 +1,14 @@
 import Qs from 'qs';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
-import Router from './../../lib/router';
+import Router from './../../common/router';
 import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { ACTION_TYPES } from './actions';
 import { API } from './api';
 import { SELECTORS } from './selectors';
-import { getFileName } from './../../lib/functions';
+import { getFileName } from './../../common/functions';
 import { NavigationActions } from '@exponent/ex-navigation';
-import Store from './../../lib/store';
+import Store from './../../common/store';
 
 export function* fetchProperties(action) {
   try {
