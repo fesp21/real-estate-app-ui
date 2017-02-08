@@ -10,7 +10,7 @@ import { ACTIONS as AUTH_ACTIONS } from '../auth/common/actions';
 import { ACTIONS as PROPERTY_ACTIONS } from '../property/common/actions';
 import isEmpty from 'lodash/isEmpty';
 import List from './components/SettingList';
-import EditProfile from './components/EditProfile';
+import EditProfile from './components/profile/EditProfile';
 
 class SettingList extends Component {
 

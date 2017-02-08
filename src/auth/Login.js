@@ -3,7 +3,7 @@ import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS  } from './common/actions';
-import LoginScene from './Components/LoginScene';
+import LoginScene from './components/LoginScene';
 import colors from './../common/colors';
 
 class Login extends Component {

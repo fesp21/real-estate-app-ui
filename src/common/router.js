@@ -9,7 +9,7 @@ import PropertyDetail from '../property/PropertyDetail';
 import PropertyMap from '../property/PropertyMap';
 import PropertyCreate from '../property/PropertyCreate';
 import PropertySlideShow from '../property/components/SlideShow';
-import SettingList from '../setting/List';
+import SettingList from '../user/List';
 import Profile from '../user/Profile';
 import UserDetail from '../user/UserDetail';
 import UserEdit from '../user/UserEdit';

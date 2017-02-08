@@ -6,7 +6,7 @@ import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { ACTIONS } from './common/actions';
-import RegisterScene from './Components/RegisterScene';
+import RegisterScene from './components/RegisterScene';
 import colors from './../common/colors';
 
 type State = {

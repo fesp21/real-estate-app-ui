@@ -15,7 +15,7 @@ import {
   RefreshControl
 } from "react-native";
 
-import colors from '../../common/colors';
+import colors from '../../../common/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class EditProfile extends Component {
