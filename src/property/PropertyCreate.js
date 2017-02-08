@@ -3,10 +3,6 @@
  */
 import React, { PropTypes, Component } from "react";
 import { View } from "react-native";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { ACTIONS } from "./common/actions";
-import { SELECTORS } from "./common/selectors";
 import ImagePicker from "react-native-image-crop-picker";
 import List from "./components/create/List";
 import Stage3 from "./components/create/Stage3";
@@ -19,9 +15,19 @@ import Header from "./components/create/Header";
 import Footer from "./components/create/Footer";
 import get from "lodash/get";
 import map from "lodash/map";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { ACTIONS } from "./common/actions";
+import { SELECTORS } from "./common/selectors";
 import { resolveCountryName } from './../common/functions';
 
 class PropertyCreate extends Component {
+
+  static propTypes = {
+    listings: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+  };
+
   static route = {
     navigationBar: {
       renderLeft: route => {
@@ -37,26 +43,21 @@ class PropertyCreate extends Component {
     }
   };
 
-  static propTypes = {
-    listings: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
-  };
-
   state = {
     stage: 1
   };
+
+  componentWillMount() {
+    this._subscription = this.props.route
+      .getEventEmitter()
+      .addListener("goBack", this.goToPrevStage);
+  }
 
   componentDidUpdate() {
     const { stage } = this.state;
     this.props.navigator.updateCurrentRouteParams({
       stage: stage
     });
-  }
-
-  componentWillMount() {
-    this._subscription = this.props.route
-      .getEventEmitter()
-      .addListener("goBack", this.goToPrevStage);
   }
 
   componentWillUnmount() {
@@ -94,7 +95,7 @@ class PropertyCreate extends Component {
         );
       })
       .catch(e => {});
-  }
+  };
 
   updateListing = (path, index, value) => {
     const { listings } = this.props;
@@ -103,7 +104,7 @@ class PropertyCreate extends Component {
       [path]: { ...listings[path], [index]: value }
     };
     this.props.actions.changeListingValue(payload);
-  }
+  };
 
   updateMap = (data) => {
     const { state, country, city, latitude, longitude } = data;
@@ -116,12 +117,12 @@ class PropertyCreate extends Component {
     };
     this.updateListing("attributes", "address", payload);
     this.goToNextStage();
-  }
+  };
 
   onValueSelect = (path, index, value) => {
     this.updateListing(path, index, value);
     this.goToNextStage();
-  }
+  };
 
   updateAmenities = (item) => {
     const tempAmenities = this.props.listings.attributes.amenities;
@@ -132,19 +133,19 @@ class PropertyCreate extends Component {
       newArray = tempAmenities.concat([item]);
     }
     this.updateListing("attributes", "amenities", newArray);
-  }
+  };
 
   goToPrevStage = () => {
     this.setState({
       stage: this.state.stage - 1
     });
-  }
+  };
 
   goToNextStage = () => {
     return this.setState({
       stage: this.state.stage + 1
     });
-  }
+  };
 
   onIncrementDecrement = (action, type) => {
     let arrayIndex, selectedValue;
@@ -191,11 +192,11 @@ class PropertyCreate extends Component {
     };
 
     this.props.actions.changeListingValue(payload);
-  }
+  };
 
   saveProperty = () => {
     this.props.actions.saveProperty();
-  }
+  };
 
   render() {
     const { listings, types, categories, amenities, country } = this.props;
@@ -250,7 +251,7 @@ class PropertyCreate extends Component {
           pickImage={this.pickImage}
           images={attributes.images}
           header={<Header title="Upload Property Images" />}
-          footer={<Footer title="Save" updateListing={this.goToNextStage} />}
+          footer={<Footer updateListing={this.goToNextStage} />}
         />}
 
         {stage == 6 &&
