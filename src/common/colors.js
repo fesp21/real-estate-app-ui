@@ -14,7 +14,7 @@ export default {
   success: '#4caf50',
   google: '#488ef1',
   facebook: '#3b5998',
-  fadedWhite: 'rgba(255, 255, 255, .5)',
+  fadedWhite: 'rgba(255, 255, 255, .8)',
   fadedBlack: 'rgba(0, 0, 0, .5)',
   separator: 'rgba(0, 0, 0, .08)',
   underlay: 'rgba(0, 0, 0, .12)',
