@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import colors from './../colors';
+import colors from './../common/colors';
 
 export default class Done extends Component {
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {View, StyleSheet, StatusBar, Text,TouchableHighlight} from "react-native";
-import colors from './../colors';
+import colors from './../common/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
