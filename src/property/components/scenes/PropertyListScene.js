@@ -3,14 +3,14 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, ListView, StyleSheet, StatusBar, Text, TouchableHighlight, TouchableWithoutFeedback, Dimensions, Image, RefreshControl } from 'react-native';
-import PropertyIcons from './PropertyIcons';
-import PropertyTags from './PropertyTags';
+import PropertyIcons from '../PropertyIcons';
+import PropertyTags from '../PropertyTags';
 import Swiper from 'react-native-swiper';
-import Heart from './Heart';
-import LoadingIndicator from '../../components/LoadingIndicator';
-import colors from '../../common/colors';
+import Heart from '../Heart';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+import colors from '../../../common/colors';
 
-export default class PropertyListing extends Component {
+export default class PropertyListScene extends Component {
 
   static propTypes = {
     collection:PropTypes.array.isRequired,

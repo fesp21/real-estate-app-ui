@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet,View,Text,Dimensions,TouchableOpacity,TouchableHighlight } from 'react-native';
 import MapView from 'react-native-maps';
 
-export default class MapMarker extends Component {
+export default class PropertyMapScene extends Component {
 
   static propTypes = {
     region:PropTypes.object.isRequired,
@@ -13,14 +13,13 @@ export default class MapMarker extends Component {
   };
 
   render() {
-    const {collection,followLocation,region,onRegionChange} = this.props;
+    const {collection,followLocation,region} = this.props;
     return (
 
       <MapView
         ref="map"
         style={styles.map}
         region={region}
-        //onRegionChange={()=>onRegionChange()}
       >
         { collection.map((property) => {
           if(!property.address || !property.address.coord) return;

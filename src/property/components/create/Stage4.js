@@ -4,7 +4,7 @@
 import React, {PropTypes, Component} from "react";
 import {ScrollView,View, StyleSheet, Text, Image, ListView, TouchableHighlight,Dimensions} from "react-native";
 import colors from "../../../common/colors";
-import Button from '../Filters/Button';
+import Button from '../filters/Button';
 
 export default class Stage4 extends Component {
 

@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import colors from '../../common/colors';
+import colors from '../../../common/colors';
 
 export default class CommentAdd extends Component {
 

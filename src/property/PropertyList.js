@@ -7,10 +7,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
-import PropertyListing from './components/PropertyList';
 import SearchBar from './components/SearchBar';
 import MapView from './components/MapView';
-
+import PropertyListScene from './components/scenes/PropertyListScene';
 
 class PropertyList extends Component {
 
@@ -70,7 +69,7 @@ class PropertyList extends Component {
         {
           !isFetching && properties.length == 0 && <View style={{padding:10,backgroundColor:'white',alignItems:'center'}}><Text>No Results</Text></View>
         }
-        <PropertyListing
+        <PropertyListScene
           collection = {properties}
           loadEntity = {this.loadEntity}
           onImagePress = {this.onImagePress}

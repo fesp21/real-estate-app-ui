@@ -3,7 +3,7 @@ import { ScrollView,StyleSheet, View, Text } from 'react-native';
 import UserInfo from './UserInfo';
 import UserLogo from './UserLogo';
 import Contact from './Contact';
-import PropertyListing from '../../../property/components/PropertyList';
+import PropertyListScene from '../../../property/components/scenes/PropertyListScene';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import colors from '../../../common/colors';
 
@@ -90,7 +90,7 @@ export default class UserProfile extends Component {
       case '2':
         return (
           <View>
-            <PropertyListing
+            <PropertyListScene
               collection = {properties}
               loadEntity = {loadEntity}
               onImagePress = {onImagePress}

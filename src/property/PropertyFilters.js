@@ -9,7 +9,7 @@ import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
 import NavBack from '../components/NavBack';
 import Done from '../components/Done';
-import FiltersScene from './components/Filters/FilterScene';
+import FiltersScene from './components/filters/FilterScene';
 import SearchScene from './components/SearchScene';
 import colors from './../common/colors';
 

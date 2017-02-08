@@ -9,7 +9,7 @@ import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
 import { NavigationStyles } from '@exponent/ex-navigation';
 import NavBack from '../components/NavBack';
-import MapMarker from './components/MapMarker';
+import PropertyMapScene from './components/scenes/PropertyMapScene';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -58,7 +58,7 @@ class PropertyMap extends Component {
     const { properties } = this.props;
 
     return (
-      <MapMarker
+      <PropertyMapScene
         region={this.state.region}
         onRegionChange={this.onRegionChange}
         collection={properties}

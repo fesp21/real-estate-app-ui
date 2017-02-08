@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ACTIONS } from './common/actions';
 import { SELECTORS } from './common/selectors';
-import PropertySingle from './components/PropertySingle';
+import PropertyDetailScene from './components/scenes/PropertyDetailScene';
 
 class PropertyDetail extends Component {
 
@@ -84,7 +84,7 @@ class PropertyDetail extends Component {
   render() {
     const { property,comments } = this.props;
     return (
-      <PropertySingle
+      <PropertyDetailScene
         property={property}
         comments={comments}
         saveComment={this.saveComment}

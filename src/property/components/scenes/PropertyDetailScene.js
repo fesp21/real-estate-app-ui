@@ -12,13 +12,13 @@ import {
   Image,
   KeyboardAvoidingView
 } from "react-native";
-import PropertyIcons from "./PropertyIcons";
-import PropertyTags from "./PropertyTags";
-import CommentList from "./CommentList";
-import CommentAdd from "./CommentAdd";
-import Heart from "./Heart";
-import colors from "../../common/colors";
-import PropertyMap from './PropertyMap';
+import PropertyIcons from "../PropertyIcons";
+import PropertyTags from "../PropertyTags";
+import CommentList from "../comments/CommentList";
+import CommentAdd from "../comments/CommentAdd";
+import Heart from "../Heart";
+import colors from "../../../common/colors";
+import PropertyMap from '../PropertyMap';
 
 export default class PropertySingle extends Component {
   static propTypes = {
