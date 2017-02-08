@@ -3,10 +3,10 @@ import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContext, NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
 import { NavigationStyles } from '@exponent/ex-navigation';
-import Router from './lib/router';
-import Store from './lib/store';
+import Router from './common/router';
+import Store from './common/store';
 import CodePush from 'react-native-code-push';
-import Colors from './Components/Colors';
+import Colors from './common/Colors';
 import { CODEPUSH_ENABLED } from './env';
 
 const navigationContext = new NavigationContext({
@@ -30,7 +30,6 @@ export default class Root extends Component {
   componentWillUnmount() {
     StatusBar.setHidden(false);
   }
-
 
   render() {
     const modalStyle = {
