@@ -1,8 +1,8 @@
 import orm from './orm';
 import map from 'lodash/map';
 import { ACTION_TYPES as PROPERTY_ACTIONS } from '../property/common/actions';
-import { ACTION_TYPES as AUTH_ACTIONS } from '../auth/actions';
-import { ACTION_TYPES as USER_ACTIONS } from '../user/actions';
+import { ACTION_TYPES as AUTH_ACTIONS } from '../auth/common/actions';
+import { ACTION_TYPES as USER_ACTIONS } from '../user/common/actions';
 
 export default function ormReducer(state, action) {
   const session = orm.session(state);

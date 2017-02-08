@@ -1,6 +1,6 @@
 import isNull from 'lodash/isNull';
-import { API_URL } from '../env';
-import { fetchAPI } from '../common/api';
+import { API_URL } from '../../env';
+import { fetchAPI } from '../../common/api';
 
 export const AUTH_STORAGE_KEY = 'AUTH_TOKEN_!@###';
 

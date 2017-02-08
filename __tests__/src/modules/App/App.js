@@ -1,8 +1,8 @@
 import "react-native";
 import React from "react";
 import renderer from "react-test-renderer";
-import { ACTION_TYPES, ACTIONS } from '../../../../src/app/actions';
-import { appReducer } from '../../../../src/app/reducer';
+import { ACTION_TYPES, ACTIONS } from '../../../../src/app/common/actions';
+import { appReducer } from '../../../../src/app/common/reducer';
 
 describe('App Component Actions', () => {
 

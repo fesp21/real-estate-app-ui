@@ -2,9 +2,9 @@ import React, { PropTypes,Component } from 'react';
 import { ScrollView,StyleSheet, View, Dimensions,Image } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { ACTIONS } from './actions';
+import { ACTIONS } from './common/actions';
 import { ACTIONS as PROPERTY_ACTIONS } from '../property/common/actions';
-import { SELECTORS } from './selectors';
+import { SELECTORS } from './common/selectors';
 import { SELECTORS as PROPERTY_SELECTORS } from '../property/common/selectors';
 import UserProfile from './components/profile/UserProfile';
 

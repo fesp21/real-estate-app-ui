@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects';
-import { bootstrapMonitor, changeCountryMonitor } from '../app/sagas';
-import { loginMonitor, logoutMonitor, registerMonitor } from '../auth/sagas';
-import { userUpdateMonitor } from '../user/sagas';
+import { bootstrapMonitor, changeCountryMonitor } from '../app/common/sagas';
+import { loginMonitor, logoutMonitor, registerMonitor } from '../auth/common/sagas';
+import { userUpdateMonitor } from '../user/common/sagas';
 import {
   propertyMonitor,
   favoriteMonitor,

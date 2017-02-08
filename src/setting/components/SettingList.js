@@ -15,7 +15,7 @@ import {
   RefreshControl
 } from "react-native";
 
-import Separator from '../../common/components/Separator';
+import Separator from '../../components/Separator';
 import colors from '../../common/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 

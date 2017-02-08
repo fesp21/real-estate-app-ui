@@ -2,12 +2,12 @@ import React, { PropTypes,Component } from 'react';
 import { ScrollView,StyleSheet, View, Dimensions,Image,Text } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { ACTIONS } from './actions';
+import { ACTIONS } from './common/actions';
 import UserEditScene from './components/UserEditScene';
-import NavBack from '../common/components/NavBack';
-import Done from '../common/components/Done';
+import NavBack from '../components/NavBack';
+import Done from '../components/Done';
 import ImagePicker from "react-native-image-crop-picker";
-import { SELECTORS } from './selectors';
+import { SELECTORS } from './common/selectors';
 
 class UserEdit extends Component {
 

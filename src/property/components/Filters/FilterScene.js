@@ -6,7 +6,7 @@ import { ScrollView,View, StyleSheet, Text, TouchableHighlight,TouchableWithoutF
 import colors from '../../../common/colors';
 import List from './List';
 import Button from './Button';
-import Separator from '../../../common/components/Separator'
+import Separator from '../../../components/Separator'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import isEmpty from 'lodash/isEmpty';
 

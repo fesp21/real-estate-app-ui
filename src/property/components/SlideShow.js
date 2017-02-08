@@ -3,7 +3,7 @@
 import React, { Component,PropTypes } from 'react';
 import { Animated, View, Image, Text, Dimensions, StyleSheet } from 'react-native';
 import { TabViewAnimated, TabViewPagerPan } from 'react-native-tab-view';
-import NavBack from '../../common/components/NavBack';
+import NavBack from '../../components/NavBack';
 
 const initialLayout = {
   height: 0,

@@ -1,5 +1,5 @@
-import { API_URL } from '../env.js';
-import { fetchAPI } from '../common/api';
+import { API_URL } from '../../env.js';
+import { fetchAPI } from '../../common/api';
 
 function fetchUser(id, params) {
   const url = `${API_URL}/users/${id}/${params}`;

@@ -1,10 +1,10 @@
 import isNull from 'lodash/isNull';
-import Store from '../common/store';
+import Store from '../../common/store';
 import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { ACTION_TYPES } from './actions';
-import { ACTION_TYPES as PROPERTY_ACTIONS } from '../property/common/actions';
+import { ACTION_TYPES as PROPERTY_ACTIONS } from '../../property/common/actions';
 import { API, AUTH_STORAGE_KEY } from './api';
-import { setItem,forgetItem } from '../common/storage';
+import { setItem,forgetItem } from '../../common/storage';
 import { NavigationActions } from '@exponent/ex-navigation';
 
 function* login(action) {

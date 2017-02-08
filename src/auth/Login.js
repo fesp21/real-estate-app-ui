@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { ACTIONS  } from './actions';
+import { ACTIONS  } from './common/actions';
 import LoginScene from './Components/LoginScene';
 import colors from './../common/colors';
 

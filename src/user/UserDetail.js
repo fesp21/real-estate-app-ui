@@ -2,8 +2,8 @@ import React, { PropTypes,Component } from 'react';
 import { ScrollView,StyleSheet, View, Dimensions,Image } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { ACTIONS } from './actions';
-import { SELECTORS } from './selectors';
+import { ACTIONS } from './common/actions';
+import { SELECTORS } from './common/selectors';
 import UserSingle from './components/UserSingle';
 
 class UserDetail extends Component {

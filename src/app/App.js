@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Router from '../common/router';
-import NavBar from '../common/components/NavBar';
+import NavBar from '../components/NavBar';
 import colors from '../common/colors';
 import { connect } from "react-redux";
 import { StackNavigation, TabNavigation, TabNavigationItem } from '@exponent/ex-navigation';
-import { ACTIONS } from './actions';
+import { ACTIONS } from './common/actions';
 
 class App extends Component {
 

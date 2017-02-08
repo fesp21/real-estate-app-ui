@@ -1,8 +1,8 @@
-import appReducer from '../app/reducer';
+import appReducer from '../app/common/reducer';
 import propertyReducer from '../property/common/reducer';
 import ormReducer from './ormReducer';
-import authReducer from '../auth/reducer';
-import userReducer from '../user/reducer';
+import authReducer from '../auth/common/reducer';
+import userReducer from '../user/common/reducer';
 import { combineReducers } from 'redux';
 import { NavigationReducer } from '@exponent/ex-navigation';
 

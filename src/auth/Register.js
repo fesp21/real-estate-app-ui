@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, StatusBar, Text } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import { ACTIONS } from './actions';
+import { ACTIONS } from './common/actions';
 import RegisterScene from './Components/RegisterScene';
 import colors from './../common/colors';
 
