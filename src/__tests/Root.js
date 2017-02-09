@@ -2,8 +2,8 @@
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Root from '../../src/Root';
-import MockStorage from '../helpers/MockStorage';
+import Root from '../Root';
+import MockStorage from '../../__tests__/__mocks__/MockStorage';
 
 const storageCache = {};
 const AsyncStorage = new MockStorage(storageCache);

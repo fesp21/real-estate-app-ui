@@ -1,4 +1,4 @@
-import {propertyReducer} from "../../../../src/property/common/reducer";
+import propertyReducer from "../common/reducer";
 
 const initialState = {
   isFetching:false,

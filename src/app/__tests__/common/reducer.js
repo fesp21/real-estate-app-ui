@@ -1,29 +1,11 @@
-import "react-native";
-import React from "react";
-import renderer from "react-test-renderer";
-import { ACTION_TYPES, ACTIONS } from '../../../../src/app/common/actions';
-import { appReducer } from '../../../../src/app/common/reducer';
-
-describe('App Component Actions', () => {
-
-  test('returns expected action', () => {
-
-    const expected = {
-      type: ACTION_TYPES.BOOT_REQUEST
-    };
-
-    const actual = ACTIONS.boot();
-    expect(actual).toEqual(expected);
-  });
-
-});
-
+import appReducer from '../../common/reducer';
+import { ACTION_TYPES } from '../../common/actions';
 
 describe('App Component Store', () => {
 
   const initialState = {
-      bootstrapped : false,
-      country: 'Kuwait'
+    bootstrapped : false,
+    country: 'Kuwait'
   };
 
   test('should return the initial state', () => {
@@ -50,4 +32,4 @@ describe('App Component Store', () => {
     })
   });
 
-});
+})

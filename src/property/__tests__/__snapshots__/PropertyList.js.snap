@@ -1,0 +1,7 @@
+exports[`test renders PropertyList Component 1`] = `
+<View>
+  <RCTScrollView>
+    <View />
+  </RCTScrollView>
+</View>
+`;

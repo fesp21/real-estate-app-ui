@@ -110,6 +110,7 @@ export function* saveProperty() {
 
     const formData = new FormData();
     map(images, img => formData.append('images[]', { uri: img, name: getFileName(img), type: 'image/jpg' }));
+
     const imageResponse = yield call(API.uploadImage, response.data._id, formData);
 
     yield put({ type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS, payload: imageResponse });

@@ -29,7 +29,6 @@ export default function authReducer(state = initialState, action = {}) {
         ...state,
         error: null,
         isAuthenticated: true,
-        busy: false,
         token: action.payload.api_token,
         userID: action.payload._id,
         login: { ...state.login, busy: false, error: null },
@@ -38,7 +37,6 @@ export default function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         isAuthenticated: false,
-        busy: false,
         token: null,
         login: { ...state.login, busy: false, error: action.error },
       };
