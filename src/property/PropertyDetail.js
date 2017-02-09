@@ -20,7 +20,7 @@ class PropertyDetail extends Component {
   };
 
   saveComment() {
-    console.log('saving comment',this.state.commentBody);
+    // console.log('saving comment',this.state.commentBody);
   }
 
   onChangeCommentText = (value) => {

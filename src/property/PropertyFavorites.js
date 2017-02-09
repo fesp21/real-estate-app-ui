@@ -47,7 +47,7 @@ class PropertyFavorites extends Component {
   }
 
   fetchProperties() {
-    console.log('firing fetch favorites');
+    // console.log('firing fetch favorites');
     // this.props.actions.fetchFavorites();
   }
 

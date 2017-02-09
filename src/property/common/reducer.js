@@ -86,9 +86,16 @@ export default function propertyReducer(state = initialState, action = {}) {
     case ACTION_TYPES.FILTER_RESET:
       return { ...initialState };
     case ACTION_TYPES.FAVORITES_SUCCESS:
-      return { ...state, nextPageFavoritesUrl: action.payload.next_page_url };
+      const favoriteResults = [];
+      const favoritePropertyCollections = action.payload.data;
+      map(favoritePropertyCollections, (entity) => {
+        favoriteResults.push(entity._id);
+      });
+      return { ...state, nextPageFavoritesUrl: action.payload.next_page_url,
+        results: union(state.results, favoriteResults)
+      };
     case ACTION_TYPES.FAVORITES_FAILURE:
-      return { ...state, isFetching: false };
+      return { ...state, isFetching: false,error:action.error };
     case ACTION_TYPES.LISTING_CHANGE:
       return { ...state,
         listings: action.payload,

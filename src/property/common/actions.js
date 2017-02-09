@@ -25,7 +25,7 @@ function fetchProperties(params) {
   };
 }
 
-function fetchFavorites(params = '') {
+function fetchFavorites(params) {
   return {
     type: ACTION_TYPES.FAVORITES_REQUEST,
     params,
