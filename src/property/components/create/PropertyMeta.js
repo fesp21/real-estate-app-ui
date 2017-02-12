@@ -27,8 +27,6 @@ export default class PropertyMeta extends Component {
 
           <Button title="Bed"
                   icon ="bed"
-                  incrementText = "+"
-                  decrementText = "-"
                   onPress = {(value)=>updateMeta('bedroom',value)}
                   range={bedroomsArr}
                   selected = {bedroom}
@@ -41,8 +39,6 @@ export default class PropertyMeta extends Component {
           <View style={[styles.separator,{marginTop:10,marginBottom:10}]}/>
           <Button title="Bath"
                   icon ="bath"
-                  incrementText = "+"
-                  decrementText = "-"
                   onPress = {(value)=>updateMeta('bathroom',value)}
                   range={bathroomsArr}
                   selected = {bathroom}
@@ -55,8 +51,6 @@ export default class PropertyMeta extends Component {
           <View style={[styles.separator,{marginTop:10,marginBottom:10}]}/>
           <Button title="Parking"
                   icon ="car"
-                  incrementText = "+"
-                  decrementText = "-"
                   onPress = {(value)=>updateMeta('parking',value)}
                   range={parkingArr}
                   selected = {parking}

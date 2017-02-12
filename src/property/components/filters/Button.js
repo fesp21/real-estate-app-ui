@@ -14,6 +14,9 @@ export default class Button extends Component {
     onPress:PropTypes.func.isRequired,
     title:PropTypes.string.isRequired,
     icon:PropTypes.string.isRequired,
+    incrementText:PropTypes.string,
+    decrementText:PropTypes.string,
+    style:View.propTypes.style
   };
 
   increment = () => {
@@ -43,12 +46,12 @@ export default class Button extends Component {
 
   render() {
 
-    const {title,titleStyle,selected,icon} = this.props;
+    const {title,titleStyle,selected,icon,incrementText,decrementText} = this.props;
 
     return (
       <View style={styles.container}>
         <Text style={[styles.button]} onPress={()=>this.decrement()}>
-          -
+          {decrementText}
         </Text>
         <View style={styles.infoWrapper}>
           <View style={styles.iconWrapper}>
@@ -60,12 +63,17 @@ export default class Button extends Component {
           </View>
         </View>
         <Text style={[styles.button]} onPress={()=>this.increment()}>
-          +
+          {incrementText}
         </Text>
       </View>
     )
   }
 }
+
+Button.defaultProps = {
+  incrementText: '+',
+  decrementText: '-'
+};
 
 const styles =  StyleSheet.create({
   container : {
@@ -78,7 +86,6 @@ const styles =  StyleSheet.create({
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
-    // backgroundColor:'yellow'
   },
   title:{
     fontWeight:'400',
@@ -100,7 +107,6 @@ const styles =  StyleSheet.create({
   selectedText:{
     color:colors.tomato,
     fontWeight:'500',
-    // color:'#4c5159'
   },
   button:{
     paddingLeft:10,

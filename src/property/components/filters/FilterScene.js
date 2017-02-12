@@ -96,8 +96,6 @@ export default class FilterScene extends Component {
 
           <Button title="Bed"
                   icon ="bed"
-                  incrementText = "+"
-                  decrementText = "-"
                   onPress = {(value)=>onMetaSelect('bedroom',value)}
                   range={bedroomsArr}
                   selected = {bedroom}
@@ -107,8 +105,6 @@ export default class FilterScene extends Component {
 
           <Button title="Bath"
                   icon ="bath"
-                  incrementText = "+"
-                  decrementText = "-"
                   onPress = {(value)=>onMetaSelect('bathroom',value)}
                   range={bathroomsArr}
                   selected = {bathroom}
@@ -118,8 +114,6 @@ export default class FilterScene extends Component {
 
           <Button title="Parking"
                   icon ="car"
-                  incrementText = "+"
-                  decrementText = "-"
                   onPress = {(value)=>onMetaSelect('parking',value)}
                   range={parkingArr}
                   selected = {parking}
