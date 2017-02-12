@@ -80,6 +80,24 @@ class PropertyCreate extends Component {
     this.props.actions.changeListingValue(payload);
   };
 
+  updateMeta = (field,value) => {
+    const { listings } = this.props;
+    const meta = get(listings, "attributes.meta");
+
+    let payload = {
+      ...listings,
+      attributes: {
+        ...listings.attributes,
+        meta: {
+          ...listings.attributes.meta,
+          [field]: value
+        }
+      }
+    };
+
+    this.props.actions.changeListingValue(payload);
+  };
+
   updateMap = (data) => {
     const { state, country, city, latitude, longitude } = data;
     const payload = {
@@ -121,53 +139,6 @@ class PropertyCreate extends Component {
     });
   };
 
-  onIncrementDecrement = (action, type) => {
-    let arrayIndex, selectedValue;
-    const { listings } = this.props;
-    const { filters } = listings;
-    const meta = get(listings, "attributes.meta");
-
-    let field;
-    switch (type) {
-      case "bedroomsArr":
-        field = "bedroom";
-        break;
-      case "bathroomsArr":
-        field = "bathroom";
-        break;
-      case "parkingArr":
-        field = "parking";
-        break;
-      default:
-        break;
-    }
-
-    switch (action) {
-      case "increment":
-        arrayIndex = (filters[type].indexOf(meta[field]) + 1) %
-          filters[type].length;
-        selectedValue = filters[type][arrayIndex];
-        break;
-      case "decrement":
-        arrayIndex = filters[type].indexOf(meta[field]);
-        arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
-        selectedValue = filters[type][arrayIndex - 1];
-    }
-
-    let payload = {
-      ...listings,
-      attributes: {
-        ...listings.attributes,
-        meta: {
-          ...listings.attributes.meta,
-          [field]: selectedValue
-        }
-      }
-    };
-
-    this.props.actions.changeListingValue(payload);
-  };
-
   saveProperty = () => {
     this.props.actions.saveProperty();
   };
@@ -180,7 +151,7 @@ class PropertyCreate extends Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 1 &&
+        {stage == 4 &&
         <List
           path="attributes"
           index="type"
@@ -209,15 +180,16 @@ class PropertyCreate extends Component {
           saveAddress={this.updateMap}
         />}
 
-        {stage == 4 &&
+        {stage == 1 &&
         <PropertyMeta
-          {...listings.attributes.meta}
-          {...listings.filters}
+          meta={listings.attributes.meta}
+          filters={listings.filters}
+          updateMeta={this.updateMeta}
+          onIncrementDecrement={this.onIncrementDecrement}
           header={
               <Header title="Just a little bit more about your Apartment" />
             }
           footer={<Footer updateListing={this.goToNextStage} />}
-          onIncrementDecrement={this.onIncrementDecrement}
         />}
 
         {stage == 5 &&
