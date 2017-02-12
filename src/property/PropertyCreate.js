@@ -185,7 +185,6 @@ class PropertyCreate extends Component {
           meta={listings.attributes.meta}
           filters={listings.filters}
           updateMeta={this.updateMeta}
-          onIncrementDecrement={this.onIncrementDecrement}
           header={<Header title="Just a little bit more about your Apartment" />}
           footer={<Footer updateListing={this.goToNextStage} />}
         />}

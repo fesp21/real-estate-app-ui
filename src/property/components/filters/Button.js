@@ -10,18 +10,44 @@ export default class Button extends Component {
 
   static propTypes = {
     selected : PropTypes.string.isRequired,
-    onIncrementDecrement:PropTypes.func.isRequired,
-    ranges:PropTypes.array.isRequired,
+    range:PropTypes.array.isRequired,
+    onPress:PropTypes.func.isRequired,
     title:PropTypes.string.isRequired,
+    icon:PropTypes.string.isRequired,
+  };
+
+  increment = () => {
+    const {selected,range} = this.props;
+    let arrayIndex,currentValue;
+    try {
+      arrayIndex = (range.indexOf(selected) + 1) % range.length;
+      currentValue = range[arrayIndex];
+      this.props.onPress(currentValue);
+    } catch (e) {
+      console.log('error',e);
+    }
+  };
+
+  decrement = () => {
+    const {selected,range} = this.props;
+    let arrayIndex,currentValue;
+    try {
+      arrayIndex = range.indexOf(selected);
+      arrayIndex == 0 ? arrayIndex = range.length : arrayIndex;
+      currentValue = range[arrayIndex - 1];
+      this.props.onPress(currentValue);
+    } catch (e) {
+      console.log('error',e);
+    }
   };
 
   render() {
 
-    const {type,title,titleStyle,selected,icon,onIncrementDecrement} = this.props;
+    const {title,titleStyle,selected,icon} = this.props;
 
     return (
       <View style={styles.container}>
-        <Text style={[styles.button]} onPress={()=>onIncrementDecrement('decrement',type)}>
+        <Text style={[styles.button]} onPress={()=>this.decrement()}>
           -
         </Text>
         <View style={styles.infoWrapper}>
@@ -33,7 +59,7 @@ export default class Button extends Component {
             <Text style={styles.selectedText} >{selected}</Text>
           </View>
         </View>
-        <Text style={[styles.button]} onPress={()=>onIncrementDecrement('increment',type)}>
+        <Text style={[styles.button]} onPress={()=>this.increment()}>
           +
         </Text>
       </View>

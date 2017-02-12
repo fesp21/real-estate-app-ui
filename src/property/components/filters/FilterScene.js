@@ -30,40 +30,6 @@ export default class FilterScene extends Component {
     onSearch:PropTypes.func.isRequired
   };
 
-  onIncrementDecrement = (action, type) => {
-    let arrayIndex, selectedValue;
-    //
-    const filters = this.props;
-
-    let field;
-    switch (type) {
-      case 'bedroomsArr' :
-        field = 'bedroom';
-        break;
-      case 'bathroomsArr' :
-        field = 'bathroom';
-        break;
-      case 'parkingArr' :
-        field = 'parking';
-        break;
-      default :
-        break;
-    }
-
-    switch (action) {
-      case 'decrement':
-        arrayIndex = filters[type].indexOf(filters[field]);
-        arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
-        selectedValue = filters[type][arrayIndex - 1];
-        break;
-      case 'increment':
-        arrayIndex = (filters[type].indexOf(filters[field]) + 1) % filters[type].length;
-        selectedValue = filters[type][arrayIndex];
-        break;
-    }
-    this.props.onMetaSelect(field,selectedValue);
-  };
-
   render() {
     const {
       priceFromArr,onPriceFromSelect,priceFrom,
@@ -71,11 +37,11 @@ export default class FilterScene extends Component {
       bedroomsArr,bedroom,
       bathroomsArr,bathroom,
       parkingArr,parking,
-      onIncrementDecrement,
       onSearchPress,
       categories,category,onCategorySelect,
       sortOptions,sortBy,onSortSelect,
-      showSearch,onSearch,searchString
+      showSearch,onSearch,searchString,
+      onMetaSelect
     } = this.props;
 
     return (
@@ -129,42 +95,35 @@ export default class FilterScene extends Component {
           <Separator style={{ marginBottom:20 }}/>
 
           <Button title="Bed"
-                  type="bedroomsArr"
                   icon ="bed"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrementDecrement = {this.onIncrementDecrement}
-                  titleStyle={{}}
-                  ranges={bedroomsArr}
+                  onPress = {(value)=>onMetaSelect('bedroom',value)}
+                  range={bedroomsArr}
                   selected = {bedroom}
           />
 
           <Separator style={{ marginTop:20,marginBottom:20 }}/>
 
           <Button title="Bath"
-                  type="bathroomsArr"
                   icon ="bath"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrementDecrement = {this.onIncrementDecrement}
-                  titleStyle={{}}
-                  ranges={bathroomsArr}
+                  onPress = {(value)=>onMetaSelect('bathroom',value)}
+                  range={bathroomsArr}
                   selected = {bathroom}
           />
 
           <Separator style={{ marginTop:20,marginBottom:20 }}/>
 
           <Button title="Parking"
-                  type="parkingArr"
                   icon ="car"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrementDecrement = {this.onIncrementDecrement}
-                  titleStyle={{}}
-                  ranges={parkingArr}
+                  onPress = {(value)=>onMetaSelect('parking',value)}
+                  range={parkingArr}
                   selected = {parking}
           />
-
 
         </ScrollView>
 
