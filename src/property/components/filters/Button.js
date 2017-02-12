@@ -26,9 +26,7 @@ export default class Button extends Component {
       arrayIndex = (range.indexOf(selected) + 1) % range.length;
       currentValue = range[arrayIndex];
       this.props.onPress(currentValue);
-    } catch (e) {
-      console.log('error',e);
-    }
+    } catch (e) {}
   };
 
   decrement = () => {
@@ -39,9 +37,7 @@ export default class Button extends Component {
       arrayIndex == 0 ? arrayIndex = range.length : arrayIndex;
       currentValue = range[arrayIndex - 1];
       this.props.onPress(currentValue);
-    } catch (e) {
-      console.log('error',e);
-    }
+    } catch (e) {}
   };
 
   render() {
