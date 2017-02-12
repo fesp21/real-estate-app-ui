@@ -34,7 +34,7 @@ class App extends Component {
       <TabNavigation
         id="homeTab"
         navigatorUID="homeTab"
-        initialTab="first"
+        initialTab="third"
         tabBarStyle={{ backgroundColor:colors.primary }}
         tabBarHeight={49}
       >

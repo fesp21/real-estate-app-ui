@@ -98,7 +98,7 @@ class PropertyCreate extends Component {
     this.props.actions.changeListingValue(payload);
   };
 
-  updateMap = (data) => {
+  updateAddress = (data) => {
     const { state, country, city, latitude, longitude } = data;
     const payload = {
       state,
@@ -108,11 +108,10 @@ class PropertyCreate extends Component {
       longitude
     };
     this.updateListing("attributes", "address", payload);
-    this.goToNextStage();
   };
 
-  onValueSelect = (path, index, value) => {
-    this.updateListing(path, index, value);
+  onValueSelect = (index, value) => {
+    this.updateListing("attributes", index, value);
     this.goToNextStage();
   };
 
@@ -153,8 +152,7 @@ class PropertyCreate extends Component {
 
         {stage == 1 &&
         <List
-          path="attributes"
-          index="type"
+          field="type"
           collection={types}
           header={<Header title="What type of Property you want to list ?" />}
           updateListing={this.onValueSelect}
@@ -162,8 +160,7 @@ class PropertyCreate extends Component {
 
         {stage == 2 &&
         <List
-          path="attributes"
-          index="category"
+          field="category"
           header={<Header title="Select Category Type" />}
           collection={categories}
           updateListing={this.onValueSelect}
@@ -171,13 +168,13 @@ class PropertyCreate extends Component {
 
         {stage == 3 &&
         <AddressPicker
-          path="attributes"
-          index="address"
           country={country}
           stage={stage}
+          address={attributes.address}
           header={<Header title="What city is your Apartment located in ?" />}
           category="Apartment"
-          saveAddress={this.updateMap}
+          updateAddress={this.updateAddress}
+          updateListing={this.goToNextStage}
         />}
 
         {stage == 4 &&

@@ -17,7 +17,7 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import colors from "../../../common/colors";
 import Footer from "./Footer";
-import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
+import MapView from "react-native-maps";
 import {
   GooglePlacesAutocomplete
 } from "react-native-google-places-autocomplete";
@@ -26,83 +26,62 @@ import isEmpty from 'lodash/isEmpty';
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
-const LATITUDE = 29.3667;
-const LONGITUDE = 47.9667;
+
 const LATITUDE_DELTA = 0.8;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default class AddressPicker extends Component {
+
   static propTypes = {
-    country: PropTypes.string.isRequired
+    country: PropTypes.string.isRequired,
+    updateAddress:PropTypes.func.isRequired,
+    updateListing:PropTypes.func.isRequired,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      address: {
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
-        city: "",
-        state: "",
-        country: ""
-      }
-    };
-  }
 
   jumpToRegion = () => {
-    this.map.animateToRegion(this.randomRegion());
+    const { address } = this.props;
+    const closeRegion = {
+      latitude: address.latitude + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
+      longitude: (address.longitude + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2))
+    };
+    this.map.animateToRegion(closeRegion);
   };
 
-  randomRegion() {
-    const { address } = this.state;
-    return {
-      ...this.state.address,
-      latitude: address.latitude + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
-      longitude: (
-        address.longitude + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2)
-      )
-    };
-  }
-
-  handleSearch = (locationData, locationDetails) => {
-    this.setState({
-      // locationSearchingString:location,
-      address: {
-        ...this.state.address,
-        latitude: locationDetails.geometry.location.lat,
-        longitude: locationDetails.geometry.location.lng,
-        city: locationData.terms[0].value,
-        state: locationData.terms[1].value,
-        country: locationData.terms[2].value
-      }
+  onSearchPress = (locationData, locationDetails) => {
+    const {updateAddress} = this.props;
+    updateAddress({
+      latitude: locationDetails.geometry.location.lat,
+      longitude: locationDetails.geometry.location.lng,
+      city: locationData.terms[0].value,
+      state: locationData.terms[1].value,
+      country: locationData.terms[2].value
     });
     this.jumpToRegion();
   };
 
   onDragEnd = (e) => {
-    this.setState({
-      address: {
-        ...this.state.address,
-        latitude: e.nativeEvent.coordinate.latitude,
-        longitude: e.nativeEvent.coordinate.longitude,
-      }
+    const {address,updateAddress} = this.props;
+    updateAddress({
+      ...address,
+      latitude: e.nativeEvent.coordinate.latitude,
+      longitude: e.nativeEvent.coordinate.longitude,
     });
     this.jumpToRegion();
+    this.setState({
+      isSelected:true
+    });
   };
 
-  saveAddress = () => {
-
-    const {address} = this.state;
-    const {country} = address;
-    if(isEmpty(country)) {
+  updateListing = () => {
+    const {address,updateListing} = this.props;
+    if(isEmpty(address.country)) {
       return Alert.alert('Please Select Your Area',null);
     }
-    this.props.saveAddress(address);
+    return updateListing();
   };
 
   render() {
-    const { header, country } = this.props;
+    const { header, country, address, coords } = this.props;
     return (
       <View style={styles.container}>
         {header}
@@ -116,8 +95,8 @@ export default class AddressPicker extends Component {
               provider={this.props.provider}
               style={styles.map}
               initialRegion={{
-                latitude: LATITUDE,
-                longitude: LONGITUDE,
+                latitude: coords.latitude,
+                longitude: coords.longitude,
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA
               }}
@@ -131,7 +110,7 @@ export default class AddressPicker extends Component {
                   fetchDetails={true}
                   renderDescription={row => row.terms[0].value}
                   onPress={(data, details = null) => {
-                    this.handleSearch(data, details);
+                    this.onSearchPress(data, details);
                   }}
                   query={{
                     key: GOOGLE_MAPS_KEY,
@@ -142,6 +121,7 @@ export default class AddressPicker extends Component {
                   styles={autoCompleteStyle}
                   enablePoweredByContainer={false}
                   placeholderTextColor={colors.lightGrey}
+                  getDefaultValue={()=> address.city}
                 />
                 <TouchableHighlight
                   underlayColor="transparent"
@@ -162,7 +142,7 @@ export default class AddressPicker extends Component {
               </View>
 
               <MapView.Marker
-                coordinate={this.state.address}
+                coordinate={address.latitude ? address : coords }
                 onDragEnd={e => this.onDragEnd(e)}
                 draggable
               />
@@ -171,12 +151,19 @@ export default class AddressPicker extends Component {
           </View>
         </View>
 
-        <Footer updateListing={() => this.saveAddress()} />
+        <Footer updateListing={() => this.updateListing()} />
 
       </View>
     );
   }
 }
+
+AddressPicker.defaultProps = {
+  coords : {
+    latitude:29.3667,
+    longitude:47.9667
+  }
+};
 
 const autoCompleteStyle = {
   textInputContainer: {

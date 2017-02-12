@@ -34,7 +34,6 @@ const initialState = {
       parkingArr: ['N/A', '1', '2', '3', '4', '4+'],
     },
     done: false,
-    stage: 1,
     attributes: {
       type: 'For Sale',
       category: 'Villa',
@@ -45,8 +44,8 @@ const initialState = {
         city: 'Kuwait City',
         state: 'Kuwait City',
         country: 'Kuwait',
-        latitude: 29.3667,
-        longitude: 47.9667,
+        latitude: '',
+        longitude: '',
       },
       meta: {
         bedroom: 'Studio',
