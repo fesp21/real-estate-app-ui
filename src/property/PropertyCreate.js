@@ -41,10 +41,6 @@ class PropertyCreate extends Component {
     }
   };
 
-  state = {
-    stage: 1
-  };
-
   componentWillMount() {
     this._subscription = this.props.route
       .getEventEmitter()
@@ -52,7 +48,7 @@ class PropertyCreate extends Component {
   }
 
   componentDidUpdate() {
-    const { stage } = this.state;
+    const { stage } = this.props.listings;
     this.props.navigator.updateCurrentRouteParams({
       stage: stage
     });
@@ -73,10 +69,18 @@ class PropertyCreate extends Component {
 
   updateListing = (path, index, value) => {
     const { listings } = this.props;
-    const payload = {
-      ...listings,
-      [path]: { ...listings[path], [index]: value }
-    };
+    let payload;
+    if(path) {
+      payload = {
+        ...listings,
+        [path]: { ...listings[path], [index]: value }
+      };
+    } else {
+      payload = {
+        ...listings,
+        [index]: value
+      };
+    }
     this.props.actions.changeListingValue(payload);
   };
 
@@ -127,15 +131,13 @@ class PropertyCreate extends Component {
   };
 
   goToPrevStage = () => {
-    this.setState({
-      stage: this.state.stage - 1
-    });
+    const { stage } = this.props.listings;
+    this.updateListing(null, "stage", stage - 1);
   };
 
   goToNextStage = () => {
-    return this.setState({
-      stage: this.state.stage + 1
-    });
+    const { stage } = this.props.listings;
+    this.updateListing(null, "stage", stage + 1);
   };
 
   saveProperty = () => {
@@ -145,7 +147,7 @@ class PropertyCreate extends Component {
   render() {
     const { listings, types, categories, amenities, country } = this.props;
     const { attributes } = listings;
-    const { stage } = this.state;
+    const { stage } = listings;
 
     return (
       <View style={{ flex: 1 }}>
