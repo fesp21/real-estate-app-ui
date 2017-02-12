@@ -9,8 +9,9 @@ import Button from '../filters/Button';
 export default class PropertyMeta extends Component {
 
   static propTypes = {
-    onIncrementDecrement:PropTypes.func.isRequired,
-    updateMeta:PropTypes.func.isRequired
+    updateMeta:PropTypes.func.isRequired,
+    filters:PropTypes.object.isRequired,
+    meta:PropTypes.object.isRequired
   };
 
   updateMeta = (action,type) => {

@@ -151,7 +151,7 @@ class PropertyCreate extends Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 4 &&
+        {stage == 1 &&
         <List
           path="attributes"
           index="type"
@@ -180,15 +180,13 @@ class PropertyCreate extends Component {
           saveAddress={this.updateMap}
         />}
 
-        {stage == 1 &&
+        {stage == 4 &&
         <PropertyMeta
           meta={listings.attributes.meta}
           filters={listings.filters}
           updateMeta={this.updateMeta}
           onIncrementDecrement={this.onIncrementDecrement}
-          header={
-              <Header title="Just a little bit more about your Apartment" />
-            }
+          header={<Header title="Just a little bit more about your Apartment" />}
           footer={<Footer updateListing={this.goToNextStage} />}
         />}
 
