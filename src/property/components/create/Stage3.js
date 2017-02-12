@@ -11,7 +11,8 @@ import {
   ListView,
   TouchableHighlight,
   Dimensions,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import colors from "../../../common/colors";
@@ -21,6 +22,7 @@ import {
   GooglePlacesAutocomplete
 } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_KEY } from "./../../../env.js";
+import isEmpty from 'lodash/isEmpty';
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -42,7 +44,8 @@ export default class Stage3 extends Component {
         latitude: LATITUDE,
         longitude: LONGITUDE,
         city: "",
-        state: ""
+        state: "",
+        country: ""
       }
     };
   }
@@ -88,10 +91,18 @@ export default class Stage3 extends Component {
     this.jumpToRegion();
   };
 
-  render() {
-    const { header, country, saveAddress } = this.props;
-    const { address } = this.state;
+  saveAddress = () => {
 
+    const {address} = this.state;
+    const {country} = address;
+    if(isEmpty(country)) {
+      return Alert.alert('Please Select Your Area',null);
+    }
+    this.props.saveAddress(address);
+  };
+
+  render() {
+    const { header, country } = this.props;
     return (
       <View style={styles.container}>
         {header}
@@ -115,7 +126,7 @@ export default class Stage3 extends Component {
                 style={styles.textInputWrapper}
               >
                 <GooglePlacesAutocomplete
-                  placeholder="Search"
+                  placeholder="Area"
                   minLength={3}
                   fetchDetails={true}
                   renderDescription={row => row.terms[0].value}
@@ -160,7 +171,7 @@ export default class Stage3 extends Component {
           </View>
         </View>
 
-        <Footer updateListing={() => saveAddress(address)} />
+        <Footer updateListing={() => this.saveAddress()} />
 
       </View>
     );

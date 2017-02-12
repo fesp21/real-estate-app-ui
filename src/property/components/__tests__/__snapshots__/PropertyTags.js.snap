@@ -1,0 +1,51 @@
+exports[`test renders heart 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "gray",
+        "fontSize": 11,
+      }
+    }>
+     #
+    A
+     
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "gray",
+        "fontSize": 11,
+      }
+    }>
+     #
+    B
+     
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "gray",
+        "fontSize": 11,
+      }
+    }>
+     #
+    C
+     
+  </Text>
+</View>
+`;

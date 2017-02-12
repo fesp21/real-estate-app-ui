@@ -64,37 +64,13 @@ class PropertyCreate extends Component {
     this._subscription.remove();
   }
 
-  pickImage = () => {
+  updateImage = (uploadedImages) => {
     const tempImages = this.props.listings.attributes.images;
-    const maxImages = 5;
-
-    ImagePicker
-      .openPicker({
-        multiple: true
-      })
-      .then(collection => {
-        return map(collection, image => image.path);
-      })
-      .then(images => {
-        if (tempImages.length >= maxImages) return;
-        let i = 1;
-        let allowedImages = [];
-        images.forEach(image => {
-          if (i + tempImages.length <= maxImages) {
-            allowedImages.push(image);
-          }
-          i++;
-        });
-        return allowedImages;
-      })
-      .then(pendingImages => {
-        this.updateListing(
-          "attributes",
-          "images",
-          tempImages.concat(pendingImages)
-        );
-      })
-      .catch(e => {});
+    this.updateListing(
+      "attributes",
+      "images",
+      tempImages.concat(uploadedImages)
+    );
   };
 
   updateListing = (path, index, value) => {
@@ -248,8 +224,8 @@ class PropertyCreate extends Component {
 
         {stage == 5 &&
         <Stage5
-          pickImage={this.pickImage}
           images={attributes.images}
+          updateImage={this.updateImage}
           header={<Header title="Upload Property Images" />}
           footer={<Footer updateListing={this.goToNextStage} />}
         />}
