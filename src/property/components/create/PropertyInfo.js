@@ -5,7 +5,7 @@ import React, { PropTypes, Component } from 'react';
 import { ScrollView, View, StyleSheet, Text, Image,ListView,TouchableHighlight,TextInput,KeyboardAvoidingView } from 'react-native';
 import colors from '../../../common/colors';
 
-export default class Stage6 extends Component {
+export default class PropertyInfo extends Component {
 
   static propTypes = {
     attributes:PropTypes.object.isRequired,

@@ -6,7 +6,7 @@ import { ScrollView, View, StyleSheet, Text, Image,ListView,TouchableHighlight,T
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../../common/colors';
 
-export default class Stage7 extends React.Component {
+export default class PropertyAmenities extends React.Component {
 
   state = {
     descriptionHeight:40,
@@ -59,7 +59,7 @@ export default class Stage7 extends React.Component {
   }
 }
 
-Stage7.prototypes = {
+PropertyAmenities.prototypes = {
   collection:React.PropTypes.array.isRequired,
   updateListing:React.PropTypes.func.isRequired,
   selected:React.PropTypes.array.isRequired

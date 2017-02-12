@@ -3,18 +3,16 @@
  */
 import React, { PropTypes, Component } from "react";
 import { View } from "react-native";
-import ImagePicker from "react-native-image-crop-picker";
 import List from "./components/create/List";
-import Stage3 from "./components/create/Stage3";
-import Stage4 from "./components/create/Stage4";
-import Stage5 from "./components/create/Stage5";
-import Stage6 from "./components/create/Stage6";
-import Stage7 from "./components/create/Stage7";
+import AddressPicker from "./components/create/AddressPicker";
+import PropertyMeta from "./components/create/PropertyMeta";
+import UploadImage from "./components/create/UploadImage";
+import PropertyInfo from "./components/create/PropertyInfo";
+import PropertyAmenities from "./components/create/PropertyAmenities";
 import NavBack from "./components/create/NavBack";
 import Header from "./components/create/Header";
 import Footer from "./components/create/Footer";
 import get from "lodash/get";
-import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ACTIONS } from "./common/actions";
@@ -201,7 +199,7 @@ class PropertyCreate extends Component {
         />}
 
         {stage == 3 &&
-        <Stage3
+        <AddressPicker
           path="attributes"
           index="address"
           country={country}
@@ -212,7 +210,7 @@ class PropertyCreate extends Component {
         />}
 
         {stage == 4 &&
-        <Stage4
+        <PropertyMeta
           {...listings.attributes.meta}
           {...listings.filters}
           header={
@@ -223,7 +221,7 @@ class PropertyCreate extends Component {
         />}
 
         {stage == 5 &&
-        <Stage5
+        <UploadImage
           images={attributes.images}
           updateImage={this.updateImage}
           header={<Header title="Upload Property Images" />}
@@ -231,7 +229,7 @@ class PropertyCreate extends Component {
         />}
 
         {stage == 6 &&
-        <Stage6
+        <PropertyInfo
           onFieldChange={this.updateListing}
           path="attributes"
           attributes={attributes}
@@ -240,7 +238,7 @@ class PropertyCreate extends Component {
         />}
 
         {stage == 7 &&
-        <Stage7
+        <PropertyAmenities
           collection={amenities}
           selected={attributes.amenities}
           updateListing={this.updateAmenities}

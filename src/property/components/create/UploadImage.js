@@ -8,7 +8,7 @@ import colors from '../../../common/colors';
 import ImagePicker from "react-native-image-crop-picker";
 import map from 'lodash/map';
 
-export default class Stage5 extends Component {
+export default class UploadImage extends Component {
 
   static propTypes = {
     images:PropTypes.array.isRequired,

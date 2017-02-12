@@ -6,7 +6,7 @@ import {ScrollView,View, StyleSheet, Text, Image, ListView, TouchableHighlight,D
 import colors from "../../../common/colors";
 import Button from '../filters/Button';
 
-export default class Stage4 extends Component {
+export default class PropertyMeta extends Component {
 
   static propTypes = {
     onIncrementDecrement:PropTypes.func.isRequired

@@ -31,7 +31,7 @@ const LONGITUDE = 47.9667;
 const LATITUDE_DELTA = 0.8;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-export default class Stage3 extends Component {
+export default class AddressPicker extends Component {
   static propTypes = {
     country: PropTypes.string.isRequired
   };
