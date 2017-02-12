@@ -30,6 +30,40 @@ export default class FilterScene extends Component {
     onSearch:PropTypes.func.isRequired
   };
 
+  onIncrementDecrement = (action, type) => {
+    let arrayIndex, selectedValue;
+    //
+    const filters = this.props;
+
+    let field;
+    switch (type) {
+      case 'bedroomsArr' :
+        field = 'bedroom';
+        break;
+      case 'bathroomsArr' :
+        field = 'bathroom';
+        break;
+      case 'parkingArr' :
+        field = 'parking';
+        break;
+      default :
+        break;
+    }
+
+    switch (action) {
+      case 'decrement':
+        arrayIndex = filters[type].indexOf(filters[field]);
+        arrayIndex == 0 ? arrayIndex = filters[type].length : arrayIndex;
+        selectedValue = filters[type][arrayIndex - 1];
+        break;
+      case 'increment':
+        arrayIndex = (filters[type].indexOf(filters[field]) + 1) % filters[type].length;
+        selectedValue = filters[type][arrayIndex];
+        break;
+    }
+    this.props.onMetaSelect(field,selectedValue);
+  };
+
   render() {
     const {
       priceFromArr,onPriceFromSelect,priceFrom,
@@ -99,7 +133,7 @@ export default class FilterScene extends Component {
                   icon ="bed"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrementDecrement = {onIncrementDecrement}
+                  onIncrementDecrement = {this.onIncrementDecrement}
                   titleStyle={{}}
                   ranges={bedroomsArr}
                   selected = {bedroom}
@@ -112,7 +146,7 @@ export default class FilterScene extends Component {
                   icon ="bath"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrementDecrement = {onIncrementDecrement}
+                  onIncrementDecrement = {this.onIncrementDecrement}
                   titleStyle={{}}
                   ranges={bathroomsArr}
                   selected = {bathroom}
@@ -125,7 +159,7 @@ export default class FilterScene extends Component {
                   icon ="car"
                   incrementText = "+"
                   decrementText = "-"
-                  onIncrementDecrement = {onIncrementDecrement}
+                  onIncrementDecrement = {this.onIncrementDecrement}
                   titleStyle={{}}
                   ranges={parkingArr}
                   selected = {parking}
