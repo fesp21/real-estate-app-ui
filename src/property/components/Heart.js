@@ -5,8 +5,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 export default class Heart extends Component {
 
   static propTypes = {
-    // loadFilterScene:PropTypes.func.isRequired
-    handleFavoritePress:PropTypes.func.isRequired
+    handleFavoritePress:PropTypes.func.isRequired,
+    isFavorited:PropTypes.bool.isRequired
   };
 
   render() {
