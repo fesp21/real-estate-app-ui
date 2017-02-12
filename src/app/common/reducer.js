@@ -5,7 +5,7 @@ const DEFAULT_COUNTRY = 'Kuwait';
 
 // // reducer
 const initialState = {
-  bootstrapped: false,
+  bootstrapped: true,
   country: DEFAULT_COUNTRY,
 };
 

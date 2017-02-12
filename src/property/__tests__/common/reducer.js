@@ -1,5 +1,5 @@
 import propertyReducer from "../../common/reducer";
-import { ACTIONS, ACTION_TYPES } from './../../common/actions';
+import {ACTION_TYPES} from "./../../common/actions";
 
 const initialState = {
   isFetching: false,
@@ -210,20 +210,34 @@ describe('Property Component Store', () => {
       attributes: {
         ...initialState.listings.attributes,
         type: 'For Rent',
+        category: 'Chalet',
+        title: '2 BHK',
+        description: 'description',
+        price: '300',
+        address: {
+          city: 'Salmiya',
+          state: 'Hawalli',
+          country: 'Kuwait',
+          latitude: 30.3667,
+          longitude: 33.9667,
+        },
+        meta: {
+          bedroom: '1',
+          bathroom: '2',
+          kitchen: '3',
+          area: '330.5',
+          parking: '2',
+        },
+        images: [],
+        tags: [],
+        amenities: ['Sauna'],
       }
     };
 
     expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_CHANGE,payload:payload}))
       .toEqual({
         ...initialState,
-        listings: {
-          ...initialState.listings,
-          stage:5,
-          attributes: {
-            ...initialState.listings.attributes,
-            type: 'For Rent'
-          }
-        }
+        listings: payload
       });
   });
 

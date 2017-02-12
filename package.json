@@ -48,7 +48,7 @@
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
-      "node_modules/@exponent//ex-navigation"
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|exponent|@exponent/*)"
     ],
     "testPathIgnorePatterns" : [
       "node_modules",
