@@ -1,8 +1,6 @@
 import 'react-native';
 import React from 'react';
-import PropertyListScene from '../components/scenes/PropertyListScene';
-import { Provider } from 'react-redux';
-import Store from '../../common/store';
+import PropertyListScene from '../PropertyListScene';
 import renderer from 'react-test-renderer';
 
 const properties = [
