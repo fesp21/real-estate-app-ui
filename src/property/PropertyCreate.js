@@ -59,11 +59,10 @@ class PropertyCreate extends Component {
   }
 
   updateImage = (uploadedImages) => {
-    const tempImages = this.props.listings.attributes.images;
     this.updateListing(
       "attributes",
       "images",
-      tempImages.concat(uploadedImages)
+      uploadedImages
     );
   };
 

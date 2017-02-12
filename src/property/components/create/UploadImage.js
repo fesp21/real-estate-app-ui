@@ -7,6 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../../common/colors';
 import ImagePicker from "react-native-image-crop-picker";
 import map from 'lodash/map';
+import union from 'lodash/union';
 
 export default class UploadImage extends Component {
 
@@ -22,7 +23,7 @@ export default class UploadImage extends Component {
   }
 
   pickImage = () => {
-    const tempImages = this.props.images;
+    const uploadedImages = this.props.images;
     const maxImages = 5;
 
     ImagePicker
@@ -33,11 +34,11 @@ export default class UploadImage extends Component {
         return map(collection, image => image.path);
       })
       .then(images => {
-        if (tempImages.length >= maxImages) return;
+        if (uploadedImages.length >= maxImages) return;
         let i = 1;
         let allowedImages = [];
         images.forEach(image => {
-          if (i + tempImages.length <= maxImages) {
+          if (i + uploadedImages.length <= maxImages) {
             allowedImages.push(image);
           }
           i++;
@@ -45,18 +46,47 @@ export default class UploadImage extends Component {
         return allowedImages;
       })
       .then(pendingImages => {
-        this.props.updateImage(pendingImages);
+        this.props.updateImage(union(uploadedImages,pendingImages));
       })
       .catch(e => {
         console.log('errror uploading image',e);
       });
   };
 
-  renderRow(image,key) {
+  removeImage = (removedImage) => {
+    const uploadedImages = this.props.images;
+    const excludeDeletedImage = uploadedImages.filter((image)=> image != removedImage);
+    this.props.updateImage(excludeDeletedImage);
+  };
+
+  renderRow = (image,key) => {
     return (
       <View style={styles.row}>
-        <Image key={key} source={{uri:image}} style={styles.image}/>
+        <TouchableHighlight
+          onPress={()=>this.removeImage(image)}
+          underlayColor="transparent"
+          style={{
+            position:'absolute',
+            zIndex:1000,
+            marginTop:-10,
+            marginLeft:-10
+          }}
+        >
+          <FontAwesome
+            name="close"
+            style={{
+            backgroundColor:'transparent'
+          }}
+            color="red"
+            size={25}
+          />
+
+        </TouchableHighlight>
+        <View style={{flex:1}}>
+          <Image key={key} source={{uri:image}} style={styles.image}/>
+        </View>
       </View>
+
     )
   };
 

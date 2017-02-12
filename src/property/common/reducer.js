@@ -55,7 +55,8 @@ const initialState = {
         area: '220.5',
         parking: '1',
       },
-      images: [],
+      images: [
+      ],
       tags: ['New', 'Duplex'],
       amenities: ['Swimming Pool'],
     },
