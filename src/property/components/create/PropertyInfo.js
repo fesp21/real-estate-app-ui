@@ -9,7 +9,6 @@ export default class PropertyInfo extends Component {
 
   static propTypes = {
     attributes:PropTypes.object.isRequired,
-    path:PropTypes.string.isRequired
   };
 
   state = {
@@ -17,7 +16,7 @@ export default class PropertyInfo extends Component {
   };
 
   render() {
-    const {onFieldChange,path,attributes,header,footer} = this.props;
+    const {onFieldChange,attributes,header,footer} = this.props;
     const {title,description,price} = attributes;
 
     return (

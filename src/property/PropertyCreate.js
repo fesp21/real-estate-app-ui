@@ -66,8 +66,8 @@ class PropertyCreate extends Component {
     this.props.actions.changeListingValue(payload);
   };
 
-  onSelect = (index, value) => {
-    this.updateAttributes(index, value);
+  onSelect = (field, value) => {
+    this.updateAttributes(field, value);
     this.goToNextStage();
   };
 
@@ -145,10 +145,9 @@ class PropertyCreate extends Component {
         {stage == 3 &&
         <AddressPicker
           country={country}
-          stage={stage}
           address={attributes.address}
-          header={<Header title="What city is your Apartment located in ?" />}
           category="Apartment"
+          header={<Header title="What city is your Apartment located in ?" />}
           updateAddress={this.updateAddress}
           updateListing={this.goToNextStage}
         />}
@@ -172,8 +171,8 @@ class PropertyCreate extends Component {
 
         {stage == 6 &&
         <PropertyInfo
-          onFieldChange={this.updateAttributes}
           attributes={attributes}
+          onFieldChange={this.updateAttributes}
           header={<Header title="You are almost there !!" />}
           footer={<Footer updateListing={this.goToNextStage} />}
         />}

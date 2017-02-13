@@ -7,7 +7,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../../common/colors';
 import ImagePicker from "react-native-image-crop-picker";
 import map from 'lodash/map';
-import union from 'lodash/union';
 
 export default class UploadImage extends Component {
 
@@ -15,12 +14,6 @@ export default class UploadImage extends Component {
     images:PropTypes.array.isRequired,
     updateImage:PropTypes.func.isRequired
   };
-
-  componentDidMount() {
-    const {images} = this.props;
-    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
-    let dataSource = ds.cloneWithRows(images);
-  }
 
   pickImage = () => {
     const uploadedImages = this.props.images;
@@ -35,8 +28,8 @@ export default class UploadImage extends Component {
       })
       .then(images => {
         if (uploadedImages.length >= maxImages) return;
-        let i = 1;
         let allowedImages = [];
+        let i = 1;
         images.forEach(image => {
           if (i + uploadedImages.length <= maxImages) {
             allowedImages.push(image);
@@ -45,12 +38,8 @@ export default class UploadImage extends Component {
         });
         return allowedImages;
       })
-      .then(pendingImages => {
-        this.props.updateImage(pendingImages);
-      })
-      .catch(e => {
-        console.log('errror uploading image',e);
-      });
+      .then(pendingImages => this.props.updateImage(pendingImages))
+      .catch(e => {});
   };
 
   removeImage = (removedImage) => {
