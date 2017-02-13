@@ -104,11 +104,12 @@ export default function propertyReducer(state = initialState, action = {}) {
       if(action.payload.replace) {
         const {key,item} = action.payload;
         const tempValues = state.listings.attributes[key];
-        let newArray;
+        let newArray = [];
         if(isArray(item)) {
+          newArray = newArray.concat(tempValues);
           map(item, i => {
             if (!tempValues.includes(i)) {
-              return newArray = tempValues.concat([i]);
+              return newArray = newArray.concat(i);
             }
           });
         } else {
