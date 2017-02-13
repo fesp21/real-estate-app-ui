@@ -12,13 +12,11 @@ import PropertyAmenities from "./components/create/PropertyAmenities";
 import NavBack from "./components/create/NavBack";
 import Header from "./components/create/Header";
 import Footer from "./components/create/Footer";
-import get from "lodash/get";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ACTIONS } from "./common/actions";
 import { SELECTORS } from "./common/selectors";
 import { resolveCountryName } from './../common/functions';
-import merge from 'lodash/merge';
 
 class PropertyCreate extends Component {
 
@@ -68,49 +66,42 @@ class PropertyCreate extends Component {
     this.props.actions.changeListingValue(payload);
   };
 
-  onValueSelect = (index, value) => {
+  onSelect = (index, value) => {
     this.updateAttributes(index, value);
     this.goToNextStage();
   };
 
-  updateImage = (uploadedImages) => {
-    this.updateAttributes(
-      "images",
-      uploadedImages
-    );
-  };
-
   updateMeta = (field,value) => {
     let payload = {
-      meta: {
-        [field]: value
-      }
+      [field]: value
     };
     this.updateAttributes("meta", payload);
   };
 
   updateAddress = (data) => {
     const { state, country, city, latitude, longitude } = data;
-    const payload = {
-      state,
-      country,
-      city,
-      latitude,
-      longitude
-    };
+    const payload = {state,country,city,latitude,longitude};
     this.updateAttributes("address", payload);
   };
 
+  updateImage = (uploadedImages) => {
+    this.updateAttributes("images",uploadedImages);
+  };
 
   updateAmenities = (item) => {
-    let newArray;
-    const amenities = this.props.listings.attributes.amenities;
-    if (amenities.includes(item)) {
-      newArray = amenities.filter(amenity => amenity != item);
-    } else {
-      newArray = amenities.concat([item]);
-    }
-    this.updateAttributes("amenities", newArray);
+    // let newArray;
+    // const amenities = this.props.listings.attributes.amenities;
+    // if (amenities.includes(item)) {
+    //   newArray = amenities.filter(amenity => amenity != item);
+    // } else {
+    //   newArray = amenities.concat([item]);
+    // }
+    const payload = {
+      replace:true,
+      key:'amenities',
+      item:item
+    };
+    this.props.actions.changeListingValue(payload);
   };
 
   goToPrevStage = () => {
@@ -143,7 +134,7 @@ class PropertyCreate extends Component {
           field="type"
           collection={types}
           header={<Header title="What type of Property you want to list ?" />}
-          updateListing={this.onValueSelect}
+          updateListing={this.onSelect}
         />}
 
         {stage == 2 &&
@@ -151,7 +142,7 @@ class PropertyCreate extends Component {
           field="category"
           header={<Header title="Select Category Type" />}
           collection={categories}
-          updateListing={this.onValueSelect}
+          updateListing={this.onSelect}
         />}
 
         {stage == 3 &&

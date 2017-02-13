@@ -234,7 +234,7 @@ describe('Property Component Store', () => {
       }
     };
 
-    expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_CHANGE,payload:payload}))
+    expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
       .toEqual({
         ...initialState,
         listings: payload

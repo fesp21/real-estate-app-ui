@@ -9,7 +9,7 @@ Object {
 exports[`App Component Actions changeListingValue action 1`] = `
 Object {
   "payload": "attributes",
-  "type": "LISTING_CHANGE",
+  "type": "LISTING_UPDATE_ITEM",
 }
 `;
 

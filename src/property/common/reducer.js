@@ -98,14 +98,46 @@ export default function propertyReducer(state = initialState, action = {}) {
       };
     case ACTION_TYPES.FAVORITES_FAILURE:
       return { ...state, isFetching: false,error:action.error };
-    case ACTION_TYPES.LISTING_CHANGE:
+    case ACTION_TYPES.LISTING_UPDATE_ITEM:
+
+      if(action.payload.replace) {
+        console.log('replacing');
+        const {key,item} = action.payload;
+        const tempValues = state.listings.attributes[key];
+        let newArray;
+        if (tempValues.includes(item)) {
+          newArray = tempValues.filter(value => value != item);
+        } else {
+          newArray = tempValues.concat([item]);
+        }
+        
+        return {
+          ...state,
+          listings:{
+            ...state.listings,
+            attributes: {
+              ...state.listings.attributes,
+              [key]:newArray
+            }
+          }
+        }
+      }
+
       return { ...state,
         listings: merge({},state.listings,action.payload),
       };
-    // case ACTION_TYPES.LISTING_CHANGE:
+    // case ACTION_TYPES.LISTING_REMOVE_ITEM:
     //   return { ...state,
     //     listings: action.payload,
     //   };
+    //   const tempAmenities = this.props.listings.attributes.amenities;
+    //   let newArray;
+    //   if (tempAmenities.includes(item)) {
+    //     newArray = tempAmenities.filter(amenity => amenity != item);
+    //   } else {
+    //     newArray = tempAmenities.concat([item]);
+    //   }
+    //   break;
     default:
       return state;
   }
