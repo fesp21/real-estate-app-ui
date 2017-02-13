@@ -126,7 +126,7 @@ class PropertyCreate extends Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 7 &&
+        {stage == 1 &&
         <List
           field="type"
           collection={types}
@@ -134,7 +134,7 @@ class PropertyCreate extends Component {
           updateListing={this.onSelect}
         />}
 
-        {stage == 5 &&
+        {stage == 2 &&
         <List
           field="category"
           header={<Header title="Select Category Type" />}
@@ -162,7 +162,7 @@ class PropertyCreate extends Component {
           footer={<Footer updateListing={this.goToNextStage} />}
         />}
 
-        {stage == 2 &&
+        {stage == 5 &&
         <UploadImage
           images={attributes.images}
           updateImage={this.updateImage}
@@ -178,13 +178,13 @@ class PropertyCreate extends Component {
           footer={<Footer updateListing={this.goToNextStage} />}
         />}
 
-        {stage == 1 &&
+        {stage == 7 &&
         <PropertyAmenities
           collection={amenities}
           selected={attributes.amenities}
           updateListing={this.updateAmenities}
           header={<Header title="Select Amenities" />}
-          footer={<Footer updateListing={this.goToNextStage} title="Save" />}
+          footer={<Footer updateListing={this.saveProperty} title="Save" />}
         />}
 
       </View>

@@ -102,16 +102,19 @@ export default function propertyReducer(state = initialState, action = {}) {
     case ACTION_TYPES.LISTING_UPDATE_ITEM:
 
       if(action.payload.replace) {
+
         const {key,item} = action.payload;
         const oldState = state.listings.attributes[key];
         let newState;
+
         if(isArray(item)) {
           newState = union(oldState,item);
         } else {
           if (oldState.includes(item)) {
+             // remove item
              newState = oldState.filter(value => value != item);
           } else {
-             newState = oldState.concat([item]);
+            newState = union(oldState,[item]);
           }
         }
 
@@ -125,23 +128,13 @@ export default function propertyReducer(state = initialState, action = {}) {
             }
           }
         }
+
       }
 
       return { ...state,
         listings: merge({},state.listings,action.payload),
       };
-    // case ACTION_TYPES.LISTING_REMOVE_ITEM:
-    //   return { ...state,
-    //     listings: action.payload,
-    //   };
-    //   const tempAmenities = this.props.listings.attributes.amenities;
-    //   let newArray;
-    //   if (tempAmenities.includes(item)) {
-    //     newArray = tempAmenities.filter(amenity => amenity != item);
-    //   } else {
-    //     newArray = tempAmenities.concat([item]);
-    //   }
-    //   break;
+
     default:
       return state;
   }
