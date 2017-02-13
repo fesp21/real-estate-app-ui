@@ -18,6 +18,7 @@ import { bindActionCreators } from "redux";
 import { ACTIONS } from "./common/actions";
 import { SELECTORS } from "./common/selectors";
 import { resolveCountryName } from './../common/functions';
+import merge from 'lodash/merge';
 
 class PropertyCreate extends Component {
 
@@ -58,47 +59,46 @@ class PropertyCreate extends Component {
     this._subscription.remove();
   }
 
+  updateAttributes = (index, value) => {
+    const payload = {
+      attributes:{
+        [index]:value
+      }
+    };
+    this.props.actions.changeListingValue(payload);
+  };
+
+  onValueSelect = (index, value) => {
+    // this.props.actions.changeListingValue(payload);
+    this.updateAttributes(index, value);
+    this.goToNextStage();
+  };
+
   updateImage = (uploadedImages) => {
-    this.updateListing(
-      "attributes",
+    this.updateAttributes(
+      // "attributes",
       "images",
       uploadedImages
     );
   };
 
-  updateListing = (path, index, value) => {
-    const { listings } = this.props;
-    let payload;
-    if(path) {
-      payload = {
-        ...listings,
-        [path]: { ...listings[path], [index]: value }
-      };
-    } else {
-      payload = {
-        ...listings,
-        [index]: value
-      };
-    }
-    this.props.actions.changeListingValue(payload);
-  };
-
   updateMeta = (field,value) => {
-    const { listings } = this.props;
-    const meta = get(listings, "attributes.meta");
-
+    // const { listings } = this.props;
+    // const meta = get(listings, "attributes.meta");
+    //
     let payload = {
-      ...listings,
-      attributes: {
-        ...listings.attributes,
-        meta: {
-          ...listings.attributes.meta,
-          [field]: value
-        }
+      // ...listings,
+      // attributes: {
+      //   ...listings.attributes,
+      meta: {
+        // ...listings.attributes.meta,
+        [field]: value
       }
     };
+    // };
 
-    this.props.actions.changeListingValue(payload);
+    this.updateAttributes("meta", payload);
+    // this.props.actions.changeListingValue(payload);
   };
 
   updateAddress = (data) => {
@@ -110,36 +110,79 @@ class PropertyCreate extends Component {
       latitude,
       longitude
     };
-    this.updateListing("attributes", "address", payload);
+    this.updateAttributes("address", payload);
   };
 
-  onValueSelect = (index, value) => {
-    this.updateListing("attributes", index, value);
-    this.goToNextStage();
-  };
 
   updateAmenities = (item) => {
-    const tempAmenities = this.props.listings.attributes.amenities;
     let newArray;
-    if (tempAmenities.includes(item)) {
-      newArray = tempAmenities.filter(amenity => amenity != item);
+    const amenities = this.props.listings.attributes.amenities;
+    if (amenities.includes(item)) {
+      newArray = amenities.filter(amenity => amenity != item);
     } else {
-      newArray = tempAmenities.concat([item]);
+      newArray = {...amenities,item};
+      // newArray = amenities.concat([item]);
     }
-    this.updateListing("attributes", "amenities", newArray);
+    // const payload = {
+    //   attributes : {
+    //     amenities : newArray
+    //   }
+    // };
+    // this.props.actions.changeListingValue(payload);
+    this.updateAttributes("amenities", newArray);
   };
 
   goToPrevStage = () => {
     const { stage } = this.props.listings;
-    this.updateListing(null, "stage", stage - 1);
+    const payload = {stage : stage -1};
+    this.props.actions.changeListingValue(payload);
   };
 
   goToNextStage = () => {
     const { stage } = this.props.listings;
-    this.updateListing(null, "stage", stage + 1);
+    const payload = {stage : stage + 1};
+    this.props.actions.changeListingValue(payload);
   };
 
   saveProperty = () => {
+
+    // const attributes = {
+    //   type: 'For Sale',
+    //   category: 'Villa',
+    //   title: '3 bedrooms apartment in Jabriya',
+    //   description: 'Beautiful new apartment from rent in Jabriya near McDonalds',
+    //   price: '200',
+    //   address: {
+    //     city: 'Kuwait City',
+    //     state: 'Kuwait City',
+    //     country: 'Kuwait',
+    //     latitude: 29.3667,
+    //     longitude: 47.9667,
+    //   },
+    //   meta: {
+    //     bedroom: 'Studio',
+    //     bathroom: '1',
+    //     kitchen: '1',
+    //     area: '220.5',
+    //     parking: '1',
+    //   },
+    //   images: [
+    //   ],
+    //   tags: ['New', 'Duplex'],
+    //   amenities: ['Swimming Pool'],
+    // };
+
+    // const payload = {
+    //   meta: {
+    //     bedroom: 'Studio',
+    //     bathroom: '2',
+    //     kitchen: '2',
+    //   },
+    //   images: ['waa']
+    // };
+    // const merged = merge(attributes,payload);
+    // console.log('attributes',attributes);
+    // console.log('merged',merged);
     this.props.actions.saveProperty();
   };
 
@@ -147,6 +190,7 @@ class PropertyCreate extends Component {
     const { listings, types, categories, amenities, country } = this.props;
     const { attributes } = listings;
     const { stage } = listings;
+    console.log('attributes',attributes);
 
     return (
       <View style={{ flex: 1 }}>
@@ -197,8 +241,7 @@ class PropertyCreate extends Component {
 
         {stage == 6 &&
         <PropertyInfo
-          onFieldChange={this.updateListing}
-          path="attributes"
+          onFieldChange={this.onValueSelect}
           attributes={attributes}
           header={<Header title="You are almost there !!" />}
           footer={<Footer updateListing={this.goToNextStage} />}

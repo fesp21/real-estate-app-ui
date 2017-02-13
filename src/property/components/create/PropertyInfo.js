@@ -37,7 +37,7 @@ export default class PropertyInfo extends Component {
               <Text style={styles.label}>Give a Title for your Property </Text>
               <TextInput
                 style={[styles.textInput]}
-                onChangeText={(value) => onFieldChange(path,'title',value)}
+                onChangeText={(value) => onFieldChange('title',value)}
                 value={title}
                 maxLength={50}
                 placeholderTextColor={colors.lightGrey}
@@ -56,7 +56,7 @@ export default class PropertyInfo extends Component {
                   });
                 }}
                 multiline={true}
-                onChangeText={(value) => onFieldChange(path,'description',value)}
+                onChangeText={(value) => onFieldChange('description',value)}
                 value={description}
                 maxLength={1000}
                 placeholderTextColor={colors.lightGrey}
@@ -70,7 +70,7 @@ export default class PropertyInfo extends Component {
               <Text style={styles.label}>Price</Text>
               <TextInput
                 style={[styles.textInput]}
-                onChangeText={(value) => onFieldChange(path,'price',value)}
+                onChangeText={(value) => onFieldChange('price',value)}
                 value={price}
                 maxLength={6}
                 placeholderTextColor={colors.lightGrey}

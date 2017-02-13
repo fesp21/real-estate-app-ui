@@ -1,6 +1,7 @@
 import union from 'lodash/union';
 import map from 'lodash/map';
 import { ACTION_TYPES } from './actions';
+import merge from 'lodash/merge';
 
 const initialState = {
   isFetching: false,
@@ -99,8 +100,12 @@ export default function propertyReducer(state = initialState, action = {}) {
       return { ...state, isFetching: false,error:action.error };
     case ACTION_TYPES.LISTING_CHANGE:
       return { ...state,
-        listings: action.payload,
+        listings: merge({},state.listings,action.payload),
       };
+    // case ACTION_TYPES.LISTING_CHANGE:
+    //   return { ...state,
+    //     listings: action.payload,
+    //   };
     default:
       return state;
   }
