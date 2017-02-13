@@ -103,20 +103,15 @@ export default function propertyReducer(state = initialState, action = {}) {
 
       if(action.payload.replace) {
         const {key,item} = action.payload;
-        const tempValues = state.listings.attributes[key];
-        let newArray = [];
+        const oldState = state.listings.attributes[key];
+        let newState;
         if(isArray(item)) {
-          newArray = newArray.concat(tempValues);
-          map(item, i => {
-            if (!tempValues.includes(i)) {
-              return newArray = newArray.concat(i);
-            }
-          });
+          newState = union(oldState,item);
         } else {
-          if (tempValues.includes(item)) {
-             newArray = tempValues.filter(value => value != item);
+          if (oldState.includes(item)) {
+             newState = oldState.filter(value => value != item);
           } else {
-             newArray = tempValues.concat([item]);
+             newState = oldState.concat([item]);
           }
         }
 
@@ -126,7 +121,7 @@ export default function propertyReducer(state = initialState, action = {}) {
             ...state.listings,
             attributes: {
               ...state.listings.attributes,
-              [key]:newArray
+              [key]:newState
             }
           }
         }
