@@ -40,7 +40,7 @@ class App extends Component {
       >
         <TabNavigationItem
           id="first"
-          renderIcon={(isSelected) => <Ionicons name="ios-home" size={24} color={isSelected ? colors.accent:colors.fadedWhite}
+          renderIcon={(isSelected) => <Ionicons name="ios-home" size={24} color={isSelected ? colors.accent:colors.white}
 
           /> }>
           <StackNavigation
@@ -60,7 +60,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="second"
-          renderIcon={(isSelected) => <FontAwesome name="heart" size={20} color={isSelected ? colors.accent:colors.fadedWhite}
+          renderIcon={(isSelected) => <FontAwesome name="heart" size={20} color={isSelected ? colors.accent:colors.white}
           /> }>
           <StackNavigation
             id="favoritesStack"
@@ -79,7 +79,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="third"
-          renderIcon={(isSelected) => <FontAwesome name="plus" size={20} color={isSelected ? colors.accent:colors.fadedWhite}
+          renderIcon={(isSelected) => <FontAwesome name="plus" size={20} color={isSelected ? colors.accent:colors.white}
           /> }>
           <StackNavigation
             id="createStack"
@@ -98,7 +98,7 @@ class App extends Component {
 
         <TabNavigationItem
           id="fourth"
-          renderIcon={(isSelected) => <Ionicons name="ios-settings" size={24} color={isSelected ? colors.accent:colors.fadedWhite}
+          renderIcon={(isSelected) => <Ionicons name="ios-settings" size={24} color={isSelected ? colors.accent:colors.white}
           /> }>
           <StackNavigation
             id="settingsStack"
