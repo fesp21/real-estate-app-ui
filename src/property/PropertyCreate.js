@@ -69,36 +69,24 @@ class PropertyCreate extends Component {
   };
 
   onValueSelect = (index, value) => {
-    // this.props.actions.changeListingValue(payload);
     this.updateAttributes(index, value);
     this.goToNextStage();
   };
 
   updateImage = (uploadedImages) => {
     this.updateAttributes(
-      // "attributes",
       "images",
       uploadedImages
     );
   };
 
   updateMeta = (field,value) => {
-    // const { listings } = this.props;
-    // const meta = get(listings, "attributes.meta");
-    //
     let payload = {
-      // ...listings,
-      // attributes: {
-      //   ...listings.attributes,
       meta: {
-        // ...listings.attributes.meta,
         [field]: value
       }
     };
-    // };
-
     this.updateAttributes("meta", payload);
-    // this.props.actions.changeListingValue(payload);
   };
 
   updateAddress = (data) => {
@@ -120,15 +108,8 @@ class PropertyCreate extends Component {
     if (amenities.includes(item)) {
       newArray = amenities.filter(amenity => amenity != item);
     } else {
-      newArray = {...amenities,item};
-      // newArray = amenities.concat([item]);
+      newArray = amenities.concat([item]);
     }
-    // const payload = {
-    //   attributes : {
-    //     amenities : newArray
-    //   }
-    // };
-    // this.props.actions.changeListingValue(payload);
     this.updateAttributes("amenities", newArray);
   };
 
@@ -145,44 +126,6 @@ class PropertyCreate extends Component {
   };
 
   saveProperty = () => {
-
-    // const attributes = {
-    //   type: 'For Sale',
-    //   category: 'Villa',
-    //   title: '3 bedrooms apartment in Jabriya',
-    //   description: 'Beautiful new apartment from rent in Jabriya near McDonalds',
-    //   price: '200',
-    //   address: {
-    //     city: 'Kuwait City',
-    //     state: 'Kuwait City',
-    //     country: 'Kuwait',
-    //     latitude: 29.3667,
-    //     longitude: 47.9667,
-    //   },
-    //   meta: {
-    //     bedroom: 'Studio',
-    //     bathroom: '1',
-    //     kitchen: '1',
-    //     area: '220.5',
-    //     parking: '1',
-    //   },
-    //   images: [
-    //   ],
-    //   tags: ['New', 'Duplex'],
-    //   amenities: ['Swimming Pool'],
-    // };
-
-    // const payload = {
-    //   meta: {
-    //     bedroom: 'Studio',
-    //     bathroom: '2',
-    //     kitchen: '2',
-    //   },
-    //   images: ['waa']
-    // };
-    // const merged = merge(attributes,payload);
-    // console.log('attributes',attributes);
-    // console.log('merged',merged);
     this.props.actions.saveProperty();
   };
 
@@ -241,7 +184,7 @@ class PropertyCreate extends Component {
 
         {stage == 6 &&
         <PropertyInfo
-          onFieldChange={this.onValueSelect}
+          onFieldChange={this.updateAttributes}
           attributes={attributes}
           header={<Header title="You are almost there !!" />}
           footer={<Footer updateListing={this.goToNextStage} />}
