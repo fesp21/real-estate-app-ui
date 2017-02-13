@@ -84,18 +84,16 @@ class PropertyCreate extends Component {
     this.updateAttributes("address", payload);
   };
 
-  updateImage = (uploadedImages) => {
-    this.updateAttributes("images",uploadedImages);
+  updateImage = (items) => {
+    const payload = {
+      replace:true,
+      key:'images',
+      item:items
+    };
+    return this.props.actions.changeListingValue(payload);
   };
 
   updateAmenities = (item) => {
-    // let newArray;
-    // const amenities = this.props.listings.attributes.amenities;
-    // if (amenities.includes(item)) {
-    //   newArray = amenities.filter(amenity => amenity != item);
-    // } else {
-    //   newArray = amenities.concat([item]);
-    // }
     const payload = {
       replace:true,
       key:'amenities',
@@ -124,12 +122,11 @@ class PropertyCreate extends Component {
     const { listings, types, categories, amenities, country } = this.props;
     const { attributes } = listings;
     const { stage } = listings;
-    console.log('attributes',attributes);
 
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 1 &&
+        {stage == 7 &&
         <List
           field="type"
           collection={types}
@@ -137,7 +134,7 @@ class PropertyCreate extends Component {
           updateListing={this.onSelect}
         />}
 
-        {stage == 2 &&
+        {stage == 5 &&
         <List
           field="category"
           header={<Header title="Select Category Type" />}
@@ -165,7 +162,7 @@ class PropertyCreate extends Component {
           footer={<Footer updateListing={this.goToNextStage} />}
         />}
 
-        {stage == 5 &&
+        {stage == 2 &&
         <UploadImage
           images={attributes.images}
           updateImage={this.updateImage}
@@ -181,13 +178,13 @@ class PropertyCreate extends Component {
           footer={<Footer updateListing={this.goToNextStage} />}
         />}
 
-        {stage == 7 &&
+        {stage == 1 &&
         <PropertyAmenities
           collection={amenities}
           selected={attributes.amenities}
           updateListing={this.updateAmenities}
           header={<Header title="Select Amenities" />}
-          footer={<Footer updateListing={this.saveProperty} title="Save" />}
+          footer={<Footer updateListing={this.goToNextStage} title="Save" />}
         />}
 
       </View>

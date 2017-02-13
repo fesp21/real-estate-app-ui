@@ -46,7 +46,7 @@ export default class UploadImage extends Component {
         return allowedImages;
       })
       .then(pendingImages => {
-        this.props.updateImage(union(uploadedImages,pendingImages));
+        this.props.updateImage(pendingImages);
       })
       .catch(e => {
         console.log('errror uploading image',e);
@@ -54,9 +54,7 @@ export default class UploadImage extends Component {
   };
 
   removeImage = (removedImage) => {
-    const uploadedImages = this.props.images;
-    const excludeDeletedImage = uploadedImages.filter((image)=> image != removedImage);
-    this.props.updateImage(excludeDeletedImage);
+    this.props.updateImage(removedImage);
   };
 
   renderRow = (image,key) => {

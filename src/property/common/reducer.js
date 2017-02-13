@@ -2,6 +2,7 @@ import union from 'lodash/union';
 import map from 'lodash/map';
 import { ACTION_TYPES } from './actions';
 import merge from 'lodash/merge';
+import isArray from 'lodash/isArray';
 
 const initialState = {
   isFetching: false,
@@ -101,16 +102,23 @@ export default function propertyReducer(state = initialState, action = {}) {
     case ACTION_TYPES.LISTING_UPDATE_ITEM:
 
       if(action.payload.replace) {
-        console.log('replacing');
         const {key,item} = action.payload;
         const tempValues = state.listings.attributes[key];
         let newArray;
-        if (tempValues.includes(item)) {
-          newArray = tempValues.filter(value => value != item);
+        if(isArray(item)) {
+          map(item, i => {
+            if (!tempValues.includes(i)) {
+              return newArray = tempValues.concat([i]);
+            }
+          });
         } else {
-          newArray = tempValues.concat([item]);
+          if (tempValues.includes(item)) {
+             newArray = tempValues.filter(value => value != item);
+          } else {
+             newArray = tempValues.concat([item]);
+          }
         }
-        
+
         return {
           ...state,
           listings:{
