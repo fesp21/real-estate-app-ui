@@ -55,7 +55,6 @@ const initialState = {
         parking: '1',
       },
       images: [],
-      tags: ['New', 'Duplex'],
       amenities: ['Swimming Pool'],
     },
   },
@@ -202,42 +201,223 @@ describe('Property Component Store', () => {
       });
   });
 
-  test('listing change',() => {
+  test('listing changes stage',() => {
 
     let payload = {
-      ...initialState.listings,
       stage: 5,
-      attributes: {
-        ...initialState.listings.attributes,
-        type: 'For Rent',
-        category: 'Chalet',
-        title: '2 BHK',
-        description: 'description',
-        price: '300',
-        address: {
-          city: 'Salmiya',
-          state: 'Hawalli',
-          country: 'Kuwait',
-          latitude: 30.3667,
-          longitude: 33.9667,
+    };
+
+    expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...initialState,
+        listings: {
+          ...initialState.listings,
+          stage:5
         },
-        meta: {
-          bedroom: '1',
-          bathroom: '2',
-          kitchen: '3',
-          area: '330.5',
-          parking: '2',
+      });
+  });
+  test('listing changes property infos ex:title,description,category',() => {
+
+    let payload = {
+      attributes:{
+        title:'New Property',
+        category:'Villa'
+      }
+
+    };
+
+    expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...initialState,
+        listings: {
+          ...initialState.listings,
+          attributes:{
+            ...initialState.listings.attributes,
+            title:'New Property',
+            category:'Villa'
+          }
         },
-        images: [],
-        tags: [],
-        amenities: ['Sauna'],
+      });
+  });
+
+  test('listing changes property address',() => {
+
+    let payload = {
+      attributes:{
+        address:{
+          city:'Salwa',
+          country:'Kuwait'
+        }
+      }
+
+    };
+
+    expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...initialState,
+        listings: {
+          ...initialState.listings,
+          attributes:{
+            ...initialState.listings.attributes,
+            address:{
+              ...initialState.listings.attributes.address,
+              city:'Salwa',
+              country:'Kuwait'
+            }
+          }
+        },
+      });
+  });
+
+  test('listing changes property metas',() => {
+
+    let payload = {
+      attributes:{
+        meta:{
+          bedroom:'1',
+          bathroom:'1'
+        }
       }
     };
 
     expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
       .toEqual({
         ...initialState,
-        listings: payload
+        listings: {
+          ...initialState.listings,
+          attributes:{
+            ...initialState.listings.attributes,
+            meta:{
+              ...initialState.listings.attributes.meta,
+              bedroom:'1',
+              bathroom:'1'
+            }
+          }
+        },
+      });
+  });
+
+  test('listing adds images',() => {
+
+    let payload = {
+      replace:true,
+      key:'images',
+      item: ['ABC.png','BCD.png','ABC.png']
+    };
+
+    expect(propertyReducer(initialState,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...initialState,
+        listings: {
+          ...initialState.listings,
+          attributes:{
+            ...initialState.listings.attributes,
+            images:['ABC.png','BCD.png']
+          }
+        },
+      });
+  });
+
+  test('listing removes image',() => {
+
+    let payload = {
+      replace:true,
+      key:'images',
+      item: 'ABC.png'
+    };
+
+    let state = {
+      ...initialState,
+      listings:{
+        ...initialState.listings,
+        attributes:{
+          ...initialState.listings.attributes,
+          images:['ABC.png','BCD.png']
+        }
+      }
+    };
+
+    expect(propertyReducer(state,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...initialState,
+        listings: {
+          ...initialState.listings,
+          attributes:{
+            ...initialState.listings.attributes,
+            images:['BCD.png']
+          }
+        },
+      });
+
+    // check mutation
+    let oldState = state.listings.attributes.images;
+    expect(oldState).toEqual(['ABC.png','BCD.png']);
+
+  });
+
+  test('listing adds amenities',() => {
+
+
+    let state = {
+      ...initialState,
+      listings:{
+        ...initialState.listings,
+        attributes:{
+          ...initialState.listings.attributes,
+          amenities:['Sauna']
+        }
+      }
+    };
+
+    let payload = {
+      replace:true,
+      key:'amenities',
+      item: 'Swimming Pool'
+    };
+
+    expect(propertyReducer(state,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...state,
+        listings: {
+          ...state.listings,
+          attributes:{
+            ...state.listings.attributes,
+            amenities:['Sauna','Swimming Pool']
+          }
+        },
+      });
+  });
+
+  test('listing removes amenities',() => {
+
+
+    let state = {
+      ...initialState,
+      listings:{
+        ...initialState.listings,
+        attributes:{
+          ...initialState.listings.attributes,
+          amenities:['Sauna','Swimming Pool']
+        }
+      }
+    };
+
+    let payload = {
+      replace:true,
+      key:'amenities',
+      item: 'Swimming Pool'
+    };
+
+    expect(propertyReducer(state,{type:ACTION_TYPES.LISTING_UPDATE_ITEM,payload:payload}))
+      .toEqual({
+        ...state,
+        listings: {
+          ...state.listings,
+          attributes:{
+            ...state.listings.attributes,
+            amenities:['Sauna']
+          }
+        },
       });
   });
 
