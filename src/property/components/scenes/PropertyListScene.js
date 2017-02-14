@@ -33,6 +33,7 @@ export default class PropertyListScene extends Component {
   constructor(props) {
     super(props);
     this.renderRow = this.renderRow.bind(this);
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
   }
 
   imageSlider(item, image) {
@@ -129,8 +130,15 @@ export default class PropertyListScene extends Component {
 
   render() {
     const { collection, isFetching, fetchProperties, horizontal } = this.props;
-    let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
-    let dataSource = ds.cloneWithRows(collection);
+    let dataSource = this.ds.cloneWithRows(collection);
+
+    // renderFooter={() =>
+    // isFetching &&
+    // <LoadingIndicator
+    //   isFetching={isFetching}
+    //   style={{ backgroundColor: "white" }}
+    // />}
+
     return (
       <ListView
         style={styles.container}
@@ -141,15 +149,10 @@ export default class PropertyListScene extends Component {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         automaticallyAdjustContentInsets={false}
-        onEndReachedThreshold={100}
         initialListSize={100}
-        renderFooter={() =>
-          isFetching &&
-            <LoadingIndicator
-              isFetching={isFetching}
-              style={{ backgroundColor: "white" }}
-            />}
         horizontal={horizontal && true}
+        onEndReached={()=>fetchProperties()}
+        onEndReachedThreshold={10}
       />
     );
   }

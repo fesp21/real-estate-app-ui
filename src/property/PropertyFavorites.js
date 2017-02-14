@@ -55,8 +55,7 @@ class PropertyFavorites extends Component {
   }
 
   fetchProperties() {
-    // console.log('firing fetch favorites');
-    // this.props.actions.fetchFavorites();
+    this.props.actions.fetchFavorites();
   }
 
   onImagePress(item: object) {
