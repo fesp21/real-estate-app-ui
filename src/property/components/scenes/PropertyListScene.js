@@ -111,7 +111,6 @@ export default class PropertyListScene extends Component {
         onEndReachedThreshold={100}
         initialListSize={100}
         renderFooter={()=> isFetching && <LoadingIndicator isFetching={isFetching} style={{ backgroundColor:'white' }} />}
-        onEndReached={()=>fetchProperties()}
         horizontal={horizontal && true}
       />
     );
