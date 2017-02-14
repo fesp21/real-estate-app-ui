@@ -1,8 +1,7 @@
-import { ACTION_TYPES, ACTIONS } from '../../common/actions';
+import { ACTION_TYPES, ACTIONS } from "../../common/actions";
 
-describe('App Component Actions', () => {
-
-  test('returns expected action', () => {
+describe("App Component Actions", () => {
+  test("returns expected action", () => {
     const expected = {
       type: ACTION_TYPES.LOGIN_REQUEST
     };
@@ -10,7 +9,7 @@ describe('App Component Actions', () => {
     expect(actual).toEqual(expected);
   });
 
-  test('returns expected action', () => {
+  test("returns expected action", () => {
     const expected = {
       type: ACTION_TYPES.LOGOUT
     };
@@ -18,12 +17,11 @@ describe('App Component Actions', () => {
     expect(actual).toEqual(expected);
   });
 
-  test('returns expected action', () => {
+  test("returns expected action", () => {
     const expected = {
       type: ACTION_TYPES.REGISTER_REQUEST
     };
     const actual = ACTIONS.register();
     expect(actual).toEqual(expected);
   });
-
 });

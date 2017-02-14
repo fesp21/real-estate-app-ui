@@ -1,23 +1,31 @@
 /**
  * @flow
  */
-import React, {PropTypes, Component} from "react";
-import {ScrollView, View, StyleSheet, Text, Image, ListView, TouchableHighlight, Dimensions} from "react-native";
+import React, { PropTypes, Component } from "react";
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  ListView,
+  TouchableHighlight,
+  Dimensions
+} from "react-native";
 import colors from "../../../common/colors";
 import Button from "../filters/Button";
 
 export default class PropertyMeta extends Component {
-
   static propTypes = {
-    updateMeta:PropTypes.func.isRequired,
-    filters:PropTypes.object.isRequired,
-    meta:PropTypes.object.isRequired
+    updateMeta: PropTypes.func.isRequired,
+    filters: PropTypes.object.isRequired,
+    meta: PropTypes.object.isRequired
   };
 
   render() {
-    const {header, footer, updateMeta} = this.props;
-    const {bedroom,bathroom,parking} = this.props.meta;
-    const {bedroomsArr,bathroomsArr,parkingArr} = this.props.filters;
+    const { header, footer, updateMeta } = this.props;
+    const { bedroom, bathroom, parking } = this.props.meta;
+    const { bedroomsArr, bathroomsArr, parkingArr } = this.props.filters;
     return (
       <View style={styles.container}>
 
@@ -25,39 +33,46 @@ export default class PropertyMeta extends Component {
 
         <View style={styles.menuContainer}>
 
-          <Button title="Bed"
-                  icon ="bed"
-                  onPress = {(value)=>updateMeta('bedroom',value)}
-                  range={bedroomsArr}
-                  selected = {bedroom}
-                  style = {{
-                    height:40,
-                    backgroundColor:colors.lightGrey
-                  }}
+          <Button
+            title="Bed"
+            icon="bed"
+            onPress={value => updateMeta("bedroom", value)}
+            range={bedroomsArr}
+            selected={bedroom}
+            style={{
+              height: 40,
+              backgroundColor: colors.lightGrey
+            }}
           />
 
-          <View style={[styles.separator,{marginTop:10,marginBottom:10}]}/>
-          <Button title="Bath"
-                  icon ="bath"
-                  onPress = {(value)=>updateMeta('bathroom',value)}
-                  range={bathroomsArr}
-                  selected = {bathroom}
-                  style = {{
-                    height:40,
-                    backgroundColor:colors.lightGrey
-                  }}
+          <View
+            style={[styles.separator, { marginTop: 10, marginBottom: 10 }]}
+          />
+          <Button
+            title="Bath"
+            icon="bath"
+            onPress={value => updateMeta("bathroom", value)}
+            range={bathroomsArr}
+            selected={bathroom}
+            style={{
+              height: 40,
+              backgroundColor: colors.lightGrey
+            }}
           />
 
-          <View style={[styles.separator,{marginTop:10,marginBottom:10}]}/>
-          <Button title="Parking"
-                  icon ="car"
-                  onPress = {(value)=>updateMeta('parking',value)}
-                  range={parkingArr}
-                  selected = {parking}
-                  style = {{
-                    height:40,
-                    backgroundColor:colors.lightGrey
-                  }}
+          <View
+            style={[styles.separator, { marginTop: 10, marginBottom: 10 }]}
+          />
+          <Button
+            title="Parking"
+            icon="car"
+            onPress={value => updateMeta("parking", value)}
+            range={parkingArr}
+            selected={parking}
+            style={{
+              height: 40,
+              backgroundColor: colors.lightGrey
+            }}
           />
 
         </View>
@@ -65,25 +80,24 @@ export default class PropertyMeta extends Component {
         {footer}
 
       </View>
-    )
-
+    );
   }
 }
 
-const styles =  StyleSheet.create({
-  container : {
-    flex:1,
-    paddingTop:64,
-    backgroundColor:colors.smokeGreyLight,
-    paddingBottom:56
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 64,
+    backgroundColor: colors.smokeGreyLight,
+    paddingBottom: 56
   },
-  menuContainer:{
-    flex:2,
-    padding:10,
-    backgroundColor:'white'
+  menuContainer: {
+    flex: 2,
+    padding: 10,
+    backgroundColor: "white"
   },
-  separator:{
-    backgroundColor:colors.lightGrey,
-    height:.5
-  },
+  separator: {
+    backgroundColor: colors.lightGrey,
+    height: 0.5
+  }
 });

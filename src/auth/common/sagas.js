@@ -1,11 +1,13 @@
-import isNull from 'lodash/isNull';
-import Store from '../../common/store';
-import { put, call, select, takeLatest } from 'redux-saga/effects';
-import { ACTION_TYPES } from './actions';
-import { ACTION_TYPES as PROPERTY_ACTIONS } from '../../property/common/actions';
-import { API, AUTH_STORAGE_KEY } from './api';
-import { setItem,forgetItem } from '../../common/storage';
-import { NavigationActions } from '@exponent/ex-navigation';
+import isNull from "lodash/isNull";
+import Store from "../../common/store";
+import { put, call, select, takeLatest } from "redux-saga/effects";
+import { ACTION_TYPES } from "./actions";
+import {
+  ACTION_TYPES as PROPERTY_ACTIONS
+} from "../../property/common/actions";
+import { API, AUTH_STORAGE_KEY } from "./api";
+import { setItem, forgetItem } from "../../common/storage";
+import { NavigationActions } from "@exponent/ex-navigation";
 
 function* login(action) {
   try {
@@ -24,7 +26,13 @@ function* login(action) {
     const navigatorUID = Store.getState().navigation.currentNavigatorUID;
 
     if (!isNull(action.redirectUrl) && navigatorUID) {
-      return Store.dispatch(NavigationActions.immediatelyResetStack(navigatorUID, [action.redirectUrl], 0));
+      return Store.dispatch(
+        NavigationActions.immediatelyResetStack(
+          navigatorUID,
+          [action.redirectUrl],
+          0
+        )
+      );
     }
   } catch (error) {
     yield put({ type: ACTION_TYPES.LOGIN_FAILURE, error });
@@ -51,7 +59,6 @@ export function* loginMonitor() {
 export function* logoutMonitor() {
   yield takeLatest(ACTION_TYPES.LOGOUT, logout);
 }
-
 
 export function* registerMonitor() {
   yield takeLatest(ACTION_TYPES.REGISTER_REQUEST, register);

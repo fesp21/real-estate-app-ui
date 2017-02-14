@@ -2,7 +2,7 @@ import "react-native";
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./../App";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import Store from "../../common/store";
 
 // test('renders null', () => {
@@ -18,8 +18,8 @@ import Store from "../../common/store";
 //   ).toJSON();
 //   expect(tree).toMatchSnapshot();
 // });
-test('returns expected action', () => {
+test("returns expected action", () => {
   const expected = 2;
-  const actual = 1+1;
+  const actual = 1 + 1;
   expect(actual).toEqual(expected);
 });

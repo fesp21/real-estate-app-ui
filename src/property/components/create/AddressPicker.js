@@ -22,7 +22,7 @@ import {
   GooglePlacesAutocomplete
 } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_KEY } from "./../../../env.js";
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from "lodash/isEmpty";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -31,24 +31,25 @@ const LATITUDE_DELTA = 0.8;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default class AddressPicker extends Component {
-
   static propTypes = {
     country: PropTypes.string.isRequired,
-    updateAddress:PropTypes.func.isRequired,
-    updateListing:PropTypes.func.isRequired,
+    updateAddress: PropTypes.func.isRequired,
+    updateListing: PropTypes.func.isRequired
   };
 
   jumpToRegion = () => {
     const { address } = this.props;
     const closeRegion = {
       latitude: address.latitude + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
-      longitude: (address.longitude + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2))
+      longitude: (
+        address.longitude + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2)
+      )
     };
     this.map.animateToRegion(closeRegion);
   };
 
   onSearchPress = (locationData, locationDetails) => {
-    const {updateAddress} = this.props;
+    const { updateAddress } = this.props;
     updateAddress({
       latitude: locationDetails.geometry.location.lat,
       longitude: locationDetails.geometry.location.lng,
@@ -59,23 +60,23 @@ export default class AddressPicker extends Component {
     this.jumpToRegion();
   };
 
-  onDragEnd = (e) => {
-    const {address,updateAddress} = this.props;
+  onDragEnd = e => {
+    const { address, updateAddress } = this.props;
     updateAddress({
       ...address,
       latitude: e.nativeEvent.coordinate.latitude,
-      longitude: e.nativeEvent.coordinate.longitude,
+      longitude: e.nativeEvent.coordinate.longitude
     });
     this.jumpToRegion();
     this.setState({
-      isSelected:true
+      isSelected: true
     });
   };
 
   updateListing = () => {
-    const {address,updateListing} = this.props;
-    if(isEmpty(address.country)) {
-      return Alert.alert('Please Select Your Area',null);
+    const { address, updateListing } = this.props;
+    if (isEmpty(address.country)) {
+      return Alert.alert("Please Select Your Area", null);
     }
     return updateListing();
   };
@@ -101,9 +102,7 @@ export default class AddressPicker extends Component {
                 longitudeDelta: LONGITUDE_DELTA
               }}
             >
-              <View
-                style={styles.textInputWrapper}
-              >
+              <View style={styles.textInputWrapper}>
                 <GooglePlacesAutocomplete
                   placeholder="Area"
                   minLength={3}
@@ -121,15 +120,13 @@ export default class AddressPicker extends Component {
                   styles={autoCompleteStyle}
                   enablePoweredByContainer={false}
                   placeholderTextColor={colors.lightGrey}
-                  getDefaultValue={()=> address.city}
+                  getDefaultValue={() => address.city}
                 />
                 <TouchableHighlight
                   underlayColor="transparent"
                   onPress={() => this.jumpToRegion()}
                 >
-                  <View
-                    style={styles.textInput}
-                  >
+                  <View style={styles.textInput}>
                     <Ionicons
                       name="ios-paper-plane"
                       color={colors.smokeGreyDark}
@@ -142,7 +139,7 @@ export default class AddressPicker extends Component {
               </View>
 
               <MapView.Marker
-                coordinate={address.latitude ? address : coords }
+                coordinate={address.latitude ? address : coords}
                 onDragEnd={e => this.onDragEnd(e)}
                 draggable
               />
@@ -159,9 +156,9 @@ export default class AddressPicker extends Component {
 }
 
 AddressPicker.defaultProps = {
-  coords : {
-    latitude:29.3667,
-    longitude:47.9667
+  coords: {
+    latitude: 29.3667,
+    longitude: 47.9667
   }
 };
 
@@ -211,20 +208,19 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject
   },
-  textInput:{
+  textInput: {
     height: 40,
     backgroundColor: "white",
     alignItems: "center",
     padding: 5,
     paddingTop: 10
   },
-  textInputWrapper:{
+  textInputWrapper: {
     marginTop: 10,
     flexDirection: "row",
     alignSelf: "center",
     width: 300,
     backgroundColor: "white",
     zIndex: 1000
-  },
+  }
 });
-

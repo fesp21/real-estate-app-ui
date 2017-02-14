@@ -1,41 +1,49 @@
 /**
  * @flow
  */
-import React, { PropTypes, Component } from 'react';
-import { StyleSheet,View,Text,Dimensions,TouchableOpacity,Linking, ActionSheetIOS } from 'react-native';
+import React, { PropTypes, Component } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  Linking,
+  ActionSheetIOS
+} from "react-native";
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { ACTIONS } from './common/actions';
-import { SELECTORS } from './common/selectors';
-import { NavigationStyles } from '@exponent/ex-navigation';
-import NavBack from '../components/NavBack';
-import PropertyMapScene from './components/scenes/PropertyMapScene';
+import { bindActionCreators } from "redux";
+import { ACTIONS } from "./common/actions";
+import { SELECTORS } from "./common/selectors";
+import { NavigationStyles } from "@exponent/ex-navigation";
+import NavBack from "../components/NavBack";
+import PropertyMapScene from "./components/scenes/PropertyMapScene";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
 const LATITUDE = 29.3667;
 const LONGITUDE = 47.9667;
 const LATITUDE_DELTA = 1.5;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-
 const modalStyle = {
-  ...NavigationStyles.SlideVertical,
+  ...NavigationStyles.SlideVertical
 };
 
 class PropertyMap extends Component {
-
   static route = {
     navigationBar: {
-      title: 'Properties',
+      title: "Properties",
       titleStyle: {
-        fontSize:15
+        fontSize: 15
       },
-      style:{...modalStyle},
+      style: { ...modalStyle },
       tintColor: "#2c2d30",
-      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
-      renderLeft: (route, props) => <NavBack icon="ios-close"  />
-    },
+      renderBackground: props => (
+        <View style={{ height: 64, backgroundColor: "white", opacity: 0.8 }} />
+      ),
+      renderLeft: (route, props) => <NavBack icon="ios-close" />
+    }
   };
 
   state = {
@@ -47,12 +55,11 @@ class PropertyMap extends Component {
     }
   };
 
-  onRegionChange = (region) => {
+  onRegionChange = region => {
     // console.log('region',region);
   };
 
-  followLocation = (location) => {
-  };
+  followLocation = location => {};
 
   render() {
     const { properties } = this.props;
@@ -66,18 +73,17 @@ class PropertyMap extends Component {
       />
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators({ ...ACTIONS }, dispatch) }
+  return { actions: bindActionCreators({ ...ACTIONS }, dispatch) };
 }
 
 function mapStateToProps(state) {
   return {
-    properties:SELECTORS.fetchProperties(state),
-    categories:SELECTORS.getCategories(state)
-  }
+    properties: SELECTORS.fetchProperties(state),
+    categories: SELECTORS.getCategories(state)
+  };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(PropertyMap);
+export default connect(mapStateToProps, mapDispatchToProps)(PropertyMap);

@@ -1,35 +1,42 @@
 /** @flow */
 
-import React, { Component,PropTypes } from 'react';
-import { Animated, View, Image, Text, Dimensions, StyleSheet } from 'react-native';
-import { TabViewAnimated, TabViewPagerPan } from 'react-native-tab-view';
-import NavBack from '../../components/NavBack';
+import React, { Component, PropTypes } from "react";
+import {
+  Animated,
+  View,
+  Image,
+  Text,
+  Dimensions,
+  StyleSheet
+} from "react-native";
+import { TabViewAnimated, TabViewPagerPan } from "react-native-tab-view";
+import NavBack from "../../components/NavBack";
 
 const initialLayout = {
   height: 0,
-  width: Dimensions.get('window').width,
+  width: Dimensions.get("window").width
 };
 
 export default class PropertySlideShow extends Component {
-
   static propTypes = {
     style: View.propTypes.style,
-    images:PropTypes.array.isRequired
+    images: PropTypes.array.isRequired
   };
 
   state = {
     index: 0,
-    routes: Object.keys(this.props.images).map(key => ({ key })),
+    routes: Object.keys(this.props.images).map(key => ({ key }))
   };
 
   static route = {
     navigationBar: {
-      backgroundColor: 'rgba(0,0,0,.9)',
-      tintColor:'white',
-      renderLeft: (route, props) => <NavBack text="Close" icon="ios-close" style={{ color:'white' }} />,
-    },
+      backgroundColor: "rgba(0,0,0,.9)",
+      tintColor: "white",
+      renderLeft: (route, props) => (
+        <NavBack text="Close" icon="ios-close" style={{ color: "white" }} />
+      )
+    }
   };
-
 
   _buildCoverFlowStyle = ({ layout, position, route, navigationState }) => {
     // const { width } = layout;
@@ -77,32 +84,34 @@ export default class PropertySlideShow extends Component {
     // };
   };
 
-  _handleChangeTab = (index) => {
+  _handleChangeTab = index => {
     this.setState({
-      index,
+      index
     });
   };
 
-  _renderScene = (props) => {
+  _renderScene = props => {
     return (
-      <Animated.View style={[ styles.page, this._buildCoverFlowStyle(props) ]}>
+      <Animated.View style={[styles.page, this._buildCoverFlowStyle(props)]}>
         <View style={styles.album}>
-          <Image source={{uri:this.props.images[props.route.key]}} style={styles.cover}
-                 resizeMode="contain"
+          <Image
+            source={{ uri: this.props.images[props.route.key] }}
+            style={styles.cover}
+            resizeMode="contain"
           />
         </View>
       </Animated.View>
     );
   };
 
-  _renderPager = (props) => {
+  _renderPager = props => {
     return <TabViewPagerPan {...props} />;
   };
 
   render() {
     return (
       <TabViewAnimated
-        style={[ styles.container, this.props.style ]}
+        style={[styles.container, this.props.style]}
         navigationState={this.state}
         renderScene={this._renderScene}
         onRequestChangeTab={this._handleChangeTab}
@@ -112,35 +121,37 @@ export default class PropertySlideShow extends Component {
   }
 }
 
-const styles = StyleSheet.create({container: {
-  flexGrow: 1,
-  backgroundColor: '#000',
-  alignItems:'center'
-},
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    backgroundColor: "#000",
+    alignItems: "center"
+  },
   page: {
     flexGrow: 1,
-    alignSelf:'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center"
   },
   album: {
-    backgroundColor: '#000',
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height - 100,
+    backgroundColor: "#000",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height - 100,
     elevation: 12,
-    shadowColor: '#000000',
+    shadowColor: "#000000",
     shadowOpacity: 0.5,
     shadowRadius: 8,
     shadowOffset: {
-      height: 8,
-    },
+      height: 8
+    }
   },
   cover: {
-    alignSelf:'center',
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height - 100,
+    alignSelf: "center",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height - 100
   },
   label: {
     margin: 16,
-    color: '#fff',
-  },});
+    color: "#fff"
+  }
+});

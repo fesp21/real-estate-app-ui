@@ -1,6 +1,6 @@
-import orm from '../../common/orm';
-import { createSelector } from 'reselect';
-import { createSelector as ormSelector } from 'redux-orm';
+import orm from "../../common/orm";
+import { createSelector } from "reselect";
+import { createSelector as ormSelector } from "redux-orm";
 
 const propertyResults = state => state.propertyReducer.results;
 const propertyIsFetching = state => state.propertyReducer.isFetching;
@@ -12,7 +12,7 @@ const propertyListings = state => state.propertyReducer.listings;
 const ormReducer = state => state.ormReducer;
 const getPropertyID = (state, props) => props.property._id;
 
-const filterResults = ({ Property, User }, results) => results.map((id) => {
+const filterResults = ({ Property, User }, results) => results.map(id => {
   const property = Property.withId(id).ref;
   return Object.assign({}, property, { user: User.withId(property.user).ref });
 });
@@ -20,12 +20,17 @@ const filterResults = ({ Property, User }, results) => results.map((id) => {
 const fetchProperties = createSelector(
   ormReducer,
   propertyResults,
-  ormSelector(orm, (ormSession, results) => filterResults(ormSession, results)),
+  ormSelector(orm, (ormSession, results) => filterResults(ormSession, results))
 );
 
 const fetchFavorites = createSelector(
   ormReducer,
-  ormSelector(orm, ({ Property, User }) => Property.all().toRefArray().filter(property => property.isFavorited).map(property => Object.assign({}, property, { user: User.withId(property.user).ref }))),
+  ormSelector(orm, ({ Property, User }) =>
+    Property.all()
+      .toRefArray()
+      .filter(property => property.isFavorited)
+      .map(property =>
+        Object.assign({}, property, { user: User.withId(property.user).ref })))
 );
 
 const fetchProperty = createSelector(
@@ -33,49 +38,33 @@ const fetchProperty = createSelector(
   getPropertyID,
   ormSelector(orm, ({ Property, User }, id) => {
     const property = Property.withId(id).ref;
-    return Object.assign({}, property, { user: User.withId(property.user).ref });
-  }),
+    return Object.assign({}, property, {
+      user: User.withId(property.user).ref
+    });
+  })
 );
 
 const getCategoriesWithAny = createSelector(
   propertyCategories,
-  categories => categories.concat('Any').reverse(),
+  categories => categories.concat("Any").reverse()
 );
 
 const getCategories = createSelector(
   propertyCategories,
-  categories => categories,
+  categories => categories
 );
 
-const isFetching = createSelector(
-  propertyIsFetching,
-  isFetching => isFetching,
-);
+const isFetching = createSelector(propertyIsFetching, isFetching => isFetching);
 
-const getFilters = createSelector(
-  propertyFilters,
-  filters => filters,
-);
+const getFilters = createSelector(propertyFilters, filters => filters);
 
-const getListing = createSelector(
-  propertyListings,
-  listings => listings,
-);
+const getListing = createSelector(propertyListings, listings => listings);
 
-const fetchComments = createSelector(
-  [],
-  comments => [],
-);
+const fetchComments = createSelector([], comments => []);
 
-const getTypes = createSelector(
-  propertyTypes,
-  types => types,
-);
+const getTypes = createSelector(propertyTypes, types => types);
 
-const getAmenities = createSelector(
-  propertyAmenities,
-  amenities => amenities,
-);
+const getAmenities = createSelector(propertyAmenities, amenities => amenities);
 
 export const SELECTORS = {
   isFetching,
@@ -88,5 +77,5 @@ export const SELECTORS = {
   getListing,
   getCategoriesWithAny,
   getTypes,
-  getAmenities,
+  getAmenities
 };

@@ -1,35 +1,36 @@
-import appReducer from '../../common/reducer';
-import { ACTION_TYPES } from '../../common/actions';
+import appReducer from "../../common/reducer";
+import { ACTION_TYPES } from "../../common/actions";
 
-describe('App Component Store', () => {
-
+describe("App Component Store", () => {
   const initialState = {
-    bootstrapped : false,
-    country: 'Kuwait'
+    bootstrapped: false,
+    country: "Kuwait"
   };
 
-  test('should return the initial state', () => {
-    expect(
-      appReducer(initialState, {type:'UNDEFINED'})
-    ).toEqual(initialState)
+  test("should return the initial state", () => {
+    expect(appReducer(initialState, { type: "UNDEFINED" })).toEqual(
+      initialState
+    );
   });
 
-  test('app bootstraps', () => {
+  test("app bootstraps", () => {
     expect(
-      appReducer(initialState,{type:ACTION_TYPES.BOOT_SUCCESS})
+      appReducer(initialState, { type: ACTION_TYPES.BOOT_SUCCESS })
     ).toEqual({
-      bootstrapped:true,
-      country: 'Kuwait'
-    })
+      bootstrapped: true,
+      country: "Kuwait"
+    });
   });
 
-  test('should change country', () => {
+  test("should change country", () => {
     expect(
-      appReducer(initialState,{type:ACTION_TYPES.COUNTRY_CHANGED,country:'UAE'})
+      appReducer(initialState, {
+        type: ACTION_TYPES.COUNTRY_CHANGED,
+        country: "UAE"
+      })
     ).toEqual({
-      bootstrapped:false,
-      country: 'UAE'
-    })
+      bootstrapped: false,
+      country: "UAE"
+    });
   });
-
-})
+});

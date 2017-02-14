@@ -1,56 +1,60 @@
 /**
  @flow
  */
-import React, { Component, PropTypes } from 'react';
-import { View, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, Dimensions, Image } from 'react-native';
-import colors from '../../common/colors';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import React, { Component, PropTypes } from "react";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  Dimensions,
+  Image
+} from "react-native";
+import colors from "../../common/colors";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default class UserEditScene extends Component {
-
   static propTypes = {
-    user:PropTypes.object.isRequired,
-    pickImage:PropTypes.func.isRequired,
-    onFieldChange:PropTypes.func.isRequired,
-    name:PropTypes.string,
-    image:PropTypes.string,
-    description:PropTypes.string,
-    address:PropTypes.string,
-    uploaded:PropTypes.bool.isRequired
+    user: PropTypes.object.isRequired,
+    pickImage: PropTypes.func.isRequired,
+    onFieldChange: PropTypes.func.isRequired,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    address: PropTypes.string,
+    uploaded: PropTypes.bool.isRequired
   };
 
   render() {
-    const {user,uploaded,pickImage,onFieldChange,name,image,description,address} = this.props;
+    const {
+      user,
+      uploaded,
+      pickImage,
+      onFieldChange,
+      name,
+      image,
+      description,
+      address
+    } = this.props;
 
     return (
       <ScrollView style={styles.container}>
 
-        {
-          uploaded ?
-            <Image
-              source={{uri:image}}
-              style={styles.logo}
-            />
-            :
-            user.image ?
-              <Image
-                source={{uri:user.image}}
-                style={styles.logo}
-              />
-              :
-              <FontAwesome
-                name="picture-o"
-                color='white'
-                size={200}
-                style={styles.emptyImageIcon}
-              />
-        }
+        {uploaded
+          ? <Image source={{ uri: image }} style={styles.logo} />
+          : user.image
+              ? <Image source={{ uri: user.image }} style={styles.logo} />
+              : <FontAwesome
+                  name="picture-o"
+                  color="white"
+                  size={200}
+                  style={styles.emptyImageIcon}
+                />}
 
         <View style={styles.editIconWrapper}>
-          <TouchableHighlight
-            onPress={pickImage}
-            underlayColor="transparent"
-          >
+          <TouchableHighlight onPress={pickImage} underlayColor="transparent">
             <FontAwesome
               name="camera"
               color={colors.darkGrey}
@@ -62,104 +66,102 @@ export default class UserEditScene extends Component {
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.label}>{user.isCompany ? 'Company Name' : 'Name'}</Text>
+          <Text style={styles.label}>
+            {user.isCompany ? "Company Name" : "Name"}
+          </Text>
           <TextInput
             style={styles.textInput}
             defaultValue={user.name}
-            onChangeText={(text)=>onFieldChange('name',text)}
+            onChangeText={text => onFieldChange("name", text)}
             placeholder="Name"
             placeholderTextColor={colors.lightGrey}
           />
-          <View style={styles.separator}/>
+          <View style={styles.separator} />
 
           {user.isCompany &&
+            <View style={{ flex: 1 }}>
 
-          <View style={{flex:1}}>
+              <Text style={styles.label}>Company Description</Text>
+              <TextInput
+                style={styles.textInput}
+                defaultValue={user.company.description}
+                onChangeText={text => onFieldChange("description", text)}
+                multiline={true}
+                placeholder="Description"
+                placeholderTextColor={colors.lightGrey}
+              />
+              <View style={styles.separator} />
 
-            <Text style={styles.label}>Company Description</Text>
-            <TextInput
-              style={styles.textInput}
-              defaultValue={user.company.description}
-              onChangeText={(text)=>onFieldChange('description',text)}
-              multiline={true}
-              placeholder="Description"
-              placeholderTextColor={colors.lightGrey}
-            />
-            <View style={styles.separator}/>
+              <Text style={styles.label}>Company Address</Text>
+              <TextInput
+                style={styles.textInput}
+                defaultValue={user.company.address}
+                onChangeText={text => onFieldChange("address", text)}
+                placeholder="Address"
+                placeholderTextColor={colors.lightGrey}
+                multiline={true}
+              />
 
-            <Text style={styles.label}>Company Address</Text>
-            <TextInput
-              style={styles.textInput}
-              defaultValue={user.company.address}
-              onChangeText={(text)=>onFieldChange('address',text)}
-              placeholder="Address"
-              placeholderTextColor={colors.lightGrey}
-              multiline={true}
-            />
-
-            <View style={styles.separator}/>
-          </View>
-          }
+              <View style={styles.separator} />
+            </View>}
 
         </View>
 
       </ScrollView>
-
     );
   }
 }
 
-const styles =  StyleSheet.create({
-  container:{
-    flex:1,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
   },
-  content:{
-    padding:20,
-    paddingTop:50,
+  content: {
+    padding: 20,
+    paddingTop: 50
   },
-  username:{
-    fontSize:20,
-    fontWeight:'700',
-    color:colors.darkGrey,
+  username: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: colors.darkGrey
   },
   label: {
-    fontSize:15,
-    fontWeight:'100',
-    color:colors.smokeGreyDark
+    fontSize: 15,
+    fontWeight: "100",
+    color: colors.smokeGreyDark
   },
-  logo:{
-    height:200,
-    width:Dimensions.get('window').width,
+  logo: {
+    height: 200,
+    width: Dimensions.get("window").width
   },
-  emptyImageIcon:{
-    height:200,
-    backgroundColor:colors.smokeGreyLight,
-    textAlign:'center',
+  emptyImageIcon: {
+    height: 200,
+    backgroundColor: colors.smokeGreyLight,
+    textAlign: "center"
   },
-  editIconWrapper:{
-    position:'absolute',
-    top:200,
-    right:15,
-    marginTop:-20,
-    height:40,
-    width:40,
-    borderRadius:20,
-    zIndex:1000,
-    alignItems:'center',
-    justifyContent:'center',
-    shadowColor:colors.smokeGreyDark,
-    shadowOpacity:0.6,
-    shadowOffset:{width:1,height:1}
+  editIconWrapper: {
+    position: "absolute",
+    top: 200,
+    right: 15,
+    marginTop: -20,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    zIndex: 1000,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: colors.smokeGreyDark,
+    shadowOpacity: 0.6,
+    shadowOffset: { width: 1, height: 1 }
   },
-  textInput:{
-    height:30,
-    fontSize:16,
-    marginVertical:5,
+  textInput: {
+    height: 30,
+    fontSize: 16,
+    marginVertical: 5
   },
-  separator:{
-    marginVertical:20,
-    height:.5,
-    backgroundColor:colors.smokeGreyLight
+  separator: {
+    marginVertical: 20,
+    height: 0.5,
+    backgroundColor: colors.smokeGreyLight
   }
-
 });

@@ -1,14 +1,14 @@
-import Qs from 'qs';
-import map from 'lodash/map';
-import isEmpty from 'lodash/isEmpty';
-import Store from './../../common/store';
-import Router from './../../common/router';
-import { put, call, select, takeLatest } from 'redux-saga/effects';
-import { ACTION_TYPES } from './actions';
-import { API } from './api';
-import { SELECTORS } from './selectors';
-import { getFileName } from './../../common/functions';
-import { NavigationActions } from '@exponent/ex-navigation';
+import Qs from "qs";
+import map from "lodash/map";
+import isEmpty from "lodash/isEmpty";
+import Store from "./../../common/store";
+import Router from "./../../common/router";
+import { put, call, select, takeLatest } from "redux-saga/effects";
+import { ACTION_TYPES } from "./actions";
+import { API } from "./api";
+import { SELECTORS } from "./selectors";
+import { getFileName } from "./../../common/functions";
+import { NavigationActions } from "@exponent/ex-navigation";
 
 export function* fetchProperties(action) {
   try {
@@ -16,7 +16,16 @@ export function* fetchProperties(action) {
 
     const country = state.appReducer.country;
     const apiToken = state.authReducer.token;
-    const { bedroom, bathroom, parking, category, priceFrom, priceTo, sortBy, searchString } = SELECTORS.getFilters(state);
+    const {
+      bedroom,
+      bathroom,
+      parking,
+      category,
+      priceFrom,
+      priceTo,
+      sortBy,
+      searchString
+    } = SELECTORS.getFilters(state);
     const params = Qs.stringify({
       api_token: apiToken,
       country,
@@ -27,27 +36,30 @@ export function* fetchProperties(action) {
       priceFrom,
       priceTo,
       sortBy,
-      searchString,
+      searchString
     });
     const { nextPageUrl } = state.propertyReducer;
     let urlParams;
 
     // set if there is no next page
     if (nextPageUrl === null) {
-      yield put({ type: ACTION_TYPES.PROPERTY_FAILURE, error: 'No Results' });
+      yield put({ type: ACTION_TYPES.PROPERTY_FAILURE, error: "No Results" });
     } else {
       // initial query
       if (nextPageUrl === undefined) {
-        urlParams = isEmpty(action.params) || action.params === undefined ? `/?${params}` : `/?${action.params}&${params}`;
+        urlParams = isEmpty(action.params) || action.params === undefined
+          ? `/?${params}`
+          : `/?${action.params}&${params}`;
       } else {
         urlParams = nextPageUrl;
       }
 
       const response = yield call(API.fetchProperties, urlParams);
-      yield put({ type: ACTION_TYPES.PROPERTY_SUCCESS, payload: response.data });
+      yield put({
+        type: ACTION_TYPES.PROPERTY_SUCCESS,
+        payload: response.data
+      });
     }
-
-
   } catch (error) {
     yield put({ type: ACTION_TYPES.PROPERTY_FAILURE, error });
   }
@@ -62,13 +74,18 @@ export function* fetchFavorites(action) {
     let urlParams;
     // set if there is no next page
     if (nextPageFavoritesUrl === null) {
-      return yield put({ type: ACTION_TYPES.FAVORITES_FAILURE, error: 'No Results' });
+      return yield put({
+        type: ACTION_TYPES.FAVORITES_FAILURE,
+        error: "No Results"
+      });
     }
 
     const params = Qs.stringify({ api_token: apiToken, country });
 
     if (nextPageFavoritesUrl === undefined) {
-      urlParams = isEmpty(action.params) ? `/?${params}` : `/?${action.params}&${params}`;
+      urlParams = isEmpty(action.params)
+        ? `/?${params}`
+        : `/?${action.params}&${params}`;
     } else {
       urlParams = nextPageFavoritesUrl;
     }
@@ -86,12 +103,23 @@ export function* favoriteProperty(action) {
     const apiToken = state.authReducer.token;
     if (isEmpty(apiToken)) {
       const navigatorUID = Store.getState().navigation.currentNavigatorUID;
-      return Store.dispatch(NavigationActions.push(navigatorUID, Router.getRoute('login', { redirectRoute: 'propertyList' })));
+      return Store.dispatch(
+        NavigationActions.push(
+          navigatorUID,
+          Router.getRoute("login", { redirectRoute: "propertyList" })
+        )
+      );
     }
-    yield put({ type: ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE, payload: action });
+    yield put({
+      type: ACTION_TYPES.PROPERTY_FAVORITE_OPTIMISTIC_UPDATE,
+      payload: action
+    });
     const urlParams = `?api_token=${apiToken}`;
     const response = yield call(API.favoriteProperty, urlParams, action.params);
-    yield put({ type: ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS, payload: response });
+    yield put({
+      type: ACTION_TYPES.PROPERTY_FAVORITE_SUCCESS,
+      payload: response
+    });
   } catch (error) {
     yield put({ type: ACTION_TYPES.PROPERTY_FAVORITE_FAILURE, error });
   }
@@ -103,17 +131,52 @@ export function* saveProperty() {
     const country = state.appReducer.country;
     const apiToken = state.authReducer.token;
     const { attributes } = SELECTORS.getListing(state);
-    const { type, category, title, description, price, address, meta, images, amenities, tags } = attributes;
-    const params = { country, type, category, title, description, price, address, meta, images, amenities, tags };
+    const {
+      type,
+      category,
+      title,
+      description,
+      price,
+      address,
+      meta,
+      images,
+      amenities,
+      tags
+    } = attributes;
+    const params = {
+      country,
+      type,
+      category,
+      title,
+      description,
+      price,
+      address,
+      meta,
+      images,
+      amenities,
+      tags
+    };
     const urlParams = `api_token=${apiToken}`;
     const response = yield call(API.saveProperty, params, urlParams);
 
     const formData = new FormData();
-    map(images, img => formData.append('images[]', { uri: img, name: getFileName(img), type: 'image/jpg' }));
+    map(images, img =>
+      formData.append("images[]", {
+        uri: img,
+        name: getFileName(img),
+        type: "image/jpg"
+      }));
 
-    const imageResponse = yield call(API.uploadImage, response.data._id, formData);
+    const imageResponse = yield call(
+      API.uploadImage,
+      response.data._id,
+      formData
+    );
 
-    yield put({ type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS, payload: imageResponse });
+    yield put({
+      type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS,
+      payload: imageResponse
+    });
     yield put({ type: ACTION_TYPES.PROPERTY_RESET });
     yield put({ type: ACTION_TYPES.FILTER_RESET });
     yield put({ type: ACTION_TYPES.PROPERTY_REQUEST });

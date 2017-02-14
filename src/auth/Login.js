@@ -1,48 +1,55 @@
-import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, StatusBar, Text } from 'react-native';
+import React, { Component, PropTypes } from "react";
+import { View, StyleSheet, StatusBar, Text } from "react-native";
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { ACTIONS  } from './common/actions';
-import LoginScene from './components/LoginScene';
-import colors from './../common/colors';
+import { bindActionCreators } from "redux";
+import { ACTIONS } from "./common/actions";
+import LoginScene from "./components/LoginScene";
+import colors from "./../common/colors";
 
 class Login extends Component {
-
-  static propTypes =  {
-    navigator:PropTypes.object.isRequired,
+  static propTypes = {
+    navigator: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
-    auth:PropTypes.object.isRequired,
-    redirectRoute:PropTypes.string.isRequired
+    auth: PropTypes.object.isRequired,
+    redirectRoute: PropTypes.string.isRequired
   };
 
   static route = {
-    navigationBar : {
-      tintColor:colors.primary,
-      renderBackground: (props) => <View style={{height: 64,backgroundColor:'white',opacity:0.8}}/>,
+    navigationBar: {
+      tintColor: colors.primary,
+      renderBackground: props => (
+        <View style={{ height: 64, backgroundColor: "white", opacity: 0.8 }} />
+      )
     }
   };
 
   state = {
-    email: 'admin@test.com',
-    password: 'password'
+    email: "admin@test.com",
+    password: "password"
   };
 
   handleLogin = () => {
-    const {redirectRoute}= this.props;
-    const credentials = { email:this.state.email,password:this.state.password};
-    this.props.actions.login(credentials,this.props.navigator.router.getRoute(redirectRoute));
+    const { redirectRoute } = this.props;
+    const credentials = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.actions.login(
+      credentials,
+      this.props.navigator.router.getRoute(redirectRoute)
+    );
   };
 
   handleRegisterRoute = () => {
     const { navigator } = this.props;
-    navigator.push(navigator.router.getRoute('register'));
+    navigator.push(navigator.router.getRoute("register"));
   };
 
   handleForgotPasswordRoute() {
   }
 
-  onFieldChange = (field,value) => {
-    this.setState({[field]:value});
+  onFieldChange = (field, value) => {
+    this.setState({ [field]: value });
   };
 
   render() {
@@ -58,17 +65,16 @@ class Login extends Component {
       />
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(ACTIONS, dispatch) }
+  return { actions: bindActionCreators(ACTIONS, dispatch) };
 }
 
 function mapStateToProps(state) {
   return {
-    auth:state.authReducer
-  }
+    auth: state.authReducer
+  };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -16,10 +16,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ACTIONS } from "./common/actions";
 import { SELECTORS } from "./common/selectors";
-import { resolveCountryName } from './../common/functions';
+import { resolveCountryName } from "./../common/functions";
 
 class PropertyCreate extends Component {
-
   static propTypes = {
     listings: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
@@ -59,8 +58,8 @@ class PropertyCreate extends Component {
 
   updateAttributes = (index, value) => {
     const payload = {
-      attributes:{
-        [index]:value
+      attributes: {
+        [index]: value
       }
     };
     this.props.actions.changeListingValue(payload);
@@ -71,46 +70,46 @@ class PropertyCreate extends Component {
     this.goToNextStage();
   };
 
-  updateMeta = (field,value) => {
+  updateMeta = (field, value) => {
     let payload = {
       [field]: value
     };
     this.updateAttributes("meta", payload);
   };
 
-  updateAddress = (data) => {
+  updateAddress = data => {
     const { state, country, city, latitude, longitude } = data;
-    const payload = {state,country,city,latitude,longitude};
+    const payload = { state, country, city, latitude, longitude };
     this.updateAttributes("address", payload);
   };
 
-  updateImage = (items) => {
+  updateImage = items => {
     const payload = {
-      replace:true,
-      key:'images',
-      item:items
+      replace: true,
+      key: "images",
+      item: items
     };
     return this.props.actions.changeListingValue(payload);
   };
 
-  updateAmenities = (item) => {
+  updateAmenities = item => {
     const payload = {
-      replace:true,
-      key:'amenities',
-      item:item
+      replace: true,
+      key: "amenities",
+      item: item
     };
     this.props.actions.changeListingValue(payload);
   };
 
   goToPrevStage = () => {
     const { stage } = this.props.listings;
-    const payload = {stage : stage -1};
+    const payload = { stage: stage - 1 };
     this.props.actions.changeListingValue(payload);
   };
 
   goToNextStage = () => {
     const { stage } = this.props.listings;
-    const payload = {stage : stage + 1};
+    const payload = { stage: stage + 1 };
     this.props.actions.changeListingValue(payload);
   };
 
@@ -127,64 +126,66 @@ class PropertyCreate extends Component {
       <View style={{ flex: 1 }}>
 
         {stage == 1 &&
-        <List
-          field="type"
-          collection={types}
-          header={<Header title="What type of Property you want to list ?" />}
-          updateListing={this.onSelect}
-        />}
+          <List
+            field="type"
+            collection={types}
+            header={<Header title="What type of Property you want to list ?" />}
+            updateListing={this.onSelect}
+          />}
 
         {stage == 2 &&
-        <List
-          field="category"
-          header={<Header title="Select Category Type" />}
-          collection={categories}
-          updateListing={this.onSelect}
-        />}
+          <List
+            field="category"
+            header={<Header title="Select Category Type" />}
+            collection={categories}
+            updateListing={this.onSelect}
+          />}
 
         {stage == 3 &&
-        <AddressPicker
-          country={country}
-          address={attributes.address}
-          category="Apartment"
-          header={<Header title="What city is your Apartment located in ?" />}
-          updateAddress={this.updateAddress}
-          updateListing={this.goToNextStage}
-        />}
+          <AddressPicker
+            country={country}
+            address={attributes.address}
+            category="Apartment"
+            header={<Header title="What city is your Apartment located in ?" />}
+            updateAddress={this.updateAddress}
+            updateListing={this.goToNextStage}
+          />}
 
         {stage == 4 &&
-        <PropertyMeta
-          meta={listings.attributes.meta}
-          filters={listings.filters}
-          updateMeta={this.updateMeta}
-          header={<Header title="Just a little bit more about your Apartment" />}
-          footer={<Footer updateListing={this.goToNextStage} />}
-        />}
+          <PropertyMeta
+            meta={listings.attributes.meta}
+            filters={listings.filters}
+            updateMeta={this.updateMeta}
+            header={
+              <Header title="Just a little bit more about your Apartment" />
+            }
+            footer={<Footer updateListing={this.goToNextStage} />}
+          />}
 
         {stage == 5 &&
-        <UploadImage
-          images={attributes.images}
-          updateImage={this.updateImage}
-          header={<Header title="Upload Property Images" />}
-          footer={<Footer updateListing={this.goToNextStage} />}
-        />}
+          <UploadImage
+            images={attributes.images}
+            updateImage={this.updateImage}
+            header={<Header title="Upload Property Images" />}
+            footer={<Footer updateListing={this.goToNextStage} />}
+          />}
 
         {stage == 6 &&
-        <PropertyInfo
-          attributes={attributes}
-          onFieldChange={this.updateAttributes}
-          header={<Header title="You are almost there !!" />}
-          footer={<Footer updateListing={this.goToNextStage} />}
-        />}
+          <PropertyInfo
+            attributes={attributes}
+            onFieldChange={this.updateAttributes}
+            header={<Header title="You are almost there !!" />}
+            footer={<Footer updateListing={this.goToNextStage} />}
+          />}
 
         {stage == 7 &&
-        <PropertyAmenities
-          collection={amenities}
-          selected={attributes.amenities}
-          updateListing={this.updateAmenities}
-          header={<Header title="Select Amenities" />}
-          footer={<Footer updateListing={this.saveProperty} title="Save" />}
-        />}
+          <PropertyAmenities
+            collection={amenities}
+            selected={attributes.amenities}
+            updateListing={this.updateAmenities}
+            header={<Header title="Select Amenities" />}
+            footer={<Footer updateListing={this.saveProperty} title="Save" />}
+          />}
 
       </View>
     );

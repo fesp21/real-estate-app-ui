@@ -1,43 +1,44 @@
 /**
  @flow
  */
-import React, { Component, PropTypes } from 'react';
-import { View, ScrollView, StyleSheet, Text, TouchableHighlight, Dimensions, Image } from 'react-native';
-import colors from '../../common/colors';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import React, { Component, PropTypes } from "react";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  Dimensions,
+  Image
+} from "react-native";
+import colors from "../../common/colors";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default class UserSingle extends Component {
-
   static propTypes = {
-    user:PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   };
 
   render() {
-    const {user,loadScene} = this.props;
+    const { user, loadScene } = this.props;
 
     return (
       <View style={styles.container}>
-        {
-          user.image ?
-            <Image
-              source={{uri:user.image}}
+        {user.image
+          ? <Image
+              source={{ uri: user.image }}
               style={styles.logo}
               resizeMode="cover"
             />
-            :
-            <FontAwesome
+          : <FontAwesome
               name="picture-o"
               color="white"
               size={200}
               style={styles.emptyImageIcon}
-            />
-        }
+            />}
 
         <View style={styles.editIconWrapper}>
-          <TouchableHighlight
-            onPress={loadScene}
-            underlayColor="transparent"
-          >
+          <TouchableHighlight onPress={loadScene} underlayColor="transparent">
             <FontAwesome
               name="pencil"
               color={colors.darkGrey}
@@ -53,51 +54,50 @@ export default class UserSingle extends Component {
         </View>
 
       </View>
-
     );
   }
 }
 
-const styles =  StyleSheet.create({
-  container:{
-    flex:1,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
   },
-  content:{
-    padding:20,
+  content: {
+    padding: 20
   },
-  username:{
-    fontSize:20,
-    fontWeight:'700',
-    color:colors.darkGrey,
+  username: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: colors.darkGrey
   },
   date: {
-    paddingVertical:10,
-    fontSize:15,
-    fontWeight:'100',
-    color:colors.smokeGreyDark
+    paddingVertical: 10,
+    fontSize: 15,
+    fontWeight: "100",
+    color: colors.smokeGreyDark
   },
-  logo:{
-    height:200,
-    width:Dimensions.get('window').width,
+  logo: {
+    height: 200,
+    width: Dimensions.get("window").width
   },
-  emptyImageIcon:{
-    height:200,
-    backgroundColor:colors.smokeGreyLight,
-    textAlign:'center',
+  emptyImageIcon: {
+    height: 200,
+    backgroundColor: colors.smokeGreyLight,
+    textAlign: "center"
   },
-  editIconWrapper:{
-    position:'absolute',
-    top:200,
-    right:15,
-    marginTop:-20,
-    height:40,
-    width:40,
-    borderRadius:20,
-    zIndex:1000,
-    alignItems:'center',
-    justifyContent:'center',
-    shadowColor:colors.smokeGreyDark,
-    shadowOpacity:0.6,
-    shadowOffset:{width:1,height:1}
+  editIconWrapper: {
+    position: "absolute",
+    top: 200,
+    right: 15,
+    marginTop: -20,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    zIndex: 1000,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: colors.smokeGreyDark,
+    shadowOpacity: 0.6,
+    shadowOffset: { width: 1, height: 1 }
   }
 });

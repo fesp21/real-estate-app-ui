@@ -1,41 +1,64 @@
-import React, {Component, PropTypes} from "react";
-import {ScrollView, View, StyleSheet, StatusBar, Text, TouchableWithoutFeedback, TextInput} from "react-native";
+import React, { Component, PropTypes } from "react";
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  StatusBar,
+  Text,
+  TouchableWithoutFeedback,
+  TextInput
+} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import colors from "../../common/colors";
-import Separator from '../../components/Separator';
-import { GOOGLE_MAPS_KEY } from './../../env.js';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import Separator from "../../components/Separator";
+import { GOOGLE_MAPS_KEY } from "./../../env.js";
+import {
+  GooglePlacesAutocomplete
+} from "react-native-google-places-autocomplete";
 
 export default class SearchScene extends Component {
-
   static propTypes = {
-    searchString:PropTypes.string.isRequired,
-    onSearch:PropTypes.func.isRequired,
-    country:PropTypes.string.isRequired
+    searchString: PropTypes.string.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    country: PropTypes.string.isRequired
   };
 
   render() {
-    const {onSearch,searchString,country} = this.props;
+    const { onSearch, searchString, country } = this.props;
     return (
       <ScrollView style={styles.container}>
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
           <View style={styles.wrapper}>
-            <Ionicons name="ios-search" size={18}  color={colors.darkGrey} style={styles.icon}/>
+            <Ionicons
+              name="ios-search"
+              size={18}
+              color={colors.darkGrey}
+              style={styles.icon}
+            />
             <GooglePlacesAutocomplete
-              placeholder='Search'
+              placeholder="Search"
               minLength={3}
               autoFocus={true}
               fetchDetails={true}
-              renderDescription={(row) => row.terms[0].value}
-              onPress={(data, details = null) => {onSearch(details.formatted_address)}}
-              getDefaultValue={() => {return searchString;}}
-              query={{ key: GOOGLE_MAPS_KEY, language: 'en', types: '(cities)',components:`country:${country}`}}
+              renderDescription={row => row.terms[0].value}
+              onPress={(data, details = null) => {
+                onSearch(details.formatted_address);
+              }}
+              getDefaultValue={() => {
+                return searchString;
+              }}
+              query={{
+                key: GOOGLE_MAPS_KEY,
+                language: "en",
+                types: "(cities)",
+                components: `country:${country}`
+              }}
               styles={autoCompleteStyle}
               enablePoweredByContainer={false}
               placeholderTextColor={colors.lightGrey}
             />
           </View>
-          <Separator style={{ marginTop:10,marginBottom:10 }}/>
+          <Separator style={{ marginTop: 10, marginBottom: 10 }} />
         </View>
       </ScrollView>
     );
@@ -44,51 +67,51 @@ export default class SearchScene extends Component {
 
 const autoCompleteStyle = {
   textInputContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderTopWidth: 0,
-    borderBottomWidth:0,
-    padding:0,
-    margin:0,
-    height:40
+    borderBottomWidth: 0,
+    padding: 0,
+    margin: 0,
+    height: 40
   },
   textInput: {
-    color:colors.darkGrey,
-    fontSize:16,
-    fontWeight:'400',
+    color: colors.darkGrey,
+    fontSize: 16,
+    fontWeight: "400"
   },
   predefinedPlacesDescription: {
-    color: '#1faadb'
+    color: "#1faadb"
   },
   separator: {
-    height:.6,
-    backgroundColor:'#E7E7E7'
-  },
+    height: 0.6,
+    backgroundColor: "#E7E7E7"
+  }
 };
 
-const styles =  StyleSheet.create({
-  container : {
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    backgroundColor:'white',
-    padding:10,
+    backgroundColor: "white",
+    padding: 10
   },
-  wrapper:{
-    flexDirection:'row',
+  wrapper: {
+    flexDirection: "row"
   },
-  title:{
-    color:'white',
-    fontSize:15,
-    paddingLeft:5
+  title: {
+    color: "white",
+    fontSize: 15,
+    paddingLeft: 5
   },
   icon: {
-    padding:5,
-    paddingTop:11
+    padding: 5,
+    paddingTop: 11
   },
-  text:{
-    flex:1,
-    marginLeft:10,
-    color:colors.darkGrey,
-    fontSize:17,
-    fontWeight:'500',
-    height:40
+  text: {
+    flex: 1,
+    marginLeft: 10,
+    color: colors.darkGrey,
+    fontSize: 17,
+    fontWeight: "500",
+    height: 40
   }
 });

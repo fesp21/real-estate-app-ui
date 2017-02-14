@@ -1,13 +1,17 @@
-import { fork } from 'redux-saga/effects';
-import { bootstrapMonitor, changeCountryMonitor } from '../app/common/sagas';
-import { loginMonitor, logoutMonitor, registerMonitor } from '../auth/common/sagas';
-import { userUpdateMonitor } from '../user/common/sagas';
+import { fork } from "redux-saga/effects";
+import { bootstrapMonitor, changeCountryMonitor } from "../app/common/sagas";
+import {
+  loginMonitor,
+  logoutMonitor,
+  registerMonitor
+} from "../auth/common/sagas";
+import { userUpdateMonitor } from "../user/common/sagas";
 import {
   propertyMonitor,
   favoriteMonitor,
   propertyFavoriteMonitor,
-  propertySaveMonitor,
-} from '../property/common/sagas';
+  propertySaveMonitor
+} from "../property/common/sagas";
 
 export default function* rootSaga() {
   yield [
@@ -20,6 +24,6 @@ export default function* rootSaga() {
     fork(favoriteMonitor),
     fork(propertyFavoriteMonitor),
     fork(propertySaveMonitor),
-    fork(userUpdateMonitor),
+    fork(userUpdateMonitor)
   ];
 }

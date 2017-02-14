@@ -1,8 +1,8 @@
-import orm from './orm';
-import map from 'lodash/map';
-import { ACTION_TYPES as PROPERTY_ACTIONS } from '../property/common/actions';
-import { ACTION_TYPES as AUTH_ACTIONS } from '../auth/common/actions';
-import { ACTION_TYPES as USER_ACTIONS } from '../user/common/actions';
+import orm from "./orm";
+import map from "lodash/map";
+import { ACTION_TYPES as PROPERTY_ACTIONS } from "../property/common/actions";
+import { ACTION_TYPES as AUTH_ACTIONS } from "../auth/common/actions";
+import { ACTION_TYPES as USER_ACTIONS } from "../user/common/actions";
 
 export default function ormReducer(state, action) {
   const session = orm.session(state);
@@ -10,7 +10,9 @@ export default function ormReducer(state, action) {
   switch (action.type) {
     case AUTH_ACTIONS.LOGIN_SUCCESS: {
       let user = action.payload;
-      if (!User.hasId(user._id)) { User.create(user); }
+      if (!User.hasId(user._id)) {
+        User.create(user);
+      }
       break;
     }
     case USER_ACTIONS.USER_UPDATE_SUCCESS: {
@@ -24,11 +26,15 @@ export default function ormReducer(state, action) {
     }
     case PROPERTY_ACTIONS.PROPERTY_SUCCESS: {
       const propertyCollections = action.payload.data;
-      map(propertyCollections, (entity) => {
+      map(propertyCollections, entity => {
         let user = entity.user;
         if (!user) return;
-        if (!User.hasId(user._id)) { User.create(user); }
-        Property.hasId(entity._id) ? Property.withId(entity._id).update({ ...entity, user: user._id }) : Property.create({ ...entity, user: user._id });
+        if (!User.hasId(user._id)) {
+          User.create(user);
+        }
+        Property.hasId(entity._id)
+          ? Property.withId(entity._id).update({ ...entity, user: user._id })
+          : Property.create({ ...entity, user: user._id });
       });
       break;
     }

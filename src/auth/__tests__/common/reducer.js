@@ -1,100 +1,109 @@
-import authReducer from '../../common/reducer';
-import { ACTION_TYPES } from '../../common/actions';
+import authReducer from "../../common/reducer";
+import { ACTION_TYPES } from "../../common/actions";
 
-describe('App Component Store', () => {
-
+describe("App Component Store", () => {
   let initialState = {
     isAuthenticated: false,
-    userID:null,
+    userID: null,
     token: null,
     skipped: false,
     login: {
       busy: false,
-      error: null,
+      error: null
     },
     register: {
       busy: false,
-      error: null,
-    },
+      error: null
+    }
   };
 
-  test('should return the initial state', () => {
-    expect(
-      authReducer(initialState, {type:'UNDEFINED'})
-    ).toEqual(initialState)
+  test("should return the initial state", () => {
+    expect(authReducer(initialState, { type: "UNDEFINED" })).toEqual(
+      initialState
+    );
   });
 
-  test('login request', () => {
+  test("login request", () => {
     expect(
-      authReducer(initialState,{type:ACTION_TYPES.LOGIN_REQUEST})
+      authReducer(initialState, { type: ACTION_TYPES.LOGIN_REQUEST })
     ).toEqual({
       ...initialState,
       isAuthenticated: false,
       userID: null,
-      login: { busy: true, error: null },
-    })
+      login: { busy: true, error: null }
+    });
   });
 
-  test('login success', () => {
+  test("login success", () => {
     expect(
-      authReducer(initialState,{type:ACTION_TYPES.LOGIN_SUCCESS,payload:{
-        api_token:'token',
-        _id:123
-      }})
+      authReducer(initialState, {
+        type: ACTION_TYPES.LOGIN_SUCCESS,
+        payload: {
+          api_token: "token",
+          _id: 123
+        }
+      })
     ).toEqual({
       ...initialState,
       error: null,
       isAuthenticated: true,
-      token: 'token',
+      token: "token",
       userID: 123,
-      login: { ...initialState.login, busy: false, error: null },
-    })
+      login: { ...initialState.login, busy: false, error: null }
+    });
   });
 
-  test('login failure', () => {
+  test("login failure", () => {
     expect(
-      authReducer(initialState,{type:ACTION_TYPES.LOGIN_FAILURE,error:'login failed'})
+      authReducer(initialState, {
+        type: ACTION_TYPES.LOGIN_FAILURE,
+        error: "login failed"
+      })
     ).toEqual({
       ...initialState,
       isAuthenticated: false,
       userID: null,
-      login: { ...initialState.login, busy: false, error: 'login failed' },
-    })
+      login: { ...initialState.login, busy: false, error: "login failed" }
+    });
   });
 
-  test('register request', () => {
+  test("register request", () => {
     expect(
-      authReducer(initialState,{type:ACTION_TYPES.REGISTER_REQUEST})
+      authReducer(initialState, { type: ACTION_TYPES.REGISTER_REQUEST })
     ).toEqual({
       ...initialState,
-      register: { ...initialState.register, busy: true },
-    })
+      register: { ...initialState.register, busy: true }
+    });
   });
 
-  test('register success', () => {
+  test("register success", () => {
     expect(
-      authReducer(initialState,{type:ACTION_TYPES.REGISTER_SUCCESS})
+      authReducer(initialState, { type: ACTION_TYPES.REGISTER_SUCCESS })
     ).toEqual({
       ...initialState,
-      register: { ...initialState.register, busy: false },
-    })
+      register: { ...initialState.register, busy: false }
+    });
   });
 
-  test('register failure', () => {
+  test("register failure", () => {
     expect(
-      authReducer(initialState,{type:ACTION_TYPES.REGISTER_FAILURE,error:'registration failed'})
+      authReducer(initialState, {
+        type: ACTION_TYPES.REGISTER_FAILURE,
+        error: "registration failed"
+      })
     ).toEqual({
       ...initialState,
-      register: { ...initialState.register, busy: false, error: 'registration failed'},
-    })
+      register: {
+        ...initialState.register,
+        busy: false,
+        error: "registration failed"
+      }
+    });
   });
 
-  test('logout', () => {
-    expect(
-      authReducer(initialState,{type:ACTION_TYPES.LOGOUT})
-    ).toEqual({
+  test("logout", () => {
+    expect(authReducer(initialState, { type: ACTION_TYPES.LOGOUT })).toEqual({
       ...initialState
-    })
+    });
   });
-
 });

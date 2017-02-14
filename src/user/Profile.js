@@ -1,40 +1,51 @@
-import React, { PropTypes,Component } from 'react';
-import { ScrollView,StyleSheet, View, Dimensions,Image } from 'react-native';
+import React, { PropTypes, Component } from "react";
+import { ScrollView, StyleSheet, View, Dimensions, Image } from "react-native";
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { ACTIONS } from './common/actions';
-import { ACTIONS as PROPERTY_ACTIONS } from '../property/common/actions';
-import { SELECTORS } from './common/selectors';
-import { SELECTORS as PROPERTY_SELECTORS } from '../property/common/selectors';
-import UserProfile from './components/profile/UserProfile';
+import { bindActionCreators } from "redux";
+import { ACTIONS } from "./common/actions";
+import { ACTIONS as PROPERTY_ACTIONS } from "../property/common/actions";
+import { SELECTORS } from "./common/selectors";
+import { SELECTORS as PROPERTY_SELECTORS } from "../property/common/selectors";
+import UserProfile from "./components/profile/UserProfile";
 
 const DOUBLE_PRESS_DELAY = 300;
 
 class Profile extends Component {
-
   static propTypes = {
-    user:PropTypes.object.isRequired
+    user: PropTypes.object.isRequired
   };
 
   static route = {
     navigationBar: {
-      renderBackground: (props) => <View><Image style={[styles.bgImage]} source={{uri: 'http://il9.picdn.net/shutterstock/videos/3951179/thumb/1.jpg'}} resizeMode={'cover'} /></View>
-    },
+      renderBackground: props => (
+        <View>
+          <Image
+            style={[styles.bgImage]}
+            source={{
+              uri: "http://il9.picdn.net/shutterstock/videos/3951179/thumb/1.jpg"
+            }}
+            resizeMode={"cover"}
+          />
+        </View>
+      )
+    }
   };
 
   state = {
-    lastImagePress:'',
+    lastImagePress: ""
   };
 
-  handleFavoritePress = (item:object) => {
+  handleFavoritePress = (item: object) => {
     this.props.actions.favoriteProperty(item);
   };
 
   loadEntity = (item: object) => {
     const { navigator } = this.props;
-    navigator.push(navigator.router.getRoute('propertyDetail',{
-      property:item
-    }));
+    navigator.push(
+      navigator.router.getRoute("propertyDetail", {
+        property: item
+      })
+    );
   };
 
   fetchProperties = () => {
@@ -45,50 +56,51 @@ class Profile extends Component {
     const now = new Date().getTime();
     let delta = now - this.state.lastImagePress;
 
-    if(delta < DOUBLE_PRESS_DELAY) {
+    if (delta < DOUBLE_PRESS_DELAY) {
       // favorite item
       this.handleFavoritePress(item);
     }
-    this.setState({lastImagePress: now});
+    this.setState({ lastImagePress: now });
   };
 
   render() {
     return (
-      <ScrollView style={{flex:1,paddingTop:64}}>
+      <ScrollView style={{ flex: 1, paddingTop: 64 }}>
         <UserProfile
           {...this.props}
           loadEntity={this.loadEntity}
-          onImagePress ={this.onImagePress}
-          fetchProperties ={this.fetchProperties}
-          handleFavoritePress ={this.handleFavoritePress}
+          onImagePress={this.onImagePress}
+          fetchProperties={this.fetchProperties}
+          handleFavoritePress={this.handleFavoritePress}
         />
       </ScrollView>
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators({ ...ACTIONS, ...PROPERTY_ACTIONS }, dispatch) }
+  return {
+    actions: bindActionCreators({ ...ACTIONS, ...PROPERTY_ACTIONS }, dispatch)
+  };
 }
 
-function mapStateToProps(state,props) {
+function mapStateToProps(state, props) {
   return {
-    user:SELECTORS.getUser(state,props),
-    properties:PROPERTY_SELECTORS.fetchProperties(state),
-    isFetching:state.propertyReducer.isFetching
-  }
+    user: SELECTORS.getUser(state, props),
+    properties: PROPERTY_SELECTORS.fetchProperties(state),
+    isFetching: state.propertyReducer.isFetching
+  };
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   page: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

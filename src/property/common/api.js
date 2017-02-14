@@ -1,5 +1,5 @@
-import { API_URL } from '../../env';
-import { fetchAPI } from '../../common/api';
+import { API_URL } from "../../env";
+import { fetchAPI } from "../../common/api";
 
 function fetchProperties(params) {
   const url = `${API_URL}/properties${params}`;
@@ -13,17 +13,17 @@ function fetchFavorites(params) {
 
 function favoriteProperty(urlParams, body) {
   const url = `${API_URL}/favorites${urlParams}`;
-  return fetchAPI(url, 'POST', body);
+  return fetchAPI(url, "POST", body);
 }
 
 function saveProperty(body, urlParams) {
   const url = `${API_URL}/properties?${urlParams}`;
-  return fetchAPI(url, 'POST', body);
+  return fetchAPI(url, "POST", body);
 }
 
 function uploadImage(propertyID, body) {
   const url = `${API_URL}/properties/${propertyID}/images/upload`;
-  return fetchAPI(url, 'POST', body, true);
+  return fetchAPI(url, "POST", body, true);
 }
 
 export const API = {
@@ -31,5 +31,5 @@ export const API = {
   fetchFavorites,
   favoriteProperty,
   saveProperty,
-  uploadImage,
+  uploadImage
 };

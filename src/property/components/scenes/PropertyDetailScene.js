@@ -18,7 +18,7 @@ import CommentList from "../comments/CommentList";
 import CommentAdd from "../comments/CommentAdd";
 import Heart from "../Heart";
 import colors from "../../../common/colors";
-import PropertyMap from '../PropertyMap';
+import PropertyMap from "../PropertyMap";
 
 export default class PropertySingle extends Component {
   static propTypes = {
@@ -28,7 +28,7 @@ export default class PropertySingle extends Component {
     onChangeCommentText: PropTypes.func.isRequired,
     handleFavoritePress: PropTypes.func.isRequired,
     loadProfile: PropTypes.func.isRequired,
-    followLocation:PropTypes.func.isRequired
+    followLocation: PropTypes.func.isRequired
   };
 
   render() {
@@ -63,19 +63,19 @@ export default class PropertySingle extends Component {
             >
               <View>
                 {property.tags &&
-                <View style={{ flexDirection: "row", padding: 10 }}>
-                  <PropertyTags tags={property.tags} />
-                </View>}
+                  <View style={{ flexDirection: "row", padding: 10 }}>
+                    <PropertyTags tags={property.tags} />
+                  </View>}
 
                 {property.meta &&
-                <View
-                  style={{ flexDirection: "row", padding: 10, paddingTop: 0 }}
-                >
-                  <PropertyIcons
-                    services={property.meta}
-                    items={["bedroom", "bathroom", "parking"]}
-                  />
-                </View>}
+                  <View
+                    style={{ flexDirection: "row", padding: 10, paddingTop: 0 }}
+                  >
+                    <PropertyIcons
+                      services={property.meta}
+                      items={["bedroom", "bathroom", "parking"]}
+                    />
+                  </View>}
 
               </View>
 
@@ -112,12 +112,10 @@ export default class PropertySingle extends Component {
               <Text style={styles.description}>{property.description}</Text>
             </View>
 
-
             <PropertyMap
               address={property.address}
               followLocation={followLocation}
             />
-
 
             <View style={{ flex: 1, alignItems: "center" }}>
               <Text style={[styles.descTitle, { marginBottom: 10 }]}>

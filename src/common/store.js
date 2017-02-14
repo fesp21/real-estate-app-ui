@@ -1,13 +1,13 @@
-import createLogger from 'redux-logger';
-import rootReducer from './reducers';
-import rootSaga from './sagas';
-import createSagaMiddleware from 'redux-saga';
-import { createStore, applyMiddleware } from 'redux';
-import { createNavigationEnabledStore } from '@exponent/ex-navigation';
+import createLogger from "redux-logger";
+import rootReducer from "./reducers";
+import rootSaga from "./sagas";
+import createSagaMiddleware from "redux-saga";
+import { createStore, applyMiddleware } from "redux";
+import { createNavigationEnabledStore } from "@exponent/ex-navigation";
 
 const createStoreWithNavigation = createNavigationEnabledStore({
-  navigationStateKey: 'navigation',
-  createStore,
+  navigationStateKey: "navigation",
+  createStore
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -17,24 +17,24 @@ let Store;
 if (__DEV__) {
   const logger = createLogger({
     collapsed: true,
-    duration: true,
+    duration: true
   });
 
   Store = createStoreWithNavigation(
     rootReducer,
-    applyMiddleware(logger, sagaMiddleware),
+    applyMiddleware(logger, sagaMiddleware)
   );
 
   if (module.hot) {
     module.hot.accept(() => {
-      const nextRootReducer = require('./reducers').default;
+      const nextRootReducer = require("./reducers").default;
       Store.replaceReducer(nextRootReducer);
     });
   }
 } else {
   Store = createStoreWithNavigation(
     rootReducer,
-    applyMiddleware(sagaMiddleware),
+    applyMiddleware(sagaMiddleware)
   );
 }
 

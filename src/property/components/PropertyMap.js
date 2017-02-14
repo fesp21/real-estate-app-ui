@@ -16,7 +16,7 @@ export default class PropertyMap extends Component {
   };
 
   render() {
-    const { address,followLocation } = this.props;
+    const { address, followLocation } = this.props;
     const { latitude, longitude } = address;
     return (
       <MapView
@@ -34,7 +34,7 @@ export default class PropertyMap extends Component {
       >
         <MapView.Marker
           coordinate={address}
-          onSelect={()=>followLocation()}
+          onSelect={() => followLocation()}
         />
       </MapView>
     );
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-    marginVertical:5,
+    marginVertical: 5,
     height: 250,
-    alignItems:'center'
+    alignItems: "center"
   }
 });

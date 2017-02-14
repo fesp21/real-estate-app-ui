@@ -1,21 +1,23 @@
 import React from "react";
-import {View, StyleSheet, StatusBar, Text,TouchableHighlight} from "react-native";
-import colors from './../common/colors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import {
-  withNavigation,
-} from '@exponent/ex-navigation';
+  View,
+  StyleSheet,
+  StatusBar,
+  Text,
+  TouchableHighlight
+} from "react-native";
+import colors from "./../common/colors";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+import { withNavigation } from "@exponent/ex-navigation";
 
 @withNavigation
-
 export default class NavBack extends React.Component {
-
   static propTypes = {
     // style:View.propTypes.style,
-    text:React.PropTypes.string,
-    navigator:React.PropTypes.object.isRequired,
-    icon:React.PropTypes.string
+    text: React.PropTypes.string,
+    navigator: React.PropTypes.object.isRequired,
+    icon: React.PropTypes.string
   };
 
   goBack() {
@@ -23,34 +25,46 @@ export default class NavBack extends React.Component {
   }
 
   render() {
-    const {style,text,icon} = this.props;
+    const { style, text, icon } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={()=>{this.goBack()}} underlayColor="transparent">
-            {icon ? <Ionicons name={icon} size={30} color="#2c2d30" style={[styles.icon,style]}/> : <Text style={[styles.title,style]}>{text}</Text> }
+        <TouchableHighlight
+          onPress={() => {
+            this.goBack();
+          }}
+          underlayColor="transparent"
+        >
+          {icon
+            ? <Ionicons
+                name={icon}
+                size={30}
+                color="#2c2d30"
+                style={[styles.icon, style]}
+              />
+            : <Text style={[styles.title, style]}>{text}</Text>}
         </TouchableHighlight>
       </View>
     );
   }
 }
 
-const styles =  StyleSheet.create({
-  container : {
-    flex:1,
-    justifyContent:'center',
-    flexDirection:'row',
-    alignItems:'center',
-    paddingLeft:15,
-    paddingRight:10
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 15,
+    paddingRight: 10
   },
-  title:{
-    color:colors.tomato,
-    fontSize:15,
+  title: {
+    color: colors.tomato,
+    fontSize: 15
   },
   icon: {
-    width:30,
-    height:30,
-    alignSelf:'center',
-    color:colors.tomato,
+    width: 30,
+    height: 30,
+    alignSelf: "center",
+    color: colors.tomato
   }
 });
