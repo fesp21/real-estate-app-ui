@@ -10,7 +10,6 @@ import {
   Text,
   TouchableHighlight,
   TouchableWithoutFeedback,
-  Dimensions,
   Image,
   RefreshControl
 } from "react-native";

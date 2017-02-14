@@ -1,14 +1,13 @@
 /**
  * @flow
  */
-import React, { PropTypes, Component, PureComponent } from "react";
+import React, { PropTypes, Component } from "react";
 import {
   ScrollView,
   StyleSheet,
   StatusBar,
   Text,
   Image,
-  Dimensions,
   Alert
 } from "react-native";
 import { connect } from "react-redux";

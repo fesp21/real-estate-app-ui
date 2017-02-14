@@ -1,11 +1,6 @@
 import React, { PropTypes, Component } from "react";
 import {
-  ScrollView,
-  StyleSheet,
   View,
-  Dimensions,
-  Image,
-  Text
 } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -111,10 +106,10 @@ class UserEdit extends Component {
     const { user } = this.props;
     return (
       <UserEditScene
+        {...this.state}
         user={user}
         pickImage={this.pickImage}
         onFieldChange={this.onFieldChange}
-        {...this.state}
         onSave={this.onSave}
       />
     );

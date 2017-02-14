@@ -10,8 +10,8 @@ import {
   Text,
   TouchableHighlight,
   TouchableWithoutFeedback,
-  Dimensions,
   Image,
+  Dimensions,
   RefreshControl
 } from "react-native";
 import PropertyIcons from "../PropertyIcons";

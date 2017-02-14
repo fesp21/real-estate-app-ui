@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  Dimensions,
   Image
 } from "react-native";
 import colors from "../../../common/colors";

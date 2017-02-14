@@ -9,7 +9,6 @@ import {
   Image,
   ListView,
   TouchableHighlight,
-  Dimensions
 } from "react-native";
 import colors from "../../../common/colors";
 

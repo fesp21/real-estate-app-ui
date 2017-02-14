@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from "react";
-import { ScrollView, StyleSheet, View, Dimensions, Image } from "react-native";
+import { ScrollView, StyleSheet, View, Image } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ACTIONS } from "./common/actions";
@@ -91,16 +91,5 @@ function mapStateToProps(state, props) {
     isFetching: state.propertyReducer.isFetching
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  page: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  Dimensions,
   Image
 } from "react-native";
 import colors from "../../../common/colors";
@@ -20,8 +19,6 @@ export default class Contact extends Component {
   };
 
   render() {
-    const { user } = this.props;
-
     return (
       <View style={styles.container}>
         <View style={styles.rowContainer}>
