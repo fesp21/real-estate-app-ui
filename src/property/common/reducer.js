@@ -111,7 +111,7 @@ export default function propertyReducer(state = initialState, action = {}) {
         filters: { ...state.filters, [action.field]: action.value }
       };
     case ACTION_TYPES.FILTER_RESET:
-      return { ...initialState };
+      return { ...state };
     case ACTION_TYPES.FAVORITES_SUCCESS:
       const favoriteResults = [];
       const favoritePropertyCollections = action.payload.data;

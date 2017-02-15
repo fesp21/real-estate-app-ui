@@ -1,27 +1,28 @@
-import React, { Component, PropTypes } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React from "react";
+import {View, StyleSheet, Text} from "react-native";
 
-export default class PropertyTags extends Component {
-  static propTypes = {
-    tags: PropTypes.array.isRequired
-  };
-
-  render() {
-    const { tags } = this.props;
+const PropertyTags = ({items}) => {
     return (
       <View style={styles.container}>
-        {tags.map((tag, i) => <Text key={i} style={styles.tag}> #{tag} </Text>)}
+        {items.map((item, i) => <Text key={i} style={styles.tag}> #{item} </Text>)}
       </View>
     );
-  }
-}
+};
+
+PropertyTags.propTypes = {
+  items: React.PropTypes.array.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row"
+    flex:1,
+    flexDirection: "row",
+    paddingVertical:2,
   },
   tag: {
     color: "gray",
     fontSize: 11
   }
 });
+
+export default PropertyTags;

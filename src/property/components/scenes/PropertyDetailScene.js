@@ -22,7 +22,7 @@ import PropertyMap from "../PropertyMap";
 
 export default class PropertySingle extends Component {
   static propTypes = {
-    property: PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
     saveComment: PropTypes.func.isRequired,
     commentBody: PropTypes.string.isRequired,
     onChangeCommentText: PropTypes.func.isRequired,
@@ -33,7 +33,7 @@ export default class PropertySingle extends Component {
 
   render() {
     const {
-      property,
+      item,
       saveComment,
       commentBody,
       onChangeCommentText,
@@ -51,43 +51,58 @@ export default class PropertySingle extends Component {
             onPress={() => showSlider()}
             underlayColor="transparent"
           >
-            <Image source={{ uri: property.images[0] }} style={styles.image} />
+            <Image source={{ uri: item.images[0] }} style={styles.image} />
           </TouchableHighlight>
 
           <View style={styles.content}>
 
-            <Text style={styles.title}>{property.title}</Text>
+            <Text style={styles.title}>{item.title}</Text>
 
             <View
-              style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+              style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems:'center'
+          }}
             >
-              <View>
-                {property.tags &&
-                  <View style={{ flexDirection: "row", padding: 10 }}>
-                    <PropertyTags tags={property.tags} />
-                  </View>}
 
-                {property.meta &&
-                  <View
-                    style={{ flexDirection: "row", padding: 10, paddingTop: 0 }}
-                  >
-                    <PropertyIcons
-                      services={property.meta}
-                      items={["bedroom", "bathroom", "parking"]}
-                    />
-                  </View>}
+              <View style={{ flex: 2 }}>
 
-              </View>
+                <PropertyTags items={item.tags || ["Laundry", "Swimming Pool"]} />
 
-              <View style={{ marginLeft: 30 }}>
-                <Text style={styles.price}>{property.price}KD</Text>
-              </View>
-
-              <View style={{ marginLeft: 20 }}>
-                <Heart
-                  handleFavoritePress={() => handleFavoritePress(property)}
-                  isFavorited={property.isFavorited}
+                <PropertyIcons
+                  services={item.meta || []}
+                  items={["bedroom", "bathroom", "parking"]}
                 />
+
+                <Text style={styles.lightText}>Uploaded 3 days ago</Text>
+
+              </View>
+
+              <View style={{ flex: 1 }}>
+
+                <View
+                  style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center"
+              }}
+                >
+
+                  <Text style={styles.price}>{item.price}KD</Text>
+
+                  <Heart
+                    handleFavoritePress={() => handleFavoritePress(item)}
+                    isFavorited={item.isFavorited}
+                  />
+
+                </View>
+
+                <Text style={[styles.lightText, { textAlign: "center" }]}>
+                  256 views
+                </Text>
+
               </View>
 
             </View>
@@ -98,10 +113,10 @@ export default class PropertySingle extends Component {
               <Text style={styles.label}>By</Text>
               <TouchableHighlight
                 underlayColor="transparent"
-                onPress={() => loadProfile(property.user)}
+                onPress={() => loadProfile(item.user)}
                 style={{ flex: 1 }}
               >
-                <Text style={styles.username}> {property.user.name} </Text>
+                <Text style={styles.username}> {item.user.name} </Text>
               </TouchableHighlight>
             </View>
 
@@ -109,11 +124,11 @@ export default class PropertySingle extends Component {
 
             <View>
               <Text style={styles.descTitle}>Description</Text>
-              <Text style={styles.description}>{property.description}</Text>
+              <Text style={styles.description}>{item.description}</Text>
             </View>
 
             <PropertyMap
-              address={property.address}
+              address={item.address}
               followLocation={followLocation}
             />
 
@@ -121,7 +136,7 @@ export default class PropertySingle extends Component {
               <Text style={[styles.descTitle, { marginBottom: 10 }]}>
                 Amenities
               </Text>
-              {property.amenities.map(amenity => (
+              {item.amenities.map(amenity => (
                 <Text key={amenity} style={styles.amenity}>{amenity}</Text>
               ))}
             </View>
@@ -130,7 +145,7 @@ export default class PropertySingle extends Component {
 
             <View>
               <Text style={styles.descTitle}>Comments</Text>
-              <CommentList collection={property.comments} />
+              <CommentList collection={item.comments} />
               <CommentAdd
                 saveComment={saveComment}
                 commentBody={commentBody}
@@ -210,5 +225,10 @@ const styles = StyleSheet.create({
     color: "#2c2d30",
     margin: 10,
     fontWeight: "600"
+  },
+  lightText: {
+    color: colors.fadedBlack,
+    fontWeight: "100",
+    fontSize: 12
   }
 });

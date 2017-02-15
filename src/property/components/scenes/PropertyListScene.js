@@ -18,7 +18,6 @@ import PropertyIcons from "../PropertyIcons";
 import PropertyTags from "../PropertyTags";
 import Swiper from "react-native-swiper";
 import Heart from "../Heart";
-import LoadingIndicator from "../../../components/LoadingIndicator";
 import colors from "../../../common/colors";
 
 export default class PropertyListScene extends Component {
@@ -61,7 +60,6 @@ export default class PropertyListScene extends Component {
         <TouchableHighlight
           onPress={() => loadEntity(item)}
           underlayColor="transparent"
-          style={{ flex: 1 }}
         >
           <Text style={styles.title}>{item.title}</Text>
         </TouchableHighlight>
@@ -82,42 +80,48 @@ export default class PropertyListScene extends Component {
           style={{
             flex: 1,
             flexDirection: "row",
-            alignItems: "center",
-            padding: 10
+            alignItems:'center',
+            padding:5
           }}
         >
 
-          <View style={{ flex: 1 }}>
-            {item.tags &&
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <PropertyTags tags={item.tags} />
-              </View>}
+          <View style={{ flex: 2 }}>
 
-            {item.meta &&
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  paddingTop: 5
-                }}
-              >
-                <PropertyIcons
-                  services={item.meta}
-                  items={["bedroom", "bathroom", "parking"]}
-                />
-              </View>}
+            <PropertyTags items={item.tags || ["Laundry", "Swimming Pool"]} />
+
+            <PropertyIcons
+              services={item.meta || []}
+              items={["bedroom", "bathroom", "parking"]}
+            />
+
+            <Text style={styles.lightText}>Uploaded 3 days ago</Text>
+
           </View>
 
-          <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-            <View style={{ marginLeft: 30 }}>
+          <View style={{ flex: 1 }}>
+
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center"
+              }}
+            >
+
               <Text style={styles.price}>{item.price}KD</Text>
-            </View>
-            <View style={{ marginLeft: 20 }}>
+
               <Heart
                 handleFavoritePress={() => handleFavoritePress(item)}
                 isFavorited={item.isFavorited}
               />
+
             </View>
+
+            <Text style={[styles.lightText, { textAlign: "center" }]}>
+              256 views
+            </Text>
+
           </View>
 
         </View>
@@ -163,7 +167,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   wrapper: {
-    backgroundColor: "#000",
     top: 0,
     right: 0,
     bottom: 0,
@@ -210,5 +213,10 @@ const styles = StyleSheet.create({
   loadingImage: {
     width: 60,
     height: 60
+  },
+  lightText: {
+    color: colors.fadedBlack,
+    fontWeight: "100",
+    fontSize: 12
   }
 });

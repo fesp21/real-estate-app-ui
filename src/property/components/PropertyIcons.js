@@ -45,7 +45,9 @@ export default class PropertyIcons extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row"
+    flex:1,
+    flexDirection: "row",
+    paddingVertical:2
   },
   row: {
     flexDirection: "row",

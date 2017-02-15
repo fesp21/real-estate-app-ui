@@ -91,7 +91,7 @@ class PropertyDetail extends Component {
     const { property, comments } = this.props;
     return (
       <PropertyDetailScene
-        property={property}
+        item={property}
         comments={comments}
         saveComment={this.saveComment}
         commentBody={this.state.commentBody}

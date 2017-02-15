@@ -13,35 +13,32 @@ import {
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import colors from "../../../common/colors";
 import ImagePicker from "react-native-image-crop-picker";
-import Video from "react-native-video";
+import VideoPlayer from "./../../../components/VideoPlayer";
 
 export default class UploadVideo extends Component {
   static propTypes = {
-    updateVideo: PropTypes.func.isRequired
-  };
-
-  state = {
-    media: null
+    onFieldChange: PropTypes.func.isRequired,
+    video: PropTypes.oneOfType([PropTypes.object, PropTypes.null]).isRequired
   };
 
   pickVideo = () => {
+    const { onFieldChange } = this.props;
     ImagePicker
       .openPicker({
         smartAlbums: ["Videos"]
       })
       .then(media => {
-        this.setState({
-          media: media
-        });
+        onFieldChange("video", media);
       });
   };
 
   removeVideo = video => {
-    // this.props.updateVideo(video);
+    const { onFieldChange } = this.props;
+    onFieldChange("video", null);
   };
 
   render() {
-    const { header, footer } = this.props;
+    const { header, footer, video } = this.props;
 
     return (
       <View style={styles.container}>
@@ -57,28 +54,11 @@ export default class UploadVideo extends Component {
         </TouchableHighlight>
 
         <View style={styles.menuContainer}>
-          {this.state.media &&
-            <Video
-              source={this.state.media} // Can be a URL or a local file.
-              ref={ref => {
-                this.player = ref;
-              }} // Store reference
-              rate={1.0} // 0 is paused, 1 is normal.
-              volume={1.0} // 0 is muted, 1 is normal.
-              muted={false} // Mutes the audio entirely.
-              paused={false} // Pauses playback entirely.
-              resizeMode="cover" // Fill the whole screen at aspect ratio.*
-              repeat={true} // Repeat forever.
-              playInBackground={false} // Audio continues to play when app entering background.
-              playWhenInactive={false} // [iOS] Video continues to play when control or notification center are shown.
-              progressUpdateInterval={250.0} // [iOS] Interval to fire onProgress (default to ~250ms)
-              onProgress={this.setTime} // Callback every ~250ms with currentTime
-              onEnd={this.onEnd} // Callback when playback finishes
-              onBuffer={this.onBuffer} // Callback when remote video is buffering
-              style={styles.video}
-            />}
-
+          {video &&
+            <VideoPlayer video={video} removeMedia={this.removeVideo} />}
         </View>
+
+        {footer}
 
       </View>
     );

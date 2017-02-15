@@ -1,0 +1,87 @@
+/**
+ * @flow
+ */
+import React, { PropTypes, Component } from "react";
+import { View, StyleSheet, TouchableHighlight } from "react-native";
+import Video from "react-native-video";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+export default class UploadVideo extends Component {
+  static propTypes = {
+    video: PropTypes.object.isRequired,
+    style: View.propTypes.style
+  };
+
+  state = {
+    muted: false,
+    paused: true
+  };
+
+  togglePause = () => {
+    this.setState({
+      paused: !this.state.paused
+    });
+  };
+
+  render() {
+    const { video, style, removeMedia } = this.props;
+    const { muted, paused } = this.state;
+
+    return (
+      <View style={[styles.container, style]}>
+        <TouchableHighlight
+          onPress={() => removeMedia()}
+          underlayColor="transparent"
+          style={styles.removeButton}
+        >
+          <FontAwesome
+            name="close"
+            style={{
+              backgroundColor: "transparent"
+            }}
+            color="red"
+            size={25}
+          />
+
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={() => this.togglePause()}
+        >
+          <Video
+            source={{ uri: video.path }}
+            ref={ref => {
+              this.player = ref;
+            }}
+            rate={1}
+            volume={0.5}
+            muted={muted}
+            paused={paused}
+            resizeMode="contain"
+            repeat={false}
+            style={styles.videoPlayer}
+          />
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 10
+  },
+  videoPlayer: {
+    width: 225,
+    height: 225,
+    alignSelf: "center"
+  },
+  removeButton: {
+    position: "absolute",
+    zIndex: 1000,
+    backgroundColor: "transparent",
+    marginLeft: 55
+  }
+});

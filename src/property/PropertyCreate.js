@@ -173,7 +173,8 @@ class PropertyCreate extends Component {
 
         {stage == 1 &&
           <UploadVideo
-            updateVideo={() => {}}
+            video={attributes.video}
+            onFieldChange={this.updateAttributes}
             header={<Header title="Upload Property Video" />}
             footer={<Footer updateListing={this.goToNextStage} />}
           />}
