@@ -78,6 +78,7 @@ const initialState = {
         parking: "1"
       },
       images: [],
+      video: null,
       amenities: ["Swimming Pool"]
     }
   }

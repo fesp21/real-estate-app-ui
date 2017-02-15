@@ -151,7 +151,7 @@ export default class PropertyListScene extends Component {
         automaticallyAdjustContentInsets={false}
         initialListSize={100}
         horizontal={horizontal && true}
-        onEndReached={()=>fetchProperties()}
+        onEndReached={() => fetchProperties()}
         onEndReachedThreshold={10}
       />
     );

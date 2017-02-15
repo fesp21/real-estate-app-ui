@@ -9,7 +9,7 @@ import {
   Text,
   Image,
   ListView,
-  TouchableHighlight,
+  TouchableHighlight
 } from "react-native";
 import colors from "../../../common/colors";
 import Button from "../filters/Button";

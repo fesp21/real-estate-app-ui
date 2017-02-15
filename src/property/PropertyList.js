@@ -2,13 +2,7 @@
  * @flow
  */
 import React, { PropTypes, Component, PureComponent } from "react";
-import {
-  View,
-  StyleSheet,
-  StatusBar,
-  Text,
-  Image,
-} from "react-native";
+import { View, StyleSheet, StatusBar, Text, Image } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ACTIONS } from "./common/actions";

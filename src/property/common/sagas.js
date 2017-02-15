@@ -160,12 +160,11 @@ export function* saveProperty() {
     const response = yield call(API.saveProperty, params, urlParams);
 
     const formData = new FormData();
-    map(images, img =>
-      formData.append("images[]", {
-        uri: img,
-        name: getFileName(img),
-        type: "image/jpg"
-      }));
+    map(images, img => formData.append("images[]", {
+      uri: img,
+      name: getFileName(img),
+      type: "image/jpg"
+    }));
 
     const imageResponse = yield call(
       API.uploadImage,

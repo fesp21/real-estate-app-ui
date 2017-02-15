@@ -7,6 +7,7 @@ import List from "./components/create/List";
 import AddressPicker from "./components/create/AddressPicker";
 import PropertyMeta from "./components/create/PropertyMeta";
 import UploadImage from "./components/create/UploadImage";
+import UploadVideo from "./components/create/UploadVideo";
 import PropertyInfo from "./components/create/PropertyInfo";
 import PropertyAmenities from "./components/create/PropertyAmenities";
 import NavBack from "./components/create/NavBack";
@@ -125,7 +126,7 @@ class PropertyCreate extends Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 1 &&
+        {stage == 6 &&
           <List
             field="type"
             collection={types}
@@ -170,7 +171,14 @@ class PropertyCreate extends Component {
             footer={<Footer updateListing={this.goToNextStage} />}
           />}
 
-        {stage == 6 &&
+        {stage == 1 &&
+          <UploadVideo
+            updateVideo={() => {}}
+            header={<Header title="Upload Property Video" />}
+            footer={<Footer updateListing={this.goToNextStage} />}
+          />}
+
+        {stage == 7 &&
           <PropertyInfo
             attributes={attributes}
             onFieldChange={this.updateAttributes}
@@ -178,7 +186,7 @@ class PropertyCreate extends Component {
             footer={<Footer updateListing={this.goToNextStage} />}
           />}
 
-        {stage == 7 &&
+        {stage == 8 &&
           <PropertyAmenities
             collection={amenities}
             selected={attributes.amenities}
