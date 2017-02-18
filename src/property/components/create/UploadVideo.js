@@ -18,7 +18,7 @@ import VideoPlayer from "./../../../components/VideoPlayer";
 export default class UploadVideo extends Component {
   static propTypes = {
     onFieldChange: PropTypes.func.isRequired,
-    video: PropTypes.oneOfType([PropTypes.object, PropTypes.null]).isRequired
+    video: PropTypes.oneOfType([PropTypes.string, PropTypes.null])
   };
 
   pickVideo = () => {
@@ -28,7 +28,7 @@ export default class UploadVideo extends Component {
         smartAlbums: ["Videos"]
       })
       .then(media => {
-        onFieldChange("video", media);
+        onFieldChange("video", media.path);
       });
   };
 

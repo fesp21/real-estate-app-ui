@@ -141,7 +141,8 @@ export function* saveProperty() {
       meta,
       images,
       amenities,
-      tags
+      tags,
+      video
     } = attributes;
     const params = {
       country,
@@ -154,7 +155,8 @@ export function* saveProperty() {
       meta,
       images,
       amenities,
-      tags
+      tags,
+      video
     };
     const urlParams = `api_token=${apiToken}`;
     const response = yield call(API.saveProperty, params, urlParams);
@@ -166,12 +168,13 @@ export function* saveProperty() {
       type: "image/jpg"
     }));
 
+    formData.append("video",params.video);
+
     const imageResponse = yield call(
       API.uploadImage,
       response.data._id,
       formData
     );
-
     yield put({
       type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS,
       payload: imageResponse

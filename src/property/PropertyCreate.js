@@ -126,7 +126,7 @@ class PropertyCreate extends Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {stage == 6 &&
+        {stage == 1 &&
           <List
             field="type"
             collection={types}
@@ -171,7 +171,7 @@ class PropertyCreate extends Component {
             footer={<Footer updateListing={this.goToNextStage} />}
           />}
 
-        {stage == 1 &&
+        {stage == 6 &&
           <UploadVideo
             video={attributes.video}
             onFieldChange={this.updateAttributes}

@@ -3866,6 +3866,14 @@ react-native-video@^1.0.0:
   dependencies:
     keymirror "0.1.1"
 
+react-native-youtube@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-youtube/-/react-native-youtube-0.8.0.tgz#147b8cc1065d453b65a59670aa4ed0ba6e81061e"
+
+react-native-youtube@inProgress-team/react-native-youtube:
+  version "0.8.1"
+  resolved "https://codeload.github.com/inProgress-team/react-native-youtube/tar.gz/bbf8a803f0a09e0b37e79a84e7b2a286b6e84df3"
+
 react-native@0.41.2:
   version "0.41.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.41.2.tgz#c6f486b8450a9909e6fed2dfd2c2af946563bf4f"

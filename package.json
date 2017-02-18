@@ -24,6 +24,7 @@
     "react-native-tab-view": "^0.0.55",
     "react-native-vector-icons": "^4.0.0",
     "react-native-video": "^1.0.0",
+    "react-native-youtube": "inProgress-team/react-native-youtube",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",

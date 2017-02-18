@@ -8,7 +8,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default class UploadVideo extends Component {
   static propTypes = {
-    video: PropTypes.object.isRequired,
+    video: PropTypes.string.isRequired,
     style: View.propTypes.style
   };
 
@@ -50,7 +50,7 @@ export default class UploadVideo extends Component {
           onPress={() => this.togglePause()}
         >
           <Video
-            source={{ uri: video.path }}
+            source={{ uri: video }}
             ref={ref => {
               this.player = ref;
             }}

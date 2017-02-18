@@ -19,6 +19,7 @@ import CommentAdd from "../comments/CommentAdd";
 import Heart from "../Heart";
 import colors from "../../../common/colors";
 import PropertyMap from "../PropertyMap";
+import YoutubePlayer from './../../../components/YoutubePlayer';
 
 export default class PropertySingle extends Component {
   static propTypes = {
@@ -55,6 +56,9 @@ export default class PropertySingle extends Component {
           </TouchableHighlight>
 
           <View style={styles.content}>
+
+
+            <YoutubePlayer video={item.video} />
 
             <Text style={styles.title}>{item.title}</Text>
 
