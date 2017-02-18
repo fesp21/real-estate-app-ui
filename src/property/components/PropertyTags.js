@@ -1,12 +1,14 @@
 import React from "react";
-import {View, StyleSheet, Text} from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
-const PropertyTags = ({items}) => {
-    return (
-      <View style={styles.container}>
-        {items.map((item, i) => <Text key={i} style={styles.tag}> #{item} </Text>)}
-      </View>
-    );
+const PropertyTags = ({ items }) => {
+  return (
+    <View style={styles.container}>
+      {items.map((item, i) => (
+        <Text key={i} style={styles.tag}> #{item} </Text>
+      ))}
+    </View>
+  );
 };
 
 PropertyTags.propTypes = {
@@ -15,9 +17,9 @@ PropertyTags.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     flexDirection: "row",
-    paddingVertical:2,
+    paddingVertical: 2
   },
   tag: {
     color: "gray",

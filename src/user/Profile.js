@@ -20,7 +20,7 @@ class Profile extends Component {
       renderBackground: props => (
         <View>
           <Image
-            style={{flex:1}}
+            style={{ flex: 1 }}
             source={{
               uri: "http://il9.picdn.net/shutterstock/videos/3951179/thumb/1.jpg"
             }}

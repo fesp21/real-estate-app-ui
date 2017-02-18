@@ -80,8 +80,8 @@ export default class PropertyListScene extends Component {
           style={{
             flex: 1,
             flexDirection: "row",
-            alignItems:'center',
-            padding:5
+            alignItems: "center",
+            padding: 5
           }}
         >
 

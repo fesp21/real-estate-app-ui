@@ -19,7 +19,7 @@ import CommentAdd from "../comments/CommentAdd";
 import Heart from "../Heart";
 import colors from "../../../common/colors";
 import PropertyMap from "../PropertyMap";
-import YoutubePlayer from './../../../components/YoutubePlayer';
+import YoutubePlayer from "./../../../components/YoutubePlayer";
 
 export default class PropertySingle extends Component {
   static propTypes = {
@@ -57,20 +57,21 @@ export default class PropertySingle extends Component {
 
           <View style={styles.content}>
 
-
             <Text style={styles.title}>{item.title}</Text>
 
             <View
               style={{
-            flex: 1,
-            flexDirection: "row",
-            alignItems:'center'
-          }}
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "center"
+              }}
             >
 
               <View style={{ flex: 2 }}>
 
-                <PropertyTags items={item.tags || ["Laundry", "Swimming Pool"]} />
+                <PropertyTags
+                  items={item.tags || ["Laundry", "Swimming Pool"]}
+                />
 
                 <PropertyIcons
                   services={item.meta || []}
@@ -85,11 +86,11 @@ export default class PropertySingle extends Component {
 
                 <View
                   style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center"
-              }}
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    alignItems: "center"
+                  }}
                 >
 
                   <Text style={styles.price}>{item.price}KD</Text>
@@ -145,10 +146,7 @@ export default class PropertySingle extends Component {
 
             <View style={styles.separator} />
 
-            {
-              item.video &&
-              <YoutubePlayer video={item.video} />
-            }
+            {item.video && <YoutubePlayer video={item.video} />}
 
             <View style={styles.separator} />
 
@@ -238,6 +236,7 @@ const styles = StyleSheet.create({
   lightText: {
     color: colors.fadedBlack,
     fontWeight: "100",
-    fontSize: 12
+    fontSize: 12,
+    paddingVertical: 2
   }
 });
