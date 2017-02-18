@@ -2,9 +2,10 @@
  * @flow
  */
 import React, { PropTypes, Component } from "react";
-import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
+import { View, StyleSheet, Image, TouchableHighlight, Dimensions } from "react-native";
 import Youtube from 'react-native-youtube';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import colors from './../common/colors';
 
 export default class YoutubePlayer extends Component {
   static propTypes = {
@@ -43,7 +44,7 @@ export default class YoutubePlayer extends Component {
               hidden={true}        // control visiblity of the entire view
               playsInline={false}    // control whether the video should play inline
               loop={false}          // control whether the video should loop when ended
-              style={{height: 250, width:250,backgroundColor: 'white', marginVertical: 10}}
+              style={{height: 250, width:Dimensions.get('window').width,backgroundColor: 'white', marginVertical: 10}}
               rel={false}
               modestbrand={false}
               showinfo={true}
@@ -55,9 +56,23 @@ export default class YoutubePlayer extends Component {
               onPress={()=>this.onThumbnailPress()}
               underlayColor="transparent"
             >
-              <Image source={{uri:imageThumbnail}} style={styles.thumbnailImage} resizeMode="cover"/>
+              <View style={{flex:1}}>
+                <View style={{
+                  position:"absolute",
+                  top:100,
+                  zIndex:1000,
+                  left:Dimensions.get('window').width/2 - 40,
+                  opacity:0.7,flex:1,backgroundColor:'black',width:75,height:75,borderRadius:37.5,alignItems:'center',justifyContent:'center'}}>
+                  <FontAwesome
+                    name="play"
+                    color={colors.fadedWhite}
+                    size={37.5}
+                    style={{ marginLeft:5}}
+                  />
+                </View>
+                <Image source={{uri:imageThumbnail}} style={styles.thumbnailImage} resizeMode="cover"/>
+              </View>
             </TouchableHighlight>
-
         }
 
       </View>
@@ -85,7 +100,8 @@ const styles = StyleSheet.create({
     marginLeft: 55
   },
   thumbnailImage:{
-    width:250,
+    width:Dimensions.get('window').width,
     height:250,
+    backgroundColor:'black'
   }
 });
