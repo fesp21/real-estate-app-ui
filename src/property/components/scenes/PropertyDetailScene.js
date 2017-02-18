@@ -58,8 +58,6 @@ export default class PropertySingle extends Component {
           <View style={styles.content}>
 
 
-            <YoutubePlayer video={item.video} />
-
             <Text style={styles.title}>{item.title}</Text>
 
             <View
@@ -144,6 +142,13 @@ export default class PropertySingle extends Component {
                 <Text key={amenity} style={styles.amenity}>{amenity}</Text>
               ))}
             </View>
+
+            <View style={styles.separator} />
+
+            {
+              item.video &&
+              <YoutubePlayer video={item.video} />
+            }
 
             <View style={styles.separator} />
 
