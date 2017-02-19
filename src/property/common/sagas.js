@@ -168,7 +168,9 @@ export function* saveProperty() {
       type: "image/jpg"
     }));
 
-    formData.append("video", params.video);
+    if(params.video) {
+      formData.append("video", params.video);
+    }
 
     const imageResponse = yield call(
       API.uploadImage,
