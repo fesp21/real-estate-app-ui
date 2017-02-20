@@ -22,7 +22,7 @@ export default class Root extends Component {
   constructor() {
     super();
     if (CODEPUSH_ENABLED) {
-      CodePush.sync();
+      // CodePush.sync();
     }
   }
 

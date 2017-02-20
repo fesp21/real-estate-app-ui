@@ -177,10 +177,12 @@ export function* saveProperty() {
       response.data._id,
       formData
     );
+
     yield put({
       type: ACTION_TYPES.PROPERTY_SAVE_SUCCESS,
       payload: imageResponse
     });
+
     yield put({ type: ACTION_TYPES.PROPERTY_RESET });
     yield put({ type: ACTION_TYPES.FILTER_RESET });
     yield put({ type: ACTION_TYPES.PROPERTY_REQUEST });
