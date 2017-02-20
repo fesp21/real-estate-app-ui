@@ -61,8 +61,8 @@ export default class UploadImage extends Component {
           style={{
             position: "absolute",
             zIndex: 1000,
-            marginTop: -10,
-            marginLeft: -10
+            top: -10,
+            left: -10
           }}
         >
           <FontAwesome
@@ -134,6 +134,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap"
   },
+  listStyle:{
+    padding:5,
+  },
   menuContainer: {
     flex: 3,
     padding: 10,
@@ -141,10 +144,10 @@ const styles = StyleSheet.create({
   },
   row: {
     justifyContent: "center",
-    padding: 5,
-    margin: 10,
-    width: 150,
-    height: 150,
+    padding:5,
+    margin:5,
+    width:140,
+    height:140,
     backgroundColor: "#F6F6F6",
     alignItems: "center",
     borderWidth: 0.5,

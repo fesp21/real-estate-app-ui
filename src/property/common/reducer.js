@@ -77,7 +77,9 @@ const initialState = {
         area: "220.5",
         parking: "1"
       },
-      images: [],
+      images: [
+        "/Users/ZaL/Library/Developer/CoreSimulator/Devices/EA84BF0A-FB05-4E60-97DD-B83C0C40B7B7/data/Containers/Data/Application/0203C691-DEE0-40D6-A897-DB81D337F0B0/tmp/react-native-image-crop-picker/EB145D8D-D812-4C8C-926B-C449F5F0EF98.jpg"
+      ],
       video: null,
       amenities: ["Swimming Pool"]
     }
